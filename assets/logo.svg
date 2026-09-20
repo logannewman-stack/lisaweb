@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" fill="none" stroke="#E2AE63" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Lisa Brunson mark: a seven-petal lotus over three rings of sound.
+       Her tattoo symbols are to be woven in here once received (see README). -->
+  <defs>
+    <path id="petal" d="M60 18 C49 36 49 60 60 78 C71 60 71 36 60 18 Z"/>
+  </defs>
+  <g>
+    <use href="#petal" transform="rotate(-72 60 78) translate(60 78) scale(.82) translate(-60 -78)"/>
+    <use href="#petal" transform="rotate(72 60 78) translate(60 78) scale(.82) translate(-60 -78)"/>
+    <use href="#petal" transform="rotate(-48 60 78) translate(60 78) scale(.92) translate(-60 -78)"/>
+    <use href="#petal" transform="rotate(48 60 78) translate(60 78) scale(.92) translate(-60 -78)"/>
+    <use href="#petal" transform="rotate(-24 60 78)"/>
+    <use href="#petal" transform="rotate(24 60 78)"/>
+    <use href="#petal"/>
+  </g>
+  <g opacity=".9">
+    <path d="M44 88 Q60 97 76 88"/>
+    <path d="M36 96 Q60 108 84 96" opacity=".7"/>
+    <path d="M28 104 Q60 120 92 104" opacity=".45"/>
+  </g>
+</svg>
