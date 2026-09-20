@@ -1,97 +1,91 @@
 # Lisa Brunson — website
 
 A one-page, fully custom site for Lisa Brunson: sound healing, ceremony and
-cleansing. The page is built as a journey from night to morning. It opens in
-the dark with sage smoke and a struck bowl, turns through a lotus-pink dawn,
-and ends in morning light.
+cleansing. It is built from the things she sent: her whitewashed brick wall,
+her navy velvet couch and pink velvet chair, the seven chakra flags over her
+clock, the signs on her walls, her 2026 vision board and her wrist tattoo.
 
 There is no build step and nothing to install. Open `index.html` in a browser
 or put the folder on any static host.
 
-## What is still placeholder
+## Deploying (read this first)
 
-Lisa's own material (colours, quotes, vision board, instruments, tattoo, life
-story) had not arrived when this template was built. Everything below is
-example content, chosen to fit what she described, and every piece of it is
-in one obvious place so it can be swapped in minutes.
+Vercel deploys the repository's production branch, which is `main`. The site
+lives on the branch this was built on. Until the two are joined, `main` holds
+only the uploaded photos and the live URL shows a 404. Either:
+
+- merge the site branch into `main` (a pull request, or a merge from the
+  command line), or
+- in the Vercel project, Settings, Git, set the Production Branch to the site
+  branch.
+
+No other settings are needed: the framework preset is "Other", there is no
+build command, and the output directory is the repository root.
+
+## What is real, and what is still placeholder
 
 | What | Where | Status |
 | --- | --- | --- |
-| Colours | `css/theme.css` | Placeholder palette (indigo, plum, lotus, kraft, sage, gold). Swap the hex values for hers. |
-| Quotes | `js/content.js`, `quotes` | 10 example quotes. Replace with the ones she sent. |
-| Vision board | `js/content.js`, `board` | 13 example items with drawn stand-ins. Point `src` at her photos. |
-| Instruments | `js/content.js`, `instruments` | 8 example instruments. Edit names and notes, add `photo` paths. |
-| Tagline, email, Instagram, location | `js/content.js`, top of the file | Placeholders. |
-| Offerings | `js/content.js`, `offerings` | Example services and lengths. |
-| Her story, the cleansing text, the meaning of the mark | `index.html`, each block has a comment above it | Example copy, written in her voice. Replace with her words. |
-| Portrait | `index.html`, the "My story" section | "Portrait to come" stand-in. See the comment there. |
-| Logo | `assets/logo.svg` and the `<symbol id="lotus">` at the top of `index.html` | Lotus over three rings of sound. Her tattoo symbols still need to be drawn in. |
-| Contact form | `index.html`, the `<form>` in the contact section | Posts to Formspree. Replace `your-form-id` with a real form id, or swap in any form service. The email link works regardless. |
+| Colours | `css/theme.css` | Real. Sampled from her photos: the brick, the velvet, the chair, the gold letters, the seven flags. |
+| Quotes | `js/content.js`, `quotes` | Real. The six signs on her walls, the pillow, and lines from the vision board. |
+| Vision board | `js/content.js`, `board` | Real. The photo of her 2026 board and the words on it. |
+| Her space | `js/content.js`, `space` | Real photos. The captions are example copy. |
+| The mark | `assets/logo.svg` and `<symbol id="mark">` in `index.html` | Drawn from her tattoo: crescent moon, moon phases, eye, rays of dots, with a lotus. |
+| Her story | `index.html`, "My story" block | Example copy in her voice. Replace with her words. |
+| Portrait | `index.html`, "My story" block | The pink chair photo stands in. See the comment there. |
+| Sage and palo santo | `index.html`, "Sage and palo santo" block | A drawing stands in. Her photo can replace it. |
+| Instruments | `js/content.js`, `instruments` | Example set with drawings and sounds. Her photos have not arrived yet. |
+| Sessions | `js/content.js`, `offerings` | Example services and lengths. |
+| Email, Instagram, location | `js/content.js`, top of the file | Placeholders. |
+| Contact form | `index.html`, the `<form>` | Posts to Formspree. Replace `your-form-id`, or use any form service. The email link works regardless. |
 
-Her files go in the `assets/` folders. `assets/README.md` says which folder is
-for what.
+Photos are in `assets/photos/` (web-sized, with an `-800` version of each for
+smaller frames). The original uploads are kept untouched in `assets/source/`.
 
 ## Changing things
 
-**Colours.** Open `css/theme.css`. Each colour has a one-line note saying where
-it is used. Keep dark grounds with light text and light grounds with dark
-text, and the rest takes care of itself. The page moves through the grounds in
-this order: `--night`, `--dusk`, `--lotus` (the horizon gradient), `--kraft`,
-`--mist`, `--morning`.
+**Colours.** `css/theme.css`. Each colour has a note saying where it came from
+and where it is used. The seven flag colours (`--root` to `--crown`) tint the
+seven sections after the quotes, and colour the flags in the navigation.
 
-**Quotes.** Edit the `quotes` list in `js/content.js`. The shortest quotes are
-drawn around the lotus in two slowly turning rings, and all of them take turns
-in the centre. Leave `by` empty for a mantra or an unattributed line.
+**Quotes.** The `quotes` list in `js/content.js`. The shortest ones turn
+around the centre in two rings; the ones with a `photo` also appear in "On my
+walls".
 
-**Vision board.** Edit the `board` list in `js/content.js`. Each item is a
-photo (`type: "image"`), a single word (`type: "word"`) or a short note
-(`type: "note"`). `w` and `h` set how many columns and rows it takes on a
-six-column board, `rot` gives it a small tilt. For a photo, drop the file into
-`assets/vision-board/` and set `src`. While `src` is empty a drawn placeholder
-stands in.
+**Vision board.** `board` in `js/content.js`: the photo, its caption, and the
+`words` (each with a `face` of `serif`, `sans` or `hand`, an optional `big`,
+and an optional `tint` from the flag colours).
 
-**Instruments.** Edit the `instruments` list. Each instrument has a line
-drawing (`art`) and a sound (`voice`) that is synthesised in the browser when
-tapped, so there are no audio files to host. To show a photo instead of the
-drawing, set `photo`.
+**Her space.** `space` in `js/content.js`: photo, caption, and a `shape`
+(`wide`, `tall` or `square`). `frame: "petal"` gives the lotus-petal frame.
 
-**Copy.** Longer prose is in `index.html`. Every block is introduced by a
-comment (`EXAMPLE COPY: replace ...`).
+**Instruments.** `instruments` in `js/content.js`. Each has a drawing (`art`)
+and a sound (`voice`) made in the browser. Set `photo` to show a photo.
 
-**The mark.** The lotus is drawn once as `<symbol id="lotus">` at the top of
-`index.html` and reused in the navigation, hero, "The mark" section and
-footer. `assets/logo.svg` is the same drawing as a standalone file for the
-favicon and social previews. When her tattoo symbols arrive, draw them into
-both places.
+**Copy.** Longer prose is in `index.html`; each block starts with a comment.
 
-**Fonts.** Cormorant Garamond and Nunito Sans are loaded from Google Fonts in
-the `<head>` of `index.html`. Both fall back to system faces if the request
-fails.
+**The mark.** Drawn once as `<symbol id="mark">` at the top of `index.html`
+and reused in the navigation, hero, "The mark" section and footer.
+`assets/logo.svg` is the same drawing as a standalone file for the favicon.
+
+**Fonts.** Cormorant Garamond, Nunito Sans and Caveat (for the hand-written
+words on the board), from Google Fonts, with system fallbacks.
 
 ## Running it locally
-
-Any static server works. For example:
 
 ```
 python3 -m http.server 8080
 ```
 
-then open `http://localhost:8080`. Opening `index.html` straight from the
-file system also works.
-
-## Putting it online
-
-The folder is the site. Drag it onto Netlify Drop, push it to a GitHub Pages
-branch, or import the repository into Vercel or Cloudflare Pages. No settings
-are required.
+then open `http://localhost:8080`. Opening `index.html` from the file system
+also works.
 
 ## Good to know
 
-- The smoke in the hero, the turning quotes and the hero entrance all switch
-  off for visitors who have "reduce motion" turned on. The breath exercise
-  still works because the visitor starts it.
+- The flags, the turning quotes, the gold dots and the hero entrance all
+  switch off for visitors who have "reduce motion" turned on. The breath
+  exercise still works because the visitor starts it.
 - Sounds only play when an instrument is tapped. Nothing autoplays.
 - The whole page works with a keyboard, and every interactive element has a
   visible focus ring.
-- The design rationale (palette, type, layout, what to keep in mind when
-  editing) is in `DESIGN.md`.
+- `DESIGN.md` records the design decisions so future edits stay coherent.

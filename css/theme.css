@@ -1,52 +1,53 @@
 /* =============================================================================
    LISA BRUNSON — THEME TOKENS
    -----------------------------------------------------------------------------
-   This is the one file to edit when Lisa's colors arrive.
-   Every color on the site comes from these variables. Nothing else needs to
-   change. Keep the pairs below in step: a dark ground gets light text, a light
-   ground gets dark text.
+   Every colour on the site comes from these variables, and every one of them
+   was sampled from the photos Lisa sent: her whitewashed brick wall, the navy
+   velvet couch, the pink velvet chair, the gold Namaste letters, the pink
+   crown sign, and the seven chakra prayer flags over the clock.
 
-   The page is a journey from night to morning:
-     night  → hero
-     dusk   → quotes + story
-     lotus  → the horizon between dark and light (a gradient, never a section)
-     kraft  → the vision board (paper)
-     mist   → instruments + cleansing + the mark
-     morning→ offerings + contact
-
-   PLACEHOLDER PALETTE — chosen to match sage, palo santo, lotus and a dusk
-   ceremony. Swap the hex values for the colors Lisa sent.
+   Change a value here and the whole site follows.
    ========================================================================== */
 
 :root {
-  /* ---- Grounds (backgrounds), dark to light -------------------------------- */
-  --night:   #1C1A33;   /* deep indigo, the sky the hero happens under        */
-  --dusk:    #3B2A46;   /* plum dusk, quotes + story                          */
-  --lotus:   #E6AEB4;   /* dusty lotus pink, the dawn horizon + accents       */
-  --kraft:   #E8DBC5;   /* kraft paper, the vision board                      */
-  --mist:    #E9EEE5;   /* pale sage, instruments + cleansing + the mark      */
-  --morning: #F3F5EE;   /* morning light, offerings + contact                 */
+  /* ---- Grounds ------------------------------------------------------------ */
+  --wall:        #F6F4F0;  /* the whitewashed brick, the page itself          */
+  --paper:       #FCFAF6;  /* cards, frames, the vision board paper           */
+  --velvet:      #1B2B45;  /* the navy velvet couch: quotes and footer        */
+  --velvet-deep: #121E33;  /* the shadow in the velvet                        */
 
-  /* ---- Accents ------------------------------------------------------------ */
-  --ember:      #E2AE63; /* palo santo ember, gold — used on dark grounds     */
-  --ember-soft: #C9A264; /* gold for lines and ornaments on light grounds     */
-  --ember-deep: #7F571B; /* gold for text on light grounds (readable)         */
-  --sage:       #AEBDA6; /* sage leaf — used on dark grounds                  */
-  --sage-deep:  #4F6552; /* sage for text and lines on light grounds          */
-  --lotus-deep: #A8606F; /* lotus for large type and shapes on light grounds  */
-  --lotus-ink:  #8D4B5B; /* lotus for small text on light grounds             */
+  /* ---- Accents from her rooms --------------------------------------------- */
+  --blush:       #E9A296;  /* the pink velvet chair                           */
+  --blush-soft:  #F5D6CF;  /* a wash of it                                    */
+  --rose:        #CC897F;  /* the pink of the crown sign                      */
+  --rose-ink:    #A4574E;  /* the same, dark enough to read on white          */
+  --gold:        #C9A24B;  /* the Namaste letters, the gold frame             */
+  --gold-soft:   #E7D3A2;  /* gold for hairlines on dark grounds              */
+  --gold-ink:    #8A6A22;  /* gold for text on light grounds                  */
+  --teal:        #255862;  /* the iridescent jar                              */
+  --olive:       #6E7440;  /* the paisley leaves, the heart flag              */
+
+  /* ---- The seven flags, root to crown ------------------------------------- */
+  --root:   #A8262E;
+  --sacral: #DB5A1E;
+  --solar:  #E2A52A;
+  --heart:  #5F6E2C;
+  --throat: #2F6BA8;
+  --third:  #3F2462;
+  --crown:  #8E7EB8;
 
   /* ---- Text --------------------------------------------------------------- */
-  --bone:      #F2ECE2;                 /* text on dark grounds                */
-  --bone-soft: rgba(242, 236, 226, .72);/* secondary text on dark grounds      */
-  --bone-line: rgba(242, 236, 226, .22);/* hairlines on dark grounds           */
-  --ink:       #2B2536;                 /* text on light grounds (plum-black)  */
-  --ink-soft:  #5C5468;                 /* secondary text on light grounds     */
-  --ink-line:  rgba(43, 37, 54, .18);   /* hairlines on light grounds          */
+  --ink:       #2C292A;                 /* the black of her wooden signs       */
+  --ink-soft:  #625B5B;
+  --ink-line:  rgba(44, 41, 42, .16);
+  --bone:      #F7F1EA;                 /* text on velvet                      */
+  --bone-soft: rgba(247, 241, 234, .74);
+  --bone-line: rgba(247, 241, 234, .22);
 
   /* ---- Type --------------------------------------------------------------- */
   --font-display: "Cormorant Garamond", "Cormorant", Garamond, "Times New Roman", serif;
   --font-body:    "Nunito Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-hand:    "Caveat", "Segoe Print", "Bradley Hand", cursive;
 
   /* Modular scale, base 18px, ratio ~1.25 */
   --t-xs:   0.8rem;
@@ -56,19 +57,17 @@
   --t-xl:   1.75rem;
   --t-2xl:  2.25rem;
   --t-3xl:  clamp(2.4rem, 4.6vw, 3.4rem);
-  --t-display: clamp(3.2rem, 11vw, 8rem);
+  --t-display: clamp(3rem, 8.5vw, 6.5rem);
 
   /* ---- Layout ------------------------------------------------------------- */
-  --wrap:    72rem;                       /* max content width                 */
-  --measure: 62ch;                        /* max line length for prose         */
-  --gutter:  clamp(1rem, 4vw, 3rem);      /* side padding, never below 16px    */
-  --section: clamp(5.5rem, 13vh, 9.5rem); /* vertical rhythm between sections  */
+  --wrap:    74rem;
+  --measure: 62ch;
+  --gutter:  clamp(1rem, 4vw, 3rem);
+  --section: clamp(5rem, 12vh, 8.5rem);
 
   /* ---- Signature shapes --------------------------------------------------- */
-  /* A lotus petal for frames, a leaf for buttons. Change these and the whole
-     site changes character. */
-  --petal: 50% 50% 48% 52% / 62% 62% 38% 38%;
-  --leaf:  1.7em 0.45em 1.7em 0.45em;
+  --petal: 50% 50% 48% 52% / 62% 62% 38% 38%;   /* the lotus petal, for frames */
+  --leaf:  1.7em 0.45em 1.7em 0.45em;           /* the leaf, for buttons       */
 
   /* ---- Motion ------------------------------------------------------------- */
   --ease-out: cubic-bezier(.22, .61, .36, 1);

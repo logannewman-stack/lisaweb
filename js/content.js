@@ -1,82 +1,103 @@
 /* =============================================================================
    LISA BRUNSON — SITE CONTENT
    -----------------------------------------------------------------------------
-   Everything that repeats on the page lives here: the quotes, the vision board,
-   the instruments and the offerings. Edit the text, save, refresh.
+   Everything that repeats on the page lives here. Edit the text, save, refresh.
 
-   EVERYTHING IN THIS FILE IS EXAMPLE CONTENT until Lisa's real quotes, photos
-   and copy arrive. Lines marked "example" are safe to delete or replace.
-
-   Longer prose (her story, the cleansing text) is in index.html, next to a
-   comment that says where each block starts.
+   REAL: the quotes, the vision board, the photos of her space, the tattoo.
+   STILL EXAMPLE: her story (index.html), the offerings, the contact details,
+   the instruments (no photos yet) and the captions marked "example".
    ========================================================================== */
 
 window.LISA = {
   name: "Lisa Brunson",
-
-  /* One line under her name in the hero. */
   tagline: "Sound, ceremony, and the slow work of coming home to yourself.",
 
-  /* Contact details. Placeholders — replace with Lisa's real ones. */
+  /* Placeholders. Replace with Lisa's real details. */
   email: "hello@lisabrunson.com",
   instagram: "lisabrunson",
   location: "Sessions in person and online",
 
   /* ---------------------------------------------------------------------------
-     QUOTES — "Quotes surrounding me at all times."
-     The shortest ones are drawn around the lotus in two slow-turning rings.
-     All of them take turns in the centre.
-     Replace this list with the quotes Lisa sent. Keep `by` empty for a mantra
-     or anything unattributed.
+     QUOTES — the words on her walls, her pillows and her vision board.
+     The shortest turn around the lotus in two rings; all take turns in the
+     centre. Ones with a photo also appear in the "On my walls" gallery.
      ------------------------------------------------------------------------ */
   quotes: [
-    { text: "What you seek is seeking you.", by: "Rumi" },
-    { text: "Be still. Stillness reveals the secrets of eternity.", by: "Lao Tzu" },
-    { text: "The wound is the place where the light enters you.", by: "Rumi" },
-    { text: "Peace comes from within. Do not seek it without.", by: "attributed to the Buddha" },
-    { text: "Nature does not hurry, yet everything is accomplished.", by: "Lao Tzu" },
-    { text: "The quieter you become, the more you are able to hear.", by: "Rumi" },
-    { text: "Where there is love there is life.", by: "Mahatma Gandhi" },
-    { text: "Let the beauty of what you love be what you do.", by: "Rumi" },
-    { text: "I am safe. I am held. I am home.", by: "a morning mantra" },
-    { text: "Gratitude turns what we have into enough.", by: "" }
+    { text: "Not all storms come to disrupt your life. Some come to clear your path.", by: "", photo: "assets/photos/quote-storms-800.jpg", alt: "A watercolour painting of a rainbow, sun, trees and flowers with the words Not all storms come to disrupt your life, some come to clear your path", tall: true },
+    { text: "Inner peace begins the moment you choose not to allow another person or event to control your emotions.", by: "", photo: "assets/photos/quote-inner-peace-800.jpg", alt: "A weathered metal sign with a lotus flower and the words Inner peace begins the moment you choose not to allow another person or event to control your emotions", tall: true },
+    { text: "On the darkest days, when I feel inadequate, unloved and unworthy, I remember that I am the daughter of the King, and I straighten my crown.", by: "", photo: "assets/photos/quote-crown-800.jpg", alt: "A pink hand-lettered sign with a silver crown", tall: true },
+    { text: "Listen to your dreams. They're smarter than you are.", by: "", photo: "assets/photos/sign-dreams-800.jpg", alt: "A black wooden sign reading Listen to your dreams, they're smarter than you are", tall: false },
+    { text: "Smile, shine, and take it one day at a time.", by: "", photo: "assets/photos/rainbow-smile-800.jpg", alt: "Rainbow brush strokes with the words Smile, shine and take it one day at a time, a butterfly and a smiley face", tall: true },
+    { text: "Inhale courage. Exhale fear.", by: "a pillow on the couch" },
+    { text: "It is never too late to be what you might have been.", by: "from the vision board" },
+    { text: "Find joy every day.", by: "from the vision board" },
+    { text: "Move from doing to being.", by: "from the vision board" },
+    { text: "Remember to be kind.", by: "from the vision board" },
+    { text: "Everything is possible.", by: "from the vision board" },
+    { text: "Rediscover you.", by: "the top of the vision board" }
   ],
 
   /* ---------------------------------------------------------------------------
-     VISION BOARD — "My vision board for the year."
-     Each item is pinned to a kraft-paper board with a strip of tape.
-       type "image"  a photo. Put the file in assets/vision-board/ and set
-                     src: "assets/vision-board/your-photo.jpg". While src is
-                     empty, a drawn placeholder (motif) stands in.
-                     motifs: sunrise, mountains, bowls, garden, circle, moon, water
-       type "word"   one word, set large.
-       type "note"   a short line in her own hand.
-       w / h         how many columns / rows the item spans (board is 6 wide)
-       rot           a small tilt in degrees, like a real pinned card
+     VISION BOARD — the words on her real board, "Rediscover you, 2026".
+     The board photo is assets/photos/vision-board-2026.jpg.
+       face: "serif", "sans" or "hand" (the board mixes cut-out lettering)
+       tint: a flag colour for a few of the cards, or empty for paper
      ------------------------------------------------------------------------ */
-  board: [
-    { type: "image", motif: "sunrise",   caption: "Mornings by the ocean",        w: 2, h: 2, rot: -2,  src: "" },
-    { type: "word",  text: "Abundance",                                          w: 1, h: 1, rot: 3 },
-    { type: "image", motif: "mountains", caption: "A cabin in the mountains",     w: 2, h: 1, rot: 1.5, src: "" },
-    { type: "word",  text: "Peace",                                              w: 1, h: 1, rot: -2 },
-    { type: "note",  text: "This is the year I say yes to myself.",              w: 2, h: 1, rot: -1 },
-    { type: "image", motif: "bowls",     caption: "A studio full of bowls",       w: 2, h: 2, rot: 2,   src: "" },
-    { type: "word",  text: "Health",                                             w: 1, h: 1, rot: 2 },
-    { type: "image", motif: "garden",    caption: "Herbs from the garden",        w: 1, h: 1, rot: -3,  src: "" },
-    { type: "image", motif: "circle",    caption: "A circle of women",            w: 1, h: 1, rot: -1.5, src: "" },
-    { type: "word",  text: "Travel",                                             w: 1, h: 1, rot: -2.5 },
-    { type: "image", motif: "moon",      caption: "Under a full moon",            w: 1, h: 1, rot: 2.5, src: "" },
-    { type: "word",  text: "Rest",                                               w: 1, h: 1, rot: 1.5 },
-    { type: "image", motif: "water",     caption: "Time near water, often",       w: 2, h: 1, rot: 1,   src: "" }
+  board: {
+    photo: "assets/photos/vision-board-2026.jpg",
+    alt: "Lisa's 2026 vision board: a collage of cut-out words and pictures around the words Rediscover you, 2026, focused and in control",
+    caption: "The board on my wall this year.",
+    words: [
+      { text: "Rediscover you", face: "serif", big: true, tint: "" },
+      { text: "2026", face: "serif", big: true, tint: "gold" },
+      { text: "Faith", face: "hand", big: true, tint: "" },
+      { text: "Find joy every day", face: "sans", tint: "" },
+      { text: "It is never too late to be what you might have been", face: "hand", wide: true, tint: "" },
+      { text: "Breathe", face: "serif", big: true, tint: "throat" },
+      { text: "A healthier happy", face: "sans", tint: "" },
+      { text: "Laid-back living", face: "serif", tint: "" },
+      { text: "Explore Lake Martin", face: "hand", tint: "" },
+      { text: "Focused and in control", face: "sans", tint: "" },
+      { text: "Love", face: "serif", big: true, tint: "rose" },
+      { text: "Experiences", face: "sans", tint: "" },
+      { text: "Garden", face: "serif", tint: "heart" },
+      { text: "Travel", face: "sans", tint: "root" },
+      { text: "Mind over matter", face: "serif", tint: "" },
+      { text: "Remember to be kind", face: "hand", tint: "" },
+      { text: "Everything is possible", face: "sans", tint: "crown" },
+      { text: "Rise and shine", face: "hand", tint: "solar" },
+      { text: "Mindfulness", face: "serif", tint: "" },
+      { text: "No bad vibes", face: "sans", tint: "" }
+    ]
+  },
+
+  /* ---------------------------------------------------------------------------
+     HER SPACE — "Come in." Photos of the room where sessions happen.
+     Captions are example copy: replace with her own words.
+       shape: "wide", "tall", "square"; frame: "petal" for a lotus-petal frame
+     ------------------------------------------------------------------------ */
+  space: [
+    { photo: "assets/photos/couch.jpg", alt: "A navy velvet couch piled with pillows: a rainbow, an evil eye print, a sun and moon, and one that reads Inhale courage, exhale fear", caption: "The navy couch, where every session starts. Usually with tea.", shape: "wide" },
+    { photo: "assets/photos/paisley-800.jpg", alt: "A chair covered in bright paisley fabric in magenta, olive and gold", caption: "The paisley chair. Every colour I love, in one piece of fabric.", shape: "tall" },
+    { photo: "assets/photos/iridescent-jar-800.jpg", alt: "An iridescent blue glass jar on a slice of wood", caption: "An iridescent jar on a slice of wood, catching the afternoon light.", shape: "square", frame: "petal" },
+    { photo: "assets/photos/chakra-flags.jpg", alt: "Seven chakra prayer flags in red, orange, yellow, green, blue, indigo and violet hung above a large wall clock", caption: "Seven flags over the clock, one for each chakra. They are the colours of this site.", shape: "wide" },
+    { photo: "assets/photos/rainbow-smile-800.jpg", alt: "Rainbow brush strokes with the words Smile, shine and take it one day at a time", caption: "A reminder I pass every day.", shape: "square" }
   ],
 
   /* ---------------------------------------------------------------------------
-     INSTRUMENTS — "Some of my sound instruments."
-     Tap one on the site and it plays a sound made in the browser (no audio
-     files needed). To show a real photo instead of the line drawing, put the
-     file in assets/instruments/ and set photo: "assets/instruments/bowl.jpg".
-       art    which drawing to use: bowl, drum, rattle, chimes, flute, tingsha, ocean
-       voice  which sound it makes: crystal, tibetan, drum, rattle, chimes, flute, tingsha, ocean
+     THE TATTOO — the wrist tattoo whose symbols are drawn into the mark.
+     ------------------------------------------------------------------------ */
+  tattoo: {
+    photo: "assets/photos/tattoo-crop.jpg",
+    alt: "Lisa's wrist tattoo: a monogram inside a crescent moon with moon phases, an eye, and rays of dots"
+  },
+
+  /* ---------------------------------------------------------------------------
+     INSTRUMENTS — example set until her photos arrive.
+     Tap one on the site and it plays a sound made in the browser.
+       art    bowl, drum, rattle, chimes, flute, tingsha, ocean
+       voice  crystal, tibetan, drum, rattle, chimes, flute, tingsha, ocean
+       photo  "assets/instruments/your-photo.jpg" to show a photo instead
      ------------------------------------------------------------------------ */
   instruments: [
     { name: "Crystal singing bowl", note: "Clear quartz, tuned near 528 Hz. The first sound in every session.", art: "bowl",    voice: "crystal", photo: "" },
@@ -90,26 +111,11 @@ window.LISA = {
   ],
 
   /* ---------------------------------------------------------------------------
-     OFFERINGS — "Work with me."
+     SESSIONS — example offerings.
      ------------------------------------------------------------------------ */
   offerings: [
-    {
-      name: "Sound bath",
-      length: "75 minutes",
-      who: "Small groups",
-      blurb: "Lie down, be covered in blankets, and let the bowls, chimes and drum do the work. You do nothing but breathe."
-    },
-    {
-      name: "One-to-one session",
-      length: "60 minutes",
-      who: "Just you",
-      blurb: "We talk first. Then sound, placed where it is needed. People leave lighter, and usually quieter."
-    },
-    {
-      name: "Cleansing ceremony",
-      length: "90 minutes",
-      who: "Homes, studios, new beginnings",
-      blurb: "Sage and palo santo, sound, and intention, for a space that needs a fresh start or a season that is ending."
-    }
+    { name: "Sound bath", length: "75 minutes", who: "Small groups", blurb: "Lie down, be covered in blankets, and let the bowls, chimes and drum do the work. You do nothing but breathe." },
+    { name: "One-to-one session", length: "60 minutes", who: "Just you", blurb: "We talk first, in the pink chair. Then sound, placed where it is needed. People leave lighter, and usually quieter." },
+    { name: "Cleansing ceremony", length: "90 minutes", who: "Homes, studios, new beginnings", blurb: "Sage and palo santo, sound, and intention, for a space that needs a fresh start or a season that is ending." }
   ]
 };

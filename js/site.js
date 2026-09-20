@@ -33,11 +33,6 @@
      ====================================================================== */
   var nav = $("#nav"), hero = $("#top"), toggle = $("#nav-toggle");
   var toned = $$("[data-tone]").filter(function (el) { return el !== document.documentElement; });
-  var GROUND = {
-    top: "var(--night)", quotes: "var(--dusk)", story: "var(--dusk)",
-    vision: "var(--kraft)", sound: "var(--mist)", cleansing: "var(--mist)", mark: "var(--mist)",
-    offerings: "var(--morning)", contact: "var(--morning)"
-  };
   var links = $$(".nav__links a");
   var ticking = false;
 
@@ -56,8 +51,8 @@
         var r = toned[i].getBoundingClientRect();
         if (r.top <= barY && r.bottom > barY) {
           document.documentElement.setAttribute("data-tone", toned[i].getAttribute("data-tone"));
-          var g = GROUND[toned[i].id];
-          if (g) nav.style.setProperty("--nav-ground", g);
+          var g = getComputedStyle(toned[i]).backgroundColor;
+          if (g && g !== "rgba(0, 0, 0, 0)" && g !== "transparent") nav.style.setProperty("--nav-ground", g);
         }
         if (r.top <= midY && r.bottom > midY) current = toned[i].id;
       }
@@ -117,11 +112,11 @@
     pool.sort(function (a, b) { return a.text.length - b.text.length; });
     pool.forEach(function (q) { q._len = measure(textEl, q.text); });
     var chosen = [];
-    for (var k = Math.min(4, pool.length); k >= 1; k--) {
+    for (var k = Math.min(5, pool.length); k >= 1; k--) {
       var slot = circumference / k;
       var take = pool.slice(0, k);
       var longest = take.reduce(function (m, q) { return Math.max(m, q._len); }, 0);
-      if (longest <= slot * 0.8) { chosen = take; break; }
+      if (longest <= slot * 0.86) { chosen = take; break; }
     }
     if (!chosen.length && pool.length) chosen = [pool[0]];
     chosen.forEach(function (q) { used.push(q); });
@@ -183,70 +178,52 @@
   }
 
   /* =========================================================================
-     VISION BOARD
+     ON MY WALLS — the quotes that have a photo
      ====================================================================== */
-  var motifCount = 0;
-  var MOTIFS = {
-    sunrise: function (id) {
-      return '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E6AEB4"/><stop offset=".6" stop-color="#F2DCC6"/><stop offset=".6" stop-color="#B9C9C2"/><stop offset="1" stop-color="#93A9A4"/></linearGradient></defs>' +
-        '<rect width="100" height="100" fill="url(#' + id + ')"/><circle cx="50" cy="60" r="15" fill="#E2AE63" opacity=".92"/><rect x="0" y="60" width="100" height="40" fill="#9FB4AE" opacity=".6"/>' +
-        '<path d="M8 70 H38 M54 70 H92 M18 80 H60 M70 80 H88 M30 90 H72" stroke="#F3F5EE" stroke-width="1" opacity=".8"/>';
-    },
-    mountains: function (id) {
-      return '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9EEE5"/><stop offset="1" stop-color="#C5D0C2"/></linearGradient></defs>' +
-        '<rect width="100" height="100" fill="url(#' + id + ')"/><circle cx="76" cy="22" r="7" fill="#F3F5EE"/>' +
-        '<path d="M0 78 L22 46 L38 64 L56 34 L74 58 L88 44 L100 62 V100 H0 Z" fill="#6F8874" opacity=".85"/>' +
-        '<path d="M0 88 L18 70 L34 84 L50 66 L70 86 L84 74 L100 84 V100 H0 Z" fill="#4F6552"/>';
-    },
-    bowls: function (id) {
-      return '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3F5EE"/><stop offset="1" stop-color="#E8DBC5"/></linearGradient></defs>' +
-        '<rect width="100" height="100" fill="url(#' + id + ')"/><g fill="none" stroke="#8A6A3A" stroke-width="1.2">' +
-        '<circle cx="34" cy="40" r="20"/><circle cx="34" cy="40" r="13" opacity=".55"/><circle cx="70" cy="62" r="17"/><circle cx="70" cy="62" r="10" opacity=".55"/><circle cx="40" cy="80" r="12"/><circle cx="40" cy="80" r="6" opacity=".55"/></g>';
-    },
-    garden: function (id) {
-      return '<defs><linearGradient id="' + id + '" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#DCE5D8"/><stop offset="1" stop-color="#F3F5EE"/></linearGradient></defs>' +
-        '<rect width="100" height="100" fill="url(#' + id + ')"/><g fill="none" stroke="#4F6552" stroke-width="1.4" stroke-linecap="round">' +
-        '<path d="M50 94 C50 60 50 40 50 18"/><path d="M50 76 C36 74 28 64 26 52 C40 54 48 62 50 76 Z"/><path d="M50 60 C64 58 72 48 74 36 C60 38 52 46 50 60 Z"/><path d="M50 44 C38 42 30 34 28 24 C40 26 48 32 50 44 Z"/><path d="M50 30 C58 28 64 22 66 14 C58 16 52 22 50 30 Z"/></g>';
-    },
-    circle: function (id) {
-      var dots = "";
-      for (var i = 0; i < 10; i++) {
-        var a = (i / 10) * Math.PI * 2;
-        dots += '<circle cx="' + (50 + Math.cos(a) * 21).toFixed(1) + '" cy="' + (50 + Math.sin(a) * 21).toFixed(1) + '" r="3.4"/>';
-      }
-      return '<rect width="100" height="100" fill="#E8DBC5"/><g fill="#A8606F" opacity=".9">' + dots + '</g><circle cx="50" cy="50" r="5" fill="none" stroke="#7F571B" stroke-width="1.2"/>';
-    },
-    moon: function (id) {
-      return '<defs><radialGradient id="' + id + '" cx=".5" cy=".35" r=".8"><stop offset="0" stop-color="#4A3556"/><stop offset="1" stop-color="#1C1A33"/></radialGradient></defs>' +
-        '<rect width="100" height="100" fill="url(#' + id + ')"/><circle cx="50" cy="38" r="15" fill="#F2ECE2"/>' +
-        '<g fill="#F2ECE2" opacity=".7"><circle cx="18" cy="20" r="1"/><circle cx="82" cy="26" r="1.3"/><circle cx="72" cy="70" r="1"/><circle cx="26" cy="74" r="1.2"/><circle cx="88" cy="56" r=".8"/></g>';
-    },
-    water: function (id) {
-      return '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9D8D6"/><stop offset="1" stop-color="#8FAAA9"/></linearGradient></defs>' +
-        '<rect width="100" height="100" fill="url(#' + id + ')"/><g fill="none" stroke="#F3F5EE" stroke-width="1" opacity=".9">' +
-        '<ellipse cx="50" cy="58" rx="9" ry="3.5"/><ellipse cx="50" cy="58" rx="21" ry="8.5"/><ellipse cx="50" cy="58" rx="35" ry="14.5"/><ellipse cx="50" cy="58" rx="50" ry="21"/></g>';
-    }
-  };
-  function motifSvg(name) {
-    var fn = MOTIFS[name] || MOTIFS.sunrise;
-    var id = "m" + (++motifCount);
-    return '<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' + fn(id) + "</svg>";
+  var walls = $("#walls");
+  if (walls) {
+    walls.innerHTML = quotes.filter(function (q) { return q.photo; }).map(function (q) {
+      return '<figure class="wall"><img src="' + esc(q.photo) + '" alt="' + esc(q.alt || "") + '" loading="lazy">' +
+        '<figcaption>' + esc(q.text) + "</figcaption></figure>";
+    }).join("");
   }
 
-  var board = $("#board");
-  if (board && L.board) {
-    board.innerHTML = L.board.map(function (item, i) {
-      var cls = "pin pin--" + item.type + (item.w > 1 ? " pin--wide" : "") + (item.h > 1 ? " pin--tall" : "");
-      var style = "--rot:" + (item.rot || 0) + "deg;--tape:" + (((i * 7) % 9) - 4) + "deg";
-      if (item.type === "image") {
-        var media = item.src
-          ? '<img src="' + esc(item.src) + '" alt="' + esc(item.caption || "") + '" loading="lazy">'
-          : motifSvg(item.motif);
-        return '<figure class="' + cls + '" style="' + style + '"><div class="pin__img">' + media + "</div>" +
-          (item.caption ? '<figcaption class="pin__caption">' + esc(item.caption) + "</figcaption>" : "") + "</figure>";
-      }
-      return '<div class="' + cls + '" style="' + style + '">' + esc(item.text) + "</div>";
+  /* =========================================================================
+     VISION BOARD — the real board, and the words on it
+     ====================================================================== */
+  var boardPhoto = $("#board-photo"), words = $("#words"), B = L.board || {};
+  if (boardPhoto && B.photo) {
+    boardPhoto.className = "board-photo taped";
+    boardPhoto.innerHTML = '<img src="' + esc(B.photo) + '" alt="' + esc(B.alt || "") + '" loading="lazy">' +
+      (B.caption ? "<figcaption>" + esc(B.caption) + "</figcaption>" : "");
+  }
+  if (words && B.words) {
+    words.innerHTML = B.words.map(function (w, i) {
+      var rot = (((i * 7) % 9) - 4) * 0.6;
+      var cls = "word word--" + (w.face || "sans") + (w.big ? " word--big" : "");
+      return '<span class="' + cls + '" data-tint="' + esc(w.tint || "") + '" style="--rot:' + rot.toFixed(1) + 'deg">' + esc(w.text) + "</span>";
     }).join("");
+  }
+
+  /* =========================================================================
+     HER SPACE
+     ====================================================================== */
+  var spaceGrid = $("#space-grid");
+  if (spaceGrid && L.space) {
+    spaceGrid.innerHTML = L.space.map(function (s) {
+      var cls = "spot spot--" + (s.shape || "square") + (s.frame === "petal" ? " spot--petal" : "");
+      return '<figure class="' + cls + '"><div class="spot__img"><img src="' + esc(s.photo) + '" alt="' + esc(s.alt || "") + '" loading="lazy"></div>' +
+        (s.caption ? "<figcaption>" + esc(s.caption) + "</figcaption>" : "") + "</figure>";
+    }).join("");
+  }
+
+  /* =========================================================================
+     THE TATTOO, beside the mark
+     ====================================================================== */
+  var tattoo = $("#tattoo");
+  if (tattoo && L.tattoo && L.tattoo.photo) {
+    tattoo.innerHTML = '<img src="' + esc(L.tattoo.photo) + '" alt="' + esc(L.tattoo.alt || "") + '" loading="lazy">' +
+      "<figcaption>On her wrist: the crescent, the phases, the eye, the rays of dots.</figcaption>";
   }
 
   /* =========================================================================

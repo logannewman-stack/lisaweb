@@ -5,91 +5,87 @@ that edits keep the whole thing coherent.
 
 ## The idea
 
-A sound bath happens in the dark and you leave it into daylight. The page does
-the same thing. It opens at night, with sage smoke rising and a bowl struck
-every so often, and as you scroll it moves through dusk, a lotus-pink dawn, a
-kraft-paper board pinned to a wall, pale sage morning mist, and finally
-morning light. Cleansing is the theme Lisa gave us (sage and palo santo,
-"for cleansing and peace"), and the page enacts it: dark to light, noise to
-quiet.
+The site is Lisa's space. She sent photos of it: a whitewashed brick wall
+with a wooden Namaste sign, a navy velvet couch piled with pillows, a pink
+velvet chair, chakra prayer flags strung over a big clock, hand-lettered
+signs, a paisley chair, a vision board for 2026, and the tattoo on her wrist.
+Everything on the page comes from those photos.
 
-Every section belongs to one of those grounds, and the transitions between
-them are gradients rather than hard edges.
+You arrive at the wall. The flags are strung across the top and they are the
+navigation: seven flags, seven sections, root to crown, in the order they
+hang over her clock. Then you sit on the couch: the quotes section is navy
+velvet, with the words she keeps around her turning slowly around the centre
+and the actual signs from her walls underneath. From there the page walks up
+through the chakras, each section tinted faintly with its flag's colour, and
+ends back on the velvet.
 
 ## Palette
 
-Placeholder values, chosen to match what Lisa described (sage, palo santo, a
-lotus, her instruments), until her own colours are dropped into
-`css/theme.css`.
+All sampled from her photos. Values live in `css/theme.css`.
 
-| Token | Value | Role |
+| Token | Value | From |
 | --- | --- | --- |
-| `--night` | `#1C1A33` | Deep indigo. The hero. |
-| `--dusk` | `#3B2A46` | Plum. Quotes and story. |
-| `--lotus` | `#E6AEB4` | Dusty lotus pink. The horizon and the petals of the mark. |
-| `--kraft` | `#E8DBC5` | Kraft paper. The vision board. |
-| `--mist` | `#E9EEE5` | Pale sage. Instruments, cleansing, the mark. |
-| `--morning` | `#F3F5EE` | Morning light. Offerings and contact. |
-| `--ember` | `#E2AE63` | Palo santo ember, gold. The accent on dark grounds. |
-| `--sage` | `#AEBDA6` | Sage leaf. Rings of the mark, ring text. |
+| `--wall` | `#F6F4F0` | The whitewashed brick. The page ground. |
+| `--velvet` | `#1B2B45` | The navy couch. Quotes and footer. |
+| `--blush` | `#E9A296` | The pink velvet chair. |
+| `--rose` / `--rose-ink` | `#CC897F` / `#A4574E` | The pink crown sign. Pull quotes, the petals of the mark. |
+| `--gold` / `--gold-ink` / `--gold-soft` | `#C9A24B` / `#8A6A22` / `#E7D3A2` | The Namaste letters and the gold frame. |
+| `--teal` | `#255862` | The iridescent jar. |
+| `--olive` | `#6E7440` | The paisley leaves. The cleansing drawing. |
+| `--root` to `--crown` | red, orange, yellow, olive, blue, indigo, lavender | The seven flags. Section tints, the flags in the navigation. |
 
-Each accent has a deeper twin (`--ember-deep`, `--sage-deep`, `--lotus-deep`,
-`--lotus-ink`) for use on light grounds, so contrast stays readable in both
-halves of the page.
+The flag colours are strong, so they are used small: a flag, a word card on
+the board, a six percent tint behind a section. Never as a full ground.
 
 ## Type
 
-- **Cormorant Garamond** carries the personality: her name, every heading,
-  the quotes, the words on the vision board. Its italic is the voice of the
-  quotes and of the pull lines.
-- **Nunito Sans** does the reading: body copy, navigation, buttons, form
-  labels. Soft and round, so the page never feels clinical.
+- **Cormorant Garamond** for her name, headings, the quotes and the captions.
+  Its italic is the voice of the quotes.
+- **Nunito Sans** for reading: body copy, navigation, buttons, forms.
+- **Caveat** only on the vision board, for the words that are hand-lettered
+  on the real one. Nowhere else.
 
-The scale is modular (base 18px, ratio about 1.25) and lives in
-`css/theme.css`. Headings are sentence case. There are no uppercase labels,
-no numbered markers and no decorative eyebrows.
+The scale is modular (base 18px, ratio about 1.25). Headings are sentence
+case. The only uppercase on the site is on the vision board, where it copies
+the magazine cut-outs on her real board.
 
-## Signature shapes
+## Signature elements
 
-Two shapes repeat so the page feels like one object:
-
-- **The petal** (`--petal`): the portrait frame. An egg-like lotus petal.
-- **The leaf** (`--leaf`): every button. Two rounded corners, two tight ones.
-  On hover the leaf flips its corners.
-- **Rings of sound**: the three arcs under the lotus, the ripple when an
-  instrument is tapped, the gold ring when the bowl is struck in the hero,
-  and the circular stage each instrument sits on.
+- **The flags.** A string of seven small flags in the header, a larger string
+  across the hero, and a single flag hanging from a thread in front of each
+  section heading. They encode which chakra a section belongs to.
+- **The mark.** A lotus resting in the crescent moon of her tattoo, with the
+  moon's phases along the crescent, the tattoo's eye beneath the flower and
+  its rays of dots above.
+- **The petal and the leaf.** The lotus-petal frame for the story photo and
+  the jar; the leaf shape for every button.
+- **The velvet.** One dark ground, used twice: the quotes and the footer.
 
 ## Motion
 
-One orchestrated moment: the mark draws itself, then her name settles in from
-wide letter-spacing, then the tagline, then the cue to begin. Everything else
-is ambient or answers a touch:
+One orchestrated moment on load: the flags swing in and settle, her name
+fades in from wide letter-spacing, then the tagline, the button and the
+photo. After that, only ambient or user-triggered motion:
 
-- Sage smoke in the hero (a curl-noise particle field on a canvas). It drifts
-  away from the pointer. A gold ring expands every 7 to 13 seconds, like a
-  bowl being struck.
-- The quote rings turn very slowly in opposite directions.
-- Tapping an instrument sends two rings outward and plays a synthesised
-  sound.
-- The breath circle grows and shrinks on a 4-7-8 count, only when started.
+- the flags sway a degree and a half, slowly;
+- gold dots drift up the velvet and glow near the pointer;
+- the quote rings turn, in opposite directions;
+- a tapped instrument sends two rings outward and plays a sound;
+- the breath circle grows and shrinks on a 4-7-8 count, only when started.
 
-Nothing slides or fades in on scroll. All ambient motion is switched off when
-the visitor has reduced motion enabled.
+Nothing fades in on scroll. All ambient motion is off under reduced motion.
 
 ## Layout
 
-One long page. The hero and the quotes are centred (ceremonial symmetry).
-Prose sections are left-aligned with a measure of about 62 characters. The
-board is a free collage on a six-column grid, each card tilted a degree or
-two and taped at the top. Offerings are a ruled list, not cards.
+One long page. The hero is two columns: her name on the left, the Namaste
+sign on the right. Prose sections are left-aligned with a measure of about
+62 characters. Photos sit in three kinds of frame: rounded rectangles, the
+lotus petal, and the polaroid-with-tape on the vision board.
 
 ## Things to avoid when editing
 
-- Don't add drop shadows and rounded cards to everything. The board cards are
-  the only "objects"; the rest of the page is flat.
-- Don't introduce a third typeface.
-- Don't put light text on `--kraft`, `--mist` or `--morning`, or dark text on
-  `--night` or `--dusk`. Each section carries `data-tone="dark"` or
-  `data-tone="light"`, and colours follow from that.
-- Keep the hero mostly empty. The smoke and the name are the whole point.
+- Don't use a flag colour as a background for a whole section or a button.
+- Don't add a fourth typeface, or use Caveat outside the vision board.
+- Don't put dark text on the velvet or light text on the wall. Sections
+  carry `data-tone="light"` or `data-tone="dark"` and colours follow.
+- Keep the hero to the name, the sign and the flags.
