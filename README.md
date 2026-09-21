@@ -1,75 +1,56 @@
 # Lisa Brunson — website
 
-A one-page, fully custom site for Lisa Brunson: sound healing, ceremony and
-cleansing. It is built from the things she sent: her whitewashed brick wall,
-her navy velvet couch and pink velvet chair, the seven chakra flags over her
-clock, the signs on her walls, her 2026 vision board and her wrist tattoo.
+A one-page, custom-designed site for Lisa Brunson: sound healing, ceremony
+and cleansing. The look comes from the photos she sent as style references:
+whitewashed brick, navy velvet, blush pink, gold, and the seven chakra flag
+colours. The content is about her, and all of it is placeholder text until
+her own words arrive.
 
 There is no build step and nothing to install. Open `index.html` in a browser
 or put the folder on any static host.
 
-## Deploying (read this first)
+## Deploying
 
-Vercel deploys the repository's production branch, which is `main`. The site
-lives on the branch this was built on. Until the two are joined, `main` holds
-only the uploaded photos and the live URL shows a 404. Either:
+Vercel deploys `main`. Push to `main` and the site goes live. The framework
+preset is "Other", there is no build command, and the output directory is the
+repository root. `.vercelignore` keeps the original photo uploads out of the
+deploy.
 
-- merge the site branch into `main` (a pull request, or a merge from the
-  command line), or
-- in the Vercel project, Settings, Git, set the Production Branch to the site
-  branch.
+## What is placeholder
 
-No other settings are needed: the framework preset is "Other", there is no
-build command, and the output directory is the repository root.
+Everything written about Lisa. Each block is marked in the file it lives in.
 
-## What is real, and what is still placeholder
+| What | Where |
+| --- | --- |
+| Tagline, email, Instagram, location | `js/content.js`, top of the file |
+| Quotes (these are the ones she sent) | `js/content.js`, `quotes` |
+| What I believe, the cut-out words | `js/content.js`, `values` |
+| What a session is like, the five steps | `js/content.js`, `steps` |
+| Kind words, the testimonials | `js/content.js`, `testimonials` |
+| Work with me, the offerings | `js/content.js`, `offerings` |
+| Her story, the at-a-glance facts in [brackets], the sage and palo santo text, the meaning of the mark | `index.html`, each block starts with a comment |
+| Her portrait | `index.html`, the hero. A petal-shaped placeholder holds the spot; the comment there says how to swap the photo in. |
+| Contact form | `index.html`. Posts to Formspree: replace `your-form-id`, or use any form service. The email link works regardless. |
 
-| What | Where | Status |
-| --- | --- | --- |
-| Colours | `css/theme.css` | Real. Sampled from her photos: the brick, the velvet, the chair, the gold letters, the seven flags. |
-| Quotes | `js/content.js`, `quotes` | Real. The six signs on her walls, the pillow, and lines from the vision board. |
-| Vision board | `js/content.js`, `board` | Real. The photo of her 2026 board and the words on it. |
-| Her space | `js/content.js`, `space` | Real photos. The captions are example copy. |
-| The mark | `assets/logo.svg` and `<symbol id="mark">` in `index.html` | Drawn from her tattoo: crescent moon, moon phases, eye, rays of dots, with a lotus. |
-| Her story | `index.html`, "My story" block | Example copy in her voice. Replace with her words. |
-| Portrait | `index.html`, "My story" block | The pink chair photo stands in. See the comment there. |
-| Sage and palo santo | `index.html`, "Sage and palo santo" block | A drawing stands in. Her photo can replace it. |
-| Instruments | `js/content.js`, `instruments` | Example set with drawings and sounds. Her photos have not arrived yet. |
-| Sessions | `js/content.js`, `offerings` | Example services and lengths. |
-| Email, Instagram, location | `js/content.js`, top of the file | Placeholders. |
-| Contact form | `index.html`, the `<form>` | Posts to Formspree. Replace `your-form-id`, or use any form service. The email link works regardless. |
+## Changing the look
 
-Photos are in `assets/photos/` (web-sized, with an `-800` version of each for
-smaller frames). The original uploads are kept untouched in `assets/source/`.
+**Colours.** `css/theme.css`. Each colour has a note saying where it came
+from and where it is used. The seven flag colours (`--root` to `--crown`)
+tint the seven sections after the quotes and colour the flags in the
+navigation.
 
-## Changing things
-
-**Colours.** `css/theme.css`. Each colour has a note saying where it came from
-and where it is used. The seven flag colours (`--root` to `--crown`) tint the
-seven sections after the quotes, and colour the flags in the navigation.
-
-**Quotes.** The `quotes` list in `js/content.js`. The shortest ones turn
-around the centre in two rings; the ones with a `photo` also appear in "On my
-walls".
-
-**Vision board.** `board` in `js/content.js`: the photo, its caption, and the
-`words` (each with a `face` of `serif`, `sans` or `hand`, an optional `big`,
-and an optional `tint` from the flag colours).
-
-**Her space.** `space` in `js/content.js`: photo, caption, and a `shape`
-(`wide`, `tall` or `square`). `frame: "petal"` gives the lotus-petal frame.
-
-**Instruments.** `instruments` in `js/content.js`. Each has a drawing (`art`)
-and a sound (`voice`) made in the browser. Set `photo` to show a photo.
-
-**Copy.** Longer prose is in `index.html`; each block starts with a comment.
+**Type.** Cormorant Garamond for headings and quotes, Nunito Sans for
+reading, Caveat only for the hand-lettered words in "What I believe". All
+from Google Fonts, with system fallbacks.
 
 **The mark.** Drawn once as `<symbol id="mark">` at the top of `index.html`
 and reused in the navigation, hero, "The mark" section and footer.
-`assets/logo.svg` is the same drawing as a standalone file for the favicon.
+`assets/logo.svg` is the same drawing as a standalone file. It sets a lotus
+among the symbols of her tattoo: the crescent moon, the moon phases, the eye,
+the rays of dots.
 
-**Fonts.** Cormorant Garamond, Nunito Sans and Caveat (for the hand-written
-words on the board), from Google Fonts, with system fallbacks.
+**Layout.** `css/site.css`, one block per section. `DESIGN.md` explains the
+choices.
 
 ## Running it locally
 
@@ -82,10 +63,8 @@ also works.
 
 ## Good to know
 
-- The flags, the turning quotes, the gold dots and the hero entrance all
-  switch off for visitors who have "reduce motion" turned on. The breath
-  exercise still works because the visitor starts it.
-- Sounds only play when an instrument is tapped. Nothing autoplays.
+- The flags, the turning quotes, the gold dots and the hero entrance switch
+  off for visitors who have "reduce motion" turned on. The breath exercise
+  still works because the visitor starts it.
 - The whole page works with a keyboard, and every interactive element has a
   visible focus ring.
-- `DESIGN.md` records the design decisions so future edits stay coherent.

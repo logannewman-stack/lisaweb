@@ -1,12 +1,11 @@
-# Lisa's files
+# Assets
 
-| Folder | What is in it |
+| Folder or file | What it is |
 | --- | --- |
-| `assets/source/` | The original uploads, untouched (large). |
-| `assets/photos/` | Web-sized versions used by the site: a 1600px version and an `-800` version of each. Named by what they show. |
-| `assets/portraits/` | Empty. A portrait of Lisa goes here, then swap it into the "My story" block in `index.html`. |
-| `assets/instruments/` | Empty. Photos of her instruments go here, then set `photo` on each instrument in `js/content.js`. |
+| `assets/source/` | Lisa's original uploads, kept untouched for reference. They are not used by the site and are excluded from the Vercel deploy by `.vercelignore`. |
+| `assets/photos/brick.jpg` | The whitewashed brick texture behind the hero, cropped from her wall. The only photo the site uses. |
+| `assets/portraits/` | Empty. Lisa's portrait goes here, then swap it into the hero (see the comment in `index.html`). |
 | `assets/logo.svg` | The mark, for the favicon and social previews. |
 
-To add a new photo, make a copy no wider than 1600px, save it as a JPEG in
-`assets/photos/`, and point to it from `js/content.js` or `index.html`.
+To add a photo, make a copy no wider than 1600px, save it as a JPEG, and
+point to it from `index.html`.

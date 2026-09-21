@@ -9,7 +9,6 @@
   <meta property="og:title" content="Lisa Brunson">
   <meta property="og:description" content="Sound, ceremony, and the slow work of coming home to yourself.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/photos/sign-namaste.jpg">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,7 +51,7 @@
         <circle cx="30.5" cy="73.7" r="2.4"/>
       </g>
     </symbol>
-    <!-- the seven flags, in the order they hang over her clock -->
+    <!-- the seven flags, root to crown -->
     <symbol id="g-root" viewBox="0 0 24 24"><path d="M7 7h10v10H7z"/><path d="M8.5 9h7L12 15z"/></symbol>
     <symbol id="g-sacral" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6.5"/><path d="M6.5 13a6 4 0 0 0 11 0"/></symbol>
     <symbol id="g-solar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6.5"/><path d="M8 9h8l-4 7z"/></symbol>
@@ -73,19 +72,20 @@
   <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
   <nav class="nav__links" id="menu" aria-label="Sections of this page">
     <a class="nav__flag" href="#story" style="--flag:var(--root)"><i aria-hidden="true"><svg><use href="#g-root"/></svg></i><span>Story</span></a>
-    <a class="nav__flag" href="#vision" style="--flag:var(--sacral)"><i aria-hidden="true"><svg><use href="#g-sacral"/></svg></i><span>Vision</span></a>
-    <a class="nav__flag" href="#space" style="--flag:var(--solar)"><i aria-hidden="true"><svg><use href="#g-solar"/></svg></i><span>Space</span></a>
+    <a class="nav__flag" href="#values" style="--flag:var(--sacral)"><i aria-hidden="true"><svg><use href="#g-sacral"/></svg></i><span>Values</span></a>
+    <a class="nav__flag" href="#session" style="--flag:var(--solar)"><i aria-hidden="true"><svg><use href="#g-solar"/></svg></i><span>A session</span></a>
     <a class="nav__flag" href="#cleansing" style="--flag:var(--heart)"><i aria-hidden="true"><svg><use href="#g-heart"/></svg></i><span>Cleansing</span></a>
-    <a class="nav__flag" href="#sound" style="--flag:var(--throat)"><i aria-hidden="true"><svg><use href="#g-throat"/></svg></i><span>Sound</span></a>
-    <a class="nav__flag" href="#mark" style="--flag:var(--third)"><i aria-hidden="true"><svg><use href="#g-third"/></svg></i><span>Mark</span></a>
-    <a class="nav__flag" href="#sessions" style="--flag:var(--crown)"><i aria-hidden="true"><svg><use href="#g-crown"/></svg></i><span>Sessions</span></a>
+    <a class="nav__flag" href="#kind" style="--flag:var(--throat)"><i aria-hidden="true"><svg><use href="#g-throat"/></svg></i><span>Kind words</span></a>
+    <a class="nav__flag" href="#the-mark" style="--flag:var(--third)"><i aria-hidden="true"><svg><use href="#g-third"/></svg></i><span>The mark</span></a>
+    <a class="nav__flag" href="#book" style="--flag:var(--crown)"><i aria-hidden="true"><svg><use href="#g-crown"/></svg></i><span>Book</span></a>
   </nav>
 </header>
 
 <main id="main">
 
   <!-- ======================================================================
-       THE WALL. Her whitewashed brick, her flags, her Namaste sign.
+       THE WALL. Whitewashed brick, a string of flags, her name, and a place
+       for her portrait. When the photo arrives, see the comment below.
        ====================================================================== -->
   <section class="hero" id="top" data-tone="light">
     <div class="hero__brick" aria-hidden="true"></div>
@@ -106,16 +106,22 @@
           <p class="hero__tagline" id="tagline">Sound, ceremony, and the slow work of coming home to yourself.</p>
           <a class="btn btn--velvet hero__cta" href="#quotes">Come in</a>
         </div>
-        <figure class="hero__photo">
-          <img src="assets/photos/sign-namaste.jpg" width="1200" height="1600" alt="A wooden Namaste sign with gold letters on Lisa's whitewashed brick wall" fetchpriority="high">
+        <figure class="portrait portrait--hero">
+          <div class="portrait__frame">
+            <!-- Lisa's portrait: replace the placeholder below with
+                 <img src="assets/portraits/lisa.jpg" alt="Lisa Brunson"> -->
+            <div class="portrait__placeholder" aria-hidden="true">
+              <svg class="mark"><use href="#mark"/></svg>
+            </div>
+          </div>
+          <figcaption>Lisa's portrait goes here.</figcaption>
         </figure>
       </div>
     </div>
   </section>
 
   <!-- ======================================================================
-       THE COUCH. Navy velvet, gold dots, and the words she keeps around her.
-       Quotes are listed in js/content.js.
+       THE VELVET. The words she keeps around her. Quotes are in js/content.js.
        ====================================================================== -->
   <section class="quotes" id="quotes" data-tone="dark" aria-labelledby="quotes-intro">
     <canvas class="quotes__stars" id="stars" aria-hidden="true"></canvas>
@@ -138,66 +144,59 @@
           <button class="ring__next" id="quote-next" type="button">Next quote</button>
         </div>
       </div>
-      <div class="walls">
-        <h2 class="h2">On my walls</h2>
-        <p class="lede">Some of them are painted, some are printed, one is on a pillow. All of them are true.</p>
-        <div class="walls__grid" id="walls"></div>
-      </div>
     </div>
   </section>
 
   <!-- ======================================================================
-       ROOT. Her story.
-       EXAMPLE COPY: replace every paragraph below with Lisa's own words.
+       ROOT. Her story. PLACEHOLDER TEXT: replace with Lisa's own words.
        ====================================================================== -->
   <section class="story chakra" id="story" data-tone="light" style="--tint:var(--root)">
     <div class="wrap story__grid">
-      <figure class="portrait">
-        <div class="portrait__frame">
-          <!-- When her portrait arrives, swap this image: <img src="assets/portraits/lisa.jpg" alt="Lisa Brunson"> -->
-          <img src="assets/photos/pink-chair.jpg" width="1200" height="1600" alt="Lisa's pink velvet chair with a gold base beside a navy desk, against a whitewashed brick wall" loading="lazy">
-        </div>
-        <figcaption>The pink chair, where the talking happens.</figcaption>
-      </figure>
       <div class="story__text">
         <h2 class="h2"><span class="h2__flag" style="--flag:var(--root)" aria-hidden="true"></span>My story</h2>
         <p>I found sound the way most people do: on my back, on a mat, on a day I did not think anything could reach me. A bowl was struck somewhere behind my head and something in my chest let go. I have been following that sound, and sharing it, ever since.</p>
         <p>Smoke came first, though. I grew up with sage in the house, and with the idea that a room could be cleared the same way a heart could, and that the two were never really separate. Palo santo came later, from a teacher who told me to stop trying so hard and start listening.</p>
-        <p>Today I hold sound baths, work with people one to one, and cleanse homes and studios that are ready for a new chapter. Sessions happen in my own space, on a navy velvet couch under a string of chakra flags, with a lot of colour and a lot of quiet. I am not here to fix anyone. I am here to hold a steady space, and let the sound do what it already knows how to do.</p>
+        <p>Today I hold sound baths, work with people one to one, and cleanse homes and studios that are ready for a new chapter. I am not here to fix anyone. I am here to hold a steady space, and let the sound do what it already knows how to do.</p>
         <p class="pull">Nothing here is complicated. Lie down. Breathe. Let the bowls do the rest.</p>
       </div>
+      <aside class="glance">
+        <h3 class="glance__title">At a glance</h3>
+        <ul class="glance__list">
+          <li>Based in [city, state]</li>
+          <li>Trained in [modality] since [year]</li>
+          <li>Sessions in person and online</li>
+          <li>Works with [who she works with]</li>
+          <li>Speaks [languages]</li>
+        </ul>
+      </aside>
     </div>
   </section>
 
   <!-- ======================================================================
-       SACRAL. Her vision board for 2026. Words are listed in js/content.js.
+       SACRAL. What she believes, set like cut-out lettering.
+       Words are in js/content.js. PLACEHOLDER TEXT.
        ====================================================================== -->
-  <section class="vision chakra" id="vision" data-tone="light" style="--tint:var(--sacral)">
+  <section class="values chakra" id="values" data-tone="light" style="--tint:var(--sacral)">
     <div class="wrap">
-      <h2 class="h2"><span class="h2__flag" style="--flag:var(--sacral)" aria-hidden="true"></span>My vision board for the year</h2>
-      <p class="lede">A vision board is a promise I make to myself in January and keep all year. This is the one on my wall right now, and a few of the words on it.</p>
-      <div class="vision__grid">
-        <figure class="board-photo" id="board-photo"></figure>
-        <div class="words" id="words"></div>
-      </div>
+      <h2 class="h2"><span class="h2__flag" style="--flag:var(--sacral)" aria-hidden="true"></span>What I believe</h2>
+      <p class="lede">A few words I come back to, on the good days and the hard ones.</p>
+      <div class="words" id="words"></div>
     </div>
   </section>
 
   <!-- ======================================================================
-       SOLAR PLEXUS. Her space. Photos are listed in js/content.js.
+       SOLAR PLEXUS. What a session is like. Steps are in js/content.js.
        ====================================================================== -->
-  <section class="space chakra" id="space" data-tone="light" style="--tint:var(--solar)">
+  <section class="session chakra" id="session" data-tone="light" style="--tint:var(--solar)">
     <div class="wrap">
-      <h2 class="h2"><span class="h2__flag" style="--flag:var(--solar)" aria-hidden="true"></span>Come in</h2>
-      <p class="lede">This is where it all happens. Whitewashed brick, velvet, a lot of pillows, and colour everywhere you look.</p>
-      <div class="space__grid" id="space-grid"></div>
+      <h2 class="h2"><span class="h2__flag" style="--flag:var(--solar)" aria-hidden="true"></span>What a session is like</h2>
+      <p class="lede">Every session is a little different, but they all move through the same five moments.</p>
+      <ol class="steps" id="steps"></ol>
     </div>
   </section>
 
   <!-- ======================================================================
-       HEART. Sage and palo santo, and a minute of breath.
-       EXAMPLE COPY: replace with Lisa's words. Her photo of the sage and palo
-       santo can replace the drawing (see README).
+       HEART. Sage and palo santo, and a minute of breath. PLACEHOLDER TEXT.
        ====================================================================== -->
   <section class="cleansing chakra" id="cleansing" data-tone="light" style="--tint:var(--heart)">
     <div class="wrap cleansing__grid">
@@ -240,25 +239,23 @@
   </section>
 
   <!-- ======================================================================
-       THROAT. Her sound instruments. Listed in js/content.js.
-       Photos still to come; each plays a sound made in the browser.
+       THROAT. Kind words. Testimonials are in js/content.js. PLACEHOLDER TEXT.
        ====================================================================== -->
-  <section class="sound chakra" id="sound" data-tone="light" style="--tint:var(--throat)">
+  <section class="kind chakra" id="kind" data-tone="light" style="--tint:var(--throat)">
     <div class="wrap">
-      <h2 class="h2"><span class="h2__flag" style="--flag:var(--throat)" aria-hidden="true"></span>My sound instruments</h2>
-      <p class="lede">Some of the instruments I bring to every session. Tap any of them to hear it. Turn your sound up, and give the bowls a moment to fade.</p>
-      <div class="instruments" id="instruments"></div>
+      <h2 class="h2"><span class="h2__flag" style="--flag:var(--throat)" aria-hidden="true"></span>Kind words</h2>
+      <p class="lede">What people say after a session, once they have found their words again.</p>
+      <div class="kind__grid" id="testimonials"></div>
     </div>
   </section>
 
   <!-- ======================================================================
-       THIRD EYE. The mark, drawn from her tattoo.
+       THIRD EYE. The mark, drawn from the symbols of her tattoo.
        ====================================================================== -->
-  <section class="mark-section chakra" id="mark" data-tone="light" style="--tint:var(--third)">
+  <section class="mark-section chakra" id="the-mark" data-tone="light" style="--tint:var(--third)">
     <div class="wrap mark__grid">
       <div class="mark__art">
         <svg class="mark mark--large" role="img" aria-label="The Lisa Brunson mark: a lotus resting in a crescent moon, with an eye beneath the flower, the moon's phases along the crescent, and rays of dots above"><use href="#mark"/></svg>
-        <figure class="tattoo" id="tattoo"></figure>
       </div>
       <div class="mark__text">
         <h2 class="h2"><span class="h2__flag" style="--flag:var(--third)" aria-hidden="true"></span>The mark</h2>
@@ -266,7 +263,7 @@
         <dl class="meanings">
           <div>
             <dt>The lotus</dt>
-            <dd>From the signs on her walls and the crown flag over the clock. It grows out of mud and dark water and opens clean.</dd>
+            <dd>It grows out of mud and dark water and opens clean. That is the whole story of healing, in one flower.</dd>
           </div>
           <div>
             <dt>The moon and its phases</dt>
@@ -286,11 +283,11 @@
   </section>
 
   <!-- ======================================================================
-       CROWN. Sessions, and how to say hello.
+       CROWN. Book a session, and say hello.
        Offerings are in js/content.js. The form posts to Formspree; replace
        your-form-id below (see README). The email link works regardless.
        ====================================================================== -->
-  <section class="sessions chakra" id="sessions" data-tone="light" style="--tint:var(--crown)">
+  <section class="book chakra" id="book" data-tone="light" style="--tint:var(--crown)">
     <div class="wrap">
       <h2 class="h2"><span class="h2__flag" style="--flag:var(--crown)" aria-hidden="true"></span>Work with me</h2>
       <p class="lede">Three ways to work together. If you are not sure which is right, write to me and we will figure it out.</p>
