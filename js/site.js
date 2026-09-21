@@ -191,7 +191,7 @@
   var testimonials = $("#testimonials");
   if (testimonials && L.testimonials) {
     testimonials.innerHTML = L.testimonials.map(function (t, i) {
-      var colours = ["var(--throat)", "var(--sacral)", "var(--crown)", "var(--heart)", "var(--root)"];
+      var colours = ["var(--gold)", "var(--blush)", "var(--paper)"];
       return '<blockquote class="kind__quote"><p>' + esc(t.text) + "</p>" +
         (t.by ? '<footer><span data-paint="' + colours[i % colours.length] + '">' + esc(t.by) + "</span></footer>" : "") + "</blockquote>";
     }).join("");
@@ -208,7 +208,7 @@
       return '<li class="offer"><div><h3 class="offer__name">' + esc(o.name) + "</h3>" +
         (meta ? '<p class="offer__meta">' + esc(meta) + "</p>" : "") + "</div>" +
         '<p class="offer__blurb">' + esc(o.blurb) + "</p>" +
-        '<a class="btn offer__book" href="mailto:' + esc(L.email || "") + "?subject=" + subject + '">Book</a></li>';
+        '<a class="btn btn--paper offer__book" href="mailto:' + esc(L.email || "") + "?subject=" + subject + '">Book</a></li>';
     }).join("");
   }
   var contactLines = $("#contact-lines");

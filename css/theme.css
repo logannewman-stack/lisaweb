@@ -36,6 +36,15 @@
   --third:  #3F2462;
   --crown:  #8E7EB8;
 
+  /* ---- Section grounds, full strength, root to crown ---------------------- */
+  --g-story:     #E08C84;  /* salmon pink, the pink sign with black lettering  */
+  --g-values:    #DB5A1E;  /* orange, the sacral flag                          */
+  --g-session:   #E2A52A;  /* mustard gold, the solar flag                     */
+  --g-cleansing: #5F6E2C;  /* olive, the heart flag and her metal sign         */
+  --g-kind:      #2F6BA8;  /* royal blue, the throat flag                      */
+  --g-mark:      #3F2462;  /* deep purple, the third-eye flag                  */
+  --g-book:      #A497CB;  /* lilac, the crown flag                            */
+
   /* ---- Text --------------------------------------------------------------- */
   --ink:       #2C292A;                 /* the black of her wooden signs       */
   --ink-soft:  #625B5B;

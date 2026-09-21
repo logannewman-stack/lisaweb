@@ -44,7 +44,7 @@ window.LISA = {
   values: [
     { text: "Faith", face: "hand", big: true, tint: "" },
     { text: "Breathe", face: "serif", big: true, tint: "throat" },
-    { text: "Kindness", face: "sans", tint: "sacral" },
+    { text: "Kindness", face: "sans", tint: "" },
     { text: "Rest is not a reward", face: "hand", tint: "" },
     { text: "Joy", face: "serif", big: true, tint: "glitter" },
     { text: "Courage", face: "sans", tint: "root" },
@@ -57,7 +57,7 @@ window.LISA = {
     { text: "Presence over perfection", face: "serif", tint: "" },
     { text: "Love", face: "serif", big: true, tint: "rose" },
     { text: "Play", face: "hand", tint: "crown" },
-    { text: "Wonder", face: "sans", tint: "sacral" },
+    { text: "Wonder", face: "sans", tint: "gold" },
     { text: "Good vibes only", face: "hand", big: true, tint: "" },
     { text: "Rise and shine", face: "sans", tint: "solar" }
   ],

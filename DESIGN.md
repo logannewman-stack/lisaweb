@@ -30,12 +30,15 @@ Sampled from her photos. Values live in `css/theme.css`.
 | `--olive` | `#6E7440` | Paisley leaves. The cleansing drawing. |
 | `--root` to `--crown` | red, orange, yellow, olive, blue, indigo, lavender | The seven flags. Section tints, the flags in the navigation. |
 
-The flag colours are used generously, the way colour is used in her rooms:
-each section after the quotes sits on a pastel of its flag colour with two
-watercolour washes of the same colour; its heading is underlined with a
-hand-painted stroke of it; its button is filled with it. A rainbow bar runs
-across the top of the page, a painted rainbow arc stands behind the portrait,
-and a stacked painted rainbow closes the page in the footer.
+Colour is used at full strength, the way it is in her rooms. Each section
+after the quotes is a solid block of one colour (`--g-story` to `--g-book`
+in `css/theme.css`): salmon pink with black type, orange, mustard gold,
+olive, royal blue, deep purple, lilac, between navy velvet at both ends.
+Cream paper sits on the colour for cards and buttons. Every block has a
+rough painted top edge, a hand-painted underline beneath its heading in a
+contrasting colour, and a little light and shade brushed into the ground. A
+rainbow bar runs across the top of the page, a painted rainbow arc stands
+behind the portrait, and a stacked painted rainbow closes the page.
 
 ## Type
 
