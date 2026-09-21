@@ -190,8 +190,10 @@
      ====================================================================== */
   var testimonials = $("#testimonials");
   if (testimonials && L.testimonials) {
-    testimonials.innerHTML = L.testimonials.map(function (t) {
-      return '<blockquote class="kind__quote"><p>' + esc(t.text) + "</p>" + (t.by ? "<footer>" + esc(t.by) + "</footer>" : "") + "</blockquote>";
+    testimonials.innerHTML = L.testimonials.map(function (t, i) {
+      var colours = ["var(--throat)", "var(--sacral)", "var(--crown)", "var(--heart)", "var(--root)"];
+      return '<blockquote class="kind__quote"><p>' + esc(t.text) + "</p>" +
+        (t.by ? '<footer><span data-paint="' + colours[i % colours.length] + '">' + esc(t.by) + "</span></footer>" : "") + "</blockquote>";
     }).join("");
   }
 

@@ -44,20 +44,22 @@ window.LISA = {
   values: [
     { text: "Faith", face: "hand", big: true, tint: "" },
     { text: "Breathe", face: "serif", big: true, tint: "throat" },
-    { text: "Kindness", face: "sans", tint: "" },
+    { text: "Kindness", face: "sans", tint: "sacral" },
     { text: "Rest is not a reward", face: "hand", tint: "" },
-    { text: "Joy", face: "serif", big: true, tint: "gold" },
+    { text: "Joy", face: "serif", big: true, tint: "glitter" },
     { text: "Courage", face: "sans", tint: "root" },
     { text: "Trust the timing", face: "serif", tint: "" },
     { text: "Gratitude", face: "hand", tint: "solar" },
-    { text: "Balance", face: "sans", tint: "" },
+    { text: "Balance", face: "sans", tint: "third" },
     { text: "Light", face: "serif", tint: "rose" },
     { text: "Community", face: "sans", tint: "heart" },
     { text: "Patience", face: "hand", tint: "" },
     { text: "Presence over perfection", face: "serif", tint: "" },
     { text: "Love", face: "serif", big: true, tint: "rose" },
     { text: "Play", face: "hand", tint: "crown" },
-    { text: "Wonder", face: "sans", tint: "" }
+    { text: "Wonder", face: "sans", tint: "sacral" },
+    { text: "Good vibes only", face: "hand", big: true, tint: "" },
+    { text: "Rise and shine", face: "sans", tint: "solar" }
   ],
 
   /* ---------------------------------------------------------------------------

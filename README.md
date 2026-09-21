@@ -49,6 +49,10 @@ and reused in the navigation, hero, "The mark" section and footer.
 among the symbols of her tattoo: the crescent moon, the moon phases, the eye,
 the rays of dots.
 
+**Paint.** The brush strokes (the rainbow arc, the underlines, the footer
+stack) are drawn by `js/paint.js`. To underline anything with a painted
+stroke, give it `data-paint="var(--root)"` (or any colour).
+
 **Layout.** `css/site.css`, one block per section. `DESIGN.md` explains the
 choices.
 

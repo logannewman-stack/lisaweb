@@ -59,7 +59,29 @@ a { color: inherit; }
 /* ---- Layout helpers ------------------------------------------------------ */
 .wrap { width: min(100% - 2 * var(--gutter), var(--wrap)); margin-inline: auto; }
 section { position: relative; padding-block: var(--section); }
-.chakra { background: color-mix(in srgb, var(--tint, var(--wall)) 6%, var(--wall)); }
+.chakra { background: color-mix(in srgb, var(--tint, var(--wall)) 18%, var(--wall)); overflow: hidden; }
+.chakra::after {
+  /* two soft washes of the section's colour, like watercolour on paper */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 34% 30% at 90% 10%, color-mix(in srgb, var(--tint) 38%, transparent), transparent 72%),
+    radial-gradient(ellipse 30% 26% at 6% 94%, color-mix(in srgb, var(--tint) 30%, transparent), transparent 72%);
+}
+.chakra > .wrap { position: relative; z-index: 1; }
+
+/* ---- The rainbow bar at the very top ------------------------------------ */
+.rainbow-bar {
+  position: fixed; top: 0; left: 0; right: 0; height: 5px; z-index: 60;
+  background: linear-gradient(to right,
+    var(--root) 0 14.3%, var(--sacral) 14.3% 28.6%, var(--solar) 28.6% 42.9%, var(--heart) 42.9% 57.1%,
+    var(--throat) 57.1% 71.4%, var(--third) 71.4% 85.7%, var(--crown) 85.7% 100%);
+}
+
+/* ---- Painted strokes ------------------------------------------------------ */
+.is-painted { position: relative; display: inline-block; isolation: isolate; }
+.paint { position: absolute; z-index: -1; left: -.25em; right: -.25em; bottom: -.16em; height: .36em; opacity: .88; }
+.kind__quote footer .is-painted { padding: 0 .3em; }
+.kind__quote footer .paint { height: .55em; bottom: -.12em; opacity: .8; }
 
 .skip {
   position: absolute; left: 1rem; top: -4rem; z-index: 100;
@@ -82,6 +104,8 @@ section { position: relative; padding-block: var(--section); }
 .btn:hover { transform: translateY(-1px); border-radius: .45em 1.7em .45em 1.7em; }
 .btn--velvet { background: var(--velvet); border-color: var(--velvet); color: var(--bone); }
 .btn--velvet:hover { background: var(--velvet-deep); }
+.btn--tint { background: var(--tint); border-color: var(--tint); color: var(--tint-ink, #fff); }
+.btn--tint:hover { filter: brightness(1.06); }
 
 /* ---- The mark ------------------------------------------------------------- */
 .mark { display: block; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
@@ -95,7 +119,7 @@ section { position: relative; padding-block: var(--section); }
 
 /* ---- Navigation: the wordmark and a string of seven flags ---------------- */
 .nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  position: fixed; top: 5px; left: 0; right: 0; z-index: 50;
   display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;
   padding: calc(.6rem + env(safe-area-inset-top, 0px)) var(--gutter) .6rem;
   color: var(--ink);
@@ -187,18 +211,21 @@ html[data-tone="dark"] .nav { color: var(--bone); }
 .mark--hero { width: 4.5rem; height: 4.5rem; animation: fade 1.2s .2s var(--ease-out) both; }
 .hero__name { font-size: var(--t-display); font-weight: 400; letter-spacing: .03em; line-height: .98; animation: name-in 1.6s .4s var(--ease-out) both; }
 .hero__tagline {
-  font-family: var(--font-display); font-style: italic; font-weight: 400;
-  font-size: clamp(1.3rem, 2.4vw, 1.8rem); line-height: 1.35; color: var(--ink-soft);
-  max-width: 28ch; margin: 0; text-wrap: balance;
+  font-family: var(--font-hand); font-weight: 600;
+  font-size: clamp(1.7rem, 2.9vw, 2.35rem); line-height: 1.18; color: var(--velvet);
+  max-width: 24ch; margin: .2rem 0 0; text-wrap: balance;
   animation: fade 1.2s 1.1s var(--ease-out) both;
 }
+.hero__art { position: relative; justify-self: center; width: min(100%, 24rem); }
+.rainbow-arc { position: absolute; left: 50%; top: -2%; width: 142%; transform: translateX(-50%); z-index: 0; animation: fade 1.6s .3s var(--ease-out) both; }
+.rainbow-arc__svg { width: 100%; height: auto; display: block; }
 .hero__cta { margin-top: .8rem; animation: fade 1.2s 1.5s var(--ease-out) both; }
 @keyframes name-in { from { opacity: 0; letter-spacing: .22em; } to { opacity: 1; letter-spacing: .03em; } }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 
 /* ---- Portrait: the lotus-petal frame -------------------------------------- */
 .portrait { margin: 0; }
-.portrait--hero { width: min(100%, 24rem); justify-self: center; animation: fade 1.4s .6s var(--ease-out) both; }
+.portrait--hero { position: relative; z-index: 1; width: 100%; margin-top: 41%; animation: fade 1.4s .6s var(--ease-out) both; }
 .portrait__frame {
   position: relative; aspect-ratio: 4 / 5; border-radius: var(--petal); overflow: hidden;
   background: linear-gradient(165deg, var(--blush-soft) 0%, var(--gold-soft) 60%, var(--blush) 130%);
@@ -210,7 +237,7 @@ html[data-tone="dark"] .nav { color: var(--bone); }
 .portrait figcaption { margin-top: .9rem; text-align: center; font-family: var(--font-display); font-style: italic; font-size: var(--t-lg); color: var(--ink-soft); }
 @media (max-width: 760px) {
   .hero__grid { grid-template-columns: 1fr; }
-  .portrait--hero { width: min(100%, 18rem); }
+  .hero__art { width: min(100%, 18rem); }
   .flags--hero { margin-bottom: 2.2rem; }
 }
 
@@ -270,6 +297,11 @@ html[data-tone="dark"] .nav { color: var(--bone); }
 .word--big.word--serif { font-size: 2.2rem; }
 .word--big.word--hand { font-size: 2.4rem; }
 .word[data-tint="gold"] { background: var(--gold); }
+.word[data-tint="glitter"] {
+  background: linear-gradient(135deg, #D9B44A 0%, #F3DA82 38%, #C9A24B 62%, #EDD07A 100%);
+  background-blend-mode: normal;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+}
 .word[data-tint="rose"] { background: var(--blush-soft); color: var(--rose-ink); }
 .word[data-tint="solar"] { background: var(--solar); }
 .word[data-tint="sacral"] { background: var(--sacral); color: var(--bone); }
@@ -368,6 +400,8 @@ html[data-tone="dark"] .nav { color: var(--bone); }
   padding: 4rem var(--gutter) calc(3rem + env(safe-area-inset-bottom, 0px));
   display: grid; justify-items: center; gap: .5rem;
 }
+.rainbow-stack { width: min(100%, 21rem); margin: 0 auto .8rem; }
+.rainbow-stack__svg { width: 100%; height: auto; display: block; }
 .mark--footer { width: 3.2rem; height: 3.2rem; margin-bottom: .5rem; }
 .footer__name { font-family: var(--font-display); font-size: var(--t-lg); letter-spacing: .08em; color: var(--bone); margin: 0; }
 .footer__namaste { font-family: var(--font-display); font-style: italic; font-size: var(--t-xl); color: var(--gold-soft); margin: 0 0 .5rem; }
@@ -376,7 +410,7 @@ html[data-tone="dark"] .nav { color: var(--bone); }
 /* ---- Reduced motion ------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .flag, .mark--hero, .hero__name, .hero__tagline, .hero__cta, .portrait--hero, .ring__outer, .ring__inner, .smoke-line { animation: none; }
+  .flag, .mark--hero, .hero__name, .hero__tagline, .hero__cta, .portrait--hero, .rainbow-arc, .ring__outer, .ring__inner, .smoke-line { animation: none; }
   .smoke-line { stroke-dashoffset: 0; }
   .nav__name, .nav__flag i, .word, .btn, .featured { transition: none; }
 }

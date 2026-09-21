@@ -15,7 +15,7 @@
 
   var COUNT = small ? 70 : 140;   // how many dots
   var DRIFT = 6;                  // px per second, upward
-  var GOLD = "231,211,162";       // rgb of the dots
+  var COLOURS = ["231,211,162", "233,162,150", "150,190,232", "196,180,228"]; // gold, blush, sky, lilac
 
   var W = 0, H = 0, dpr = 1, dots = [], t = 0, last = 0, running = false, visible = true, raf = 0;
   var pointer = { x: -9999, y: -9999, on: false };
@@ -28,7 +28,8 @@
       a: 0.25 + Math.random() * 0.55,
       phase: Math.random() * Math.PI * 2,
       speed: 0.4 + Math.random() * 0.9,
-      sway: Math.random() * Math.PI * 2
+      sway: Math.random() * Math.PI * 2,
+      c: COLOURS[Math.random() < 0.55 ? 0 : 1 + Math.floor(Math.random() * 3)]
     };
   }
   function step(dt) {
@@ -54,7 +55,7 @@
       var alpha = Math.min(1, d.a * breathe + glow * 0.6);
       var r = d.r + glow * 1.4;
       ctx.globalAlpha = alpha;
-      ctx.fillStyle = "rgb(" + GOLD + ")";
+      ctx.fillStyle = "rgb(" + d.c + ")";
       ctx.beginPath();
       ctx.arc(d.x, d.y, r, 0, Math.PI * 2);
       ctx.fill();

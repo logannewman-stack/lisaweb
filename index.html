@@ -21,6 +21,10 @@
 <!-- Drawings used more than once: the mark, and the seven flag glyphs. -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
+    <filter id="rough" x="-6%" y="-40%" width="112%" height="180%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035 0.4" numOctaves="2" seed="5" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="7" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
     <path id="mark-petal" d="M60 16 C50 32 50 48 60 62 C70 48 70 32 60 16 Z"/>
     <symbol id="mark" viewBox="0 0 120 120" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
       <g class="mark__dots" style="fill:var(--mark-ink, currentColor)" stroke="none">
@@ -61,6 +65,8 @@
     <symbol id="g-crown" viewBox="0 0 24 24"><path d="M12 6C9 10 9 14 12 17C15 14 15 10 12 6Z"/><path d="M12 17C8 15 6 12 6 9"/><path d="M12 17c4-2 6-5 6-8"/></symbol>
   </defs>
 </svg>
+
+<div class="rainbow-bar" aria-hidden="true"></div>
 
 <a class="skip" href="#story">Skip to content</a>
 
@@ -106,6 +112,8 @@
           <p class="hero__tagline" id="tagline">Sound, ceremony, and the slow work of coming home to yourself.</p>
           <a class="btn btn--velvet hero__cta" href="#quotes">Come in</a>
         </div>
+        <div class="hero__art">
+          <div class="rainbow-arc" id="rainbow-arc" aria-hidden="true"></div>
         <figure class="portrait portrait--hero">
           <div class="portrait__frame">
             <!-- Lisa's portrait: replace the placeholder below with
@@ -116,6 +124,7 @@
           </div>
           <figcaption>Lisa's portrait goes here.</figcaption>
         </figure>
+        </div>
       </div>
     </div>
   </section>
@@ -153,7 +162,7 @@
   <section class="story chakra" id="story" data-tone="light" style="--tint:var(--root)">
     <div class="wrap story__grid">
       <div class="story__text">
-        <h2 class="h2"><span class="h2__flag" style="--flag:var(--root)" aria-hidden="true"></span>My story</h2>
+        <h2 class="h2"><span class="h2__flag" style="--flag:var(--root)" aria-hidden="true"></span><span class="h2__text" data-paint="var(--root)">My story</span></h2>
         <p>I found sound the way most people do: on my back, on a mat, on a day I did not think anything could reach me. A bowl was struck somewhere behind my head and something in my chest let go. I have been following that sound, and sharing it, ever since.</p>
         <p>Smoke came first, though. I grew up with sage in the house, and with the idea that a room could be cleared the same way a heart could, and that the two were never really separate. Palo santo came later, from a teacher who told me to stop trying so hard and start listening.</p>
         <p>Today I hold sound baths, work with people one to one, and cleanse homes and studios that are ready for a new chapter. I am not here to fix anyone. I am here to hold a steady space, and let the sound do what it already knows how to do.</p>
@@ -178,7 +187,7 @@
        ====================================================================== -->
   <section class="values chakra" id="values" data-tone="light" style="--tint:var(--sacral)">
     <div class="wrap">
-      <h2 class="h2"><span class="h2__flag" style="--flag:var(--sacral)" aria-hidden="true"></span>What I believe</h2>
+      <h2 class="h2"><span class="h2__flag" style="--flag:var(--sacral)" aria-hidden="true"></span><span class="h2__text" data-paint="var(--sacral)">What I believe</span></h2>
       <p class="lede">A few words I come back to, on the good days and the hard ones.</p>
       <div class="words" id="words"></div>
     </div>
@@ -187,9 +196,9 @@
   <!-- ======================================================================
        SOLAR PLEXUS. What a session is like. Steps are in js/content.js.
        ====================================================================== -->
-  <section class="session chakra" id="session" data-tone="light" style="--tint:var(--solar)">
+  <section class="session chakra" id="session" data-tone="light" style="--tint:var(--solar);--tint-ink:var(--ink)">
     <div class="wrap">
-      <h2 class="h2"><span class="h2__flag" style="--flag:var(--solar)" aria-hidden="true"></span>What a session is like</h2>
+      <h2 class="h2"><span class="h2__flag" style="--flag:var(--solar)" aria-hidden="true"></span><span class="h2__text" data-paint="var(--solar)">What a session is like</span></h2>
       <p class="lede">Every session is a little different, but they all move through the same five moments.</p>
       <ol class="steps" id="steps"></ol>
     </div>
@@ -198,7 +207,7 @@
   <!-- ======================================================================
        HEART. Sage and palo santo, and a minute of breath. PLACEHOLDER TEXT.
        ====================================================================== -->
-  <section class="cleansing chakra" id="cleansing" data-tone="light" style="--tint:var(--heart)">
+  <section class="cleansing chakra" id="cleansing" data-tone="light" style="--tint:var(--heart);--tint-ink:#fff">
     <div class="wrap cleansing__grid">
       <div class="cleansing__art" aria-hidden="true">
         <svg viewBox="70 0 190 330" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -224,14 +233,14 @@
         </svg>
       </div>
       <div class="cleansing__text">
-        <h2 class="h2"><span class="h2__flag" style="--flag:var(--heart)" aria-hidden="true"></span>Sage and palo santo</h2>
+        <h2 class="h2"><span class="h2__flag" style="--flag:var(--heart)" aria-hidden="true"></span><span class="h2__text" data-paint="var(--heart)">Sage and palo santo</span></h2>
         <p>Every session starts the same way. The room is cleared with white sage, the way it was done in my family long before I understood why. Then palo santo, sweet and slow, to invite something gentle back in.</p>
         <p>Cleansing is not about getting rid of anything. It is about making room. Room for rest, for the next chapter, for a version of yourself that has been waiting patiently for the noise to die down.</p>
         <div class="breath" id="breath">
           <div class="breath__circle" aria-hidden="true"></div>
           <div class="breath__side">
             <p class="breath__cue" id="breath-cue" aria-live="polite">When you cannot get to a session, there is always this. Four counts in, seven held, eight out.</p>
-            <button class="btn" id="breath-btn" type="button">Begin a minute of breath</button>
+            <button class="btn btn--tint" id="breath-btn" type="button">Begin a minute of breath</button>
           </div>
         </div>
       </div>
@@ -243,7 +252,7 @@
        ====================================================================== -->
   <section class="kind chakra" id="kind" data-tone="light" style="--tint:var(--throat)">
     <div class="wrap">
-      <h2 class="h2"><span class="h2__flag" style="--flag:var(--throat)" aria-hidden="true"></span>Kind words</h2>
+      <h2 class="h2"><span class="h2__flag" style="--flag:var(--throat)" aria-hidden="true"></span><span class="h2__text" data-paint="var(--throat)">Kind words</span></h2>
       <p class="lede">What people say after a session, once they have found their words again.</p>
       <div class="kind__grid" id="testimonials"></div>
     </div>
@@ -258,7 +267,7 @@
         <svg class="mark mark--large" role="img" aria-label="The Lisa Brunson mark: a lotus resting in a crescent moon, with an eye beneath the flower, the moon's phases along the crescent, and rays of dots above"><use href="#mark"/></svg>
       </div>
       <div class="mark__text">
-        <h2 class="h2"><span class="h2__flag" style="--flag:var(--third)" aria-hidden="true"></span>The mark</h2>
+        <h2 class="h2"><span class="h2__flag" style="--flag:var(--third)" aria-hidden="true"></span><span class="h2__text" data-paint="var(--third)">The mark</span></h2>
         <p>It started on her wrist. The mark takes the symbols of Lisa's tattoo and sets a lotus among them.</p>
         <dl class="meanings">
           <div>
@@ -287,9 +296,9 @@
        Offerings are in js/content.js. The form posts to Formspree; replace
        your-form-id below (see README). The email link works regardless.
        ====================================================================== -->
-  <section class="book chakra" id="book" data-tone="light" style="--tint:var(--crown)">
+  <section class="book chakra" id="book" data-tone="light" style="--tint:var(--crown);--tint-ink:#fff">
     <div class="wrap">
-      <h2 class="h2"><span class="h2__flag" style="--flag:var(--crown)" aria-hidden="true"></span>Work with me</h2>
+      <h2 class="h2"><span class="h2__flag" style="--flag:var(--crown)" aria-hidden="true"></span><span class="h2__text" data-paint="var(--crown)">Work with me</span></h2>
       <p class="lede">Three ways to work together. If you are not sure which is right, write to me and we will figure it out.</p>
       <ul class="offer-list" id="offer-list"></ul>
       <div class="contact__grid" id="contact">
@@ -311,6 +320,7 @@
 </main>
 
 <footer class="footer" data-tone="dark">
+  <div class="rainbow-stack" id="rainbow-stack" aria-hidden="true"></div>
   <svg class="mark mark--footer" aria-hidden="true"><use href="#mark"/></svg>
   <p class="footer__name">Lisa Brunson</p>
   <p class="footer__namaste">Namaste.</p>
@@ -320,5 +330,6 @@
 <script src="js/content.js"></script>
 <script src="js/stars.js"></script>
 <script src="js/site.js"></script>
+<script src="js/paint.js"></script>
 </body>
 </html>

@@ -30,16 +30,20 @@ Sampled from her photos. Values live in `css/theme.css`.
 | `--olive` | `#6E7440` | Paisley leaves. The cleansing drawing. |
 | `--root` to `--crown` | red, orange, yellow, olive, blue, indigo, lavender | The seven flags. Section tints, the flags in the navigation. |
 
-The flag colours are strong, so they are used small: a flag, a word card, a
-six percent tint behind a section, a step number. Never as a full ground.
+The flag colours are used generously, the way colour is used in her rooms:
+each section after the quotes sits on a pastel of its flag colour with two
+watercolour washes of the same colour; its heading is underlined with a
+hand-painted stroke of it; its button is filled with it. A rainbow bar runs
+across the top of the page, a painted rainbow arc stands behind the portrait,
+and a stacked painted rainbow closes the page in the footer.
 
 ## Type
 
 - **Cormorant Garamond** for her name, headings, the quotes, captions and
   testimonials. Its italic is the voice of the quotes.
 - **Nunito Sans** for reading: body copy, navigation, buttons, forms.
-- **Caveat** only in "What I believe", for the words that would be
-  hand-lettered on a real board. Nowhere else.
+- **Caveat** for the hand-lettered moments: the tagline in the hero and the
+  hand-written cards in "What I believe". Nowhere else.
 
 Headings are sentence case. The only uppercase on the site is on the cut-out
 word cards, where it copies magazine lettering. The session steps are
@@ -47,6 +51,10 @@ numbered because they are a sequence.
 
 ## Signature elements
 
+- **Paint.** Brush strokes drawn as SVG with rough edges (`js/paint.js`):
+  the rainbow arc, the underline beneath every heading, the strokes under
+  the kind words, the stack in the footer. Each is generated from a seed, so
+  it paints the same way every time.
 - **The flags.** A string of seven small flags in the header, a larger string
   across the hero, and a single flag hanging from a thread in front of each
   section heading.
@@ -71,8 +79,8 @@ All ambient motion is off under reduced motion.
 
 ## Things to avoid when editing
 
-- Don't use a flag colour as a background for a whole section or a button.
-- Don't add a fourth typeface, or use Caveat outside "What I believe".
+- Keep the flag colours in their order, root to crown, down the page.
+- Don't add a fourth typeface, or use Caveat outside the tagline and the cards.
 - Don't put dark text on the velvet or light text on the wall. Sections
   carry `data-tone="light"` or `data-tone="dark"` and colours follow.
 - Keep the hero to the name, the portrait and the flags.
