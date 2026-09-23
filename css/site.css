@@ -6,8 +6,9 @@
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
+  position: relative;
   margin: 0;
-  background: var(--wall);
+  background: var(--velvet);
   color: var(--ink);
   font-family: var(--font-body);
   font-size: var(--t-base);
@@ -59,19 +60,17 @@ a { color: inherit; }
 /* ---- Layout helpers ------------------------------------------------------ */
 .wrap { width: min(100% - 2 * var(--gutter), var(--wrap)); margin-inline: auto; }
 section { position: relative; padding-block: var(--section); scroll-margin-top: 3.5rem; }
-.chakra { background: var(--ground, var(--wall)); }
-.chakra::after {
-  /* light and shade brushed into the colour, like paint that is not quite flat */
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background:
-    radial-gradient(ellipse 40% 34% at 88% 8%, rgba(255, 255, 255, .16), transparent 72%),
-    radial-gradient(ellipse 34% 30% at 8% 96%, rgba(20, 10, 20, .14), transparent 72%);
+/* ---- The canvas: one wash of colour behind the whole page ---------------- */
+.canvas { position: absolute; top: 0; left: 0; right: 0; height: 100%; z-index: 0; pointer-events: none; background: var(--velvet); }
+.canvas::after {
+  /* a faint paper grain over the paint */
+  content: ""; position: absolute; inset: 0; opacity: .07; mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+main, .footer { position: relative; z-index: 1; }
+.chakra { background: transparent; }
 .chakra > .wrap { position: relative; z-index: 1; }
-.edge { position: absolute; left: 0; top: -1.3rem; width: 100%; height: 1.5rem; z-index: 2; pointer-events: none; }
-.quotes, .footer { position: relative; }
-.quotes { --ground: var(--velvet); }
-.footer { --ground: var(--velvet); }
+.hero, .quotes, .footer { --ground: var(--velvet); }
 /* on a coloured block, even the softer text has to be dark */
 .chakra[data-tone="light"] { --text-soft: #332D2F; }
 /* the orange block reads best with near-black type */
@@ -190,7 +189,7 @@ html[data-tone="dark"] .nav { color: var(--bone); }
 
 /* ---- Hero: Lisa, the ocean, the flags --------------------------------------- */
 .hero { position: relative; min-height: 100svh; display: grid; background: var(--velvet); isolation: isolate; overflow: hidden; padding-block: 0; }
-.hero__photo { position: absolute; inset: 0; z-index: 0; }
+.hero__photo { position: absolute; inset: 0; z-index: 0; will-change: transform; }
 .hero__photo img {
   width: 100%; height: 100%; object-fit: cover; object-position: 58% 42%;
   transform-origin: 0% 40%;
@@ -264,8 +263,12 @@ html[data-tone="dark"] .nav { color: var(--bone); }
 .portrait--story { width: min(100%, 22rem); justify-self: center; transform: rotate(-1.5deg); }
 
 /* ---- Quotes: the velvet ----------------------------------------------------- */
-.quotes { background: var(--velvet); overflow: hidden; }
-.quotes__stars { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; }
+.quotes { background: transparent; overflow: hidden; }
+.quotes__stars {
+  position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 0;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 16%, #000 62%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 16%, #000 62%, transparent 100%);
+}
 .quotes__inner { position: relative; z-index: 1; text-align: center; }
 .quotes__intro { font-family: var(--font-display); font-size: var(--t-xl); font-weight: 300; color: var(--bone-soft); max-width: 44ch; margin: 0 auto 1.5rem; }
 .ring { position: relative; width: min(100%, 660px); aspect-ratio: 1; margin: 0 auto; }
@@ -307,11 +310,6 @@ html[data-tone="dark"] .nav { color: var(--bone); }
 }
 
 /* ---- What I believe: cut-out lettering ----------------------------------- */
-.values::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .16; mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
-}
-.values .wrap { position: relative; }
 .words { display: flex; flex-wrap: wrap; gap: 1rem 1.1rem; align-content: flex-start; max-width: 60rem; }
 .word {
   display: inline-block; padding: .35em .75em; background: var(--paper); color: var(--ink);
@@ -425,7 +423,7 @@ html[data-tone="dark"] .nav { color: var(--bone); }
 
 /* ---- Footer: back to the velvet ------------------------------------------ */
 .footer {
-  background: var(--velvet); color: var(--bone-soft); text-align: center;
+  background: transparent; color: var(--bone-soft); text-align: center;
   padding: 4rem var(--gutter) calc(3rem + env(safe-area-inset-bottom, 0px));
   display: grid; justify-items: center; gap: .5rem;
 }

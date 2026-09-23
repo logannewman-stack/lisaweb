@@ -67,15 +67,6 @@
     el.classList.add("is-painted");
   });
 
-  /* ---- A rough painted top edge on every colour block -------------------- */
-  Array.prototype.forEach.call(document.querySelectorAll(".chakra, .quotes, .footer"), function (sec, i) {
-    var e = svg(1200, 30, "edge", true);
-    var pth = path(strokePath(1200, 30, 300 + i), "currentColor");
-    pth.setAttribute("style", "fill: var(--ground, var(--velvet))");
-    e.appendChild(pth);
-    sec.insertBefore(e, sec.firstChild);
-  });
-
   /* ---- The rainbow arc in the hero -------------------------------------- */
   var arcHost = document.getElementById("rainbow-arc");
   if (arcHost) {

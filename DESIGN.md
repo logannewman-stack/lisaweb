@@ -36,11 +36,13 @@ Colour is used at full strength, the way it is in her rooms. Each section
 after the quotes is a solid block of one colour (`--g-story` to `--g-book`
 in `css/theme.css`): salmon pink with black type, orange, mustard gold,
 olive, royal blue, deep purple, lilac, between navy velvet at both ends.
-Cream paper sits on the colour for cards and buttons. Every block has a
-rough painted top edge, a hand-painted underline beneath its heading in a
-contrasting colour, and a little light and shade brushed into the ground. A
-rainbow bar runs across the top of the page, a painted rainbow arc stands
-behind the portrait, and a stacked painted rainbow closes the page.
+Cream paper sits on the colour for cards and buttons. The colours are not
+blocks: one continuous wash runs behind the whole page (`.canvas`, painted by
+`js/site.js`), holding each section's colour where its content sits and
+melting into the next colour across the space between sections. A faint
+paper grain lies over it. Each heading has a hand-painted underline in a
+contrasting colour, a rainbow bar runs across the top of the page, and a
+stacked painted rainbow closes the page.
 
 ## Type
 
@@ -57,9 +59,9 @@ numbered because they are a sequence.
 ## Signature elements
 
 - **Paint.** Brush strokes drawn as SVG with rough edges (`js/paint.js`):
-  the rainbow arc, the underline beneath every heading, the strokes under
-  the kind words, the stack in the footer. Each is generated from a seed, so
-  it paints the same way every time.
+  the underline beneath every heading, the strokes under the kind words, the
+  stack in the footer. Each is generated from a seed, so it paints the same
+  way every time.
 - **The flags.** A string of seven small flags in the header, a larger string
   across the hero, and a single flag hanging from a thread in front of each
   section heading.

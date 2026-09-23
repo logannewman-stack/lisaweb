@@ -28,9 +28,61 @@
   if (tagline && L.tagline) tagline.textContent = L.tagline;
 
   /* =========================================================================
+     THE CANVAS — one continuous wash of colour behind the whole page.
+     Each section's colour is held where its content sits and melts into the
+     next colour across the space between sections.
+     ====================================================================== */
+  var probe = document.createElement("i");
+  probe.style.cssText = "position:absolute;width:0;height:0;visibility:hidden;pointer-events:none";
+  document.body.appendChild(probe);
+  function groundOf(el) {
+    var raw = getComputedStyle(el).getPropertyValue("--ground").trim();
+    if (!raw) return "";
+    probe.style.background = raw;
+    var c = getComputedStyle(probe).backgroundColor;
+    return c && c !== "rgba(0, 0, 0, 0)" ? c : "";
+  }
+  var canvas = $("#canvas");
+  var BLEND = 160; // the least distance over which one colour becomes the next
+  function paintCanvas() {
+    if (!canvas) return;
+    var blocks = $$("[data-tone]").filter(function (el) { return el.id !== "top" && groundOf(el); });
+    if (!blocks.length) return;
+    var scrollY = window.scrollY || window.pageYOffset;
+    var stops = [], prev = null;
+    blocks.forEach(function (el, i) {
+      var colour = groundOf(el);
+      var rect = el.getBoundingClientRect(), cs = getComputedStyle(el);
+      var top = rect.top + scrollY;
+      var padTop = parseFloat(cs.paddingTop) || 0, padBottom = parseFloat(cs.paddingBottom) || 0;
+      if (i === 0) {
+        stops.push(colour + " 0px");
+      } else {
+        // hold the previous colour until its content ends, and settle on the
+        // new colour before this content begins: the change lives in the gap
+        var start = prev.contentBottom + 20, end = top + padTop * 0.85;
+        if (end - start < BLEND) start = end - BLEND;
+        stops.push(prev.colour + " " + Math.round(start) + "px");
+        stops.push(colour + " " + Math.round(end) + "px");
+      }
+      prev = { colour: colour, contentBottom: rect.bottom + scrollY - padBottom };
+    });
+    stops.push(prev.colour + " 100%");
+    canvas.style.height = document.documentElement.scrollHeight + "px";
+    canvas.style.background = "linear-gradient(to bottom, " + stops.join(", ") + ")";
+  }
+  var canvasTimer = 0;
+  function repaintSoon() { clearTimeout(canvasTimer); canvasTimer = setTimeout(paintCanvas, 60); }
+  paintCanvas();
+  window.addEventListener("load", paintCanvas);
+  window.addEventListener("resize", repaintSoon);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(paintCanvas);
+  if ("ResizeObserver" in window) new ResizeObserver(repaintSoon).observe(document.body);
+
+  /* =========================================================================
      NAVIGATION
      ====================================================================== */
-  var nav = $("#nav"), hero = $("#top"), toggle = $("#nav-toggle");
+  var nav = $("#nav"), hero = $("#top"), toggle = $("#nav-toggle"), heroPhoto = $(".hero__photo");
   var toned = $$("[data-tone]").filter(function (el) { return el !== document.documentElement; });
   var links = $$(".nav__links a");
   var ticking = false;
@@ -42,14 +94,15 @@
       ticking = false;
       var y = window.scrollY || window.pageYOffset;
       nav.classList.toggle("is-scrolled", y > 24);
+      if (heroPhoto && !reduceMotion) heroPhoto.style.transform = "translate3d(0," + Math.round(Math.min(y, 1600) * 0.22) + "px,0)";
       if (hero) nav.classList.toggle("is-past-hero", hero.getBoundingClientRect().bottom < 90);
       var barY = 36, midY = window.innerHeight * 0.45, current = null;
       for (var i = 0; i < toned.length; i++) {
         var r = toned[i].getBoundingClientRect();
         if (r.top <= barY && r.bottom > barY) {
           document.documentElement.setAttribute("data-tone", toned[i].getAttribute("data-tone"));
-          var g = getComputedStyle(toned[i]).backgroundColor;
-          if (g && g !== "rgba(0, 0, 0, 0)" && g !== "transparent") nav.style.setProperty("--nav-ground", g);
+          var g = groundOf(toned[i]);
+          if (g) nav.style.setProperty("--nav-ground", g);
         }
         if (r.top <= midY && r.bottom > midY) current = toned[i].id;
       }
