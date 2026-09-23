@@ -10,8 +10,10 @@ a navy velvet couch, a pink velvet chair, gold lettering, chakra prayer flags
 strung over a clock, hand-lettered signs and a collage vision board. The site
 borrows that look and nothing else. It is about her, not her things.
 
-You arrive at a whitewashed wall with a string of seven flags across the top.
-The flags are the navigation: seven flags, seven sections, root to crown.
+You arrive on her portrait: Lisa at the beach, the ocean behind her, a string
+of seven flags across the sky. The photo fades into navy velvet at the bottom
+so the first two screens read as one. The flags are the navigation: seven
+flags, seven sections, root to crown.
 Then the page turns to navy velvet, where the quotes she keeps around her
 turn slowly around the centre. From there it walks up through the chakras,
 each section tinted faintly with its flag's colour, and ends on the velvet.
@@ -86,4 +88,4 @@ All ambient motion is off under reduced motion.
 - Don't add a fourth typeface, or use Caveat outside the tagline and the cards.
 - Don't put dark text on the velvet or light text on the wall. Sections
   carry `data-tone="light"` or `data-tone="dark"` and colours follow.
-- Keep the hero to the name, the portrait and the flags.
+- Keep the hero to the photo, the name and the flags. No brick, no texture.

@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Lisa Brunson</title>
   <meta name="description" content="Lisa Brunson. Sound healing, ceremony and cleansing: sound baths, one-to-one sessions and cleansing ceremonies with sage and palo santo.">
-  <meta name="theme-color" content="#F6F4F0">
+  <meta name="theme-color" content="#1B2B45">
   <meta property="og:title" content="Lisa Brunson">
   <meta property="og:description" content="Sound, ceremony, and the slow work of coming home to yourself.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/portraits/lisa-hero.jpg">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="preload" as="image" href="assets/portraits/lisa-hero.jpg" imagesrcset="assets/portraits/lisa-hero-1200.jpg 1200w, assets/portraits/lisa-hero.jpg 2000w" imagesizes="100vw">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,600;1,6..12,300;1,6..12,400&family=Caveat:wght@400;600&display=swap">
@@ -93,8 +95,15 @@
        THE WALL. Whitewashed brick, a string of flags, her name, and a place
        for her portrait. When the photo arrives, see the comment below.
        ====================================================================== -->
-  <section class="hero" id="top" data-tone="light">
-    <div class="hero__brick" aria-hidden="true"></div>
+  <section class="hero" id="top" data-tone="dark">
+    <div class="hero__photo">
+      <img src="assets/portraits/lisa-hero.jpg"
+           srcset="assets/portraits/lisa-hero-1200.jpg 1200w, assets/portraits/lisa-hero.jpg 2000w"
+           sizes="100vw" width="2000" height="1335"
+           alt="Lisa Brunson on a beach, smiling, with the ocean behind her"
+           fetchpriority="high" decoding="async">
+    </div>
+    <div class="hero__scrim" aria-hidden="true"></div>
     <div class="wrap hero__inner">
       <div class="flags flags--hero" aria-hidden="true">
         <span class="flag" style="--flag:var(--root);--i:0"><svg><use href="#g-root"/></svg></span>
@@ -105,26 +114,11 @@
         <span class="flag" style="--flag:var(--third);--i:5"><svg><use href="#g-third"/></svg></span>
         <span class="flag" style="--flag:var(--crown);--i:6"><svg><use href="#g-crown"/></svg></span>
       </div>
-      <div class="hero__grid">
-        <div class="hero__text">
-          <svg class="mark mark--hero" aria-hidden="true"><use href="#mark"/></svg>
-          <h1 class="hero__name">Lisa Brunson</h1>
-          <p class="hero__tagline" id="tagline">Sound, ceremony, and the slow work of coming home to yourself.</p>
-          <a class="btn btn--velvet hero__cta" href="#quotes">Come in</a>
-        </div>
-        <div class="hero__art">
-          <div class="rainbow-arc" id="rainbow-arc" aria-hidden="true"></div>
-        <figure class="portrait portrait--hero">
-          <div class="portrait__frame">
-            <!-- Lisa's portrait: replace the placeholder below with
-                 <img src="assets/portraits/lisa.jpg" alt="Lisa Brunson"> -->
-            <div class="portrait__placeholder" aria-hidden="true">
-              <svg class="mark"><use href="#mark"/></svg>
-            </div>
-          </div>
-          <figcaption>Lisa's portrait goes here.</figcaption>
-        </figure>
-        </div>
+      <div class="hero__text">
+        <svg class="mark mark--hero" aria-hidden="true"><use href="#mark"/></svg>
+        <h1 class="hero__name">Lisa Brunson</h1>
+        <p class="hero__tagline" id="tagline">Sound, ceremony, and the slow work of coming home to yourself.</p>
+        <a class="btn btn--paper hero__cta" href="#quotes">Come in</a>
       </div>
     </div>
   </section>
@@ -160,24 +154,31 @@
        ROOT. Her story. PLACEHOLDER TEXT: replace with Lisa's own words.
        ====================================================================== -->
   <section class="story chakra" id="story" data-tone="light" style="--tint:var(--root);--ground:var(--g-story)">
+    <div class="wrap">
+      <h2 class="h2"><span class="h2__text" data-paint="var(--velvet)">My story</span></h2>
+    </div>
     <div class="wrap story__grid">
+      <div class="story__side">
+        <figure class="portrait portrait--story">
+          <div class="portrait__frame"><img src="assets/portraits/lisa-portrait.jpg" width="660" height="825" alt="Lisa Brunson" loading="lazy" decoding="async"></div>
+        </figure>
+        <aside class="glance taped">
+          <h3 class="glance__title">At a glance</h3>
+          <ul class="glance__list">
+            <li>Based in [city, state]</li>
+            <li>Trained in [modality] since [year]</li>
+            <li>Sessions in person and online</li>
+            <li>Works with [who she works with]</li>
+            <li>Speaks [languages]</li>
+          </ul>
+        </aside>
+      </div>
       <div class="story__text">
-        <h2 class="h2"><span class="h2__text" data-paint="var(--velvet)">My story</span></h2>
         <p>I found sound the way most people do: on my back, on a mat, on a day I did not think anything could reach me. A bowl was struck somewhere behind my head and something in my chest let go. I have been following that sound, and sharing it, ever since.</p>
         <p>Smoke came first, though. I grew up with sage in the house, and with the idea that a room could be cleared the same way a heart could, and that the two were never really separate. Palo santo came later, from a teacher who told me to stop trying so hard and start listening.</p>
         <p>Today I hold sound baths, work with people one to one, and cleanse homes and studios that are ready for a new chapter. I am not here to fix anyone. I am here to hold a steady space, and let the sound do what it already knows how to do.</p>
         <p class="pull">Nothing here is complicated. Lie down. Breathe. Let the bowls do the rest.</p>
       </div>
-      <aside class="glance">
-        <h3 class="glance__title">At a glance</h3>
-        <ul class="glance__list">
-          <li>Based in [city, state]</li>
-          <li>Trained in [modality] since [year]</li>
-          <li>Sessions in person and online</li>
-          <li>Works with [who she works with]</li>
-          <li>Speaks [languages]</li>
-        </ul>
-      </aside>
     </div>
   </section>
 

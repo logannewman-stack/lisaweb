@@ -1,10 +1,10 @@
 # Lisa Brunson — website
 
 A one-page, custom-designed site for Lisa Brunson: sound healing, ceremony
-and cleansing. The look comes from the photos she sent as style references:
-whitewashed brick, navy velvet, blush pink, gold, and the seven chakra flag
-colours. The content is about her, and all of it is placeholder text until
-her own words arrive.
+and cleansing. It opens on her portrait at the beach, and the look comes from
+the photos she sent as style references: navy velvet, blush pink, gold, and
+the seven chakra flag colours at full strength. The content is about her, and
+all of it is placeholder text until her own words arrive.
 
 There is no build step and nothing to install. Open `index.html` in a browser
 or put the folder on any static host.
@@ -29,7 +29,7 @@ Everything written about Lisa. Each block is marked in the file it lives in.
 | Kind words, the testimonials | `js/content.js`, `testimonials` |
 | Work with me, the offerings | `js/content.js`, `offerings` |
 | Her story, the at-a-glance facts in [brackets], the sage and palo santo text, the meaning of the mark | `index.html`, each block starts with a comment |
-| Her portrait | `index.html`, the hero. A petal-shaped placeholder holds the spot; the comment there says how to swap the photo in. |
+| Her portrait | Real. `assets/portraits/lisa-hero.jpg` fills the hero; `lisa-portrait.jpg` is the close crop in "My story". |
 | Contact form | `index.html`. Posts to Formspree: replace `your-form-id`, or use any form service. The email link works regardless. |
 
 ## Changing the look
