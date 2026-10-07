@@ -374,6 +374,20 @@ html[data-tone="dark"] .nav { color: var(--bone); }
 .breath__count { color: var(--gold-soft); font-family: var(--font-body); font-size: var(--t-sm); letter-spacing: .06em; margin-left: .5rem; }
 @media (max-width: 560px) { .breath { grid-template-columns: 1fr; justify-items: start; } }
 
+/* ---- The oils: bottles on a shelf ------------------------------------------ */
+.oils { margin-top: clamp(3.5rem, 8vh, 5.5rem); padding-top: clamp(2.5rem, 6vh, 4rem); border-top: 1px solid var(--line); }
+.oils__head .lede { margin-bottom: 2.2rem; }
+.oil-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: 2.4rem 0; }
+.oil { display: grid; grid-template-rows: 7.6rem auto; justify-items: center; text-align: center; padding: 0 .9rem; }
+.oil__bottle { height: 7rem; width: auto; align-self: end; color: var(--gold-soft); filter: drop-shadow(0 14px 14px rgba(10, 16, 30, .35)); transition: transform .45s var(--ease-out); }
+.oil:hover .oil__bottle { transform: translateY(-5px); }
+.oil__text { width: 100%; border-top: 1px solid rgba(231, 211, 162, .5); padding-top: .9rem; display: grid; gap: .3rem; }
+.oil__name { font-family: var(--font-display); font-size: var(--t-lg); font-weight: 500; line-height: 1.15; }
+.oil__note { font-size: var(--t-xs); color: var(--bone-soft); line-height: 1.45; max-width: 17ch; margin: 0 auto; }
+.oils__cta { margin-top: 2.8rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.4rem; }
+.oils__note { font-size: var(--t-sm); color: var(--bone-soft); }
+@media (max-width: 560px) { .oil-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
 /* ---- Kind words ---------------------------------------------------------- */
 .kind__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 4vw, 3rem); }
 .kind__quote { margin: 0; position: relative; padding-top: 2.4rem; }
@@ -432,6 +446,9 @@ html[data-tone="dark"] .nav { color: var(--bone); }
 .mark--footer { width: 3.2rem; height: 3.2rem; margin-bottom: .5rem; }
 .footer__name { font-family: var(--font-display); font-size: var(--t-lg); letter-spacing: .08em; color: var(--bone); margin: 0; }
 .footer__namaste { font-family: var(--font-display); font-style: italic; font-size: var(--t-xl); color: var(--gold-soft); margin: 0 0 .5rem; }
+.footer__links { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem 1.9rem; margin: .3rem 0 1rem; }
+.footer__links a { font-size: var(--t-sm); color: var(--bone-soft); text-decoration: none; border-bottom: 1px solid var(--bone-line); padding-bottom: .1rem; transition: color .25s, border-color .25s; }
+.footer__links a:hover { color: var(--bone); border-color: var(--gold-soft); }
 .footer__fine { font-size: var(--t-sm); margin: 0; }
 
 /* ---- Reduced motion ------------------------------------------------------ */
@@ -439,5 +456,5 @@ html[data-tone="dark"] .nav { color: var(--bone); }
   html { scroll-behavior: auto; }
   .flag, .mark--hero, .hero__name, .hero__tagline, .hero__cta, .hero__photo img, .ring__outer, .ring__inner, .smoke-line { animation: none; }
   .smoke-line { stroke-dashoffset: 0; }
-  .nav__name, .nav__flag i, .word, .btn, .featured { transition: none; }
+  .nav__name, .nav__flag i, .word, .btn, .featured, .oil__bottle { transition: none; }
 }

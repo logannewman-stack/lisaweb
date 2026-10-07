@@ -23,6 +23,8 @@ Everything written about Lisa. Each block is marked in the file it lives in.
 | What | Where |
 | --- | --- |
 | Tagline, email, Instagram, location | `js/content.js`, top of the file |
+| Her doTERRA shop (this one is real) | `js/content.js`, `shop`. Linked from "The oils I use" and the footer. |
+| The oils on the shelf | `js/content.js`, `oils`. Placeholder picks; swap in the ones she uses. |
 | Quotes (these are the ones she sent) | `js/content.js`, `quotes` |
 | What I believe, the cut-out words | `js/content.js`, `values` |
 | What a session is like, the five steps | `js/content.js`, `steps` |

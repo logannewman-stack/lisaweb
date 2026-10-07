@@ -73,6 +73,11 @@ numbered because they are a sequence.
 - **Paper.** The at-a-glance card and the word cards sit on paper with a
   slight tilt, like things pinned to a wall.
 - **The velvet.** One dark ground, used twice: the quotes and the footer.
+- **The shelf.** Her oils stand as drawn bottles on a shelf line inside the
+  olive "Sage and palo santo" block, each label in a flag colour, with the
+  link to her doTERRA shop beneath. It sits with the cleansing because that
+  is where the oils belong in a session; it is not a separate section, so
+  the seven flags stay seven.
 
 ## Motion
 

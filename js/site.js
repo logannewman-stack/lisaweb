@@ -239,6 +239,41 @@
   }
 
   /* =========================================================================
+     THE OILS — bottles on a shelf, and the shop
+     ====================================================================== */
+  var BOTTLE = '<svg class="oil__bottle" viewBox="0 0 60 112" aria-hidden="true" focusable="false">' +
+    '<rect x="21" y="3" width="18" height="15" rx="3" fill="#2C292A"/>' +
+    '<path d="M25 18 H35 V27 H25 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>' +
+    '<path d="M14 32 Q14 27 19 27 H41 Q46 27 46 32 V100 Q46 106 40 106 H20 Q14 106 14 100 Z" fill="rgba(255,255,255,.14)" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>' +
+    '<path d="M19 36 V96" stroke="rgba(255,255,255,.35)" stroke-width="1.2" stroke-linecap="round"/>' +
+    '<rect x="18.5" y="48" width="23" height="36" rx="2" fill="var(--oil)"/>' +
+    '<path d="M30 56 C26.5 62 25 64.5 25 67.5 a5 5 0 0 0 10 0 C35 64.5 33.5 62 30 56 Z" fill="rgba(255,255,255,.9)"/>' +
+    "</svg>";
+  var oilList = $("#oil-list");
+  if (oilList && L.oils) {
+    oilList.innerHTML = L.oils.map(function (o) {
+      var colour = o.colour === "gold" ? "var(--gold)" : "var(--" + esc(o.colour || "crown") + ")";
+      return '<li class="oil" style="--oil:' + colour + '">' + BOTTLE +
+        '<div class="oil__text"><span class="oil__name">' + esc(o.name) + "</span>" +
+        (o.note ? '<span class="oil__note">' + esc(o.note) + "</span>" : "") + "</div></li>";
+    }).join("");
+  }
+  var shopLink = $("#oils-shop"), shopNote = $("#oils-note");
+  if (shopLink && L.shop && L.shop.url) {
+    shopLink.href = L.shop.url;
+    if (L.shop.label) shopLink.textContent = L.shop.label;
+    if (shopNote && L.shop.note) shopNote.textContent = L.shop.note;
+  }
+  var footerLinks = $("#footer-links");
+  if (footerLinks) {
+    var fl = [];
+    if (L.instagram) fl.push('<a href="https://instagram.com/' + esc(L.instagram) + '" rel="noopener" target="_blank">Instagram</a>');
+    if (L.email) fl.push('<a href="mailto:' + esc(L.email) + '">Email</a>');
+    if (L.shop && L.shop.url) fl.push('<a href="' + esc(L.shop.url) + '" rel="noopener" target="_blank">' + esc(L.shop.label || "Shop my oils") + "</a>");
+    footerLinks.innerHTML = fl.join("");
+  }
+
+  /* =========================================================================
      KIND WORDS
      ====================================================================== */
   var testimonials = $("#testimonials");

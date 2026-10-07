@@ -15,6 +15,13 @@ window.LISA = {
   instagram: "lisabrunson",
   location: "Sessions in person and online",
 
+  /* Her doTERRA shop. Real. */
+  shop: {
+    url: "https://my.doterra.com/lisabrunson88",
+    label: "Shop my oils",
+    note: "Opens my doTERRA shop in a new tab."
+  },
+
   /* ---------------------------------------------------------------------------
      QUOTES — the ones Lisa sent. The shortest turn around the centre in two
      rings; all of them take turns in the middle. Leave `by` empty for an
@@ -66,11 +73,24 @@ window.LISA = {
      A SESSION — what to expect, in order. Placeholder text.
      ------------------------------------------------------------------------ */
   steps: [
-    { name: "Arrive", text: "Come as you are. Shoes off, phone off, tea if you want it." },
+    { name: "Arrive", text: "Come as you are. Shoes off, phone off, tea if you want it. The diffuser is already going." },
     { name: "We talk", text: "A few minutes on what brought you here and what you need today. Nothing is too small." },
     { name: "Cleansing", text: "Sage and palo santo to clear the room, and you. A moment of quiet before the sound begins." },
     { name: "Sound", text: "Bowls, chimes and drum, placed where they are needed. You lie down, get covered in blankets, and breathe." },
     { name: "Rest", text: "Time to come back slowly. Nobody rushes you out." }
+  ],
+
+  /* ---------------------------------------------------------------------------
+     THE OILS — the bottles on the shelf in "Sage and palo santo".
+     Placeholder picks and notes: replace with the oils Lisa actually uses.
+       colour  the label: root, sacral, solar, heart, throat, third, crown, gold
+     ------------------------------------------------------------------------ */
+  oils: [
+    { name: "Lavender",     note: "For sleep, and for the end of a long day.",        colour: "crown" },
+    { name: "Frankincense", note: "The one I reach for first. Grounding and steady.", colour: "solar" },
+    { name: "Wild orange",  note: "Sunshine in a bottle. Diffused before every group.", colour: "sacral" },
+    { name: "Peppermint",   note: "A clear head and an open breath.",                 colour: "heart" },
+    { name: "Eucalyptus",   note: "For the room, and for a cold.",                    colour: "throat" }
   ],
 
   /* ---------------------------------------------------------------------------
