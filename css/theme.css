@@ -1,85 +1,71 @@
 /* =============================================================================
    LISA BRUNSON — THEME TOKENS
+   An evening ceremony under the stars.
    -----------------------------------------------------------------------------
-   Every colour on the site comes from these variables, and every one of them
-   was sampled from the photos Lisa sent: her whitewashed brick wall, the navy
-   velvet couch, the pink velvet chair, the gold Namaste letters, the pink
-   crown sign, and the seven chakra prayer flags over the clock.
+   Every colour on the site comes from these variables. The world they describe:
+   Lisa's navy velvet and gold, the celestial symbols of her wrist tattoo, and
+   the seven chakra colours as jewels, like candlelight through stained glass.
 
    Change a value here and the whole site follows.
    ========================================================================== */
 
 :root {
-  /* ---- Grounds ------------------------------------------------------------ */
-  --wall:        #F6F4F0;  /* the whitewashed brick, the page itself          */
-  --paper:       #FCFAF6;  /* cards, frames, the vision board paper           */
-  --velvet:      #1B2B45;  /* the navy velvet couch: quotes and footer        */
-  --velvet-deep: #121E33;  /* the shadow in the velvet                        */
+  /* ---- The night: grounds ------------------------------------------------ */
+  --night:         #0E1628;  /* the sky behind everything, the page itself     */
+  --velvet:        #1B2B45;  /* navy velvet: cards, panels, the header glass   */
+  --velvet-raised: #24375A;  /* velvet catching the light: tops of cards       */
+  --velvet-deep:   #162238;  /* velvet in shadow: the foot of cards and panels  */
 
-  /* ---- Accents from her rooms --------------------------------------------- */
-  --blush:       #E9A296;  /* the pink velvet chair                           */
-  --blush-soft:  #F5D6CF;  /* a wash of it                                    */
-  --rose:        #CC897F;  /* the pink of the crown sign                      */
-  --rose-ink:    #A4574E;  /* the same, dark enough to read on white          */
-  --gold:        #C9A24B;  /* the Namaste letters, the gold frame             */
-  --gold-soft:   #E7D3A2;  /* gold for hairlines on dark grounds              */
-  --gold-ink:    #8A6A22;  /* gold for text on light grounds                  */
-  --teal:        #255862;  /* the iridescent jar                              */
-  --olive:       #6E7440;  /* the paisley leaves, the heart flag              */
-  --mint:        #8CC4A6;  /* a fresh green for a bottle label on the olive    */
+  /* ---- Gold --------------------------------------------------------------- */
+  --gold:       #D9B46A;     /* hairlines, italic words in headings, buttons   */
+  --gold-light: #F1DCA6;     /* the highlight in the foil, small gold text     */
+  --gold-deep:  #9C7A36;     /* the shadow in the foil                         */
+  --gold-line:  color-mix(in srgb, var(--gold) 45%, transparent);  /* hairline frames and rules */
+  --gold-faint: color-mix(in srgb, var(--gold) 22%, transparent);  /* the quietest lines        */
 
-  /* ---- The seven flags, root to crown ------------------------------------- */
-  --root:   #A8262E;
-  --sacral: #DB5A1E;
-  --solar:  #E2A52A;
-  --heart:  #5F6E2C;
-  --throat: #2F6BA8;
-  --third:  #3F2462;
-  --crown:  #8E7EB8;
+  /* Gold foil, for the few foil moments: her name, gold buttons, "Joy".       */
+  --foil: linear-gradient(172deg, #F8E9C2 0%, #F1DCA6 16%, #DDB96F 40%, #B38D3F 56%, #E2C27E 72%, #F4E1AE 86%, #CDA55A 100%);
 
-  /* ---- Section grounds, full strength, root to crown ---------------------- */
-  --g-story:     #E08C84;  /* salmon pink, the pink sign with black lettering  */
-  --g-values:    #DB5A1E;  /* orange, the sacral flag                          */
-  --g-session:   #E2A52A;  /* mustard gold, the solar flag                     */
-  --g-cleansing: #5F6E2C;  /* olive, the heart flag and her metal sign         */
-  --g-kind:      #2F6BA8;  /* royal blue, the throat flag                      */
-  --g-mark:      #3F2462;  /* deep purple, the third-eye flag                  */
-  --g-book:      #A497CB;  /* lilac, the crown flag                            */
+  /* ---- Ivory: text -------------------------------------------------------- */
+  --ivory:      #F6EFE3;                  /* headings and important text       */
+  --ivory-soft: color-mix(in srgb, var(--ivory) 74%, transparent); /* reading text            */
+  --ivory-line: color-mix(in srgb, var(--ivory) 16%, transparent); /* the faintest dividers   */
 
-  /* ---- Text --------------------------------------------------------------- */
-  --ink:       #2C292A;                 /* the black of her wooden signs       */
-  --ink-soft:  #625B5B;
-  --ink-line:  rgba(44, 41, 42, .16);
-  --bone:      #F7F1EA;                 /* text on velvet                      */
-  --bone-soft: rgba(247, 241, 234, .74);
-  --bone-line: rgba(247, 241, 234, .22);
+  /* ---- The jewels: the seven chakras, root to crown, plus the lotus ------- */
+  --ruby:      #E2485E;  /* root         */
+  --carnelian: #F0873A;  /* sacral       */
+  --citrine:   #F5C64A;  /* solar plexus */
+  --emerald:   #3FBF8A;  /* heart        */
+  --sapphire:  #4C8FEA;  /* throat       */
+  --amethyst:  #9A63E0;  /* third eye    */
+  --moonstone: #CDB8F5;  /* crown        */
+  --blush:     #EFA59A;  /* the lotus: the petals of the mark                  */
+  --candle:    #F6A842;  /* candlelight: the warm glow beside her name        */
 
   /* ---- Type --------------------------------------------------------------- */
-  --font-display: "Cormorant Garamond", "Cormorant", Garamond, "Times New Roman", serif;
-  --font-body:    "Nunito Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  --font-hand:    "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  --font-display: "Bodoni Moda", "Bodoni 72", "Bodoni MT", Didot, "Libre Bodoni", "Times New Roman", serif;
+  --font-body:    "Jost", "Futura", "Century Gothic", "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 
-  /* Modular scale, base 18px, ratio ~1.25 */
-  --t-xs:   0.8rem;
-  --t-sm:   0.95rem;
-  --t-base: 1.125rem;
-  --t-lg:   1.375rem;
-  --t-xl:   1.75rem;
-  --t-2xl:  2.25rem;
-  --t-3xl:  clamp(2.4rem, 4.6vw, 3.4rem);
-  --t-display: clamp(3rem, 8.5vw, 6.5rem);
+  --t-xs:   .8125rem;
+  --t-sm:   .9375rem;
+  --t-base: 1.0625rem;
+  --t-lg:   1.25rem;
+  --t-xl:   clamp(1.4rem, 2.1vw, 1.75rem);
+  --t-2xl:  clamp(1.75rem, 3vw, 2.4rem);
+  --t-h2:   clamp(2.5rem, 5vw, 4.25rem);
 
   /* ---- Layout ------------------------------------------------------------- */
-  --wrap:    74rem;
-  --measure: 62ch;
-  --gutter:  clamp(1rem, 4vw, 3rem);
-  --section: clamp(5rem, 12vh, 8.5rem);
+  --wrap:     76rem;
+  --measure:  62ch;
+  --gutter:   clamp(1.125rem, 4.5vw, 3rem);
+  --section:  clamp(4.5rem, 9vw, 7.5rem);
+  --header-h: 4.5rem;
 
   /* ---- Signature shapes --------------------------------------------------- */
-  --petal: 50% 50% 48% 52% / 62% 62% 38% 38%;   /* the lotus petal, for frames */
-  --leaf:  1.7em 0.45em 1.7em 0.45em;           /* the leaf, for buttons       */
+  --arch:     999px 999px 0 0;            /* an arch window: round top, straight sides */
+  --arch-btn: 1.6em 1.6em .35em .35em;    /* buttons are small arches too    */
 
   /* ---- Motion ------------------------------------------------------------- */
-  --ease-out: cubic-bezier(.22, .61, .36, 1);
+  --ease-out:    cubic-bezier(.22, .61, .36, 1);
   --ease-in-out: cubic-bezier(.65, 0, .35, 1);
 }

@@ -5,94 +5,87 @@ that edits keep the whole thing coherent.
 
 ## The idea
 
-Lisa sent photos of her home as a style reference: a whitewashed brick wall,
-a navy velvet couch, a pink velvet chair, gold lettering, chakra prayer flags
-strung over a clock, hand-lettered signs and a collage vision board. The site
-borrows that look and nothing else. It is about her, not her things.
+An evening ceremony under the stars. Lisa sent photos of her home as a style
+reference: navy velvet, gold lettering, chakra prayer flags in the full
+rainbow, and the symbols of her wrist tattoo (a crescent moon with its phases,
+an eye, rays of dots). The site borrows that vocabulary and nothing else. It
+is about her, not her things.
 
-You arrive on her portrait: Lisa at the beach, the ocean behind her, a string
-of seven flags across the sky. The photo fades into navy velvet at the bottom
-so the first two screens read as one. The flags are the navigation: seven
-flags, seven sections, root to crown.
-Then the page turns to navy velvet, where the quotes she keeps around her
-turn slowly around the centre. From there it walks up through the chakras,
-each section tinted faintly with its flag's colour, and ends on the velvet.
+The whole page is one night sky. Her portrait stands in a tall arch window,
+like a high-end tarot card, with the moon's phases arcing over it, rays of
+dots fanning out behind, and a slow glow of jewel light breathing around it.
+Her name is set in gold foil either side of the arch. Below, the sections sit
+on the same sky, separated only by a small gold crescent between dots. Colour
+comes from the jewels, like candlelight through stained glass, never from
+painting whole sections.
 
 ## Palette
 
-Sampled from her photos. Values live in `css/theme.css`.
+Values live in `css/theme.css`.
 
-| Token | Value | From |
+| Token | Value | Use |
 | --- | --- | --- |
-| `--wall` | `#F6F4F0` | Whitewashed brick. The page ground. |
-| `--velvet` | `#1B2B45` | Navy velvet. Quotes and footer. |
-| `--blush` | `#E9A296` | Pink velvet. |
-| `--rose` / `--rose-ink` | `#CC897F` / `#A4574E` | A hand-lettered pink sign. Pull quotes, the petals of the mark. |
-| `--gold` / `--gold-ink` / `--gold-soft` | `#C9A24B` / `#8A6A22` / `#E7D3A2` | Gold lettering. |
-| `--olive` | `#6E7440` | Paisley leaves. The cleansing drawing. |
-| `--root` to `--crown` | red, orange, yellow, olive, blue, indigo, lavender | The seven flags. Section tints, the flags in the navigation. |
+| `--night` | `#0E1628` | The sky. The page ground everywhere. |
+| `--velvet`, `--velvet-raised`, `--velvet-deep` | `#1B2B45`, `#24375A`, `#162238` | Navy velvet: cards, panels, the header glass. |
+| `--gold`, `--gold-light`, `--gold-deep` | `#D9B46A`, `#F1DCA6`, `#9C7A36` | Hairlines, italic words in headings, small gold text. |
+| `--foil` | gradient of the three golds | Her name, gold buttons, "Joy", "Namaste." Only there. |
+| `--ivory`, `--ivory-soft` | `#F6EFE3`, 74% ivory | Headings and quotes; reading text. |
+| `--ruby` to `--moonstone` | `#E2485E` `#F0873A` `#F5C64A` `#3FBF8A` `#4C8FEA` `#9A63E0` `#CDB8F5` | The seven chakras as jewels: the litany, card windows, gems, halos, glows. |
+| `--blush` | `#EFA59A` | The lotus petals of the mark. |
+| `--candle` | `#F6A842` | The warm glow beside her name. |
 
-Colour is used at full strength, the way it is in her rooms. Each section
-after the quotes is a solid block of one colour (`--g-story` to `--g-book`
-in `css/theme.css`): salmon pink with black type, orange, mustard gold,
-olive, royal blue, deep purple, lilac, between navy velvet at both ends.
-Cream paper sits on the colour for cards and buttons. The colours are not
-blocks: one continuous wash runs behind the whole page (`.canvas`, painted by
-`js/site.js`), holding each section's colour where its content sits and
-melting into the next colour across the space between sections. A faint
-paper grain lies over it. Each heading has a hand-painted underline in a
-contrasting colour, a rainbow bar runs across the top of the page, and a
-stacked painted rainbow closes the page.
+All text is ivory or gold on night or velvet, which keeps every pair above
+WCAG AA. Jewel colours are only used for large words, glows and fills.
 
 ## Type
 
-- **Cormorant Garamond** for her name, headings, the quotes, captions and
-  testimonials. Its italic is the voice of the quotes.
-- **Nunito Sans** for reading: body copy, navigation, buttons, forms.
-- **Caveat** for the hand-lettered moments: the tagline in the hero and the
-  hand-written cards in "What I believe". Nowhere else.
+- **Bodoni Moda** for her name, headings, quotes, card and offer titles. Its
+  italic carries one word in most headings, in gold ("My *story*"), and all
+  of her quotes. Below about 40px it is set at a sturdier optical size
+  (`"opsz" 18`) so hairlines such as hyphens stay visible.
+- **Jost** for reading, navigation, buttons, labels and small details.
 
-Headings are sentence case. The only uppercase on the site is on the cut-out
-word cards, where it copies magazine lettering. The session steps are
-numbered because they are a sequence.
+Headings are sentence case. Nothing is set in tracked capitals. The session
+cards are numbered I to V because they are a real sequence.
 
 ## Signature elements
 
-- **Paint.** Brush strokes drawn as SVG with rough edges (`js/paint.js`):
-  the underline beneath every heading, the strokes under the kind words, the
-  stack in the footer. Each is generated from a seed, so it paints the same
-  way every time.
-- **The flags.** A string of seven small flags in the header, a larger string
-  across the hero, and a single flag hanging from a thread in front of each
-  section heading.
-- **The mark.** A lotus resting in the crescent moon of her tattoo, with the
-  moon's phases along the crescent, the tattoo's eye beneath the flower and
-  its rays of dots above.
-- **The petal and the leaf.** The lotus-petal frame for her portrait; the
-  leaf shape for every button.
-- **Paper.** The at-a-glance card and the word cards sit on paper with a
-  slight tilt, like things pinned to a wall.
-- **The velvet.** One dark ground, used twice: the quotes and the footer.
-- **The shelf.** Her oils stand as drawn bottles on a shelf line inside the
-  olive "Sage and palo santo" block, each label in a flag colour, with the
-  link to her doTERRA shop beneath. It sits with the cleansing because that
-  is where the oils belong in a session; it is not a separate section, so
-  the seven flags stay seven.
+- **The arch.** A round-topped window with straight sides: the hero portrait
+  (with a thin gold double frame), the story portrait, the drop cap, the
+  session card windows, the sage niche, the kind words, the offer cards, and
+  the buttons, which are small arches too.
+- **The moon phases.** Seven above the hero arch (full in the middle), one per
+  menu link, new to full across the session cards and the at-a-glance list,
+  the dots under the kind words, the full cycle in the footer.
+- **Rays of dots.** Fanning out behind the hero arch, from her tattoo.
+- **The jewels.** The litany of what she believes, each word its own colour;
+  the stained-glass card windows; the gems on the offers; the halos behind
+  the oil bottles; the emerald-to-sapphire breath orb.
+- **The reading.** The mark in a gold medallion with its four meanings laid
+  around it like a tarot spread, joined by gold lines.
+- **The ornament.** A crescent between dots with hairlines fading out, between
+  every section.
 
 ## Motion
 
-One orchestrated moment on load: the flags swing in and settle, her name
-fades in from wide letter-spacing, then the tagline, the button and the
-portrait frame. After that, only ambient or user-triggered motion: the flags
-sway a degree and a half; gold dots drift up the velvet and glow near the
-pointer; the quote rings turn in opposite directions; the breath circle grows
-and shrinks on a 4-7-8 count, only when started. Nothing fades in on scroll.
-All ambient motion is off under reduced motion.
+One orchestrated entrance on load: the glow and rays come up, the arch rises
+and the photo settles, the moons appear one by one, her name slides in from
+both sides, then the tagline and buttons. After that, only slow ambient
+motion: the stars twinkle and drift a little on scroll, the glow breathes,
+two lines of quotes drift in opposite directions (pausing on hover), smoke
+rises from the palo santo, the featured quote and the kind words change every
+few seconds (pausing on hover, focus, and when off screen). The breath orb and
+its rings grow and shrink only when started. Only transform and opacity are
+animated. With reduced motion, all of it holds still and nothing advances on
+its own.
 
 ## Things to avoid when editing
 
-- Keep the flag colours in their order, root to crown, down the page.
-- Don't add a fourth typeface, or use Caveat outside the tagline and the cards.
-- Don't put dark text on the velvet or light text on the wall. Sections
-  carry `data-tone="light"` or `data-tone="dark"` and colours follow.
-- Keep the hero to the photo, the name and the flags. No brick, no texture.
+- Keep the ground one night sky. Don't give sections their own background
+  colours; separate them with the ornament.
+- Keep gold foil for the few moments listed above, and jewels for large type,
+  fills and glows. Small text stays ivory or gold.
+- Don't add a third typeface, tracked capitals, or emoji.
+- Keep the hero to the arch, the moons, the rays, the glow, her name and two
+  buttons. No other photos of her home or things, no brick or wall textures.
+- New colours go in `css/theme.css` as variables, with a note.

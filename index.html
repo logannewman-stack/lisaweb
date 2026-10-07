@@ -1,32 +1,32 @@
 <!doctype html>
-<html lang="en" data-tone="light">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Lisa Brunson</title>
   <meta name="description" content="Lisa Brunson. Sound healing, ceremony and cleansing: sound baths, one-to-one sessions and cleansing ceremonies with sage and palo santo.">
-  <meta name="theme-color" content="#1B2B45">
+  <meta name="theme-color" content="#0E1628">
   <meta property="og:title" content="Lisa Brunson">
   <meta property="og:description" content="Sound, ceremony, and the slow work of coming home to yourself.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/portraits/lisa-hero.jpg">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
-  <link rel="preload" as="image" href="assets/portraits/lisa-hero.jpg" imagesrcset="assets/portraits/lisa-hero-1200.jpg 1200w, assets/portraits/lisa-hero.jpg 2000w" imagesizes="100vw">
+  <link rel="preload" as="image" href="assets/portraits/lisa-hero.jpg" imagesrcset="assets/portraits/lisa-hero-1200.jpg 1200w, assets/portraits/lisa-hero.jpg 2000w" imagesizes="(max-width: 999px) 760px, 1100px" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,600;1,6..12,300;1,6..12,400&family=Caveat:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Jost:ital,wght@0,300..600;1,300..600&display=swap">
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
 
-<!-- Drawings used more than once: the mark, and the seven flag glyphs. -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<!-- Drawings used more than once: the mark, the moon phases, the crescent
+     ornament, the four-point star, and a few small icons. -->
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
   <defs>
-    <filter id="rough" x="-6%" y="-40%" width="112%" height="180%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.035 0.4" numOctaves="2" seed="5" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="7" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
+    <!-- THE MARK. A lotus resting in the crescent moon of Lisa's tattoo, with the
+         moon's phases along the crescent, the eye beneath the flower and the rays
+         of dots above. Colour it with --mark-petal and --mark-ink. -->
     <path id="mark-petal" d="M60 16 C50 32 50 48 60 62 C70 48 70 32 60 16 Z"/>
     <symbol id="mark" viewBox="0 0 120 120" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
       <g class="mark__dots" style="fill:var(--mark-ink, currentColor)" stroke="none">
@@ -57,276 +57,370 @@
         <circle cx="30.5" cy="73.7" r="2.4"/>
       </g>
     </symbol>
-    <!-- the seven flags, root to crown -->
-    <symbol id="g-root" viewBox="0 0 24 24"><path d="M7 7h10v10H7z"/><path d="M8.5 9h7L12 15z"/></symbol>
-    <symbol id="g-sacral" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6.5"/><path d="M6.5 13a6 4 0 0 0 11 0"/></symbol>
-    <symbol id="g-solar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6.5"/><path d="M8 9h8l-4 7z"/></symbol>
-    <symbol id="g-heart" viewBox="0 0 24 24"><path d="M12 5l6 10H6z"/><path d="M12 19l6-10H6z"/></symbol>
-    <symbol id="g-throat" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6.5"/><circle cx="12" cy="12" r="2.4"/></symbol>
-    <symbol id="g-third" viewBox="0 0 24 24"><path d="M5 12Q12 5 19 12Q12 19 5 12Z"/><circle cx="12" cy="12" r="2.2"/></symbol>
-    <symbol id="g-crown" viewBox="0 0 24 24"><path d="M12 6C9 10 9 14 12 17C15 14 15 10 12 6Z"/><path d="M12 17C8 15 6 12 6 9"/><path d="M12 17c4-2 6-5 6-8"/></symbol>
+
+    <!-- The moon through its eight phases: 0 new, 2 first quarter, 4 full, 6 last quarter. -->
+    <symbol id="moon-0" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="currentColor" fill-opacity=".14" stroke="currentColor" stroke-width="1.3"/></symbol>
+    <symbol id="moon-1" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M12 3A9 9 0 0 1 12 21A4.5 9 0 0 0 12 3Z" fill="currentColor"/></symbol>
+    <symbol id="moon-2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M12 3A9 9 0 0 1 12 21Z" fill="currentColor"/></symbol>
+    <symbol id="moon-3" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M12 3A9 9 0 0 1 12 21A4.5 9 0 0 1 12 3Z" fill="currentColor"/></symbol>
+    <symbol id="moon-4" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="currentColor" stroke="currentColor" stroke-width="1.3"/></symbol>
+    <symbol id="moon-5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M12 3A9 9 0 0 0 12 21A4.5 9 0 0 0 12 3Z" fill="currentColor"/></symbol>
+    <symbol id="moon-6" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M12 3A9 9 0 0 0 12 21Z" fill="currentColor"/></symbol>
+    <symbol id="moon-7" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M12 3A9 9 0 0 0 12 21A4.5 9 0 0 1 12 3Z" fill="currentColor"/></symbol>
+
+    <symbol id="crescent" viewBox="0 0 24 24"><path d="M12.52 3.02A9 9 0 1 0 20.26 15.58A7.4 7.4 0 1 1 12.52 3.02Z" fill="currentColor"/></symbol>
+    <symbol id="star4" viewBox="-12 -12 24 24"><path d="M0 -11C.9 -3.2 3.2 -.9 11 0C3.2 .9 .9 3.2 0 11C-.9 3.2 -3.2 .9 -11 0C-3.2 -.9 -.9 -3.2 0 -11Z" fill="currentColor"/></symbol>
+
+    <!-- The section ornament: a crescent between dots, with hairlines fading out. -->
+    <linearGradient id="fade-in" gradientUnits="userSpaceOnUse" x1="0" x2="86" y1="0" y2="0"><stop offset="0" style="stop-color:var(--gold);stop-opacity:0"/><stop offset="1" style="stop-color:var(--gold);stop-opacity:.8"/></linearGradient>
+    <linearGradient id="fade-out" gradientUnits="userSpaceOnUse" x1="154" x2="240" y1="0" y2="0"><stop offset="0" style="stop-color:var(--gold);stop-opacity:.8"/><stop offset="1" style="stop-color:var(--gold);stop-opacity:0"/></linearGradient>
+    <symbol id="ornament" viewBox="0 0 240 24">
+      <path d="M0 12.5H86" stroke="url(#fade-in)" stroke-width="1"/>
+      <circle cx="95" cy="12.5" r="1.3" fill="currentColor"/>
+      <circle cx="104.5" cy="12.5" r="2" fill="currentColor"/>
+      <use href="#crescent" x="110" y="2.5" width="20" height="20"/>
+      <circle cx="135.5" cy="12.5" r="2" fill="currentColor"/>
+      <circle cx="145" cy="12.5" r="1.3" fill="currentColor"/>
+      <path d="M154 12.5H240" stroke="url(#fade-out)" stroke-width="1"/>
+    </symbol>
+
+
+    <!-- Amber glass for the oil bottles -->
+    <linearGradient id="glass" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#4A2F15"/><stop offset=".42" stop-color="#7A4E22"/><stop offset=".7" stop-color="#5C3A19"/><stop offset="1" stop-color="#36230F"/></linearGradient>
+
+    <!-- Small icons -->
+    <symbol id="i-lotus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"><path d="M12 4.5C9.6 8.2 9.6 12.2 12 16C14.4 12.2 14.4 8.2 12 4.5Z"/><path d="M12 16C8.6 15.7 5.5 13.4 4.4 9.6C7.9 9.5 10.8 12 12 16Z"/><path d="M12 16C15.4 15.7 18.5 13.4 19.6 9.6C16.1 9.5 13.2 12 12 16Z"/><path d="M6.5 19.5H17.5"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"><path d="M2.5 12C6.4 6.6 17.6 6.6 21.5 12C17.6 17.4 6.4 17.4 2.5 12Z"/><circle cx="12" cy="12" r="3.1"/><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-rays" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="14" r="1.6"/><circle cx="12" cy="9" r="1.25"/><circle cx="12" cy="4" r=".9"/><circle cx="7.5" cy="15.6" r="1.6"/><circle cx="4.3" cy="11.8" r="1.25"/><circle cx="1.6" cy="8.4" r=".9"/><circle cx="16.5" cy="15.6" r="1.6"/><circle cx="19.7" cy="11.8" r="1.25"/><circle cx="22.4" cy="8.4" r=".9"/></symbol>
+    <symbol id="i-prev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6L8.5 12L14.5 18"/></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 6L15.5 12L9.5 18"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12H20.5M15 6.5L20.5 12L15 17.5"/></symbol>
+    <symbol id="i-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7H17V15"/></symbol>
   </defs>
 </svg>
 
-<div class="canvas" id="canvas" aria-hidden="true"></div>
-<div class="rainbow-bar" aria-hidden="true"></div>
+<!-- The night sky behind the whole page: small gold and jewel stars (js/stars.js). -->
+<div class="sky" aria-hidden="true"><canvas class="sky__canvas" id="sky"></canvas></div>
 
-<a class="skip" href="#story">Skip to content</a>
+<a class="skip" href="#main">Skip to content</a>
 
-<header class="nav" id="nav">
-  <a class="nav__brand" href="#top" aria-label="Lisa Brunson, back to the top">
-    <svg class="mark mark--nav" aria-hidden="true"><use href="#mark"/></svg>
-    <span class="nav__name">Lisa Brunson</span>
-  </a>
-  <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
-  <nav class="nav__links" id="menu" aria-label="Sections of this page">
-    <a class="nav__flag" href="#story" style="--flag:var(--root)"><i aria-hidden="true"><svg><use href="#g-root"/></svg></i><span>Story</span></a>
-    <a class="nav__flag" href="#values" style="--flag:var(--sacral)"><i aria-hidden="true"><svg><use href="#g-sacral"/></svg></i><span>Values</span></a>
-    <a class="nav__flag" href="#session" style="--flag:var(--solar)"><i aria-hidden="true"><svg><use href="#g-solar"/></svg></i><span>A session</span></a>
-    <a class="nav__flag" href="#cleansing" style="--flag:var(--heart)"><i aria-hidden="true"><svg><use href="#g-heart"/></svg></i><span>Cleansing</span></a>
-    <a class="nav__flag" href="#kind" style="--flag:var(--throat)"><i aria-hidden="true"><svg><use href="#g-throat"/></svg></i><span>Kind words</span></a>
-    <a class="nav__flag" href="#the-mark" style="--flag:var(--third)"><i aria-hidden="true"><svg><use href="#g-third"/></svg></i><span>The mark</span></a>
-    <a class="nav__flag" href="#book" style="--flag:var(--crown)"><i aria-hidden="true"><svg><use href="#g-crown"/></svg></i><span>Book</span></a>
-  </nav>
+<header class="site-header" id="header">
+  <div class="header__inner">
+    <a class="brand" href="#top" aria-label="Lisa Brunson, back to the top">
+      <svg class="mark mark--brand" aria-hidden="true" focusable="false"><use href="#mark"/></svg>
+      <span class="brand__name">Lisa Brunson</span>
+    </a>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+    <nav class="nav" id="menu" aria-label="Sections of this page">
+      <ul class="nav__group nav__group--left">
+        <li><a href="#story"><svg class="nav__moon" aria-hidden="true" focusable="false"><use href="#moon-0"/></svg><span>My story</span></a></li>
+        <li class="nav__more"><a href="#values"><svg class="nav__moon" aria-hidden="true" focusable="false"><use href="#moon-1"/></svg><span>What I believe</span></a></li>
+        <li><a href="#session"><svg class="nav__moon" aria-hidden="true" focusable="false"><use href="#moon-2"/></svg><span>A session</span></a></li>
+        <li><a href="#cleansing"><svg class="nav__moon" aria-hidden="true" focusable="false"><use href="#moon-3"/></svg><span>Cleansing</span></a></li>
+      </ul>
+      <ul class="nav__group nav__group--right">
+        <li><a href="#oils"><svg class="nav__moon" aria-hidden="true" focusable="false"><use href="#moon-4"/></svg><span>Oils</span></a></li>
+        <li><a href="#kind"><svg class="nav__moon" aria-hidden="true" focusable="false"><use href="#moon-5"/></svg><span>Kind words</span></a></li>
+        <li class="nav__more"><a href="#the-mark"><svg class="nav__moon" aria-hidden="true" focusable="false"><use href="#moon-6"/></svg><span>The mark</span></a></li>
+        <li><a href="#book"><svg class="nav__moon" aria-hidden="true" focusable="false"><use href="#moon-7"/></svg><span>Book</span></a></li>
+      </ul>
+      <p class="nav__shop"><a class="btn btn--outline" id="menu-shop" href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener"><span class="btn__label">Shop my oils</span><svg class="btn__icon" aria-hidden="true" focusable="false"><use href="#i-out"/></svg><span class="sr-only"> (opens in a new tab)</span></a></p>
+    </nav>
+  </div>
 </header>
 
-<main id="main">
+<main id="main" tabindex="-1">
 
   <!-- ======================================================================
-       THE WALL. Whitewashed brick, a string of flags, her name, and a place
-       for her portrait. When the photo arrives, see the comment below.
+       HERO. Her portrait in an arch window, her name in gold either side.
        ====================================================================== -->
-  <section class="hero" id="top" data-tone="dark">
-    <div class="hero__photo">
-      <img src="assets/portraits/lisa-hero.jpg"
-           srcset="assets/portraits/lisa-hero-1200.jpg 1200w, assets/portraits/lisa-hero.jpg 2000w"
-           sizes="100vw" width="2000" height="1335"
-           alt="Lisa Brunson on a beach, smiling, with the ocean behind her"
-           fetchpriority="high" decoding="async">
-    </div>
-    <div class="hero__scrim" aria-hidden="true"></div>
-    <div class="wrap hero__inner">
-      <div class="flags flags--hero" aria-hidden="true">
-        <span class="flag" style="--flag:var(--root);--i:0"><svg><use href="#g-root"/></svg></span>
-        <span class="flag" style="--flag:var(--sacral);--i:1"><svg><use href="#g-sacral"/></svg></span>
-        <span class="flag" style="--flag:var(--solar);--i:2"><svg><use href="#g-solar"/></svg></span>
-        <span class="flag" style="--flag:var(--heart);--i:3"><svg><use href="#g-heart"/></svg></span>
-        <span class="flag" style="--flag:var(--throat);--i:4"><svg><use href="#g-throat"/></svg></span>
-        <span class="flag" style="--flag:var(--third);--i:5"><svg><use href="#g-third"/></svg></span>
-        <span class="flag" style="--flag:var(--crown);--i:6"><svg><use href="#g-crown"/></svg></span>
-      </div>
-      <div class="hero__text">
-        <svg class="mark mark--hero" aria-hidden="true"><use href="#mark"/></svg>
-        <h1 class="hero__name">Lisa Brunson</h1>
-        <p class="hero__tagline" id="tagline">Sound, ceremony, and the slow work of coming home to yourself.</p>
-        <a class="btn btn--paper hero__cta" href="#quotes">Come in</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================================================================
-       THE VELVET. The words she keeps around her. Quotes are in js/content.js.
-       ====================================================================== -->
-  <section class="quotes" id="quotes" data-tone="dark" aria-labelledby="quotes-intro">
-    <canvas class="quotes__stars" id="stars" aria-hidden="true"></canvas>
-    <div class="wrap quotes__inner">
-      <p class="quotes__intro" id="quotes-intro">The words I keep around me, at all times.</p>
-      <div class="ring" id="ring">
-        <svg class="ring__svg" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
-          <defs>
-            <path id="ring-path-outer" d="M300,300 m-272,0 a272,272 0 1,1 544,0 a272,272 0 1,1 -544,0"/>
-            <path id="ring-path-inner" d="M300,300 m-208,0 a208,208 0 1,1 416,0 a208,208 0 1,1 -416,0"/>
-          </defs>
-          <g class="ring__outer"><text><textPath href="#ring-path-outer" id="ring-outer"></textPath></text></g>
-          <g class="ring__inner"><text><textPath href="#ring-path-inner" id="ring-inner"></textPath></text></g>
+  <section class="hero" id="top" aria-label="Introduction">
+    <div class="hero__stage">
+      <div class="hero__art">
+        <div class="hero__glow" aria-hidden="true"><i class="glow glow--amethyst"></i><i class="glow glow--sapphire"></i><i class="glow glow--ruby"></i><i class="glow glow--citrine"></i></div>
+        <svg class="hero__rays" viewBox="-150 -150 300 300" aria-hidden="true" focusable="false"><circle cx="-42.48" cy="-65.42" r="0.95" opacity="0.8"/><circle cx="-46.02" cy="-70.87" r="0.7" opacity="0.49"/><circle cx="-49.83" cy="-76.74" r="0.45" opacity="0.18"/><circle cx="42.48" cy="-65.42" r="0.95" opacity="0.8"/><circle cx="46.02" cy="-70.87" r="0.7" opacity="0.49"/><circle cx="49.83" cy="-76.74" r="0.45" opacity="0.18"/><circle cx="-63.07" cy="-44.17" r="0.95" opacity="0.8"/><circle cx="-68.81" cy="-48.18" r="0.83" opacity="0.65"/><circle cx="-74.95" cy="-52.48" r="0.7" opacity="0.49"/><circle cx="-81.51" cy="-57.07" r="0.57" opacity="0.34"/><circle cx="-88.47" cy="-61.95" r="0.45" opacity="0.18"/><circle cx="63.07" cy="-44.17" r="0.95" opacity="0.8"/><circle cx="68.81" cy="-48.18" r="0.83" opacity="0.65"/><circle cx="74.95" cy="-52.48" r="0.7" opacity="0.49"/><circle cx="81.51" cy="-57.07" r="0.57" opacity="0.34"/><circle cx="88.47" cy="-61.95" r="0.45" opacity="0.18"/><circle cx="-62.36" cy="-14.4" r="0.95" opacity="0.8"/><circle cx="-69.18" cy="-15.97" r="0.87" opacity="0.7"/><circle cx="-76.49" cy="-17.66" r="0.78" opacity="0.59"/><circle cx="-84.28" cy="-19.46" r="0.7" opacity="0.49"/><circle cx="-92.57" cy="-21.37" r="0.62" opacity="0.39"/><circle cx="-101.33" cy="-23.39" r="0.53" opacity="0.28"/><circle cx="-110.59" cy="-25.53" r="0.45" opacity="0.18"/><circle cx="62.36" cy="-14.4" r="0.95" opacity="0.8"/><circle cx="69.18" cy="-15.97" r="0.87" opacity="0.7"/><circle cx="76.49" cy="-17.66" r="0.78" opacity="0.59"/><circle cx="84.28" cy="-19.46" r="0.7" opacity="0.49"/><circle cx="92.57" cy="-21.37" r="0.62" opacity="0.39"/><circle cx="101.33" cy="-23.39" r="0.53" opacity="0.28"/><circle cx="110.59" cy="-25.53" r="0.45" opacity="0.18"/><circle cx="-61.24" cy="9.7" r="0.95" opacity="0.8"/><circle cx="-68.15" cy="10.79" r="0.87" opacity="0.7"/><circle cx="-75.56" cy="11.97" r="0.78" opacity="0.59"/><circle cx="-83.46" cy="13.22" r="0.7" opacity="0.49"/><circle cx="-91.86" cy="14.55" r="0.62" opacity="0.39"/><circle cx="-100.74" cy="15.96" r="0.53" opacity="0.28"/><circle cx="-110.13" cy="17.44" r="0.45" opacity="0.18"/><circle cx="61.24" cy="9.7" r="0.95" opacity="0.8"/><circle cx="68.15" cy="10.79" r="0.87" opacity="0.7"/><circle cx="75.56" cy="11.97" r="0.78" opacity="0.59"/><circle cx="83.46" cy="13.22" r="0.7" opacity="0.49"/><circle cx="91.86" cy="14.55" r="0.62" opacity="0.39"/><circle cx="100.74" cy="15.96" r="0.53" opacity="0.28"/><circle cx="110.13" cy="17.44" r="0.45" opacity="0.18"/></svg>
+        <svg class="hero__moons" viewBox="-80 -80 160 80" aria-hidden="true" focusable="false">
+          <use href="#moon-1" x="-65.86" y="-31.65" width="8.4" height="8.4" style="--i:0"/>
+          <use href="#moon-2" x="-51.09" y="-52.76" width="8.4" height="8.4" style="--i:1"/>
+          <use href="#moon-3" x="-29.49" y="-66.78" width="8.4" height="8.4" style="--i:2"/>
+          <use href="#moon-4" x="-4.2" y="-71.7" width="8.4" height="8.4" style="--i:3"/>
+          <use href="#moon-5" x="21.09" y="-66.78" width="8.4" height="8.4" style="--i:4"/>
+          <use href="#moon-6" x="42.69" y="-52.76" width="8.4" height="8.4" style="--i:5"/>
+          <use href="#moon-7" x="57.46" y="-31.65" width="8.4" height="8.4" style="--i:6"/>
         </svg>
-        <div class="ring__center">
-          <blockquote class="featured" id="featured">
-            <p class="featured__text" id="featured-text"></p>
-            <footer class="featured__by" id="featured-by"></footer>
-          </blockquote>
-          <button class="ring__next" id="quote-next" type="button">Next quote</button>
+        <div class="arch">
+          <div class="arch__window">
+            <img class="arch__photo" src="assets/portraits/lisa-hero.jpg"
+                 srcset="assets/portraits/lisa-hero-1200.jpg 1200w, assets/portraits/lisa-hero.jpg 2000w"
+                 sizes="(max-width: 999px) 760px, 1100px" width="2000" height="1335"
+                 alt="Lisa Brunson on a beach at dusk, smiling, one hand on her hip, the ocean behind her"
+                 fetchpriority="high" decoding="async">
+          </div>
         </div>
       </div>
+      <h1 class="hero__name"><span class="hero__first">Lisa</span> <span class="hero__last">Brunson</span></h1>
+    </div>
+    <p class="hero__tagline" id="tagline">Sound, ceremony, and the slow work of coming home to yourself.</p>
+    <div class="hero__ctas">
+      <a class="btn btn--gold" href="#book">Book a session</a>
+      <a class="btn btn--outline" id="hero-shop" href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener"><span class="btn__label">Shop my oils</span><svg class="btn__icon" aria-hidden="true" focusable="false"><use href="#i-out"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
     </div>
   </section>
 
+  <div class="divider" aria-hidden="true"><svg><use href="#ornament"/></svg></div>
+
   <!-- ======================================================================
-       ROOT. Her story. PLACEHOLDER TEXT: replace with Lisa's own words.
+       QUOTES. Her words drift across the sky in two lines; one at a time
+       takes the middle. The quotes are in js/content.js.
        ====================================================================== -->
-  <section class="story chakra" id="story" data-tone="light" style="--tint:var(--root);--ground:var(--g-story)">
-    <div class="wrap">
-      <h2 class="h2"><span class="h2__text" data-paint="var(--velvet)">My story</span></h2>
-    </div>
-    <div class="wrap story__grid">
-      <div class="story__side">
-        <figure class="portrait portrait--story">
-          <div class="portrait__frame"><img src="assets/portraits/lisa-portrait.jpg" width="660" height="825" alt="Lisa Brunson" loading="lazy" decoding="async"></div>
-        </figure>
-        <aside class="glance taped">
-          <h3 class="glance__title">At a glance</h3>
-          <ul class="glance__list">
-            <li>Based in [city, state]</li>
-            <li>Trained in [modality] since [year]</li>
-            <li>Sessions in person and online</li>
-            <li>Works with [who she works with]</li>
-            <li>Speaks [languages]</li>
-          </ul>
-        </aside>
+  <section class="quotes" id="quotes" aria-labelledby="quotes-title">
+    <div class="marquee" id="marquee-a"><div class="marquee__track"></div></div>
+    <div class="wrap featured">
+      <svg class="featured__moon" aria-hidden="true" focusable="false"><use href="#crescent"/></svg>
+      <h2 class="featured__title" id="quotes-title">The words I keep around me, at all times.</h2>
+      <div class="featured__stack" id="featured" aria-live="off">
+        <blockquote class="featured__quote is-active"><p>Not all storms come to disrupt your life. Some come to clear your path.</p></blockquote>
       </div>
+      <button class="text-btn" id="quote-next" type="button"><span>Next quote</span><svg aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></button>
+    </div>
+    <div class="marquee marquee--reverse" id="marquee-b"><div class="marquee__track"></div></div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><svg><use href="#ornament"/></svg></div>
+
+  <!-- ======================================================================
+       MY STORY. PLACEHOLDER TEXT: replace with Lisa's own words.
+       ====================================================================== -->
+  <section class="story" id="story" aria-labelledby="story-title">
+    <div class="wrap story__grid">
       <div class="story__text">
-        <p>I found sound the way most people do: on my back, on a mat, on a day I did not think anything could reach me. A bowl was struck somewhere behind my head and something in my chest let go. I have been following that sound, and sharing it, ever since.</p>
+        <h2 class="h2" id="story-title">My <em>story</em></h2>
+        <p class="dropcap">I found sound the way most people do: on my back, on a mat, on a day I did not think anything could reach me. A bowl was struck somewhere behind my head and something in my chest let go. I have been following that sound, and sharing it, ever since.</p>
         <p>Smoke came first, though. I grew up with sage in the house, and with the idea that a room could be cleared the same way a heart could, and that the two were never really separate. Palo santo came later, from a teacher who told me to stop trying so hard and start listening.</p>
         <p>Today I hold sound baths, work with people one to one, and cleanse homes and studios that are ready for a new chapter. I am not here to fix anyone. I am here to hold a steady space, and let the sound do what it already knows how to do.</p>
         <p class="pull">Nothing here is complicated. Lie down. Breathe. Let the bowls do the rest.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- ======================================================================
-       SACRAL. What she believes, set like cut-out lettering.
-       Words are in js/content.js. PLACEHOLDER TEXT.
-       ====================================================================== -->
-  <section class="values chakra" id="values" data-tone="light" style="--tint:var(--sacral);--ground:var(--g-values)">
-    <div class="wrap">
-      <h2 class="h2"><span class="h2__text" data-paint="var(--paper)">What I believe</span></h2>
-      <p class="lede">A few words I come back to, on the good days and the hard ones.</p>
-      <div class="words" id="words"></div>
-    </div>
-  </section>
-
-  <!-- ======================================================================
-       SOLAR PLEXUS. What a session is like. Steps are in js/content.js.
-       ====================================================================== -->
-  <section class="session chakra" id="session" data-tone="light" style="--tint:var(--solar);--ground:var(--g-session)">
-    <div class="wrap">
-      <h2 class="h2"><span class="h2__text" data-paint="var(--velvet)">What a session is like</span></h2>
-      <p class="lede">Every session is a little different, but they all move through the same five moments.</p>
-      <ol class="steps" id="steps"></ol>
-    </div>
-  </section>
-
-  <!-- ======================================================================
-       HEART. Sage and palo santo, and a minute of breath. PLACEHOLDER TEXT.
-       ====================================================================== -->
-  <section class="cleansing chakra" id="cleansing" data-tone="dark" style="--tint:var(--heart);--ground:var(--g-cleansing)">
-    <div class="wrap cleansing__grid">
-      <div class="cleansing__art" aria-hidden="true">
-        <svg viewBox="70 0 190 330" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <g transform="rotate(-16 120 220)">
-            <path d="M104 300 C92 250 96 180 122 120 C148 180 152 250 140 300 Z"/>
-            <path d="M122 120 C120 180 118 240 120 296" opacity=".45"/>
-            <path d="M112 168 C104 160 100 150 104 138"/>
-            <path d="M132 168 C140 160 144 150 140 138"/>
-            <path d="M108 196 C100 190 96 180 98 168" opacity=".7"/>
-            <path d="M136 196 C144 190 148 180 146 168" opacity=".7"/>
-            <path d="M104 226 C98 220 96 210 98 200" opacity=".5"/>
-            <path d="M140 226 C146 220 148 210 146 200" opacity=".5"/>
-            <path d="M99 236 L145 226 M98 252 L146 242 M100 268 L144 258 M103 283 L141 274" opacity=".8"/>
-          </g>
-          <g transform="rotate(10 214 230)">
-            <path d="M200 316 L200 160 L228 160 L228 316 Z"/>
-            <path d="M208 172 V300 M219 168 V296" opacity=".35"/>
-            <path d="M200 160 L214 146 L228 160"/>
-            <circle class="ember" cx="214" cy="148" r="3.2" stroke="none"/>
-          </g>
-          <path class="smoke-line" d="M214 138 C228 116 198 98 212 74 C226 50 200 34 216 12"/>
-          <path class="smoke-line smoke-line--2" d="M216 134 C202 114 232 96 218 72 C204 48 236 32 220 10"/>
-        </svg>
-      </div>
-      <div class="cleansing__text">
-        <h2 class="h2"><span class="h2__text" data-paint="var(--gold)">Sage and palo santo</span></h2>
-        <p>Every session starts the same way. The room is cleared with white sage, the way it was done in my family long before I understood why. Then palo santo, sweet and slow, to invite something gentle back in.</p>
-        <p>Cleansing is not about getting rid of anything. It is about making room. Room for rest, for the next chapter, for a version of yourself that has been waiting patiently for the noise to die down.</p>
-        <div class="breath" id="breath">
-          <div class="breath__circle" aria-hidden="true"></div>
-          <div class="breath__side">
-            <p class="breath__cue" id="breath-cue" aria-live="polite">When you cannot get to a session, there is always this. Four counts in, seven held, eight out.</p>
-            <button class="btn btn--paper" id="breath-btn" type="button">Begin a minute of breath</button>
+      <div class="story__side">
+        <figure class="portrait">
+          <div class="portrait__arch">
+            <img src="assets/portraits/lisa-portrait.jpg" width="660" height="825" alt="Lisa Brunson, smiling, with the sea behind her" loading="lazy" decoding="async">
           </div>
+        </figure>
+        <aside class="glance" aria-labelledby="glance-title">
+          <h3 class="glance__title" id="glance-title">At a glance</h3>
+          <ul class="glance__list">
+            <li><svg aria-hidden="true" focusable="false"><use href="#moon-0"/></svg><span>Based in [city, state]</span></li>
+            <li><svg aria-hidden="true" focusable="false"><use href="#moon-1"/></svg><span>Trained in [modality] since [year]</span></li>
+            <li><svg aria-hidden="true" focusable="false"><use href="#moon-2"/></svg><span>Sessions in person and online</span></li>
+            <li><svg aria-hidden="true" focusable="false"><use href="#moon-3"/></svg><span>Works with [who she works with]</span></li>
+            <li><svg aria-hidden="true" focusable="false"><use href="#moon-4"/></svg><span>Speaks [languages]</span></li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><svg><use href="#ornament"/></svg></div>
+
+  <!-- ======================================================================
+       WHAT I BELIEVE. A litany of jewel-coloured words.
+       The words are in js/content.js. PLACEHOLDER TEXT.
+       ====================================================================== -->
+  <section class="values" id="values" aria-labelledby="values-title">
+    <div class="wrap">
+      <header class="head">
+        <h2 class="h2" id="values-title">What I <em>believe</em></h2>
+        <p class="lede">A few words I come back to, on the good days and the hard ones.</p>
+      </header>
+      <ul class="litany" id="words"></ul>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><svg><use href="#ornament"/></svg></div>
+
+  <!-- ======================================================================
+       A SESSION. Five cards, I to V, the moon filling as it goes.
+       The steps are in js/content.js. PLACEHOLDER TEXT.
+       ====================================================================== -->
+  <section class="session" id="session" aria-labelledby="session-title">
+    <div class="wrap">
+      <header class="head">
+        <h2 class="h2" id="session-title">What a <em>session</em> is like</h2>
+        <p class="lede">Every session is a little different, but they all move through the same five moments.</p>
+      </header>
+      <div class="deck">
+        <ol class="cards" id="steps" aria-label="The five moments of a session"></ol>
+        <div class="deck__controls" id="deck-controls" hidden>
+          <button class="round-btn" id="steps-prev" type="button" aria-controls="steps" aria-label="Previous moment"><svg aria-hidden="true" focusable="false"><use href="#i-prev"/></svg></button>
+          <button class="round-btn" id="steps-next" type="button" aria-controls="steps" aria-label="Next moment"><svg aria-hidden="true" focusable="false"><use href="#i-next"/></svg></button>
         </div>
       </div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><svg><use href="#ornament"/></svg></div>
+
+  <!-- ======================================================================
+       SAGE AND PALO SANTO, a minute of breath, and the oils she uses.
+       PLACEHOLDER TEXT.
+       ====================================================================== -->
+  <section class="cleansing" id="cleansing" aria-labelledby="cleansing-title">
+    <div class="wrap cleansing__grid">
+      <div class="cleansing__art" aria-hidden="true">
+        <div class="niche">
+          <svg class="sage" viewBox="70 0 190 330" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <g transform="rotate(-16 120 220)">
+              <path d="M104 300 C92 250 96 180 122 120 C148 180 152 250 140 300 Z"/>
+              <path d="M122 120 C120 180 118 240 120 296" opacity=".45"/>
+              <path d="M112 168 C104 160 100 150 104 138"/>
+              <path d="M132 168 C140 160 144 150 140 138"/>
+              <path d="M108 196 C100 190 96 180 98 168" opacity=".7"/>
+              <path d="M136 196 C144 190 148 180 146 168" opacity=".7"/>
+              <path d="M104 226 C98 220 96 210 98 200" opacity=".5"/>
+              <path d="M140 226 C146 220 148 210 146 200" opacity=".5"/>
+              <path d="M99 236 L145 226 M98 252 L146 242 M100 268 L144 258 M103 283 L141 274" opacity=".8"/>
+            </g>
+            <g transform="rotate(10 214 230)">
+              <path d="M200 316 L200 160 L228 160 L228 316 Z"/>
+              <path d="M208 172 V300 M219 168 V296" opacity=".35"/>
+              <path d="M200 160 L214 146 L228 160"/>
+              <circle class="ember" cx="214" cy="148" r="3.2" stroke="none"/>
+            </g>
+            <path class="smoke" d="M214 138 C228 116 198 98 212 74 C226 50 200 34 216 12"/>
+            <path class="smoke smoke--2" d="M216 134 C202 114 232 96 218 72 C204 48 236 32 220 10"/>
+          </svg>
+        </div>
+      </div>
+      <div class="cleansing__text">
+        <h2 class="h2" id="cleansing-title">Sage <em>and</em> palo santo</h2>
+        <p>Every session starts the same way. The room is cleared with white sage, the way it was done in my family long before I understood why. Then palo santo, sweet and slow, to invite something gentle back in.</p>
+        <p>Cleansing is not about getting rid of anything. It is about making room. Room for rest, for the next chapter, for a version of yourself that has been waiting patiently for the noise to die down.</p>
+      </div>
+    </div>
+
+    <!-- A minute of breath: four counts in, seven held, eight out, three times. -->
+    <div class="wrap breath" id="breath">
+      <div class="breath__stage" aria-hidden="true">
+        <span class="breath__ring breath__ring--outer"></span>
+        <svg class="breath__ring breath__ring--dots" viewBox="0 0 100 100"><circle cx="50" cy="50" r="49"/></svg>
+        <span class="breath__ring breath__ring--inner"></span>
+        <span class="breath__orb"></span>
+        <span class="breath__count" id="breath-count">4&#8202;&middot;&#8202;7&#8202;&middot;&#8202;8</span>
+      </div>
+      <p class="breath__cue" id="breath-cue" aria-live="polite">When you cannot get to a session, there is always this. Four counts in, seven held, eight out.</p>
+      <button class="btn btn--gold" id="breath-btn" type="button">Begin a minute of breath</button>
     </div>
 
     <!-- The oils she diffuses, and her doTERRA shop. Bottles are listed in js/content.js. -->
     <div class="wrap oils" id="oils">
-      <div class="oils__head">
-        <h3 class="h3"><span class="h3__text" data-paint="var(--gold)">The oils I use</span></h3>
+      <header class="head">
+        <h3 class="h2 h2--sub">The <em>oils</em> I use</h3>
         <p class="lede">The oils I diffuse in every session are the ones I keep at home. I share them through doTERRA, and I am happy to help you choose a first few.</p>
-      </div>
-      <ul class="oil-list" id="oil-list"></ul>
+      </header>
+      <ul class="shelf" id="oil-list"></ul>
       <div class="oils__cta">
-        <a class="btn btn--paper" id="oils-shop" href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener">Shop my oils</a>
-        <span class="oils__note" id="oils-note">Opens my doTERRA shop in a new tab.</span>
+        <a class="btn btn--gold btn--lg" id="oils-shop" href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener" aria-describedby="oils-note"><span class="btn__label">Shop my oils</span><svg class="btn__icon" aria-hidden="true" focusable="false"><use href="#i-out"/></svg></a>
+        <p class="oils__note" id="oils-note">Opens my doTERRA shop in a new tab.</p>
       </div>
     </div>
   </section>
 
+  <div class="divider" aria-hidden="true"><svg><use href="#ornament"/></svg></div>
+
   <!-- ======================================================================
-       THROAT. Kind words. Testimonials are in js/content.js. PLACEHOLDER TEXT.
+       KIND WORDS. Testimonials are in js/content.js. PLACEHOLDER TEXT.
        ====================================================================== -->
-  <section class="kind chakra" id="kind" data-tone="dark" style="--tint:var(--throat);--ground:var(--g-kind)">
+  <section class="kind" id="kind" aria-labelledby="kind-title">
     <div class="wrap">
-      <h2 class="h2"><span class="h2__text" data-paint="var(--gold)">Kind words</span></h2>
-      <p class="lede">What people say after a session, once they have found their words again.</p>
-      <div class="kind__grid" id="testimonials"></div>
+      <header class="head">
+        <h2 class="h2" id="kind-title">Kind <em>words</em></h2>
+        <p class="lede">What people say after a session, once they have found their words again.</p>
+      </header>
+      <div class="testimonials" id="testimonials-box">
+        <div class="testimonials__stack" id="testimonials" aria-live="off"></div>
+        <div class="testimonials__controls" id="kind-controls" hidden>
+          <button class="round-btn" id="kind-prev" type="button" aria-controls="testimonials" aria-label="Previous kind words"><svg aria-hidden="true" focusable="false"><use href="#i-prev"/></svg></button>
+          <div class="phases" id="kind-dots"></div>
+          <button class="round-btn" id="kind-next" type="button" aria-controls="testimonials" aria-label="Next kind words"><svg aria-hidden="true" focusable="false"><use href="#i-next"/></svg></button>
+        </div>
+      </div>
     </div>
   </section>
 
+  <div class="divider" aria-hidden="true"><svg><use href="#ornament"/></svg></div>
+
   <!-- ======================================================================
-       THIRD EYE. The mark, drawn from the symbols of her tattoo.
+       THE MARK, laid out like a reading: four meanings around the mark.
        ====================================================================== -->
-  <section class="mark-section chakra" id="the-mark" data-tone="dark" style="--tint:var(--third);--ground:var(--g-mark)">
-    <div class="wrap mark__grid">
-      <div class="mark__art">
-        <svg class="mark mark--large" role="img" aria-label="The Lisa Brunson mark: a lotus resting in a crescent moon, with an eye beneath the flower, the moon's phases along the crescent, and rays of dots above"><use href="#mark"/></svg>
-      </div>
-      <div class="mark__text">
-        <h2 class="h2"><span class="h2__text" data-paint="var(--gold)">The mark</span></h2>
-        <p>It started on her wrist. The mark takes the symbols of Lisa's tattoo and sets a lotus among them.</p>
-        <dl class="meanings">
-          <div>
-            <dt>The lotus</dt>
-            <dd>It grows out of mud and dark water and opens clean. That is the whole story of healing, in one flower.</dd>
-          </div>
-          <div>
-            <dt>The moon and its phases</dt>
-            <dd>The crescent from her wrist, with the moon moving through it. Nothing stays dark for long, and nothing stays full forever.</dd>
-          </div>
-          <div>
-            <dt>The eye</dt>
-            <dd>Watchful and kind. Protection, and the habit of seeing what is really there.</dd>
-          </div>
-          <div>
-            <dt>The rays of dots</dt>
-            <dd>The light above it all, the way her tattoo draws it.</dd>
-          </div>
-        </dl>
+  <section class="reading" id="the-mark" aria-labelledby="mark-title">
+    <div class="wrap">
+      <header class="head">
+        <h2 class="h2" id="mark-title">The <em>mark</em></h2>
+        <p class="lede">It started on her wrist. The mark takes the symbols of Lisa's tattoo and sets a lotus among them.</p>
+      </header>
+      <div class="spread">
+        <figure class="spread__mark">
+          <svg class="mark mark--large" role="img" aria-label="The Lisa Brunson mark: a lotus resting in a crescent moon, with an eye beneath the flower, the moon's phases along the crescent, and rays of dots above"><use href="#mark"/></svg>
+        </figure>
+        <div class="meaning meaning--lotus">
+          <svg class="meaning__icon" aria-hidden="true" focusable="false"><use href="#i-lotus"/></svg>
+          <h3 class="meaning__title">The lotus</h3>
+          <p>It grows out of mud and dark water and opens clean. That is the whole story of healing, in one flower.</p>
+        </div>
+        <div class="meaning meaning--moon">
+          <svg class="meaning__icon" aria-hidden="true" focusable="false"><use href="#crescent"/></svg>
+          <h3 class="meaning__title">The moon and its phases</h3>
+          <p>The crescent from her wrist, with the moon moving through it. Nothing stays dark for long, and nothing stays full forever.</p>
+        </div>
+        <div class="meaning meaning--eye">
+          <svg class="meaning__icon" aria-hidden="true" focusable="false"><use href="#i-eye"/></svg>
+          <h3 class="meaning__title">The eye</h3>
+          <p>Watchful and kind. Protection, and the habit of seeing what is really there.</p>
+        </div>
+        <div class="meaning meaning--rays">
+          <svg class="meaning__icon" aria-hidden="true" focusable="false"><use href="#i-rays"/></svg>
+          <h3 class="meaning__title">The rays of dots</h3>
+          <p>The light above it all, the way her tattoo draws it.</p>
+        </div>
       </div>
     </div>
   </section>
 
+  <div class="divider" aria-hidden="true"><svg><use href="#ornament"/></svg></div>
+
   <!-- ======================================================================
-       CROWN. Book a session, and say hello.
+       WORK WITH ME, and say hello.
        Offerings are in js/content.js. The form posts to Formspree; replace
        your-form-id below (see README). The email link works regardless.
        ====================================================================== -->
-  <section class="book chakra" id="book" data-tone="light" style="--tint:var(--crown);--ground:var(--g-book)">
+  <section class="book" id="book" aria-labelledby="book-title">
     <div class="wrap">
-      <h2 class="h2"><span class="h2__text" data-paint="var(--velvet)">Work with me</span></h2>
-      <p class="lede">Three ways to work together. If you are not sure which is right, write to me and we will figure it out.</p>
-      <ul class="offer-list" id="offer-list"></ul>
-      <div class="contact__grid" id="contact">
-        <div class="contact__text">
-          <h3 class="h3">Say hello</h3>
+      <header class="head">
+        <h2 class="h2" id="book-title">Work <em>with me</em></h2>
+        <p class="lede">Three ways to work together. If you are not sure which is right, write to me and we will figure it out.</p>
+      </header>
+      <ul class="offers" id="offer-list"></ul>
+
+      <div class="hello" id="contact">
+        <div class="hello__text">
+          <h3 class="h3">Say <em>hello</em></h3>
           <p>Tell me a little about what you are looking for, or just say hi. I answer every message myself, usually within a day or two.</p>
-          <ul class="contact__lines" id="contact-lines"></ul>
+          <ul class="hello__lines" id="contact-lines"></ul>
         </div>
         <form class="form" action="https://formspree.io/f/your-form-id" method="POST">
-          <label for="f-name">Your name<input id="f-name" name="name" type="text" autocomplete="name" required></label>
-          <label for="f-email">Your email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
-          <label for="f-message">What are you looking for?<textarea id="f-message" name="message" rows="4"></textarea></label>
-          <button class="btn btn--velvet" type="submit">Send</button>
+          <div class="field">
+            <label for="f-name">Your name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-email">Your email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="f-message">What are you looking for?</label>
+            <textarea id="f-message" name="message" rows="4"></textarea>
+          </div>
+          <button class="btn btn--gold" type="submit">Send</button>
         </form>
       </div>
     </div>
@@ -334,18 +428,24 @@
 
 </main>
 
-<footer class="footer" data-tone="dark">
-  <div class="rainbow-stack" id="rainbow-stack" aria-hidden="true"></div>
-  <svg class="mark mark--footer" aria-hidden="true"><use href="#mark"/></svg>
+<footer class="footer">
+  <div class="divider divider--footer" aria-hidden="true"><svg><use href="#ornament"/></svg></div>
+  <svg class="mark mark--footer" aria-hidden="true" focusable="false"><use href="#mark"/></svg>
   <p class="footer__name">Lisa Brunson</p>
+  <div class="footer__moons" aria-hidden="true">
+    <svg><use href="#moon-0"/></svg><svg><use href="#moon-1"/></svg><svg><use href="#moon-2"/></svg><svg><use href="#moon-3"/></svg><svg><use href="#moon-4"/></svg><svg><use href="#moon-5"/></svg><svg><use href="#moon-6"/></svg><svg><use href="#moon-7"/></svg><svg><use href="#moon-0"/></svg>
+  </div>
   <p class="footer__namaste">Namaste.</p>
-  <nav class="footer__links" id="footer-links" aria-label="Elsewhere"></nav>
+  <nav class="footer__links" aria-label="Elsewhere">
+    <a id="footer-instagram" href="https://instagram.com/lisabrunson" target="_blank" rel="noopener">Instagram<span class="sr-only"> (opens in a new tab)</span></a>
+    <a id="footer-email" href="mailto:hello@lisabrunson.com">Email</a>
+    <a id="footer-shop" href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener"><span class="btn__label">Shop my oils</span><span class="sr-only"> (opens in a new tab)</span></a>
+  </nav>
   <p class="footer__fine">Sound, ceremony, and cleansing. &copy; <span id="year">2026</span> Lisa Brunson.</p>
 </footer>
 
 <script src="js/content.js"></script>
 <script src="js/stars.js"></script>
 <script src="js/site.js"></script>
-<script src="js/paint.js"></script>
 </body>
 </html>

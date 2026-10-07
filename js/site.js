@@ -1,11 +1,14 @@
 /* =============================================================================
    LISA BRUNSON — SITE BEHAVIOUR
    Reads js/content.js and brings the page to life:
-     - the navigation (menu, tone, current section)
-     - the quotes turning around the centre, and the featured quote
-     - the words she believes in, the session steps, the kind words
-     - the offerings and contact lines
+     - the header (velvet glass once scrolled, the current section, the menu)
+     - her quotes: two drifting lines and one in the middle
+     - the litany of what she believes
+     - the five session cards, and the rail they become on smaller screens
+     - the oils on their shelf, and every link to her shop
      - a minute of breath
+     - kind words, one at a time
+     - the offerings and the contact lines
    Nothing here needs editing for content.
    ========================================================================== */
 (function () {
@@ -20,6 +23,26 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   }
+  function svgUse(id, cls) {
+    return '<svg' + (cls ? ' class="' + cls + '"' : "") + ' aria-hidden="true" focusable="false"><use href="#' + id + '"/></svg>';
+  }
+  function onVisible(el, cb) {
+    if (!el) return;
+    if (!("IntersectionObserver" in window)) { cb(true); return; }
+    new IntersectionObserver(function (entries) { cb(entries[0].isIntersecting); }, { threshold: 0.05 }).observe(el);
+  }
+
+  /* Colours by name: the jewels, and the chakra names that map to them. */
+  var JEWELS = {
+    ruby: "var(--ruby)", carnelian: "var(--carnelian)", citrine: "var(--citrine)", emerald: "var(--emerald)",
+    sapphire: "var(--sapphire)", amethyst: "var(--amethyst)", moonstone: "var(--moonstone)", blush: "var(--blush)",
+    gold: "var(--gold)",
+    root: "var(--ruby)", sacral: "var(--carnelian)", solar: "var(--citrine)", heart: "var(--emerald)",
+    throat: "var(--sapphire)", third: "var(--amethyst)", crown: "var(--moonstone)", rose: "var(--blush)",
+    mint: "var(--emerald)", teal: "var(--sapphire)"
+  };
+  var CYCLE = ["ruby", "carnelian", "citrine", "emerald", "sapphire", "amethyst", "moonstone"];
+  function jewel(name, fallback) { return JEWELS[String(name || "").toLowerCase()] || fallback || "var(--gold)"; }
 
   /* ---- Small things ------------------------------------------------------- */
   var year = $("#year");
@@ -27,87 +50,43 @@
   var tagline = $("#tagline");
   if (tagline && L.tagline) tagline.textContent = L.tagline;
 
-  /* =========================================================================
-     THE CANVAS — one continuous wash of colour behind the whole page.
-     Each section's colour is held where its content sits and melts into the
-     next colour across the space between sections.
-     ====================================================================== */
-  var probe = document.createElement("i");
-  probe.style.cssText = "position:absolute;width:0;height:0;visibility:hidden;pointer-events:none";
-  document.body.appendChild(probe);
-  function groundOf(el) {
-    var raw = getComputedStyle(el).getPropertyValue("--ground").trim();
-    if (!raw) return "";
-    probe.style.background = raw;
-    var c = getComputedStyle(probe).backgroundColor;
-    return c && c !== "rgba(0, 0, 0, 0)" ? c : "";
-  }
-  var canvas = $("#canvas");
-  var BLEND = 160; // the least distance over which one colour becomes the next
-  function paintCanvas() {
-    if (!canvas) return;
-    var blocks = $$("[data-tone]").filter(function (el) { return el.id !== "top" && groundOf(el); });
-    if (!blocks.length) return;
-    var scrollY = window.scrollY || window.pageYOffset;
-    var stops = [], prev = null;
-    blocks.forEach(function (el, i) {
-      var colour = groundOf(el);
-      var rect = el.getBoundingClientRect(), cs = getComputedStyle(el);
-      var top = rect.top + scrollY;
-      var padTop = parseFloat(cs.paddingTop) || 0, padBottom = parseFloat(cs.paddingBottom) || 0;
-      if (i === 0) {
-        stops.push(colour + " 0px");
-      } else {
-        // hold the previous colour until its content ends, and settle on the
-        // new colour before this content begins: the change lives in the gap
-        var start = prev.contentBottom + 20, end = top + padTop * 0.85;
-        if (end - start < BLEND) start = end - BLEND;
-        stops.push(prev.colour + " " + Math.round(start) + "px");
-        stops.push(colour + " " + Math.round(end) + "px");
-      }
-      prev = { colour: colour, contentBottom: rect.bottom + scrollY - padBottom };
+  /* Every link to her shop, from content.js */
+  if (L.shop && L.shop.url) {
+    $$("#hero-shop, #menu-shop, #oils-shop, #footer-shop").forEach(function (a) {
+      a.href = L.shop.url;
+      var label = $(".btn__label", a);
+      if (label && L.shop.label) label.textContent = L.shop.label;
     });
-    stops.push(prev.colour + " 100%");
-    canvas.style.height = document.documentElement.scrollHeight + "px";
-    canvas.style.background = "linear-gradient(to bottom, " + stops.join(", ") + ")";
   }
-  var canvasTimer = 0;
-  function repaintSoon() { clearTimeout(canvasTimer); canvasTimer = setTimeout(paintCanvas, 60); }
-  paintCanvas();
-  window.addEventListener("load", paintCanvas);
-  window.addEventListener("resize", repaintSoon);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(paintCanvas);
-  if ("ResizeObserver" in window) new ResizeObserver(repaintSoon).observe(document.body);
+  var shopNote = $("#oils-note");
+  if (shopNote && L.shop && L.shop.note) shopNote.textContent = L.shop.note;
+  var fInsta = $("#footer-instagram"), fEmail = $("#footer-email");
+  if (fInsta) { if (L.instagram) fInsta.href = "https://instagram.com/" + encodeURIComponent(L.instagram); else fInsta.hidden = true; }
+  if (fEmail) { if (L.email) fEmail.href = "mailto:" + L.email; else fEmail.hidden = true; }
 
   /* =========================================================================
-     NAVIGATION
+     HEADER — velvet glass once scrolled; the section you are in; the menu
      ====================================================================== */
-  var nav = $("#nav"), hero = $("#top"), toggle = $("#nav-toggle"), heroPhoto = $(".hero__photo");
-  var toned = $$("[data-tone]").filter(function (el) { return el !== document.documentElement; });
-  var links = $$(".nav__links a");
+  var header = $("#header"), toggle = $("#menu-toggle"), menu = $("#menu");
+  var navLinks = $$("#menu .nav__group a");
+  var targets = navLinks.map(function (a) { return document.getElementById(a.getAttribute("href").slice(1)); });
   var ticking = false;
-
   function onScroll() {
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(function () {
       ticking = false;
       var y = window.scrollY || window.pageYOffset;
-      nav.classList.toggle("is-scrolled", y > 24);
-      if (heroPhoto && !reduceMotion) heroPhoto.style.transform = "translate3d(0," + Math.round(Math.min(y, 1600) * 0.22) + "px,0)";
-      if (hero) nav.classList.toggle("is-past-hero", hero.getBoundingClientRect().bottom < 90);
-      var barY = 36, midY = window.innerHeight * 0.45, current = null;
-      for (var i = 0; i < toned.length; i++) {
-        var r = toned[i].getBoundingClientRect();
-        if (r.top <= barY && r.bottom > barY) {
-          document.documentElement.setAttribute("data-tone", toned[i].getAttribute("data-tone"));
-          var g = groundOf(toned[i]);
-          if (g) nav.style.setProperty("--nav-ground", g);
-        }
-        if (r.top <= midY && r.bottom > midY) current = toned[i].id;
-      }
-      links.forEach(function (a) {
-        a.classList.toggle("is-current", !!current && a.getAttribute("href") === "#" + current);
+      header.classList.toggle("is-scrolled", y > 24);
+      // the current section is the last one whose top has passed the reading line
+      var line = window.innerHeight * 0.4, current = -1, best = -Infinity;
+      targets.forEach(function (el, i) {
+        if (!el) return;
+        var r = el.getBoundingClientRect();
+        if (r.top <= line && r.bottom > 0 && r.top > best) { best = r.top; current = i; }
+      });
+      navLinks.forEach(function (a, i) {
+        if (i === current) a.setAttribute("aria-current", "location"); else a.removeAttribute("aria-current");
       });
     });
   }
@@ -115,237 +94,345 @@
   window.addEventListener("resize", onScroll);
   onScroll();
 
-  if (toggle) {
-    function closeMenu() {
-      nav.classList.remove("is-open");
-      toggle.setAttribute("aria-expanded", "false");
-      toggle.textContent = "Menu";
-      document.body.style.overflow = "";
-    }
-    toggle.addEventListener("click", function () {
-      if (nav.classList.contains("is-open")) { closeMenu(); return; }
-      nav.classList.add("is-open");
+  if (toggle && menu) {
+    var outside = $$("main, .footer, .skip");
+    var isOpen = function () { return header.classList.contains("is-open"); };
+    var focusables = function () {
+      return $$("a[href], button", header).filter(function (el) { return el.offsetParent !== null || el === toggle; });
+    };
+    var openMenu = function () {
+      header.classList.add("is-open");
       toggle.setAttribute("aria-expanded", "true");
       toggle.textContent = "Close";
-      document.body.style.overflow = "hidden";
+      document.documentElement.classList.add("is-menu-open");
+      outside.forEach(function (el) { el.setAttribute("inert", ""); });
+      var first = navLinks[0];
+      if (first) setTimeout(function () { first.focus(); }, 60);
+    };
+    var closeMenu = function (returnFocus) {
+      header.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.textContent = "Menu";
+      document.documentElement.classList.remove("is-menu-open");
+      outside.forEach(function (el) { el.removeAttribute("inert"); });
+      if (returnFocus) toggle.focus();
+    };
+    toggle.addEventListener("click", function () { if (isOpen()) closeMenu(true); else openMenu(); });
+    $$("a", menu).forEach(function (a) { a.addEventListener("click", function () { if (isOpen()) closeMenu(false); }); });
+    document.addEventListener("keydown", function (ev) {
+      if (!isOpen()) return;
+      if (ev.key === "Escape") { ev.preventDefault(); closeMenu(true); return; }
+      if (ev.key === "Tab") {
+        var f = focusables(), firstEl = f[0], lastEl = f[f.length - 1];
+        if (ev.shiftKey && document.activeElement === firstEl) { ev.preventDefault(); lastEl.focus(); }
+        else if (!ev.shiftKey && document.activeElement === lastEl) { ev.preventDefault(); firstEl.focus(); }
+      }
     });
-    links.forEach(function (a) { a.addEventListener("click", function () { if (nav.classList.contains("is-open")) closeMenu(); }); });
-    document.addEventListener("keydown", function (ev) { if (ev.key === "Escape" && nav.classList.contains("is-open")) closeMenu(); });
+    var wide = window.matchMedia("(min-width: 1100px)");
+    var onWide = function () { if (wide.matches && isOpen()) closeMenu(false); };
+    if (wide.addEventListener) wide.addEventListener("change", onWide); else if (wide.addListener) wide.addListener(onWide);
   }
 
   /* =========================================================================
-     QUOTES — two rings turning around the centre, one quote featured at a time
+     QUOTES — two lines drifting in opposite directions, one in the middle
      ====================================================================== */
   var quotes = (L.quotes || []).filter(function (q) { return q && q.text; });
-  var ringSvg = $(".ring__svg");
-  var outerText = ringSvg && $(".ring__outer text", ringSvg);
-  var innerText = ringSvg && $(".ring__inner text", ringSvg);
-  var outerPath = $("#ring-path-outer"), innerPath = $("#ring-path-inner");
 
-  function measure(textEl, str) {
-    var probe = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    probe.setAttribute("visibility", "hidden");
-    probe.textContent = str;
-    textEl.parentNode.appendChild(probe);
-    var len = probe.getComputedTextLength();
-    probe.parentNode.removeChild(probe);
-    return len;
-  }
-  function fillRing(textEl, pathEl, pathId, candidates, used) {
-    if (!textEl || !pathEl) return;
-    var circumference = pathEl.getTotalLength();
-    var pool = candidates.filter(function (q) { return used.indexOf(q) < 0; });
-    pool.sort(function (a, b) { return a.text.length - b.text.length; });
-    pool.forEach(function (q) { q._len = measure(textEl, q.text); });
-    var chosen = [];
-    for (var k = Math.min(5, pool.length); k >= 1; k--) {
-      var slot = circumference / k;
-      var take = pool.slice(0, k);
-      var longest = take.reduce(function (m, q) { return Math.max(m, q._len); }, 0);
-      if (longest <= slot * 0.86) { chosen = take; break; }
-    }
-    if (!chosen.length && pool.length) chosen = [pool[0]];
-    chosen.forEach(function (q) { used.push(q); });
-    textEl.innerHTML = chosen.map(function (q, i) {
-      var offset = (i / chosen.length) * 100;
-      return '<textPath href="#' + pathId + '" startOffset="' + offset.toFixed(2) + '%">' + esc(q.text) + "</textPath>";
+  function fillMarquee(box, list, speed) {
+    if (!box || !list.length) return;
+    var track = $(".marquee__track", box);
+    var items = list.map(function (q) {
+      return '<li class="marquee__item"><span>' + esc(q.text) + "</span>" + svgUse("star4", "marquee__star") + "</li>";
     }).join("");
-  }
-  function layoutRings() {
-    if (!ringSvg || !quotes.length) return;
-    var used = [];
-    fillRing(innerText, innerPath, "ring-path-inner", quotes, used);
-    fillRing(outerText, outerPath, "ring-path-outer", quotes, used);
-  }
-
-  var featured = $("#featured"), featuredText = $("#featured-text"), featuredBy = $("#featured-by");
-  var qi = 0, qTimer = 0, qVisible = true;
-  function showQuote(i, instant) {
-    if (!featured || !quotes.length) return;
-    var q = quotes[i % quotes.length];
-    var swap = function () {
-      featuredText.textContent = q.text;
-      featuredBy.textContent = q.by || "";
-      featured.classList.remove("is-fading");
+    var render = function (copies) {
+      var once = new Array(copies + 1).join(items);
+      track.innerHTML = '<ul class="marquee__list">' + once + '</ul><ul class="marquee__list" aria-hidden="true">' + once + "</ul>";
     };
-    if (instant || reduceMotion) { swap(); return; }
-    featured.classList.add("is-fading");
-    setTimeout(swap, 560);
+    var size = function () {
+      if (reduceMotion) { render(1); return; }
+      var copies = 1;
+      render(copies);
+      var w = track.firstChild.getBoundingClientRect().width;
+      while (w > 0 && w * copies < window.innerWidth * 1.2 && copies < 6) copies++;
+      if (copies > 1) render(copies);
+      var full = track.firstChild.getBoundingClientRect().width;
+      track.style.setProperty("--dur", Math.round(full / speed) + "s");
+    };
+    size();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(size);
+    // phones fire resize as the address bar comes and goes; only a new width matters
+    var t = 0, lastW = window.innerWidth;
+    window.addEventListener("resize", function () {
+      if (window.innerWidth === lastW) return;
+      lastW = window.innerWidth;
+      clearTimeout(t); t = setTimeout(size, 250);
+    });
+    onVisible(box, function (on) { box.classList.toggle("is-paused", !on); });
   }
-  function nextQuote() { qi = (qi + 1) % quotes.length; showQuote(qi); armQuotes(); }
-  function armQuotes() {
-    clearTimeout(qTimer);
-    if (!qVisible || quotes.length < 2 || reduceMotion) return;
-    qTimer = setTimeout(nextQuote, 9000);
-  }
-  if (quotes.length) {
-    showQuote(0, true);
-    var nextBtn = $("#quote-next");
-    if (nextBtn) nextBtn.addEventListener("click", nextQuote);
-    if (quotes.length < 2 && nextBtn) nextBtn.hidden = true;
-    var ringEl = $("#ring");
-    if (ringEl && "IntersectionObserver" in window) {
-      new IntersectionObserver(function (entries) { qVisible = entries[0].isIntersecting; armQuotes(); }, { threshold: 0.2 }).observe(ringEl);
-    } else {
-      armQuotes();
+  fillMarquee($("#marquee-a"), quotes.filter(function (q, i) { return i % 2 === 0; }), 34);
+  fillMarquee($("#marquee-b"), quotes.filter(function (q, i) { return i % 2 === 1; }), 28);
+
+  var featured = $("#featured"), nextQuoteBtn = $("#quote-next");
+  if (featured && quotes.length) {
+    featured.innerHTML = quotes.map(function (q, i) {
+      return '<figure class="featured__quote' + (q.text.length > 90 ? " is-long" : "") + (i === 0 ? " is-active" : "") + '"' + (i ? ' aria-hidden="true"' : "") + ">" +
+        "<blockquote><p>" + esc(q.text) + "</p></blockquote>" +
+        (q.by ? '<figcaption class="featured__by">' + esc(q.by) + "</figcaption>" : "") + "</figure>";
+    }).join("");
+    var fItems = $$(".featured__quote", featured), qi = 0, qTimer = 0, qVisible = false, qHold = false;
+    var showQuote = function (i) {
+      qi = (i + fItems.length) % fItems.length;
+      fItems.forEach(function (el, k) {
+        el.classList.toggle("is-active", k === qi);
+        if (k === qi) el.removeAttribute("aria-hidden"); else el.setAttribute("aria-hidden", "true");
+      });
+    };
+    var armQuotes = function () {
+      clearTimeout(qTimer);
+      if (reduceMotion || !qVisible || qHold || document.hidden || fItems.length < 2) return;
+      qTimer = setTimeout(function () { featured.setAttribute("aria-live", "off"); showQuote(qi + 1); armQuotes(); }, 9000);
+    };
+    if (nextQuoteBtn) {
+      if (fItems.length < 2) nextQuoteBtn.hidden = true;
+      nextQuoteBtn.addEventListener("click", function () { featured.setAttribute("aria-live", "polite"); showQuote(qi + 1); armQuotes(); });
     }
-    var relayout = 0;
-    var ready = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
-    ready.then(layoutRings, layoutRings);
-    layoutRings();
-    window.addEventListener("resize", function () { clearTimeout(relayout); relayout = setTimeout(layoutRings, 200); });
+    var fBox = featured.parentNode;
+    fBox.addEventListener("mouseenter", function () { qHold = true; armQuotes(); });
+    fBox.addEventListener("mouseleave", function () { qHold = false; armQuotes(); });
+    fBox.addEventListener("focusin", function () { qHold = true; armQuotes(); });
+    fBox.addEventListener("focusout", function () { qHold = false; armQuotes(); });
+    document.addEventListener("visibilitychange", armQuotes);
+    onVisible(fBox, function (on) { qVisible = on; armQuotes(); });
   }
 
   /* =========================================================================
-     WHAT I BELIEVE — words set like cut-out lettering
+     WHAT I BELIEVE — a litany of words, each in a jewel colour
      ====================================================================== */
   var words = $("#words");
   if (words && L.values) {
-    words.innerHTML = L.values.map(function (w, i) {
-      var rot = (((i * 7) % 9) - 4) * 0.6;
-      var cls = "word word--" + (w.face || "sans") + (w.big ? " word--big" : "");
-      return '<span class="' + cls + '" data-tint="' + esc(w.tint || "") + '" style="--rot:' + rot.toFixed(1) + 'deg">' + esc(w.text) + "</span>";
+    var vals = L.values, cyc = 0, prevColour = "";
+    words.innerHTML = vals.map(function (w, i) {
+      var tint = String(w.tint || "").toLowerCase(), colour, foil = tint === "glitter";
+      if (foil) colour = "var(--gold)";
+      else if (JEWELS[tint]) colour = JEWELS[tint];
+      else {
+        var nextTint = vals[i + 1] ? String(vals[i + 1].tint || "").toLowerCase() : "";
+        var nextColour = JEWELS[nextTint] || "", guard = 0;
+        do { colour = "var(--" + CYCLE[cyc % CYCLE.length] + ")"; cyc++; guard++; }
+        while ((colour === prevColour || colour === nextColour) && guard < CYCLE.length);
+      }
+      prevColour = colour;
+      var cls = "litany__word" + (i % 2 ? " is-italic" : "") + (w.big ? " is-big" : "") + (foil ? " is-foil" : "");
+      return '<li class="' + cls + '" style="--jewel:' + colour + '">' + (i ? svgUse("star4", "litany__star") : "") +
+        '<span class="litany__text">' + esc(w.text) + "</span></li>";
     }).join("");
+    // hide the star in front of the first word on each line
+    var markLines = function () {
+      var items = words.children, prev = null;
+      for (var i = 0; i < items.length; i++) {
+        var el = items[i];
+        el.classList.toggle("is-line-start", !prev || el.offsetTop >= prev.offsetTop + prev.offsetHeight - 2);
+        prev = el;
+      }
+    };
+    markLines();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(markLines);
+    var lt = 0;
+    window.addEventListener("resize", function () { clearTimeout(lt); lt = setTimeout(markLines, 120); });
   }
 
   /* =========================================================================
-     A SESSION — the steps, in order
+     A SESSION — five cards, I to V; a rail with buttons on smaller screens
      ====================================================================== */
-  var steps = $("#steps");
-  if (steps && L.steps) {
-    steps.innerHTML = L.steps.map(function (s) {
-      return '<li class="step"><h3 class="step__name">' + esc(s.name) + '</h3><p class="step__text">' + esc(s.text) + "</p></li>";
+  var ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
+  var rail = $("#steps");
+  if (rail && L.steps) {
+    var n = L.steps.length;
+    rail.innerHTML = L.steps.map(function (s, i) {
+      var moon = n > 1 ? Math.round(i * 4 / (n - 1)) : 4;   // new moon to full
+      return '<li class="card" style="--jewel:' + jewel(s.jewel, "var(--" + CYCLE[i % CYCLE.length] + ")") + '">' +
+        '<span class="card__num" aria-hidden="true">' + (ROMAN[i] || i + 1) + "</span>" +
+        '<span class="card__window" aria-hidden="true">' + svgUse("moon-" + moon, "card__moon") + "</span>" +
+        '<h3 class="card__title">' + esc(s.name) + "</h3>" +
+        '<p class="card__text">' + esc(s.text) + "</p></li>";
     }).join("");
+
+    var controls = $("#deck-controls"), prevBtn = $("#steps-prev"), nextBtn = $("#steps-next");
+    var cardStep = function () {
+      var card = $(".card", rail);
+      var gap = parseFloat(getComputedStyle(rail).columnGap) || 16;
+      return card ? card.getBoundingClientRect().width + gap : 300;
+    };
+    var setDisabled = function (btn, off) {
+      if (!btn) return;
+      if (off) btn.setAttribute("aria-disabled", "true"); else btn.removeAttribute("aria-disabled");
+    };
+    var updateRail = function () {
+      var max = rail.scrollWidth - rail.clientWidth;
+      var scrollable = max > 4;
+      if (controls) controls.hidden = !scrollable;
+      if (scrollable) rail.setAttribute("tabindex", "0"); else rail.removeAttribute("tabindex");
+      setDisabled(prevBtn, rail.scrollLeft <= 4);
+      setDisabled(nextBtn, rail.scrollLeft >= max - 4);
+    };
+    var go = function (dir, btn) {
+      if (btn && btn.getAttribute("aria-disabled") === "true") return;
+      rail.scrollBy({ left: dir * cardStep(), behavior: reduceMotion ? "auto" : "smooth" });
+    };
+    if (prevBtn) prevBtn.addEventListener("click", function () { go(-1, prevBtn); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { go(1, nextBtn); });
+    var rt = 0;
+    rail.addEventListener("scroll", function () { cancelAnimationFrame(rt); rt = requestAnimationFrame(updateRail); }, { passive: true });
+    window.addEventListener("resize", updateRail);
+    updateRail();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(updateRail);
   }
 
   /* =========================================================================
-     THE OILS — bottles on a shelf, and the shop
+     THE OILS — bottles on a gold shelf, each with a jewel halo
      ====================================================================== */
-  var BOTTLE = '<svg class="oil__bottle" viewBox="0 0 60 112" aria-hidden="true" focusable="false">' +
-    '<rect x="21" y="3" width="18" height="15" rx="3" fill="#2C292A"/>' +
-    '<path d="M25 18 H35 V27 H25 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>' +
-    '<path d="M14 32 Q14 27 19 27 H41 Q46 27 46 32 V100 Q46 106 40 106 H20 Q14 106 14 100 Z" fill="rgba(255,255,255,.14)" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>' +
-    '<path d="M19 36 V96" stroke="rgba(255,255,255,.35)" stroke-width="1.2" stroke-linecap="round"/>' +
-    '<rect x="18.5" y="48" width="23" height="36" rx="2" fill="var(--oil)"/>' +
-    '<path d="M30 56 C26.5 62 25 64.5 25 67.5 a5 5 0 0 0 10 0 C35 64.5 33.5 62 30 56 Z" fill="rgba(255,255,255,.9)"/>' +
+  var BOTTLE = '<svg class="oil__bottle" viewBox="0 0 60 120" aria-hidden="true" focusable="false">' +
+    '<path d="M24.5 4.5h11a2.5 2.5 0 0 1 2.5 2.5v13.5H22V7a2.5 2.5 0 0 1 2.5-2.5Z" style="fill:var(--night);stroke:var(--gold)" stroke-width="1.1"/>' +
+    '<path d="M25.5 8.5v8.5M28.5 8.5v8.5M31.5 8.5v8.5M34.5 8.5v8.5" style="stroke:var(--gold)" stroke-opacity=".5" stroke-width=".8"/>' +
+    '<rect x="20.5" y="20.5" width="19" height="6.5" rx="1.6" style="fill:var(--gold-deep);stroke:var(--gold)" stroke-width="1"/>' +
+    '<path d="M24.5 27h11v3.6c0 2 1.6 3.4 4.2 4.7 4.6 2.3 7.8 5.9 7.8 11.3V106a8 8 0 0 1-8 8H20.5a8 8 0 0 1-8-8V46.6c0-5.4 3.2-9 7.8-11.3 2.6-1.3 4.2-2.7 4.2-4.7Z" fill="url(#glass)" style="stroke:var(--gold)" stroke-width="1.1"/>' +
+    '<rect x="16.5" y="55" width="27" height="40" rx="2.2" style="fill:var(--jewel)"/>' +
+    '<rect x="18.6" y="57.1" width="22.8" height="35.8" rx="1.3" fill="none" stroke="rgba(255,255,255,.6)" stroke-width=".7"/>' +
+    '<path d="M30 63.5c-3 4.6-4.4 6.9-4.4 9.3a4.4 4.4 0 0 0 8.8 0c0-2.4-1.4-4.7-4.4-9.3Z" fill="rgba(255,255,255,.92)"/>' +
+    '<path d="M23.5 84.5h13M25.5 88h9" stroke="rgba(255,255,255,.7)" stroke-width="1" stroke-linecap="round"/>' +
+    '<path d="M17.4 45v56" stroke="rgba(255,255,255,.3)" stroke-width="1.6" stroke-linecap="round"/>' +
     "</svg>";
   var oilList = $("#oil-list");
   if (oilList && L.oils) {
-    oilList.innerHTML = L.oils.map(function (o) {
-      var colour = "var(--" + esc(o.colour || "crown") + ")";
-      return '<li class="oil" style="--oil:' + colour + '">' + BOTTLE +
-        '<div class="oil__text"><span class="oil__name">' + esc(o.name) + "</span>" +
-        (o.note ? '<span class="oil__note">' + esc(o.note) + "</span>" : "") + "</div></li>";
+    oilList.innerHTML = L.oils.map(function (o, i) {
+      return '<li class="oil" style="--jewel:' + jewel(o.colour, "var(--" + CYCLE[(i * 2) % CYCLE.length] + ")") + '">' +
+        '<span class="oil__halo" aria-hidden="true"></span>' + BOTTLE +
+        '<span class="oil__text"><span class="oil__name">' + esc(o.name) + "</span>" +
+        (o.note ? '<span class="oil__note">' + esc(o.note) + "</span>" : "") + "</span></li>";
     }).join("");
-  }
-  var shopLink = $("#oils-shop"), shopNote = $("#oils-note");
-  if (shopLink && L.shop && L.shop.url) {
-    shopLink.href = L.shop.url;
-    if (L.shop.label) shopLink.textContent = L.shop.label;
-    if (shopNote && L.shop.note) shopNote.textContent = L.shop.note;
-  }
-  var footerLinks = $("#footer-links");
-  if (footerLinks) {
-    var fl = [];
-    if (L.instagram) fl.push('<a href="https://instagram.com/' + esc(L.instagram) + '" rel="noopener" target="_blank">Instagram</a>');
-    if (L.email) fl.push('<a href="mailto:' + esc(L.email) + '">Email</a>');
-    if (L.shop && L.shop.url) fl.push('<a href="' + esc(L.shop.url) + '" rel="noopener" target="_blank">' + esc(L.shop.label || "Shop my oils") + "</a>");
-    footerLinks.innerHTML = fl.join("");
-  }
-
-  /* =========================================================================
-     KIND WORDS
-     ====================================================================== */
-  var testimonials = $("#testimonials");
-  if (testimonials && L.testimonials) {
-    testimonials.innerHTML = L.testimonials.map(function (t, i) {
-      var colours = ["var(--gold)", "var(--blush)", "var(--paper)"];
-      return '<blockquote class="kind__quote"><p>' + esc(t.text) + "</p>" +
-        (t.by ? '<footer><span data-paint="' + colours[i % colours.length] + '">' + esc(t.by) + "</span></footer>" : "") + "</blockquote>";
-    }).join("");
-  }
-
-  /* =========================================================================
-     OFFERINGS AND CONTACT
-     ====================================================================== */
-  var offerList = $("#offer-list");
-  if (offerList && L.offerings) {
-    offerList.innerHTML = L.offerings.map(function (o) {
-      var subject = encodeURIComponent("Booking: " + o.name);
-      var meta = [o.length, o.who].filter(Boolean).join(", ");
-      return '<li class="offer"><div><h3 class="offer__name">' + esc(o.name) + "</h3>" +
-        (meta ? '<p class="offer__meta">' + esc(meta) + "</p>" : "") + "</div>" +
-        '<p class="offer__blurb">' + esc(o.blurb) + "</p>" +
-        '<a class="btn btn--paper offer__book" href="mailto:' + esc(L.email || "") + "?subject=" + subject + '">Book</a></li>';
-    }).join("");
-  }
-  var contactLines = $("#contact-lines");
-  if (contactLines) {
-    var lines = [];
-    if (L.email) lines.push('<li><a href="mailto:' + esc(L.email) + '">' + esc(L.email) + "</a></li>");
-    if (L.instagram) lines.push('<li><a href="https://instagram.com/' + esc(L.instagram) + '" rel="noopener" target="_blank">Instagram, @' + esc(L.instagram) + "</a></li>");
-    if (L.location) lines.push("<li>" + esc(L.location) + "</li>");
-    contactLines.innerHTML = lines.join("");
   }
 
   /* =========================================================================
      A MINUTE OF BREATH — four in, seven held, eight out, three times
      ====================================================================== */
-  var breath = $("#breath"), breathBtn = $("#breath-btn"), breathCue = $("#breath-cue");
-  if (breath && breathBtn && breathCue) {
+  var breath = $("#breath"), breathBtn = $("#breath-btn"), breathCue = $("#breath-cue"), breathCount = $("#breath-count");
+  if (breath && breathBtn && breathCue && breathCount) {
     var PHASES = [["in", 4, "Breathe in"], ["hold", 7, "Hold"], ["out", 8, "Breathe out"]];
-    var CYCLES = 3, restCue = breathCue.textContent, startLabel = breathBtn.textContent;
-    var running = false, timer = 0;
-    function setCue(label, n) {
-      breathCue.innerHTML = esc(label) + (n != null ? '<span class="breath__count">' + n + "</span>" : "");
-    }
-    function runPhase(cycle, phase) {
-      if (!running) return;
+    var CYCLES = 3, restCue = breathCue.textContent, restCount = breathCount.innerHTML, startLabel = breathBtn.textContent;
+    var bRunning = false, bTimer = 0;
+    var setPhase = function (name) {
+      breath.classList.remove("is-in", "is-hold", "is-out");
+      if (name) breath.classList.add("is-" + name);
+    };
+    var finish = function (msg) {
+      bRunning = false;
+      clearTimeout(bTimer);
+      breath.classList.remove("is-running");
+      setPhase(null);
+      breathBtn.textContent = startLabel;
+      breathCount.innerHTML = restCount;
+      breathCue.textContent = msg || restCue;
+    };
+    var runPhase = function (cycle, phase) {
+      if (!bRunning) return;
       if (cycle >= CYCLES) { finish("That is a minute. Carry it with you."); return; }
       var p = PHASES[phase], left = p[1];
-      breath.className = "breath is-" + p[0];
-      setCue(p[2], left);
+      setPhase(p[0]);
+      breathCue.textContent = p[2];
+      breathCount.textContent = String(left);
       var tick = function () {
-        if (!running) return;
+        if (!bRunning) return;
         left -= 1;
-        if (left > 0) { setCue(p[2], left); timer = setTimeout(tick, 1000); }
+        if (left > 0) { breathCount.textContent = String(left); bTimer = setTimeout(tick, 1000); }
         else if (phase < PHASES.length - 1) runPhase(cycle, phase + 1);
         else runPhase(cycle + 1, 0);
       };
-      timer = setTimeout(tick, 1000);
-    }
-    function finish(msg) {
-      running = false;
-      clearTimeout(timer);
-      breath.className = "breath";
-      breathBtn.textContent = startLabel;
-      breathCue.textContent = msg || restCue;
-    }
+      bTimer = setTimeout(tick, 1000);
+    };
     breathBtn.addEventListener("click", function () {
-      if (running) { finish(restCue); return; }
-      running = true;
+      if (bRunning) { finish(restCue); return; }
+      bRunning = true;
+      breath.classList.add("is-running");
       breathBtn.textContent = "Stop";
       runPhase(0, 0);
     });
+  }
+
+  /* =========================================================================
+     KIND WORDS — one at a time, the moon marking which
+     ====================================================================== */
+  var tStack = $("#testimonials"), T = (L.testimonials || []).filter(function (t) { return t && t.text; });
+  if (tStack && T.length) {
+    tStack.innerHTML = T.map(function (t, i) {
+      return '<figure class="testimonial' + (i === 0 ? " is-active" : "") + '"' + (i ? ' aria-hidden="true"' : "") + ">" +
+        "<blockquote><p>" + esc(t.text) + "</p></blockquote>" +
+        (t.by ? "<figcaption>" + esc(t.by) + "</figcaption>" : "") + "</figure>";
+    }).join("");
+    var tItems = $$(".testimonial", tStack), tDots = $("#kind-dots"), tBox = $("#testimonials-box");
+    var ti = 0, tTimer = 0, tHold = false, tVisible = false;
+    if (tDots) {
+      tDots.innerHTML = T.map(function (t, i) {
+        return '<button class="phase-btn" type="button" aria-controls="testimonials" aria-label="Kind words ' + (i + 1) + " of " + T.length + '"' +
+          (i === 0 ? ' aria-current="true"' : "") + ">" + svgUse("moon-0", "is-new") + svgUse("moon-4", "is-full") + "</button>";
+      }).join("");
+    }
+    var tButtons = $$(".phase-btn", tDots);
+    var showT = function (i) {
+      ti = (i + tItems.length) % tItems.length;
+      tItems.forEach(function (el, k) {
+        el.classList.toggle("is-active", k === ti);
+        if (k === ti) el.removeAttribute("aria-hidden"); else el.setAttribute("aria-hidden", "true");
+      });
+      tButtons.forEach(function (b, k) { if (k === ti) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current"); });
+    };
+    var armT = function () {
+      clearTimeout(tTimer);
+      if (reduceMotion || tHold || !tVisible || document.hidden || tItems.length < 2) return;
+      tTimer = setTimeout(function () { tStack.setAttribute("aria-live", "off"); showT(ti + 1); armT(); }, 8000);
+    };
+    var userGo = function (i) { tStack.setAttribute("aria-live", "polite"); showT(i); armT(); };
+    var kc = $("#kind-controls");
+    if (kc && tItems.length > 1) kc.hidden = false;
+    var kp = $("#kind-prev"), kn = $("#kind-next");
+    if (kp) kp.addEventListener("click", function () { userGo(ti - 1); });
+    if (kn) kn.addEventListener("click", function () { userGo(ti + 1); });
+    tButtons.forEach(function (b, k) { b.addEventListener("click", function () { userGo(k); }); });
+    if (tBox) {
+      tBox.addEventListener("mouseenter", function () { tHold = true; armT(); });
+      tBox.addEventListener("mouseleave", function () { tHold = false; armT(); });
+      tBox.addEventListener("focusin", function () { tHold = true; armT(); });
+      tBox.addEventListener("focusout", function () { tHold = false; armT(); });
+    }
+    document.addEventListener("visibilitychange", armT);
+    onVisible(tBox || tStack, function (on) { tVisible = on; armT(); });
+  }
+
+  /* =========================================================================
+     WORK WITH ME — the offerings, and the ways to say hello
+     ====================================================================== */
+  var OFFER_JEWELS = ["var(--ruby)", "var(--sapphire)", "var(--amethyst)"];
+  // keep "One-to-one" on one line
+  function keepHyphens(text) { return esc(text).replace(/(\S+-\S+)/g, '<span class="nowrap">$1</span>'); }
+  var offerList = $("#offer-list");
+  if (offerList && L.offerings) {
+    offerList.innerHTML = L.offerings.map(function (o, i) {
+      var subject = encodeURIComponent("Booking: " + o.name);
+      var meta = [o.length, o.who].filter(Boolean).map(function (m) { return "<span>" + esc(m) + "</span>"; });
+      return '<li><article class="offer" style="--jewel:' + jewel(o.jewel, OFFER_JEWELS[i % OFFER_JEWELS.length]) + '">' +
+        '<span class="offer__gem" aria-hidden="true"></span>' +
+        '<h3 class="offer__name"><span>' + keepHyphens(o.name) + "</span></h3>" +
+        (meta.length ? '<p class="offer__meta">' + meta.join("") + "</p>" : "") +
+        '<p class="offer__blurb">' + esc(o.blurb) + "</p>" +
+        '<a class="btn btn--outline offer__book" href="mailto:' + esc(L.email || "") + "?subject=" + subject + '" aria-label="Book: ' + esc(o.name) + '">Book</a>' +
+        "</article></li>";
+    }).join("");
+  }
+  var contactLines = $("#contact-lines");
+  if (contactLines) {
+    var lines = [];
+    if (L.email) lines.push("<li>" + svgUse("star4") + '<a href="mailto:' + esc(L.email) + '">' + esc(L.email) + "</a></li>");
+    if (L.instagram) lines.push("<li>" + svgUse("star4") + '<a href="https://instagram.com/' + esc(encodeURIComponent(L.instagram)) + '" target="_blank" rel="noopener">Instagram, @' + esc(L.instagram) + '<span class="sr-only"> (opens in a new tab)</span></a></li>');
+    if (L.location) lines.push("<li>" + svgUse("star4") + "<span>" + esc(L.location) + "</span></li>");
+    contactLines.innerHTML = lines.join("");
   }
 })();
