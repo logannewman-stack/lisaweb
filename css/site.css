@@ -239,7 +239,7 @@ section { position: relative; padding-block: var(--section); }
 .hero__ghost {
   /* the white keyline that makes the letters read like stickers on paint */
   position: absolute; inset: 0; z-index: -1;
-  color: var(--card); -webkit-text-stroke: .15em var(--card); paint-order: stroke fill;
+  color: var(--card); -webkit-text-stroke: .21em var(--card); paint-order: stroke fill;
 }
 .hero__rainbow {
   position: absolute; z-index: -2;
