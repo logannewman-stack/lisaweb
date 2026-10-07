@@ -1,98 +1,93 @@
-# Design notes
+# Design notes: Option 3, good vibes, hand-made
 
-Read this before changing the look of the site. It explains the choices so
-that edits keep the whole thing coherent.
+Read this before changing the look. It explains the choices so that edits
+keep the whole thing coherent.
 
 ## The idea
 
-Lisa sent photos of her home as a style reference: a whitewashed brick wall,
-a navy velvet couch, a pink velvet chair, gold lettering, chakra prayer flags
-strung over a clock, hand-lettered signs and a collage vision board. The site
-borrows that look and nothing else. It is about her, not her things.
+Everything looks made by hand and pinned up, like the hand-lettered signs,
+the rainbow brush-stroke sign and the vision board in the photos Lisa sent.
+But it sits on a strict grid, so it reads as designed, never messy. The
+colour comes from big painted things on a bright white page. It is about
+her, not her home: the only photos are her portraits.
 
-You arrive on her portrait: Lisa at the beach, the ocean behind her, a string
-of seven flags across the sky. The photo fades into navy velvet at the bottom
-so the first two screens read as one. The flags are the navigation: seven
-flags, seven sections, root to crown.
-Then the page turns to navy velvet, where the quotes she keeps around her
-turn slowly around the centre. From there it walks up through the chakras,
-each section tinted faintly with its flag's colour, and ends on the velvet.
+You arrive on "Hi, I'm Lisa Brunson", her name in heavy navy letters over a
+painted rainbow, beside her portrait as a polaroid with washi tape and
+stickers. Then her quotes as a wall of signs, her story on a journal page,
+the words she believes in across a giant rainbow, a session as a winding
+path, sage and a minute of breath on a sunny painted block, the oils on a
+shelf, kind words on hot pink, her logo annotated by hand, the offerings as
+luggage tags, a postcard to say hello, and the navy footer.
 
 ## Palette
 
-Sampled from her photos. Values live in `css/theme.css`.
+Values live in `css/theme.css`, each with a note on which text colour is
+safe on it.
 
-| Token | Value | From |
+| Token | Value | Use |
 | --- | --- | --- |
-| `--wall` | `#F6F4F0` | Whitewashed brick. The page ground. |
-| `--velvet` | `#1B2B45` | Navy velvet. Quotes and footer. |
-| `--blush` | `#E9A296` | Pink velvet. |
-| `--rose` / `--rose-ink` | `#CC897F` / `#A4574E` | A hand-lettered pink sign. Pull quotes, the petals of the mark. |
-| `--gold` / `--gold-ink` / `--gold-soft` | `#C9A24B` / `#8A6A22` / `#E7D3A2` | Gold lettering. |
-| `--olive` | `#6E7440` | Paisley leaves. The cleansing drawing. |
-| `--root` to `--crown` | red, orange, yellow, olive, blue, indigo, lavender | The seven flags. Section tints, the flags in the navigation. |
+| `--paper` | `#FFFDFA` | The page. Keep it white, not cream. |
+| `--ink` / `--ink-soft` | `#1B2B45` / `#4A5670` | Her navy velvet: all text, the footer band. |
+| `--red` to `--violet` | `#E23B4A` `#F37A2A` `#F7C531` `#3DAA5C` `#2F8FE0` `#4B3BA8` `#A574E0` | The rainbow from her flags and sign: the hero, the values, the stickers. |
+| `--pink` | `#F07EA0` | Hot pink: the kind words block, stickers. |
+| `--salmon` | `#EE8F84` | The pink crown sign. |
+| `--note` / `--sky` / `--mint` | `#FFE16B` / `#8FD0EE` / `#7FD6A8` | Sticky notes. |
+| `--kraft` | `#D9B98C` | Tape, the oil shelf. |
+| `--gold` | `#C9A24B` | Gold lettering on the velvet pillow. |
+| `--pen` | `#D02F62` | Handwritten notes on white. |
 
-Colour is used at full strength, the way it is in her rooms. Each section
-after the quotes is a solid block of one colour (`--g-story` to `--g-book`
-in `css/theme.css`): salmon pink with black type, orange, mustard gold,
-olive, royal blue, deep purple, lilac, between navy velvet at both ends.
-Cream paper sits on the colour for cards and buttons. The colours are not
-blocks: one continuous wash runs behind the whole page (`.canvas`, painted by
-`js/site.js`), holding each section's colour where its content sits and
-melting into the next colour across the space between sections. A faint
-paper grain lies over it. Each heading has a hand-painted underline in a
-contrasting colour, a rainbow bar runs across the top of the page, and a
-stacked painted rainbow closes the page.
+Every text colour is checked against the ground it sits on: navy on orange,
+yellow, green, pink, sky and kraft; white on red and indigo; red, blue and
+violet carry large text only. The white lettering on the rainbow sign has a
+navy keyline.
 
 ## Type
 
-- **Cormorant Garamond** for her name, headings, the quotes, captions and
-  testimonials. Its italic is the voice of the quotes.
-- **Nunito Sans** for reading: body copy, navigation, buttons, forms.
-- **Caveat** for the hand-lettered moments: the tagline in the hero and the
-  hand-written cards in "What I believe". Nowhere else.
+- **Fraunces**, 800 to 900, with SOFT 100 and WONK 1 for a warm 70s feel:
+  her name and the headings.
+- **Figtree** for everything you read.
+- **Kalam** for handwriting only: the greeting, captions, notes, the logo
+  annotations, "Namaste."
+- **Bebas Neue** only on the black wooden sign.
 
-Headings are sentence case. The only uppercase on the site is on the cut-out
-word cards, where it copies magazine lettering. The session steps are
-numbered because they are a sequence.
+Headings are sentence case. No tracked capitals.
 
 ## Signature elements
 
-- **Paint.** Brush strokes drawn as SVG with rough edges (`js/paint.js`):
-  the underline beneath every heading, the strokes under the kind words, the
-  stack in the footer. Each is generated from a seed, so it paints the same
-  way every time.
-- **The flags.** A string of seven small flags in the header, a larger string
-  across the hero, and a single flag hanging from a thread in front of each
-  section heading.
-- **The mark.** A lotus resting in the crescent moon of her tattoo, with the
-  moon's phases along the crescent, the tattoo's eye beneath the flower and
-  its rays of dots above.
-- **The petal and the leaf.** The lotus-petal frame for her portrait; the
-  leaf shape for every button.
-- **Paper.** The at-a-glance card and the word cards sit on paper with a
-  slight tilt, like things pinned to a wall.
-- **The velvet.** One dark ground, used twice: the quotes and the footer.
-- **The shelf.** Her oils stand as drawn bottles on a shelf line inside the
-  olive "Sage and palo santo" block, each label in a flag colour, with the
-  link to her doTERRA shop beneath. It sits with the cleansing because that
-  is where the oils belong in a session; it is not a separate section, so
-  the seven flags stay seven.
+- **The painted rainbow.** Seven rough brush strokes stacked like her sign:
+  under her name, as the giant "What I believe" rainbow with words lettered
+  on each band, on the quote wall, in the menu and in the footer.
+- **Paper objects.** Polaroids with washi tape, sticky notes with pushpins,
+  the journal page, the index card, luggage tags, the postcard. They all cast
+  one shadow, `--shadow-paper`.
+- **Stickers.** A hand-drawn sun, moon, lotus, butterfly and sparkles with a
+  die-cut white edge (the `#sticker` filter in `index.html`).
+- **The wall of signs.** Each quote on its own kind of sign (`look` in
+  `js/content.js`), laid out as a tidy masonry.
+- **Painted blocks.** Sunny yellow behind "Sage and palo santo", hot pink
+  behind the kind words, navy below the footer edge, all with brushed edges.
+- **Hand-drawn lines.** The rainbow scribble under the current menu link,
+  the dashed path between the session steps, the arrows to the parts of the
+  logo.
 
 ## Motion
 
-One orchestrated moment on load: the flags swing in and settle, her name
-fades in from wide letter-spacing, then the tagline, the button and the
-portrait frame. After that, only ambient or user-triggered motion: the flags
-sway a degree and a half; gold dots drift up the velvet and glow near the
-pointer; the quote rings turn in opposite directions; the breath circle grows
-and shrinks on a 4-7-8 count, only when started. Nothing fades in on scroll.
-All ambient motion is off under reduced motion.
+One entrance on load: the greeting and name rise, the rainbow paints in from
+the left band by band, the polaroid drops into place, the tapes stick and the
+stickers pop on. After that only gentle ambient motion: the stickers float
+and the smoke drifts. The breath circle grows and shrinks when the visitor
+starts it. Nothing waits for scrolling, and only transform and opacity
+animate. Reduced motion switches all of it off except the breath exercise.
 
 ## Things to avoid when editing
 
-- Keep the flag colours in their order, root to crown, down the page.
-- Don't add a fourth typeface, or use Caveat outside the tagline and the cards.
-- Don't put dark text on the velvet or light text on the wall. Sections
-  carry `data-tone="light"` or `data-tone="dark"` and colours follow.
-- Keep the hero to the photo, the name and the flags. No brick, no texture.
+- Don't tilt blocks of text. Tilts belong to objects (polaroids, notes,
+  signs, the shop sticker), stay at 2 degrees or less on the quote wall, and
+  two or three per screen at most.
+- Don't put white text on yellow, orange, green or the light colours; follow
+  the notes in `css/theme.css`.
+- Keep Kalam for handwriting and Bebas Neue for the wooden sign. No fourth
+  typeface.
+- Keep paint as paint: big brushed shapes on a white page, not a coloured
+  background behind everything.
+- No photos of her home or her things; only her portraits.

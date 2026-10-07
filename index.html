@@ -1,47 +1,81 @@
 <!doctype html>
-<html lang="en" data-tone="light">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Lisa Brunson</title>
   <meta name="description" content="Lisa Brunson. Sound healing, ceremony and cleansing: sound baths, one-to-one sessions and cleansing ceremonies with sage and palo santo.">
-  <meta name="theme-color" content="#1B2B45">
+  <meta name="theme-color" content="#FFFDFA">
   <meta property="og:title" content="Lisa Brunson">
   <meta property="og:description" content="Sound, ceremony, and the slow work of coming home to yourself.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/portraits/lisa-hero.jpg">
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
-  <link rel="preload" as="image" href="assets/portraits/lisa-hero.jpg" imagesrcset="assets/portraits/lisa-hero-1200.jpg 1200w, assets/portraits/lisa-hero.jpg 2000w" imagesizes="100vw">
+  <link rel="preload" as="image" href="assets/portraits/lisa-hero.jpg" imagesrcset="assets/portraits/lisa-hero-1200.jpg 1200w, assets/portraits/lisa-hero.jpg 2000w" imagesizes="(min-width: 900px) 960px, 190vw" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,600;1,6..12,300;1,6..12,400&family=Caveat:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Figtree:ital,wght@0,400..700;1,400..700&family=Kalam:wght@400;700&family=Bebas+Neue&display=swap">
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
 
-<!-- Drawings used more than once: the mark, and the seven flag glyphs. -->
+<!-- Drawings and effects used more than once: the mark, paint, stickers. -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
-    <filter id="rough" x="-6%" y="-40%" width="112%" height="180%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.035 0.4" numOctaves="2" seed="5" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="7" xChannelSelector="R" yChannelSelector="G"/>
+    <!-- rough, bristly edges for every painted brush stroke -->
+    <filter id="rough" x="-4%" y="-30%" width="108%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.022 0.32" numOctaves="2" seed="5" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="9" xChannelSelector="R" yChannelSelector="G"/>
     </filter>
+    <!-- a die-cut white border and a soft shadow, for stickers -->
+    <filter id="sticker" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="4" result="grow"/>
+      <feGaussianBlur in="grow" stdDeviation="1.4" result="soft"/>
+      <feComponentTransfer in="soft" result="edge"><feFuncA type="linear" slope="5" intercept="-1.6"/></feComponentTransfer>
+      <feFlood flood-color="#FFFFFF" result="white"/>
+      <feComposite in="white" in2="edge" operator="in" result="outline"/>
+      <feGaussianBlur in="edge" stdDeviation="4" result="blur"/>
+      <feOffset in="blur" dy="5" result="drop"/>
+      <feFlood flood-color="#1B2B45" flood-opacity=".26" result="tint"/>
+      <feComposite in="tint" in2="drop" operator="in" result="shadow"/>
+      <feMerge><feMergeNode in="shadow"/><feMergeNode in="outline"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- soft, blooming edges for the watercolour card -->
+    <filter id="wash" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves="3" seed="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="26" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feGaussianBlur in="d" stdDeviation="1.1"/>
+    </filter>
+    <linearGradient id="rainbow-h" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#E23B4A"/><stop offset=".17" stop-color="#F37A2A"/><stop offset=".34" stop-color="#F7C531"/>
+      <stop offset=".5" stop-color="#3DAA5C"/><stop offset=".67" stop-color="#2F8FE0"/><stop offset=".84" stop-color="#4B3BA8"/><stop offset="1" stop-color="#A574E0"/>
+    </linearGradient>
+    <radialGradient id="velvet" cx="36%" cy="30%" r="85%">
+      <stop offset="0" stop-color="#34507F"/><stop offset=".5" stop-color="#1B2B45"/><stop offset="1" stop-color="#0F192B"/>
+    </radialGradient>
+    <linearGradient id="amber" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#8E4310"/><stop offset=".35" stop-color="#C0701F"/><stop offset=".7" stop-color="#B05E18"/><stop offset="1" stop-color="#7A380C"/>
+    </linearGradient>
+
+    <!-- THE MARK. A lotus resting in the crescent moon of Lisa's tattoo, with
+         the moon's phases, the tattoo's eye and its rays of dots. Each petal
+         can take its own colour (--petal-1 to --petal-7, left to right). -->
     <path id="mark-petal" d="M60 16 C50 32 50 48 60 62 C70 48 70 32 60 16 Z"/>
-    <symbol id="mark" viewBox="0 0 120 120" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <symbol id="mark" viewBox="0 0 120 120" fill="none" stroke-linecap="round" stroke-linejoin="round">
       <g class="mark__dots" style="fill:var(--mark-ink, currentColor)" stroke="none">
         <circle cx="60" cy="9" r="1.5"/><circle cx="60" cy="3.5" r="1"/>
         <circle cx="45" cy="12" r="1.3"/><circle cx="40.5" cy="7.5" r=".9"/>
         <circle cx="75" cy="12" r="1.3"/><circle cx="79.5" cy="7.5" r=".9"/>
       </g>
       <g class="mark__petals" style="stroke:var(--mark-petal, currentColor)">
-        <use href="#mark-petal" transform="rotate(-72 60 62) translate(60 62) scale(.82) translate(-60 -62)"/>
-        <use href="#mark-petal" transform="rotate(72 60 62) translate(60 62) scale(.82) translate(-60 -62)"/>
-        <use href="#mark-petal" transform="rotate(-48 60 62) translate(60 62) scale(.92) translate(-60 -62)"/>
-        <use href="#mark-petal" transform="rotate(48 60 62) translate(60 62) scale(.92) translate(-60 -62)"/>
-        <use href="#mark-petal" transform="rotate(-24 60 62)"/>
-        <use href="#mark-petal" transform="rotate(24 60 62)"/>
-        <use href="#mark-petal"/>
+        <use href="#mark-petal" style="stroke:var(--petal-1, var(--mark-petal, currentColor))" transform="rotate(-72 60 62) translate(60 62) scale(.82) translate(-60 -62)"/>
+        <use href="#mark-petal" style="stroke:var(--petal-7, var(--mark-petal, currentColor))" transform="rotate(72 60 62) translate(60 62) scale(.82) translate(-60 -62)"/>
+        <use href="#mark-petal" style="stroke:var(--petal-2, var(--mark-petal, currentColor))" transform="rotate(-48 60 62) translate(60 62) scale(.92) translate(-60 -62)"/>
+        <use href="#mark-petal" style="stroke:var(--petal-6, var(--mark-petal, currentColor))" transform="rotate(48 60 62) translate(60 62) scale(.92) translate(-60 -62)"/>
+        <use href="#mark-petal" style="stroke:var(--petal-3, var(--mark-petal, currentColor))" transform="rotate(-24 60 62)"/>
+        <use href="#mark-petal" style="stroke:var(--petal-5, var(--mark-petal, currentColor))" transform="rotate(24 60 62)"/>
+        <use href="#mark-petal" style="stroke:var(--petal-4, var(--mark-petal, currentColor))"/>
       </g>
       <g class="mark__eye" style="stroke:var(--mark-ink, currentColor)">
         <path d="M52 73 Q60 66.5 68 73 Q60 79.5 52 73 Z"/>
@@ -57,114 +91,201 @@
         <circle cx="30.5" cy="73.7" r="2.4"/>
       </g>
     </symbol>
-    <!-- the seven flags, root to crown -->
-    <symbol id="g-root" viewBox="0 0 24 24"><path d="M7 7h10v10H7z"/><path d="M8.5 9h7L12 15z"/></symbol>
-    <symbol id="g-sacral" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6.5"/><path d="M6.5 13a6 4 0 0 0 11 0"/></symbol>
-    <symbol id="g-solar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6.5"/><path d="M8 9h8l-4 7z"/></symbol>
-    <symbol id="g-heart" viewBox="0 0 24 24"><path d="M12 5l6 10H6z"/><path d="M12 19l6-10H6z"/></symbol>
-    <symbol id="g-throat" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6.5"/><circle cx="12" cy="12" r="2.4"/></symbol>
-    <symbol id="g-third" viewBox="0 0 24 24"><path d="M5 12Q12 5 19 12Q12 19 5 12Z"/><circle cx="12" cy="12" r="2.2"/></symbol>
-    <symbol id="g-crown" viewBox="0 0 24 24"><path d="M12 6C9 10 9 14 12 17C15 14 15 10 12 6Z"/><path d="M12 17C8 15 6 12 6 9"/><path d="M12 17c4-2 6-5 6-8"/></symbol>
+
+    <!-- a hand-drawn four-point sparkle -->
+    <symbol id="spark" viewBox="0 0 24 24"><path d="M12 1.5 C12.8 8.2 15.8 11.2 22.5 12 C15.8 12.8 12.8 15.8 12 22.5 C11.2 15.8 8.2 12.8 1.5 12 C8.2 11.2 11.2 8.2 12 1.5 Z"/></symbol>
+    <!-- a little hand-drawn arrow, pointing right and down -->
+    <symbol id="arrow-doodle" viewBox="0 0 48 36" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 6 C8 22 20 29 40 28"/><path d="M33 21 L41 28 L32 33"/>
+    </symbol>
   </defs>
 </svg>
 
-<div class="canvas" id="canvas" aria-hidden="true"></div>
-<div class="rainbow-bar" aria-hidden="true"></div>
-
-<a class="skip" href="#story">Skip to content</a>
+<a class="skip" href="#main">Skip to content</a>
 
 <header class="nav" id="nav">
-  <a class="nav__brand" href="#top" aria-label="Lisa Brunson, back to the top">
-    <svg class="mark mark--nav" aria-hidden="true"><use href="#mark"/></svg>
-    <span class="nav__name">Lisa Brunson</span>
-  </a>
-  <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
-  <nav class="nav__links" id="menu" aria-label="Sections of this page">
-    <a class="nav__flag" href="#story" style="--flag:var(--root)"><i aria-hidden="true"><svg><use href="#g-root"/></svg></i><span>Story</span></a>
-    <a class="nav__flag" href="#values" style="--flag:var(--sacral)"><i aria-hidden="true"><svg><use href="#g-sacral"/></svg></i><span>Values</span></a>
-    <a class="nav__flag" href="#session" style="--flag:var(--solar)"><i aria-hidden="true"><svg><use href="#g-solar"/></svg></i><span>A session</span></a>
-    <a class="nav__flag" href="#cleansing" style="--flag:var(--heart)"><i aria-hidden="true"><svg><use href="#g-heart"/></svg></i><span>Cleansing</span></a>
-    <a class="nav__flag" href="#kind" style="--flag:var(--throat)"><i aria-hidden="true"><svg><use href="#g-throat"/></svg></i><span>Kind words</span></a>
-    <a class="nav__flag" href="#the-mark" style="--flag:var(--third)"><i aria-hidden="true"><svg><use href="#g-third"/></svg></i><span>The mark</span></a>
-    <a class="nav__flag" href="#book" style="--flag:var(--crown)"><i aria-hidden="true"><svg><use href="#g-crown"/></svg></i><span>Book</span></a>
-  </nav>
+  <div class="nav__bar">
+    <a class="nav__brand" href="#top" aria-label="Lisa Brunson, back to the top">
+      <svg class="mark mark--nav" aria-hidden="true" focusable="false"><use href="#mark"/></svg>
+      <span class="nav__name">Lisa Brunson</span>
+    </a>
+    <nav class="nav__menu" id="menu" aria-label="Sections of this page">
+      <ul class="nav__links" role="list">
+        <li><a href="#story">Story</a></li>
+        <li><a href="#values">Beliefs</a></li>
+        <li><a href="#session">A session</a></li>
+        <li><a href="#cleansing">Sage</a></li>
+        <li><a href="#oils">Oils</a></li>
+        <li><a href="#kind">Kind words</a></li>
+        <li><a href="#the-mark">My logo</a></li>
+        <li class="nav__menu-book"><a href="#book">Book a session</a></li>
+      </ul>
+      <span class="nav__rainbow rainbow-stack" aria-hidden="true">
+        <span data-paint="stroke" data-colour="var(--red)" data-seed="81"></span>
+        <span data-paint="stroke" data-colour="var(--orange)" data-seed="82"></span>
+        <span data-paint="stroke" data-colour="var(--pink)" data-seed="83"></span>
+        <span data-paint="stroke" data-colour="var(--green)" data-seed="84"></span>
+        <span data-paint="stroke" data-colour="var(--blue)" data-seed="85"></span>
+        <span data-paint="stroke" data-colour="var(--indigo)" data-seed="86"></span>
+        <span data-paint="stroke" data-colour="var(--violet)" data-seed="87"></span>
+      </span>
+    </nav>
+    <a class="btn btn--block btn--small nav__cta" href="#book"><span class="btn__face">Book a session</span></a>
+    <button class="nav__toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  </div>
 </header>
 
-<main id="main">
+<main id="main" tabindex="-1">
 
   <!-- ======================================================================
-       THE WALL. Whitewashed brick, a string of flags, her name, and a place
-       for her portrait. When the photo arrives, see the comment below.
+       HELLO. Her name over a painted rainbow, and her photo as a polaroid
+       with stickers. The rainbow is painted by js/paint.js.
        ====================================================================== -->
-  <section class="hero" id="top" data-tone="dark">
-    <div class="hero__photo">
-      <img src="assets/portraits/lisa-hero.jpg"
-           srcset="assets/portraits/lisa-hero-1200.jpg 1200w, assets/portraits/lisa-hero.jpg 2000w"
-           sizes="100vw" width="2000" height="1335"
-           alt="Lisa Brunson on a beach, smiling, with the ocean behind her"
-           fetchpriority="high" decoding="async">
-    </div>
-    <div class="hero__scrim" aria-hidden="true"></div>
-    <div class="wrap hero__inner">
-      <div class="flags flags--hero" aria-hidden="true">
-        <span class="flag" style="--flag:var(--root);--i:0"><svg><use href="#g-root"/></svg></span>
-        <span class="flag" style="--flag:var(--sacral);--i:1"><svg><use href="#g-sacral"/></svg></span>
-        <span class="flag" style="--flag:var(--solar);--i:2"><svg><use href="#g-solar"/></svg></span>
-        <span class="flag" style="--flag:var(--heart);--i:3"><svg><use href="#g-heart"/></svg></span>
-        <span class="flag" style="--flag:var(--throat);--i:4"><svg><use href="#g-throat"/></svg></span>
-        <span class="flag" style="--flag:var(--third);--i:5"><svg><use href="#g-third"/></svg></span>
-        <span class="flag" style="--flag:var(--crown);--i:6"><svg><use href="#g-crown"/></svg></span>
-      </div>
+  <section class="hero" id="top" aria-labelledby="hero-name">
+    <div class="wrap hero__grid">
       <div class="hero__text">
-        <svg class="mark mark--hero" aria-hidden="true"><use href="#mark"/></svg>
-        <h1 class="hero__name">Lisa Brunson</h1>
+        <p class="hero__hi">Hi, I&rsquo;m</p>
+        <h1 class="hero__name" id="hero-name">
+          <span class="hero__line"><span class="hero__ghost" aria-hidden="true">Lisa</span>Lisa</span>
+          <span class="hero__line"><span class="hero__ghost" aria-hidden="true">Brunson</span>Brunson</span>
+          <span class="hero__rainbow rainbow-stack" aria-hidden="true">
+            <span style="--i:0" data-paint="stroke" data-colour="var(--red)" data-seed="21"></span>
+            <span style="--i:1" data-paint="stroke" data-colour="var(--orange)" data-seed="22"></span>
+            <span style="--i:2" data-paint="stroke" data-colour="var(--yellow)" data-seed="23"></span>
+            <span style="--i:3" data-paint="stroke" data-colour="var(--green)" data-seed="24"></span>
+            <span style="--i:4" data-paint="stroke" data-colour="var(--blue)" data-seed="25"></span>
+            <span style="--i:5" data-paint="stroke" data-colour="var(--indigo)" data-seed="26"></span>
+            <span style="--i:6" data-paint="stroke" data-colour="var(--violet)" data-seed="27"></span>
+          </span>
+        </h1>
         <p class="hero__tagline" id="tagline">Sound, ceremony, and the slow work of coming home to yourself.</p>
-        <a class="btn btn--paper hero__cta" href="#quotes">Come in</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================================================================
-       THE VELVET. The words she keeps around her. Quotes are in js/content.js.
-       ====================================================================== -->
-  <section class="quotes" id="quotes" data-tone="dark" aria-labelledby="quotes-intro">
-    <canvas class="quotes__stars" id="stars" aria-hidden="true"></canvas>
-    <div class="wrap quotes__inner">
-      <p class="quotes__intro" id="quotes-intro">The words I keep around me, at all times.</p>
-      <div class="ring" id="ring">
-        <svg class="ring__svg" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
-          <defs>
-            <path id="ring-path-outer" d="M300,300 m-272,0 a272,272 0 1,1 544,0 a272,272 0 1,1 -544,0"/>
-            <path id="ring-path-inner" d="M300,300 m-208,0 a208,208 0 1,1 416,0 a208,208 0 1,1 -416,0"/>
-          </defs>
-          <g class="ring__outer"><text><textPath href="#ring-path-outer" id="ring-outer"></textPath></text></g>
-          <g class="ring__inner"><text><textPath href="#ring-path-inner" id="ring-inner"></textPath></text></g>
-        </svg>
-        <div class="ring__center">
-          <blockquote class="featured" id="featured">
-            <p class="featured__text" id="featured-text"></p>
-            <footer class="featured__by" id="featured-by"></footer>
-          </blockquote>
-          <button class="ring__next" id="quote-next" type="button">Next quote</button>
+        <div class="hero__actions">
+          <a class="btn btn--block" href="#book"><span class="btn__face">Book a session</span></a>
+          <a class="btn btn--outline js-shop" href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener">
+            <span class="js-shop-label">Shop my oils</span>
+            <svg class="btn__arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 11 L11 5 M6 5 H11 V10"/></svg>
+            <span class="sr-only">(opens in a new tab)</span>
+          </a>
         </div>
       </div>
+
+      <div class="hero__photo">
+        <figure class="polaroid">
+          <span class="washi washi--left" aria-hidden="true"></span>
+          <span class="washi washi--right" aria-hidden="true"></span>
+          <div class="polaroid__img">
+            <img src="assets/portraits/lisa-hero.jpg"
+                 srcset="assets/portraits/lisa-hero-1200.jpg 1200w, assets/portraits/lisa-hero.jpg 2000w"
+                 sizes="(min-width: 900px) 960px, 190vw" width="2000" height="1335"
+                 alt="Lisa Brunson on a beach, smiling, one hand on her hip, the ocean behind her"
+                 fetchpriority="high" decoding="async">
+          </div>
+          <figcaption class="polaroid__caption">Me, happiest by the ocean.</figcaption>
+        </figure>
+
+        <!-- hand-drawn stickers: sun, butterfly, moon, lotus, sparkles -->
+        <span class="sticker sticker--sun" style="--i:0" aria-hidden="true">
+          <svg class="art" viewBox="0 0 120 120" focusable="false">
+            <g class="f-orange">
+              <path d="M60 3 C63 10 66 15 67 22 L53 22 C54 15 57 10 60 3 Z"/>
+              <path d="M60 3 C63 10 66 15 67 22 L53 22 C54 15 57 10 60 3 Z" transform="rotate(60 60 60)"/>
+              <path d="M60 3 C63 10 66 15 67 22 L53 22 C54 15 57 10 60 3 Z" transform="rotate(120 60 60)"/>
+              <path d="M60 3 C63 10 66 15 67 22 L53 22 C54 15 57 10 60 3 Z" transform="rotate(180 60 60)"/>
+              <path d="M60 3 C63 10 66 15 67 22 L53 22 C54 15 57 10 60 3 Z" transform="rotate(240 60 60)"/>
+              <path d="M60 3 C63 10 66 15 67 22 L53 22 C54 15 57 10 60 3 Z" transform="rotate(300 60 60)"/>
+              <path d="M60 11 C62 15 64 18 65 23 L55 23 C56 18 58 15 60 11 Z" transform="rotate(30 60 60)"/>
+              <path d="M60 11 C62 15 64 18 65 23 L55 23 C56 18 58 15 60 11 Z" transform="rotate(90 60 60)"/>
+              <path d="M60 11 C62 15 64 18 65 23 L55 23 C56 18 58 15 60 11 Z" transform="rotate(150 60 60)"/>
+              <path d="M60 11 C62 15 64 18 65 23 L55 23 C56 18 58 15 60 11 Z" transform="rotate(210 60 60)"/>
+              <path d="M60 11 C62 15 64 18 65 23 L55 23 C56 18 58 15 60 11 Z" transform="rotate(270 60 60)"/>
+              <path d="M60 11 C62 15 64 18 65 23 L55 23 C56 18 58 15 60 11 Z" transform="rotate(330 60 60)"/>
+            </g>
+            <path class="f-yellow" d="M60 26 C79 25 95 40 94 60 C93 79 79 95 59 94 C40 93 26 79 26 60 C26 41 41 27 60 26 Z"/>
+            <path d="M44 56 Q49 50 54 56 M66 56 Q71 50 76 56"/>
+            <path d="M47 67 Q60 80 73 67"/>
+            <circle class="f-pink" cx="41.5" cy="66" r="5" stroke="none"/>
+            <circle class="f-pink" cx="78.5" cy="66" r="5" stroke="none"/>
+          </svg>
+        </span>
+        <span class="sticker sticker--butterfly" style="--i:1" aria-hidden="true">
+          <svg class="art" viewBox="0 0 120 120" focusable="false">
+            <path class="f-blue" d="M57 55 C45 26 18 20 13 39 C9 56 33 65 57 61 Z"/>
+            <path class="f-blue" d="M63 55 C75 26 102 20 107 39 C111 56 87 65 63 61 Z"/>
+            <path class="f-pink" d="M57 64 C40 64 25 76 30 91 C35 103 52 94 57 73 Z"/>
+            <path class="f-pink" d="M63 64 C80 64 95 76 90 91 C85 103 68 94 63 73 Z"/>
+            <circle class="f-yellow" cx="31" cy="42" r="5.5"/><circle class="f-yellow" cx="89" cy="42" r="5.5"/>
+            <circle class="f-orange" cx="42" cy="83" r="3.5"/><circle class="f-orange" cx="78" cy="83" r="3.5"/>
+            <path class="f-ink" d="M60 43 C65 43 64 88 60 88 C56 88 55 43 60 43 Z"/>
+            <path d="M58 45 C55 35 49 29 43 27 M62 45 C65 35 71 29 77 27"/>
+            <circle class="f-ink" cx="43" cy="27" r="2.6" stroke="none"/><circle class="f-ink" cx="77" cy="27" r="2.6" stroke="none"/>
+          </svg>
+        </span>
+        <span class="sticker sticker--moon" style="--i:2" aria-hidden="true">
+          <svg class="art" viewBox="0 0 120 120" focusable="false">
+            <path class="f-violet" d="M70 10 C40 13 18 38 20 67 C22 95 48 113 79 107 C88 105 96 101 102 95 C71 99 47 81 46 56 C45 36 55 19 70 10 Z"/>
+            <path d="M30 63 Q35 68 41 64"/>
+            <path class="f-yellow" d="M90 22 L93 31 L102 34 L93 37 L90 46 L87 37 L78 34 L87 31 Z"/>
+            <circle class="f-yellow" cx="80" cy="62" r="4"/>
+          </svg>
+        </span>
+        <span class="sticker sticker--lotus" style="--i:3" aria-hidden="true">
+          <svg class="art" viewBox="0 0 120 120" focusable="false">
+            <path class="f-green" d="M12 84 C28 106 92 106 108 84 C88 94 32 94 12 84 Z"/>
+            <path class="f-violet" d="M60 34 C48 52 48 72 60 88 C72 72 72 52 60 34 Z" transform="rotate(-64 60 88)"/>
+            <path class="f-violet" d="M60 34 C48 52 48 72 60 88 C72 72 72 52 60 34 Z" transform="rotate(64 60 88)"/>
+            <path class="f-salmon" d="M60 30 C48 50 48 72 60 88 C72 72 72 50 60 30 Z" transform="rotate(-32 60 88)"/>
+            <path class="f-salmon" d="M60 30 C48 50 48 72 60 88 C72 72 72 50 60 30 Z" transform="rotate(32 60 88)"/>
+            <path class="f-pink" d="M60 22 C47 44 47 70 60 88 C73 70 73 44 60 22 Z"/>
+            <circle class="f-yellow" cx="60" cy="12" r="3" stroke="none"/><circle class="f-yellow" cx="44" cy="17" r="2.4" stroke="none"/><circle class="f-yellow" cx="76" cy="17" r="2.4" stroke="none"/>
+          </svg>
+        </span>
+        <span class="sticker sticker--sparkles" style="--i:4" aria-hidden="true">
+          <svg class="art" viewBox="0 0 120 120" focusable="false">
+            <path class="f-yellow" d="M44 8 C47 35 53 41 80 44 C53 47 47 53 44 80 C41 53 35 47 8 44 C35 41 41 35 44 8 Z"/>
+            <path class="f-pink" d="M90 66 C91.6 79 95 82.4 108 84 C95 85.6 91.6 89 90 102 C88.4 89 85 85.6 72 84 C85 82.4 88.4 79 90 66 Z"/>
+            <path class="f-sky" d="M30 88 C31 95 33 97 40 98 C33 99 31 101 30 108 C29 101 27 99 20 98 C27 97 29 95 30 88 Z"/>
+          </svg>
+        </span>
+      </div>
     </div>
   </section>
 
   <!-- ======================================================================
-       ROOT. Her story. PLACEHOLDER TEXT: replace with Lisa's own words.
+       THE WORDS ON MY WALLS. A wall of hand-made signs. The quotes, and which
+       sign each one is painted on, are in js/content.js.
        ====================================================================== -->
-  <section class="story chakra" id="story" data-tone="light" style="--tint:var(--root);--ground:var(--g-story)">
+  <section class="quotes" id="quotes" aria-labelledby="quotes-title">
     <div class="wrap">
-      <h2 class="h2"><span class="h2__text" data-paint="var(--velvet)">My story</span></h2>
+      <header class="head">
+        <h2 class="h2" id="quotes-title">The words on my walls</h2>
+        <p class="lede">The words I keep around me, at all times.</p>
+      </header>
+      <ul class="wall" id="wall" role="list"></ul>
     </div>
-    <div class="wrap story__grid">
-      <div class="story__side">
-        <figure class="portrait portrait--story">
-          <div class="portrait__frame"><img src="assets/portraits/lisa-portrait.jpg" width="660" height="825" alt="Lisa Brunson" loading="lazy" decoding="async"></div>
+  </section>
+
+  <!-- ======================================================================
+       MY STORY. A journal page. PLACEHOLDER TEXT: replace with Lisa's words.
+       ====================================================================== -->
+  <section class="story" id="story" aria-labelledby="story-title">
+    <div class="wrap">
+      <article class="journal">
+        <span class="journal__holes" aria-hidden="true"><i></i><i></i><i></i></span>
+        <figure class="snap journal__snap">
+          <span class="tape" aria-hidden="true"></span>
+          <img src="assets/portraits/lisa-portrait.jpg" width="660" height="825" alt="Lisa Brunson, smiling, close up" loading="lazy" decoding="async">
+          <figcaption class="snap__caption">That&rsquo;s me</figcaption>
         </figure>
-        <aside class="glance taped">
-          <h3 class="glance__title">At a glance</h3>
+        <div class="journal__text">
+          <h2 class="journal__title" id="story-title">My story<svg class="journal__scribble" viewBox="0 0 220 22" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M4 12 C46 5 98 6 150 9 C178 10 200 8 214 5"/><path d="M26 18 C76 13 128 14 196 15"/></svg></h2>
+          <p>I found sound the way most people do: on my back, on a mat, on a day I did not think anything could reach me. A bowl was struck somewhere behind my head and something in my chest let go. I have been following that sound, and sharing it, ever since.</p>
+          <p>Smoke came first, though. I grew up with sage in the house, and with the idea that a room could be cleared the same way a heart could, and that the two were never really separate. Palo santo came later, from a teacher who told me to stop trying so hard and start listening.</p>
+          <p>Today I hold sound baths, work with people one to one, and cleanse homes and studios that are ready for a new chapter. I am not here to fix anyone. I am here to hold a steady space, and let the sound do what it already knows how to do.</p>
+          <p class="journal__pull">Nothing here is complicated. Lie down. Breathe. Let the bowls do the rest.</p>
+        </div>
+        <aside class="glance" aria-labelledby="glance-title">
+          <span class="pin" aria-hidden="true"></span>
+          <h3 class="glance__title" id="glance-title">At a glance</h3>
           <ul class="glance__list">
             <li>Based in [city, state]</li>
             <li>Trained in [modality] since [year]</li>
@@ -173,178 +294,245 @@
             <li>Speaks [languages]</li>
           </ul>
         </aside>
-      </div>
-      <div class="story__text">
-        <p>I found sound the way most people do: on my back, on a mat, on a day I did not think anything could reach me. A bowl was struck somewhere behind my head and something in my chest let go. I have been following that sound, and sharing it, ever since.</p>
-        <p>Smoke came first, though. I grew up with sage in the house, and with the idea that a room could be cleared the same way a heart could, and that the two were never really separate. Palo santo came later, from a teacher who told me to stop trying so hard and start listening.</p>
-        <p>Today I hold sound baths, work with people one to one, and cleanse homes and studios that are ready for a new chapter. I am not here to fix anyone. I am here to hold a steady space, and let the sound do what it already knows how to do.</p>
-        <p class="pull">Nothing here is complicated. Lie down. Breathe. Let the bowls do the rest.</p>
-      </div>
+      </article>
     </div>
   </section>
 
   <!-- ======================================================================
-       SACRAL. What she believes, set like cut-out lettering.
-       Words are in js/content.js. PLACEHOLDER TEXT.
+       WHAT I BELIEVE. A giant painted rainbow, one band per colour, with her
+       words lettered on top. Words are in js/content.js. PLACEHOLDER TEXT.
        ====================================================================== -->
-  <section class="values chakra" id="values" data-tone="light" style="--tint:var(--sacral);--ground:var(--g-values)">
+  <section class="values" id="values" aria-labelledby="values-title">
     <div class="wrap">
-      <h2 class="h2"><span class="h2__text" data-paint="var(--paper)">What I believe</span></h2>
-      <p class="lede">A few words I come back to, on the good days and the hard ones.</p>
-      <div class="words" id="words"></div>
+      <header class="head head--center">
+        <h2 class="h2" id="values-title">What I believe</h2>
+        <p class="lede">A few words I come back to, on the good days and the hard ones.</p>
+      </header>
     </div>
+    <ul class="rainbow" id="bands" role="list"></ul>
   </section>
 
   <!-- ======================================================================
-       SOLAR PLEXUS. What a session is like. Steps are in js/content.js.
+       WHAT A SESSION IS LIKE. Five stickers on a winding path, drawn by
+       js/site.js. Steps are in js/content.js. PLACEHOLDER TEXT.
        ====================================================================== -->
-  <section class="session chakra" id="session" data-tone="light" style="--tint:var(--solar);--ground:var(--g-session)">
+  <section class="session" id="session" aria-labelledby="session-title">
     <div class="wrap">
-      <h2 class="h2"><span class="h2__text" data-paint="var(--velvet)">What a session is like</span></h2>
-      <p class="lede">Every session is a little different, but they all move through the same five moments.</p>
-      <ol class="steps" id="steps"></ol>
+      <header class="head">
+        <h2 class="h2" id="session-title">What a session is like</h2>
+        <p class="lede">Every session is a little different, but they all move through the same five moments.</p>
+      </header>
+      <div class="trail">
+        <svg class="trail__path" id="trail-path" aria-hidden="true" focusable="false"></svg>
+        <ol class="steps" id="steps"></ol>
+      </div>
     </div>
   </section>
 
   <!-- ======================================================================
-       HEART. Sage and palo santo, and a minute of breath. PLACEHOLDER TEXT.
+       SAGE AND PALO SANTO, and a minute of breath. PLACEHOLDER TEXT.
        ====================================================================== -->
-  <section class="cleansing chakra" id="cleansing" data-tone="dark" style="--tint:var(--heart);--ground:var(--g-cleansing)">
+  <section class="cleansing" id="cleansing" aria-labelledby="cleansing-title">
+    <div class="cleansing__paint" data-paint="block" data-colour="var(--yellow)" data-seed="33" aria-hidden="true"></div>
     <div class="wrap cleansing__grid">
       <div class="cleansing__art" aria-hidden="true">
-        <svg viewBox="70 0 190 330" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="70 0 190 330" focusable="false">
           <g transform="rotate(-16 120 220)">
-            <path d="M104 300 C92 250 96 180 122 120 C148 180 152 250 140 300 Z"/>
-            <path d="M122 120 C120 180 118 240 120 296" opacity=".45"/>
-            <path d="M112 168 C104 160 100 150 104 138"/>
-            <path d="M132 168 C140 160 144 150 140 138"/>
-            <path d="M108 196 C100 190 96 180 98 168" opacity=".7"/>
-            <path d="M136 196 C144 190 148 180 146 168" opacity=".7"/>
-            <path d="M104 226 C98 220 96 210 98 200" opacity=".5"/>
-            <path d="M140 226 C146 220 148 210 146 200" opacity=".5"/>
-            <path d="M99 236 L145 226 M98 252 L146 242 M100 268 L144 258 M103 283 L141 274" opacity=".8"/>
+            <path class="sage__bundle" d="M104 300 C92 250 96 180 122 120 C148 180 152 250 140 300 Z"/>
+            <path class="sage__leaf" d="M122 120 C120 180 118 240 120 296"/>
+            <path class="sage__leaf" d="M112 168 C104 160 100 150 104 138"/>
+            <path class="sage__leaf" d="M132 168 C140 160 144 150 140 138"/>
+            <path class="sage__leaf" d="M108 196 C100 190 96 180 98 168"/>
+            <path class="sage__leaf" d="M136 196 C144 190 148 180 146 168"/>
+            <path class="sage__leaf" d="M104 226 C98 220 96 210 98 200"/>
+            <path class="sage__leaf" d="M140 226 C146 220 148 210 146 200"/>
+            <path class="sage__twine" d="M99 236 L145 226 M98 252 L146 242 M100 268 L144 258 M103 283 L141 274"/>
           </g>
           <g transform="rotate(10 214 230)">
-            <path d="M200 316 L200 160 L228 160 L228 316 Z"/>
+            <path class="sage__stick" d="M200 316 L200 160 L228 160 L228 316 Z"/>
             <path d="M208 172 V300 M219 168 V296" opacity=".35"/>
-            <path d="M200 160 L214 146 L228 160"/>
-            <circle class="ember" cx="214" cy="148" r="3.2" stroke="none"/>
+            <path class="sage__tip" d="M200 160 L214 146 L228 160"/>
+            <circle class="sage__ember" cx="214" cy="148" r="4" stroke="none"/>
           </g>
           <path class="smoke-line" d="M214 138 C228 116 198 98 212 74 C226 50 200 34 216 12"/>
           <path class="smoke-line smoke-line--2" d="M216 134 C202 114 232 96 218 72 C204 48 236 32 220 10"/>
         </svg>
       </div>
       <div class="cleansing__text">
-        <h2 class="h2"><span class="h2__text" data-paint="var(--gold)">Sage and palo santo</span></h2>
+        <h2 class="h2" id="cleansing-title">Sage and palo santo</h2>
         <p>Every session starts the same way. The room is cleared with white sage, the way it was done in my family long before I understood why. Then palo santo, sweet and slow, to invite something gentle back in.</p>
         <p>Cleansing is not about getting rid of anything. It is about making room. Room for rest, for the next chapter, for a version of yourself that has been waiting patiently for the noise to die down.</p>
-        <div class="breath" id="breath">
-          <div class="breath__circle" aria-hidden="true"></div>
+      </div>
+      <div class="breath" id="breath">
+        <span class="tape tape--blue" aria-hidden="true"></span>
+        <h3 class="breath__title">A minute of breath</h3>
+        <div class="breath__body">
+          <div class="breath__circle" aria-hidden="true"><span class="breath__num" id="breath-num"></span></div>
           <div class="breath__side">
             <p class="breath__cue" id="breath-cue" aria-live="polite">When you cannot get to a session, there is always this. Four counts in, seven held, eight out.</p>
-            <button class="btn btn--paper" id="breath-btn" type="button">Begin a minute of breath</button>
+            <button class="btn btn--navy" id="breath-btn" type="button">Start</button>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- The oils she diffuses, and her doTERRA shop. Bottles are listed in js/content.js. -->
-    <div class="wrap oils" id="oils">
-      <div class="oils__head">
-        <h3 class="h3"><span class="h3__text" data-paint="var(--gold)">The oils I use</span></h3>
-        <p class="lede">The oils I diffuse in every session are the ones I keep at home. I share them through doTERRA, and I am happy to help you choose a first few.</p>
-      </div>
-      <ul class="oil-list" id="oil-list"></ul>
-      <div class="oils__cta">
-        <a class="btn btn--paper" id="oils-shop" href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener">Shop my oils</a>
-        <span class="oils__note" id="oils-note">Opens my doTERRA shop in a new tab.</span>
-      </div>
-    </div>
   </section>
 
   <!-- ======================================================================
-       THROAT. Kind words. Testimonials are in js/content.js. PLACEHOLDER TEXT.
+       THE OILS I USE, and her doTERRA shop (real). Bottles are listed in
+       js/content.js; the shop link is shop.url there.
        ====================================================================== -->
-  <section class="kind chakra" id="kind" data-tone="dark" style="--tint:var(--throat);--ground:var(--g-kind)">
+  <section class="oils" id="oils" aria-labelledby="oils-title">
     <div class="wrap">
-      <h2 class="h2"><span class="h2__text" data-paint="var(--gold)">Kind words</span></h2>
-      <p class="lede">What people say after a session, once they have found their words again.</p>
-      <div class="kind__grid" id="testimonials"></div>
+      <div class="oils__head">
+        <div class="oils__intro">
+          <h2 class="h2" id="oils-title">The oils I use</h2>
+          <p class="lede">The oils I diffuse in every session are the ones I keep at home. I share them through doTERRA, and I am happy to help you choose a first few.</p>
+        </div>
+        <div class="oils__shop">
+          <a class="shop-sticker js-shop" id="oils-shop" href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener" aria-describedby="oils-note">
+            <svg class="shop-sticker__rings" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+              <circle cx="100" cy="100" r="96" class="f-red"/><circle cx="100" cy="100" r="89" class="f-orange"/>
+              <circle cx="100" cy="100" r="82" class="f-yellow"/><circle cx="100" cy="100" r="75" class="f-green"/>
+              <circle cx="100" cy="100" r="68" class="f-blue"/><circle cx="100" cy="100" r="61" class="f-indigo"/>
+              <circle cx="100" cy="100" r="54" class="f-violet"/><circle cx="100" cy="100" r="47" class="f-white"/>
+            </svg>
+            <span class="shop-sticker__label"><span class="js-shop-label">Shop my oils</span><svg class="shop-sticker__arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 11 L11 5 M6 5 H11 V10"/></svg></span>
+          </a>
+          <p class="oils__note"><svg class="oils__note-arrow" aria-hidden="true" focusable="false"><use href="#arrow-doodle"/></svg><span id="oils-note">Opens my doTERRA shop in a new tab.</span></p>
+        </div>
+      </div>
+      <ul class="shelf" id="oil-list" role="list"></ul>
     </div>
   </section>
 
   <!-- ======================================================================
-       THIRD EYE. The mark, drawn from the symbols of her tattoo.
+       KIND WORDS. Sticky notes on a hot-pink painted wall.
+       Testimonials are in js/content.js. PLACEHOLDER TEXT.
        ====================================================================== -->
-  <section class="mark-section chakra" id="the-mark" data-tone="dark" style="--tint:var(--third);--ground:var(--g-mark)">
-    <div class="wrap mark__grid">
-      <div class="mark__art">
-        <svg class="mark mark--large" role="img" aria-label="The Lisa Brunson mark: a lotus resting in a crescent moon, with an eye beneath the flower, the moon's phases along the crescent, and rays of dots above"><use href="#mark"/></svg>
-      </div>
-      <div class="mark__text">
-        <h2 class="h2"><span class="h2__text" data-paint="var(--gold)">The mark</span></h2>
-        <p>It started on her wrist. The mark takes the symbols of Lisa's tattoo and sets a lotus among them.</p>
+  <section class="kind" id="kind" aria-labelledby="kind-title">
+    <div class="kind__paint" data-paint="block" data-colour="var(--pink)" data-seed="41" aria-hidden="true"></div>
+    <div class="wrap">
+      <header class="head head--center">
+        <h2 class="h2" id="kind-title">Kind words</h2>
+        <p class="lede">What people say after a session, once they have found their words again.</p>
+      </header>
+      <div class="kind__notes" id="testimonials"></div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       THE STORY OF MY LOGO, drawn from the symbols of her tattoo. The arrows
+       are drawn by js/site.js.
+       ====================================================================== -->
+  <section class="logo-story" id="the-mark" aria-labelledby="mark-title">
+    <div class="wrap">
+      <header class="head head--center">
+        <h2 class="h2" id="mark-title">The story of my logo</h2>
+        <p class="lede">It started on my wrist. My logo takes the symbols of my tattoo and sets a lotus among them.</p>
+      </header>
+      <div class="logo-map" id="logo-map">
+        <div class="logo-map__art">
+          <svg class="mark mark--large" id="logo-large" role="img" aria-label="The Lisa Brunson logo: a lotus resting in a crescent moon, with an eye beneath the flower, the moon's phases along the crescent, and rays of dots above"><use href="#mark"/></svg>
+        </div>
         <dl class="meanings">
-          <div>
-            <dt>The lotus</dt>
+          <div class="meaning" data-point="lotus">
+            <dt><svg class="meaning__arrow" aria-hidden="true" focusable="false"><use href="#arrow-doodle"/></svg>The lotus</dt>
             <dd>It grows out of mud and dark water and opens clean. That is the whole story of healing, in one flower.</dd>
           </div>
-          <div>
-            <dt>The moon and its phases</dt>
-            <dd>The crescent from her wrist, with the moon moving through it. Nothing stays dark for long, and nothing stays full forever.</dd>
+          <div class="meaning" data-point="dots">
+            <dt><svg class="meaning__arrow" aria-hidden="true" focusable="false"><use href="#arrow-doodle"/></svg>The rays of dots</dt>
+            <dd>The light above it all, the way my tattoo draws it.</dd>
           </div>
-          <div>
-            <dt>The eye</dt>
+          <div class="meaning" data-point="moon">
+            <dt><svg class="meaning__arrow" aria-hidden="true" focusable="false"><use href="#arrow-doodle"/></svg>The moon and its phases</dt>
+            <dd>The crescent from my wrist, with the moon moving through it. Nothing stays dark for long, and nothing stays full forever.</dd>
+          </div>
+          <div class="meaning" data-point="eye">
+            <dt><svg class="meaning__arrow" aria-hidden="true" focusable="false"><use href="#arrow-doodle"/></svg>The eye</dt>
             <dd>Watchful and kind. Protection, and the habit of seeing what is really there.</dd>
           </div>
-          <div>
-            <dt>The rays of dots</dt>
-            <dd>The light above it all, the way her tattoo draws it.</dd>
-          </div>
         </dl>
+        <svg class="logo-map__arrows" id="logo-arrows" aria-hidden="true" focusable="false"></svg>
       </div>
     </div>
   </section>
 
   <!-- ======================================================================
-       CROWN. Book a session, and say hello.
+       WORK WITH ME, and say hello.
        Offerings are in js/content.js. The form posts to Formspree; replace
        your-form-id below (see README). The email link works regardless.
        ====================================================================== -->
-  <section class="book chakra" id="book" data-tone="light" style="--tint:var(--crown);--ground:var(--g-book)">
+  <section class="book" id="book" aria-labelledby="book-title">
     <div class="wrap">
-      <h2 class="h2"><span class="h2__text" data-paint="var(--velvet)">Work with me</span></h2>
-      <p class="lede">Three ways to work together. If you are not sure which is right, write to me and we will figure it out.</p>
-      <ul class="offer-list" id="offer-list"></ul>
-      <div class="contact__grid" id="contact">
-        <div class="contact__text">
-          <h3 class="h3">Say hello</h3>
-          <p>Tell me a little about what you are looking for, or just say hi. I answer every message myself, usually within a day or two.</p>
-          <ul class="contact__lines" id="contact-lines"></ul>
-        </div>
-        <form class="form" action="https://formspree.io/f/your-form-id" method="POST">
-          <label for="f-name">Your name<input id="f-name" name="name" type="text" autocomplete="name" required></label>
-          <label for="f-email">Your email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
-          <label for="f-message">What are you looking for?<textarea id="f-message" name="message" rows="4"></textarea></label>
-          <button class="btn btn--velvet" type="submit">Send</button>
-        </form>
+      <header class="head">
+        <h2 class="h2" id="book-title">Work with me</h2>
+        <p class="lede">Three ways to work together. If you are not sure which is right, write to me and we will figure it out.</p>
+      </header>
+      <ul class="tags" id="offer-list" role="list"></ul>
+
+      <div class="postcard" id="contact">
+          <h3 class="postcard__title">Say hello</h3>
+          <p class="postcard__intro">Tell me a little about what you are looking for, or just say hi. I answer every message myself, usually within a day or two.</p>
+          <form class="form postcard__form" action="https://formspree.io/f/your-form-id" method="POST">
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="f-email">Your email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="f-message">What are you looking for?</label>
+              <textarea id="f-message" name="message" rows="4"></textarea>
+            </div>
+            <button class="btn btn--navy" type="submit">Send</button>
+          </form>
+          <div class="postcard__post" aria-hidden="true">
+            <svg class="postmark" viewBox="0 0 160 110" focusable="false">
+              <defs><path id="postmark-ring" d="M52 55 m-36 0 a36 36 0 1 1 72 0 a36 36 0 1 1 -72 0"/></defs>
+              <circle cx="52" cy="55" r="44"/>
+              <circle cx="52" cy="55" r="29"/>
+              <text><textPath href="#postmark-ring" startOffset="2%">Sent with love &#183; Lisa Brunson &#183;</textPath></text>
+              <text class="postmark__year" x="52" y="60" text-anchor="middle" id="postmark-year">2026</text>
+              <path d="M98 34 C110 28 122 40 134 34 S 150 28 158 32 M98 50 C110 44 122 56 134 50 S 150 44 158 48 M98 66 C110 60 122 72 134 66 S 150 60 158 64 M98 82 C110 76 122 88 134 82 S 150 76 158 80"/>
+            </svg>
+            <span class="stamp"><span class="stamp__inner"><svg class="mark mark--stamp" focusable="false"><use href="#mark"/></svg></span></span>
+          </div>
+          <ul class="postcard__lines" id="contact-lines" role="list"></ul>
       </div>
     </div>
   </section>
 
 </main>
 
-<footer class="footer" data-tone="dark">
-  <div class="rainbow-stack" id="rainbow-stack" aria-hidden="true"></div>
-  <svg class="mark mark--footer" aria-hidden="true"><use href="#mark"/></svg>
-  <p class="footer__name">Lisa Brunson</p>
-  <p class="footer__namaste">Namaste.</p>
-  <nav class="footer__links" id="footer-links" aria-label="Elsewhere"></nav>
-  <p class="footer__fine">Sound, ceremony, and cleansing. &copy; <span id="year">2026</span> Lisa Brunson.</p>
+<footer class="footer">
+  <div class="footer__edge" data-paint="edge" data-colour="var(--ink)" data-seed="61" aria-hidden="true"></div>
+  <div class="wrap footer__grid">
+    <div class="footer__sign">
+      <p class="footer__namaste">Namaste.</p>
+      <span class="footer__rainbow rainbow-stack" aria-hidden="true">
+        <span style="--i:0" data-paint="stroke" data-colour="var(--red)" data-seed="71"></span>
+        <span style="--i:1" data-paint="stroke" data-colour="var(--orange)" data-seed="72"></span>
+        <span style="--i:2" data-paint="stroke" data-colour="var(--yellow)" data-seed="73"></span>
+        <span style="--i:3" data-paint="stroke" data-colour="var(--green)" data-seed="74"></span>
+        <span style="--i:4" data-paint="stroke" data-colour="var(--blue)" data-seed="75"></span>
+        <span style="--i:5" data-paint="stroke" data-colour="var(--indigo)" data-seed="76"></span>
+        <span style="--i:6" data-paint="stroke" data-colour="var(--violet)" data-seed="77"></span>
+      </span>
+    </div>
+    <div class="footer__info">
+      <a class="footer__brand" href="#top">
+        <svg class="mark mark--footer" aria-hidden="true" focusable="false"><use href="#mark"/></svg>
+        <span>Lisa Brunson</span>
+      </a>
+      <nav class="footer__links" id="footer-links" aria-label="Elsewhere"></nav>
+      <p class="footer__fine">Sound, ceremony, and cleansing. &copy; <span id="year">2026</span> Lisa Brunson.</p>
+    </div>
+  </div>
 </footer>
 
 <script src="js/content.js"></script>
-<script src="js/stars.js"></script>
 <script src="js/site.js"></script>
 <script src="js/paint.js"></script>
 </body>

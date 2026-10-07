@@ -1,85 +1,119 @@
 /* =============================================================================
-   LISA BRUNSON — THEME TOKENS
+   LISA BRUNSON — THEME TOKENS ("Good vibes, hand-made")
    -----------------------------------------------------------------------------
-   Every colour on the site comes from these variables, and every one of them
-   was sampled from the photos Lisa sent: her whitewashed brick wall, the navy
-   velvet couch, the pink velvet chair, the gold Namaste letters, the pink
-   crown sign, and the seven chakra prayer flags over the clock.
+   Every colour, font and spacing step on the site comes from here. The
+   colours were picked from the photos Lisa sent of the things she loves: the
+   prayer flags and the rainbow brush-stroke sign, her navy velvet couch, the
+   pink crown sign, gold lettering, sticky notes on a vision board.
 
-   Change a value here and the whole site follows.
+   Change a value here and the whole site follows. Contrast notes beside a
+   colour say which text colour is safe on it (checked against WCAG AA).
    ========================================================================== */
 
 :root {
   /* ---- Grounds ------------------------------------------------------------ */
-  --wall:        #F6F4F0;  /* the whitewashed brick, the page itself          */
-  --paper:       #FCFAF6;  /* cards, frames, the vision board paper           */
-  --velvet:      #1B2B45;  /* the navy velvet couch: quotes and footer        */
-  --velvet-deep: #121E33;  /* the shadow in the velvet                        */
+  --paper:     #FFFDFA;  /* the page: a bright near-white (keep it white, not cream) */
+  --card:      #FFFFFF;  /* polaroid frames, the journal, index card, postcard    */
+
+  /* ---- Ink ---------------------------------------------------------------- */
+  --ink:       #1B2B45;  /* her navy velvet couch: all text, the footer band      */
+  --ink-soft:  #4A5670;  /* quieter text, only on white, paper, yellow            */
+  --ink-line:  rgba(27, 43, 69, .18);  /* hairlines and form lines             */
+  --on-ink-soft: #C6CBD6;  /* quieter text on the navy footer (8.7:1)           */
+  --black:     #1A1414;  /* the black hand-lettering on the pink crown sign     */
+  --pen:       #D02F62;  /* raspberry pen: handwritten notes on white (4.8:1)     */
+  --blue-ink:  #1F5FAE;  /* blue handwriting on the watercolour card             */
+  --rule:      rgba(47, 143, 224, .26);  /* blue ruled lines on the journal     */
+  --margin:    rgba(226, 59, 74, .62);   /* the red margin line                 */
+
+  /* ---- The rainbow: her flags and her rainbow sign, red to violet ------- */
+  --red:     #E23B4A;  /* white text, large sizes only                           */
+  --orange:  #F37A2A;  /* navy text                                              */
+  --yellow:  #F7C531;  /* navy text                                              */
+  --green:   #3DAA5C;  /* navy text                                              */
+  --blue:    #2F8FE0;  /* navy text, large sizes only                            */
+  --indigo:  #4B3BA8;  /* white text                                             */
+  --violet:  #A574E0;  /* navy text, large sizes only                            */
 
   /* ---- Accents from her rooms --------------------------------------------- */
-  --blush:       #E9A296;  /* the pink velvet chair                           */
-  --blush-soft:  #F5D6CF;  /* a wash of it                                    */
-  --rose:        #CC897F;  /* the pink of the crown sign                      */
-  --rose-ink:    #A4574E;  /* the same, dark enough to read on white          */
-  --gold:        #C9A24B;  /* the Namaste letters, the gold frame             */
-  --gold-soft:   #E7D3A2;  /* gold for hairlines on dark grounds              */
-  --gold-ink:    #8A6A22;  /* gold for text on light grounds                  */
-  --teal:        #255862;  /* the iridescent jar                              */
-  --olive:       #6E7440;  /* the paisley leaves, the heart flag              */
-  --mint:        #8CC4A6;  /* a fresh green for a bottle label on the olive    */
+  --pink:    #F07EA0;  /* hot pink: the kind words block, stickers (navy text)  */
+  --salmon:  #EE8F84;  /* the pink crown sign (black or navy text)               */
+  --note:    #FFE16B;  /* sticky-note yellow (navy text)                         */
+  --sky:     #8FD0EE;  /* watercolour sky, a sticky note (navy text)             */
+  --kraft:   #D9B98C;  /* kraft tape, the oil shelf (navy text)                  */
+  --gold:    #C9A24B;  /* gold lettering, on navy only                           */
+  --gold-lt: #E9CB78;  /* the light side of gold leaf                            */
+  --olive:   #666C3A;  /* the weathered metal plaque (cream text)                */
+  --cream:   #FFF7DE;  /* lettering on the plaque                                */
+  --wood:    #2A2523;  /* the black wooden sign (white text)                     */
+  --silver:  #C9CFD9;  /* the little crown doodle                                */
+  --mint:    #7FD6A8;  /* peppermint label                                       */
+  --amber:   #B8661E;  /* the oil bottles                                        */
 
-  /* ---- The seven flags, root to crown ------------------------------------- */
-  --root:   #A8262E;
-  --sacral: #DB5A1E;
-  --solar:  #E2A52A;
-  --heart:  #5F6E2C;
-  --throat: #2F6BA8;
-  --third:  #3F2462;
-  --crown:  #8E7EB8;
+  /* ---- Which colour each painted band and sticker uses -------------------- */
+  /* What I believe: seven bands, red to violet, each with a safe text colour */
+  --band-1: var(--red);    --band-1-ink: #FFFFFF;
+  --band-2: var(--orange); --band-2-ink: var(--ink);
+  --band-3: var(--yellow); --band-3-ink: var(--ink);
+  --band-4: var(--green);  --band-4-ink: var(--ink);
+  --band-5: var(--blue);   --band-5-ink: var(--ink);
+  --band-6: var(--indigo); --band-6-ink: #FFFFFF;
+  --band-7: var(--violet); --band-7-ink: var(--ink);
+  /* What a session is like: the five numbered stickers */
+  --step-1: var(--red);    --step-1-ink: #FFFFFF;
+  --step-2: var(--orange); --step-2-ink: var(--ink);
+  --step-3: var(--yellow); --step-3-ink: var(--ink);
+  --step-4: var(--green);  --step-4-ink: var(--ink);
+  --step-5: var(--blue);   --step-5-ink: var(--ink);
+  /* Work with me: the three luggage tags (body text sits on these, so only
+     colours that pass at small sizes) */
+  --tag-1: var(--indigo);  --tag-1-ink: #FFFFFF;
+  --tag-2: var(--pink);    --tag-2-ink: var(--ink);
+  --tag-3: var(--green);   --tag-3-ink: var(--ink);
 
-  /* ---- Section grounds, full strength, root to crown ---------------------- */
-  --g-story:     #E08C84;  /* salmon pink, the pink sign with black lettering  */
-  --g-values:    #DB5A1E;  /* orange, the sacral flag                          */
-  --g-session:   #E2A52A;  /* mustard gold, the solar flag                     */
-  --g-cleansing: #5F6E2C;  /* olive, the heart flag and her metal sign         */
-  --g-kind:      #2F6BA8;  /* royal blue, the throat flag                      */
-  --g-mark:      #3F2462;  /* deep purple, the third-eye flag                  */
-  --g-book:      #A497CB;  /* lilac, the crown flag                            */
+  /* ---- Type ----------------------------------------------------------------
+     Fraunces: headings, set heavy and soft for a warm 70s feel.
+     Figtree: everything you read.
+     Kalam: handwriting, for notes, captions and annotations only.
+     Bebas Neue: only on the black wooden sign.                              */
+  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-body:    "Figtree", "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-hand:    "Kalam", "Segoe Print", "Bradley Hand", "Chalkboard SE", cursive;
+  --font-sign:    "Bebas Neue", "Oswald", "Arial Narrow", Impact, sans-serif;
+  --soft: "SOFT" 100, "WONK" 1;   /* the Fraunces axes used for headings */
 
-  /* ---- Text --------------------------------------------------------------- */
-  --ink:       #2C292A;                 /* the black of her wooden signs       */
-  --ink-soft:  #625B5B;
-  --ink-line:  rgba(44, 41, 42, .16);
-  --bone:      #F7F1EA;                 /* text on velvet                      */
-  --bone-soft: rgba(247, 241, 234, .74);
-  --bone-line: rgba(247, 241, 234, .22);
+  --t-small: .9375rem;
+  --t-body:  1.0625rem;
+  --t-lede:  clamp(1.125rem, 1.4vw, 1.3rem);
+  --t-h3:    clamp(1.45rem, 2.2vw, 1.9rem);
+  --t-h2:    clamp(2.5rem, 5.4vw, 4.4rem);
+  --t-hero:  clamp(3.9rem, 10.2vw, 9.6rem);
 
-  /* ---- Type --------------------------------------------------------------- */
-  --font-display: "Cormorant Garamond", "Cormorant", Garamond, "Times New Roman", serif;
-  --font-body:    "Nunito Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  --font-hand:    "Caveat", "Segoe Print", "Bradley Hand", cursive;
-
-  /* Modular scale, base 18px, ratio ~1.25 */
-  --t-xs:   0.8rem;
-  --t-sm:   0.95rem;
-  --t-base: 1.125rem;
-  --t-lg:   1.375rem;
-  --t-xl:   1.75rem;
-  --t-2xl:  2.25rem;
-  --t-3xl:  clamp(2.4rem, 4.6vw, 3.4rem);
-  --t-display: clamp(3rem, 8.5vw, 6.5rem);
+  /* ---- Spacing: one scale for the whole site ----------------------------- */
+  --s-1: .25rem;
+  --s-2: .5rem;
+  --s-3: .75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4.5rem;
+  --s-9: 6.5rem;
+  --section: clamp(5rem, 10vw, 8.5rem);
 
   /* ---- Layout ------------------------------------------------------------- */
-  --wrap:    74rem;
-  --measure: 62ch;
+  --wrap:    76rem;
   --gutter:  clamp(1rem, 4vw, 3rem);
-  --section: clamp(5rem, 12vh, 8.5rem);
+  --measure: 31em;   /* about 65 characters a line for reading text */
+  --nav-h:   4rem;
 
-  /* ---- Signature shapes --------------------------------------------------- */
-  --petal: 50% 50% 48% 52% / 62% 62% 38% 38%;   /* the lotus petal, for frames */
-  --leaf:  1.7em 0.45em 1.7em 0.45em;           /* the leaf, for buttons       */
+  /* ---- Paper: the one shadow every pinned-up object casts ----------------- */
+  --shadow-paper: 0 1px 1px rgba(27, 43, 69, .10), 0 14px 26px -14px rgba(27, 43, 69, .42);
+  /* the same shadow, for cut-out shapes (tags, stickers) that need a filter */
+  --shadow-paper-drop: drop-shadow(0 1px 1px rgba(27, 43, 69, .12)) drop-shadow(0 10px 12px rgba(27, 43, 69, .22));
 
   /* ---- Motion ------------------------------------------------------------- */
-  --ease-out: cubic-bezier(.22, .61, .36, 1);
+  --ease-out:  cubic-bezier(.22, .61, .36, 1);
+  --ease-back: cubic-bezier(.34, 1.56, .64, 1);
   --ease-in-out: cubic-bezier(.65, 0, .35, 1);
 }
