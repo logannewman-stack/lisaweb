@@ -83,13 +83,13 @@ window.LISA = {
   /* ---------------------------------------------------------------------------
      THE OILS — the bottles on the shelf in "Sage and palo santo".
      Placeholder picks and notes: replace with the oils Lisa actually uses.
-       colour  the label: root, sacral, solar, heart, throat, third, crown, gold
+       colour  the label: root, sacral, solar, heart, throat, third, crown, gold, mint, blush, teal
      ------------------------------------------------------------------------ */
   oils: [
     { name: "Lavender",     note: "For sleep, and for the end of a long day.",        colour: "crown" },
     { name: "Frankincense", note: "The one I reach for first. Grounding and steady.", colour: "solar" },
     { name: "Wild orange",  note: "Sunshine in a bottle. Diffused before every group.", colour: "sacral" },
-    { name: "Peppermint",   note: "A clear head and an open breath.",                 colour: "heart" },
+    { name: "Peppermint",   note: "A clear head and an open breath.",                 colour: "mint" },
     { name: "Eucalyptus",   note: "For the room, and for a cold.",                    colour: "throat" }
   ],
 

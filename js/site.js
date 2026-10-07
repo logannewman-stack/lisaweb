@@ -252,7 +252,7 @@
   var oilList = $("#oil-list");
   if (oilList && L.oils) {
     oilList.innerHTML = L.oils.map(function (o) {
-      var colour = o.colour === "gold" ? "var(--gold)" : "var(--" + esc(o.colour || "crown") + ")";
+      var colour = "var(--" + esc(o.colour || "crown") + ")";
       return '<li class="oil" style="--oil:' + colour + '">' + BOTTLE +
         '<div class="oil__text"><span class="oil__name">' + esc(o.name) + "</span>" +
         (o.note ? '<span class="oil__note">' + esc(o.note) + "</span>" : "") + "</div></li>";

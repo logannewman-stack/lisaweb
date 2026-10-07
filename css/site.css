@@ -375,7 +375,7 @@ html[data-tone="dark"] .nav { color: var(--bone); }
 @media (max-width: 560px) { .breath { grid-template-columns: 1fr; justify-items: start; } }
 
 /* ---- The oils: bottles on a shelf ------------------------------------------ */
-.oils { margin-top: clamp(3.5rem, 8vh, 5.5rem); padding-top: clamp(2.5rem, 6vh, 4rem); border-top: 1px solid var(--line); }
+.oils { margin-top: clamp(3.5rem, 8vh, 5.5rem); padding-top: clamp(2.5rem, 6vh, 4rem); border-top: 1px solid var(--line); scroll-margin-top: 4.5rem; }
 .oils__head .lede { margin-bottom: 2.2rem; }
 .oil-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: 2.4rem 0; }
 .oil { display: grid; grid-template-rows: 7.6rem auto; justify-items: center; text-align: center; padding: 0 .9rem; }
