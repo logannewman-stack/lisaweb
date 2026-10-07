@@ -1,5 +1,9 @@
 # Lisa Brunson — website
 
+> **Option 1 of three design options.** Full-colour painted sections, a full-screen portrait and a
+> string of chakra flags. Options 2 and 3 live on the `option-2` and `option-3` branches; each
+> branch deploys to its own Vercel preview. Merge the chosen branch into `main` to make it live.
+
 A one-page, custom-designed site for Lisa Brunson: sound healing, ceremony
 and cleansing. It opens on her portrait at the beach, and the look comes from
 the photos she sent as style references: navy velvet, blush pink, gold, and
