@@ -1,0 +1,103 @@
+/*
+  Strands of Grace, option A "Classic grace": design tokens.
+
+  Colours, type and spacing live here as custom properties. Layout and
+  components are in site.css. Change a value here and it changes everywhere.
+*/
+
+:root {
+  /* ------------------------------------------------------------------
+     Lisa's palette: her own names and HEX codes (see BRAND.md).
+     Pastels and champagne gold are for shapes, washes, lines, pearls and
+     petals only. Text is always plum or charcoal.
+     ------------------------------------------------------------------ */
+
+  /* Primary accents: the most prominent after the foundation */
+  --soft-lavender: #C8B4E8;   /* Spirituality, intuition and reflection. Leads: halos, washes, the breathing circle. */
+  --blush-pink: #F2B7D2;      /* Love, compassion and kindness. Paired with lavender in washes and petals. */
+  --champagne-gold: #D9B96B;  /* Grace, elegance, light and beauty. Hairlines, pearls, frames. Never text on ivory (1.9:1). */
+
+  /* Secondary accents: woven through subtly, never a whole section */
+  --serenity-blue: #A7C9EE;   /* Peace, calm and communication. */
+  --gentle-teal: #87D4D1;     /* Balance, harmony and renewal. */
+  --sage-green: #B6D7AA;      /* Growth, healing and connection. */
+  --soft-peach: #F6C6A8;      /* Warmth, creativity and new beginnings. */
+
+  /* Foundation */
+  --warm-ivory: #FFFDF8;      /* Main background. */
+  --soft-cream: #F8F3EA;      /* Alternate sections and cards. */
+  --deep-plum: #574467;       /* Headings, buttons, links. 8.5:1 on ivory, 7.8:1 on cream. */
+  --charcoal: #39343D;        /* Body text. 11.9:1 on ivory, 11:1 on cream. */
+
+  /* The same colours as RGB channels, for soft washes and shadows that need
+     transparency: rgb(var(--soft-lavender-rgb) / 0.3) */
+  --soft-lavender-rgb: 200 180 232;
+  --blush-pink-rgb: 242 183 210;
+  --champagne-gold-rgb: 217 185 107;
+  --serenity-blue-rgb: 167 201 238;
+  --soft-peach-rgb: 246 198 168;
+  --deep-plum-rgb: 87 68 103;
+
+  /* ------------------------------------------------------------------
+     Supporting tones, mixed from the palette. Each one notes why it exists.
+     ------------------------------------------------------------------ */
+  --plum-deep: #45354F;       /* Plum button hover. Ivory text on it: 10.6:1. */
+  --plum-muted: #6A6370;      /* Small secondary text: 5.7:1 on ivory, 5.2:1 on cream. */
+  --field-line: #8A7A96;      /* Form field borders: 3.9:1 on ivory (UI parts need 3:1). */
+  --gold-light: #E8D5A4;      /* Inner hairline of double frames. */
+  --gold-bright: #E4C987;     /* Gold button hover. Charcoal text on it: 7.4:1. */
+  --lavender-mist: #F2ECF9;   /* Hover wash behind outline buttons. Plum on it: 7.7:1. */
+  --lavender-wash: rgb(var(--soft-lavender-rgb) / 0.30);  /* Soft lavender wash on cream bands. */
+  --blush-wash: rgb(var(--blush-pink-rgb) / 0.24);        /* Soft blush wash, paired with lavender. */
+
+  /* Pearls drawn in CSS (separators, nav marker, timeline nodes). The SVG
+     pearls in the strands use the same shading. */
+  --pearl-gold: radial-gradient(circle at 35% 30%, #fff8e6, #e4c987 45%, var(--champagne-gold) 70%, #be9c52);
+  --pearl-ivory: radial-gradient(circle at 36% 30%, #fff, #fcf6ef 32%, #eee0d9 68%, #d6c3ca 90%, #c2adbb);
+
+  /* A very fine paper grain laid over the soft washes. It keeps large, faint
+     gradients smooth (no visible rings) and reads as watercolour paper. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .34 0 0 0 0 .27 0 0 0 0 .4 0 0 0 .08 -.018'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  /* Semantic roles */
+  --bg: var(--warm-ivory);
+  --bg-alt: var(--soft-cream);
+  --text: var(--charcoal);
+  --heading: var(--deep-plum);
+  --line: var(--champagne-gold);
+  --focus: var(--deep-plum);
+
+  /* ------------------------------------------------------------------
+     Type: Cormorant Garamond for headings and quotes, Jost for body and UI.
+     ------------------------------------------------------------------ */
+  --font-display: "Cormorant Garamond", "Cormorant", Garamond, "EB Garamond", "Iowan Old Style",
+    "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --font-body: "Jost", "Futura", "Century Gothic", "Avenir Next", Avenir, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+
+  /* Fluid type scale, 360px to 1440px viewports */
+  --step-0:clamp(1.03rem, 0.99rem + 0.18vw, 1.125rem);
+  --step-1: clamp(1.2rem, 1.12rem + 0.36vw, 1.42rem);
+  --step-2: clamp(1.38rem, 1.24rem + 0.62vw, 1.8rem);
+  --step-3: clamp(1.7rem, 1.46rem + 1.05vw, 2.4rem);
+  --step-4: clamp(2.1rem, 1.7rem + 1.8vw, 3.3rem);
+  --step-5: clamp(2.6rem, 1.96rem + 2.85vw, 4.5rem);
+  --step-6: clamp(3.4rem, 2.3rem + 4.9vw, 6.6rem);
+
+  /* Space */
+  --gutter: clamp(1.125rem, 0.6rem + 2.6vw, 3rem);
+  --space-m:clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+  --space-l: clamp(2.25rem, 1.7rem + 2.4vw, 3.75rem);
+  --space-xl: clamp(3.25rem, 2.3rem + 4.2vw, 6rem);
+  --space-section: clamp(4.5rem, 3.2rem + 5.6vw, 8.5rem);
+
+  --measure: 34rem;           /* About 65 characters of body text */
+  --wide: 76rem;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-breath: cubic-bezier(0.45, 0, 0.55, 1);
+
+  /* Header heights */
+  --bar-h: 4.25rem;
+}
