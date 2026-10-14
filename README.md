@@ -13,3 +13,24 @@ folder on any static host. Vercel deploys every pushed branch.
 
 Each design option lives on its own branch and has its own design notes in
 `DESIGN.md`.
+
+## This branch: option C, "A string of pearls"
+
+| Page | File |
+| --- | --- |
+| Home | `index.html` |
+| About Me | `about.html` |
+| Our Story | `story.html` |
+| Work With Me (offerings, breathing minute, oils, booking form) | `work-with-me.html` |
+
+How to edit:
+- Words: edit the HTML directly. The header and footer are repeated on every
+  page, so change all four files.
+- Colours and fonts: `css/theme.css` (her palette, with names and HEX codes).
+  Layout and components: `css/site.css`. Behaviour: `js/site.js`.
+- Booking form: replace `your-form-id` in the form's `action` on
+  `work-with-me.html` with the real Formspree id; the pre-launch guard then
+  switches itself off. `?session=sound-bath`, `one-to-one` or `cleansing`
+  preselects the session.
+- Photos: add them to `assets/portraits/` and keep the `width` and `height`
+  attributes in step with the file.

@@ -1,0 +1,82 @@
+/* ==========================================================================
+   Strands of Grace: theme tokens (design option C, "A string of pearls")
+
+   Her palette, exactly as in her brief (see BRAND.md). Text is only ever
+   Deep Plum or Charcoal. The pastels and Champagne Gold are for lines,
+   pearls, outlines and fills, never for text on ivory or cream.
+   ========================================================================== */
+
+:root {
+  /* ---- Primary accents: the most prominent colours ---------------------- */
+  --soft-lavender: #C8B4E8;   /* Spirituality, intuition and reflection */
+  --blush-pink: #F2B7D2;      /* Love, compassion and kindness */
+  --champagne-gold: #D9B96B;  /* Grace, elegance, light and beauty. Leads this design: every strand, rule and outline.
+                                 1.9:1 on ivory, so never text. Charcoal on a gold fill is 6.4:1. */
+
+  /* ---- Secondary accents: woven through subtly, as pearls --------------- */
+  --serenity-blue: #A7C9EE;   /* Peace, calm and communication */
+  --gentle-teal: #87D4D1;     /* Balance, harmony and renewal */
+  --sage-green: #B6D7AA;      /* Growth, healing and connection */
+  --soft-peach: #F6C6A8;      /* Warmth, creativity and new beginnings */
+
+  /* ---- Foundation -------------------------------------------------------- */
+  --warm-ivory: #FFFDF8;      /* Main background */
+  --soft-cream: #F8F3EA;      /* Alternate sections */
+  --deep-plum: #574467;       /* Headings, links, primary buttons. 8.5:1 on ivory, 7.8:1 on cream */
+  --charcoal: #39343D;        /* Body text. 11.9:1 on ivory, 11:1 on cream */
+
+  /* ---- Derived from her palette (kept to a minimum) ---------------------- */
+  --pearl-white: #FDEDE5;     /* The pearls in her logo, for the breathing pearl */
+  --plum-deep: #4A3A58;       /* Deep Plum, one step darker: pressed buttons. 10:1 on ivory */
+  --charcoal-soft: #615C62;   /* Charcoal at 80%: notes and small print. 6.4:1 on ivory, 5.9:1 on cream */
+  --field-line: #897C92;      /* Deep Plum at 70%: form field underlines. 3.8:1 on ivory (UI contrast) */
+  --hairline: rgb(217 185 107 / .5);        /* Champagne Gold at 50%: rules and grid lines */
+  --hairline-soft: rgb(217 185 107 / .3);   /* Champagne Gold at 30%: quiet dividers */
+
+  /* ---- Roles ------------------------------------------------------------- */
+  --bg: var(--warm-ivory);
+  --bg-alt: var(--soft-cream);
+  --heading: var(--deep-plum);
+  --text: var(--charcoal);
+  --text-soft: var(--charcoal-soft);
+  --gold: var(--champagne-gold);
+  --focus: var(--deep-plum);
+
+  /* ---- Type -------------------------------------------------------------- */
+  --font-display: "Josefin Sans", "Futura", "Avenir Next", "Century Gothic", "Gill Sans", sans-serif;
+  --font-serif: "Lora", "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --step--1: .875rem;                                     /* 14px: notes, meta */
+  --step-0: clamp(1rem, .96rem + .19vw, 1.0625rem);       /* 16 to 17px: body */
+  --step-1: clamp(1.125rem, 1.05rem + .37vw, 1.3125rem);  /* 18 to 21px: leads */
+  --step-2: clamp(1.3125rem, 1.15rem + .7vw, 1.75rem);    /* 21 to 28px: card titles */
+  --step-3: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);       /* 28 to 40px: large quotes */
+  --step-4: clamp(2.125rem, 1.6rem + 2.4vw, 3.5rem);      /* 34 to 56px: section headings */
+  --step-5: clamp(2.625rem, 1.8rem + 3.6vw, 5.25rem);     /* 42 to 84px: page headings */
+
+  /* ---- Space and grid ---------------------------------------------------- */
+  --page-max: 1200px;
+  --gutter: clamp(20px, 6.5vw, 120px);   /* side gutter, never under 20px */
+  --col-gap: clamp(16px, 2vw, 28px);
+  --section-y: clamp(4.5rem, 3rem + 5.5vw, 8.5rem);
+  --header-h: 68px;
+
+  /* ---- Motion ------------------------------------------------------------ */
+  --ease: cubic-bezier(.22, .61, .36, 1);
+  --ease-soft: cubic-bezier(.45, 0, .2, 1);
+}
+
+@media (min-width: 1024px) {
+  :root { --header-h: 88px; }
+}
+
+/* Pearl colours, by name, in the order of the lotus (the COPY.md order).
+   Pearls, top rules and dots follow this order down every page. */
+.pearl--blush { --c: var(--blush-pink); }
+.pearl--lavender { --c: var(--soft-lavender); }
+.pearl--blue { --c: var(--serenity-blue); }
+.pearl--teal { --c: var(--gentle-teal); }
+.pearl--sage { --c: var(--sage-green); }
+.pearl--peach { --c: var(--soft-peach); }
+.pearl--gold { --c: var(--champagne-gold); }
