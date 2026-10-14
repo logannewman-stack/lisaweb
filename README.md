@@ -13,3 +13,27 @@ folder on any static host. Vercel deploys every pushed branch.
 
 Each design option lives on its own branch and has its own design notes in
 `DESIGN.md`.
+
+## This option: Watercolour bloom (branch `option-b`)
+
+| Page | File |
+| --- | --- |
+| Home | `index.html` |
+| About Me | `about.html` |
+| Our Story (2017 to 2026) | `story.html` |
+| Work With Me (offerings, breathing exercise, oils, booking form) | `work-with-me.html` |
+
+How to edit:
+- **Words:** edit the text in the HTML. Placeholders are in [square brackets].
+  `COPY.md` is the source for all copy.
+- **Header, footer and the SVG drawing kit** appear on all four pages. Change
+  every copy, and move `aria-current="page"` to the current page's link.
+- **Colours:** `css/theme.css` (her named palette). **Layout:** `css/site.css`.
+  **Behaviour:** `js/site.js` (menu, quotes, breathing, booking form, timeline
+  strand).
+- **Timeline:** add or remove an `<li class="timeline__item">` in
+  `story.html`. The gold strand redraws itself.
+- **Booking form:** to switch it on, replace `your-form-id` in the form's
+  `action` with the real Formspree id. Until then the form shows a notice and
+  does not send. The links `?session=sound-bath`, `one-to-one` and `cleansing`
+  preselect the session.

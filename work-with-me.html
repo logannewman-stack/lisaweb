@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work With Me | Strands of Grace</title>
+<meta name="description" content="Strands of Grace with Lisa Brunson: sound, ceremony and gentle guidance for the journey back to yourself.">
+<meta property="og:title" content="Work With Me | Strands of Grace">
+<meta property="og:description" content="Strands of Grace with Lisa Brunson: sound, ceremony and gentle guidance for the journey back to yourself.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Strands of Grace">
+<meta property="og:image" content="https://lisaweb-lilac.vercel.app/assets/brand/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Strands of Grace logo: a watercolour lotus with a strand of pearls">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFDF8">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/brand/icon-192.png">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Nunito+Sans:ital,opsz,wght@0,6..12,300..700;1,6..12,300..700&family=Pinyon+Script&display=swap">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/site.css">
+<script>document.documentElement.classList.add('js');</script>
+<script src="js/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Shared drawing kit: petal mask, watercolour filters, washes, drops, gold. -->
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="g-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#D9B96B"/>
+      <stop offset=".5" stop-color="#E6CC8A"/>
+      <stop offset="1" stop-color="#C9A24E"/>
+    </linearGradient>
+    <linearGradient id="g-gold-h" x1="0" y1="0" x2="600" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D9B96B" stop-opacity="0"/>
+      <stop offset=".2" stop-color="#D9B96B"/>
+      <stop offset=".5" stop-color="#E6CC8A"/>
+      <stop offset=".8" stop-color="#C9A24E"/>
+      <stop offset="1" stop-color="#C9A24E" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="g-gold-fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#D9B96B" stop-opacity="0"/>
+      <stop offset=".16" stop-color="#D9B96B"/>
+      <stop offset=".5" stop-color="#E2C47E"/>
+      <stop offset=".84" stop-color="#C9A24E"/>
+      <stop offset="1" stop-color="#C9A24E" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="g-gold-v" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#D9B96B" stop-opacity="0"/>
+      <stop offset=".05" stop-color="#D9B96B"/>
+      <stop offset=".5" stop-color="#E2C47E"/>
+      <stop offset=".95" stop-color="#C9A24E"/>
+      <stop offset="1" stop-color="#C9A24E" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="clip-petal" clipPathUnits="objectBoundingBox">
+      <path d="M.5 0C.41 .1 0 .22 0 .53C0 .8 .225 1 .5 1C.775 1 1 .8 1 .53C1 .22 .59 .1 .5 0Z"/>
+    </clipPath>
+    <filter id="f-wash" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".011" numOctaves="4" seed="9" result="warp"/>
+      <feDisplacementMap in="SourceGraphic" in2="warp" scale="46" xChannelSelector="R" yChannelSelector="G" result="shape"/>
+      <feGaussianBlur in="shape" stdDeviation="11" result="blurred"/>
+      <feComposite in="shape" in2="blurred" operator="arithmetic" k2=".75" k3="-.7" result="rim"/>
+      <feComponentTransfer in="shape" result="body"><feFuncA type="linear" slope=".3"/></feComponentTransfer>
+      <feGaussianBlur in="shape" stdDeviation="18" result="bleed"/>
+      <feComponentTransfer in="bleed" result="bleedSoft"><feFuncA type="linear" slope=".3"/></feComponentTransfer>
+      <feMerge result="paint"><feMergeNode in="bleedSoft"/><feMergeNode in="body"/><feMergeNode in="rim"/></feMerge>
+      <feGaussianBlur in="paint" stdDeviation=".9" result="soft"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="2" seed="3" result="grain"/>
+      <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -.55 1.18" result="grainA"/>
+      <feComposite in="soft" in2="grainA" operator="in"/>
+    </filter>
+    <filter id="f-drop" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="5" result="warp"/>
+      <feDisplacementMap in="SourceGraphic" in2="warp" scale="10" xChannelSelector="R" yChannelSelector="G" result="shape"/>
+      <feGaussianBlur in="shape" stdDeviation="3.2" result="blurred"/>
+      <feComposite in="shape" in2="blurred" operator="arithmetic" k2="1" k3="-.9" result="rim"/>
+      <feComponentTransfer in="shape" result="body"><feFuncA type="linear" slope=".5"/></feComponentTransfer>
+      <feGaussianBlur in="shape" stdDeviation="5" result="bleed"/>
+      <feComponentTransfer in="bleed" result="bleedSoft"><feFuncA type="linear" slope=".25"/></feComponentTransfer>
+      <feMerge result="paint"><feMergeNode in="bleedSoft"/><feMergeNode in="body"/><feMergeNode in="rim"/></feMerge>
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3" result="grain"/>
+      <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -.5 1.15" result="grainA"/>
+      <feComposite in="paint" in2="grainA" operator="in"/>
+    </filter>
+    <!-- Fades for the washes: each mask keeps one side of a wash crisp and lets
+         the other dissolve, like wet-in-wet paint. Named for the crisp side. -->
+    <linearGradient id="g-fade-tl" x1="0" y1="0" x2="1" y2="1"><stop offset=".2" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".7"/><stop offset=".85" stop-color="#fff" stop-opacity=".1"/></linearGradient>
+    <linearGradient id="g-fade-br" x1="1" y1="1" x2="0" y2="0"><stop offset=".2" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".7"/><stop offset=".85" stop-color="#fff" stop-opacity=".1"/></linearGradient>
+    <linearGradient id="g-fade-bl" x1="0" y1="1" x2="1" y2="0"><stop offset=".2" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".7"/><stop offset=".85" stop-color="#fff" stop-opacity=".1"/></linearGradient>
+    <linearGradient id="g-fade-tr" x1="1" y1="0" x2="0" y2="1"><stop offset=".2" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".7"/><stop offset=".85" stop-color="#fff" stop-opacity=".1"/></linearGradient>
+    <linearGradient id="g-fade-t" x1="0" y1="0" x2="0" y2="1"><stop offset=".25" stop-color="#fff"/><stop offset=".6" stop-color="#fff" stop-opacity=".6"/><stop offset=".85" stop-color="#fff" stop-opacity=".12"/></linearGradient>
+    <linearGradient id="g-fade-r" x1="1" y1="0" x2="0" y2="0"><stop offset=".25" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".65"/><stop offset=".85" stop-color="#fff" stop-opacity=".1"/></linearGradient>
+    <mask id="m-fade-tl" maskContentUnits="objectBoundingBox" x="-.4" y="-.4" width="1.8" height="1.8"><rect x="-.4" y="-.4" width="1.8" height="1.8" fill="url(#g-fade-tl)"/></mask>
+    <mask id="m-fade-br" maskContentUnits="objectBoundingBox" x="-.4" y="-.4" width="1.8" height="1.8"><rect x="-.4" y="-.4" width="1.8" height="1.8" fill="url(#g-fade-br)"/></mask>
+    <mask id="m-fade-bl" maskContentUnits="objectBoundingBox" x="-.4" y="-.4" width="1.8" height="1.8"><rect x="-.4" y="-.4" width="1.8" height="1.8" fill="url(#g-fade-bl)"/></mask>
+    <mask id="m-fade-tr" maskContentUnits="objectBoundingBox" x="-.4" y="-.4" width="1.8" height="1.8"><rect x="-.4" y="-.4" width="1.8" height="1.8" fill="url(#g-fade-tr)"/></mask>
+    <mask id="m-fade-t" maskContentUnits="objectBoundingBox" x="-.4" y="-.4" width="1.8" height="1.8"><rect x="-.4" y="-.4" width="1.8" height="1.8" fill="url(#g-fade-t)"/></mask>
+    <mask id="m-fade-r" maskContentUnits="objectBoundingBox" x="-.4" y="-.4" width="1.8" height="1.8"><rect x="-.4" y="-.4" width="1.8" height="1.8" fill="url(#g-fade-r)"/></mask>
+    <symbol id="s-wash-a" viewBox="0 0 600 600" preserveAspectRatio="none" overflow="visible">
+      <path d="M190 120C280 50 430 60 500 140C570 220 560 380 470 460C380 540 210 540 140 450C80 370 110 190 190 120Z" fill="currentColor" filter="url(#f-wash)"/>
+    </symbol>
+    <symbol id="s-wash-b" viewBox="0 0 600 600" preserveAspectRatio="none" overflow="visible">
+      <path d="M96 300C110 190 250 120 390 126C520 132 584 220 540 300C494 384 360 440 230 430C130 422 86 380 96 300Z" fill="currentColor" filter="url(#f-wash)"/>
+    </symbol>
+    <symbol id="s-wash-c" viewBox="0 0 600 600" preserveAspectRatio="none" overflow="visible">
+      <path d="M250 160C330 120 440 170 450 260C460 350 380 430 290 420C200 410 150 330 170 250C180 210 210 180 250 160Z" fill="currentColor" filter="url(#f-wash)"/>
+    </symbol>
+    <symbol id="s-wash-crown" viewBox="0 0 600 300" preserveAspectRatio="none" overflow="visible">
+      <path d="M30 168C40 84 170 30 300 36C440 42 560 84 572 160C584 236 490 274 380 262C300 254 250 282 168 278C80 274 22 236 30 168Z" fill="currentColor" filter="url(#f-wash)"/>
+    </symbol>
+    <symbol id="s-drop" viewBox="0 0 100 100" overflow="visible">
+      <path d="M51 12C71 13 88 30 85 53C82 76 65 88 47 87C26 86 12 71 15 49C18 27 33 11 51 12Z" fill="currentColor" filter="url(#f-drop)"/>
+    </symbol>
+    <symbol id="s-flourish" viewBox="0 0 600 90" overflow="visible">
+      <g fill="none" stroke="url(#g-gold-h)" stroke-width="1.4" stroke-linecap="round">
+        <path vector-effect="non-scaling-stroke" d="M284 45C250 45 230 30 196 30C150 30 140 64 172 66C200 68 196 40 160 40C110 40 60 60 6 50"/>
+        <path vector-effect="non-scaling-stroke" d="M316 45C350 45 370 60 404 60C450 60 460 26 428 24C400 22 404 50 440 50C490 50 540 30 594 40"/>
+      </g>
+      <path d="M300 32L303.2 41.8L313 45L303.2 48.2L300 58L296.8 48.2L287 45L296.8 41.8Z" fill="#D9B96B"/>
+    </symbol>
+    <symbol id="s-arrow" viewBox="0 0 24 24">
+      <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="s-external" viewBox="0 0 24 24">
+      <path d="M8 16 16.5 7.5M9.5 7h7.5v7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="s-bottle" viewBox="0 0 60 112" overflow="visible">
+      <rect x="18" y="2" width="24" height="28" rx="4" fill="#574467"/>
+      <path d="M22 8v18M26 8v18M30 8v18M34 8v18M38 8v18" stroke="#FFFDF8" stroke-opacity=".22" stroke-width="1.2"/>
+      <rect x="21" y="30" width="18" height="7" fill="#D9B96B"/>
+      <path d="M15 37h30a7 7 0 0 1 7 7v57a9 9 0 0 1-9 9H17a9 9 0 0 1-9-9V44a7 7 0 0 1 7-7Z" fill="#FFFDF8" fill-opacity=".72" stroke="#C9A24E" stroke-width="1.4"/>
+      <rect x="12.5" y="58" width="35" height="32" rx="3" fill="currentColor" fill-opacity=".55"/>
+      <path d="M17 67h26M17 73h18" stroke="#574467" stroke-opacity=".35" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M14 45v48" stroke="#FFFFFF" stroke-opacity=".8" stroke-width="2.4" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="site-header" data-header>
+  <div class="site-header__inner wrap wrap--wide">
+    <a class="brand" href="index.html">
+      <img src="assets/brand/sog-logo-header.webp" srcset="assets/brand/sog-logo-header-450.webp 450w, assets/brand/sog-logo-header.webp 900w" sizes="(min-width: 68em) 196px, 160px" width="900" height="319" alt="Strands of Grace, home">
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden data-menu-toggle>
+      <span class="menu-toggle__icon" aria-hidden="true"></span>
+      <span class="menu-toggle__label">Menu</span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul class="site-nav__list">
+        <li style="--i: 0"><a href="index.html">Home</a></li>
+        <li style="--i: 1"><a href="about.html">About Me</a></li>
+        <li style="--i: 2"><a href="story.html">Our Story</a></li>
+        <li style="--i: 3"><a href="work-with-me.html" aria-current="page">Work With Me</a></li>
+        <li style="--i: 4"><a href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener">Shop Oils<span class="vh"> (opens in a new tab)</span><svg aria-hidden="true" focusable="false"><use href="#s-external"/></svg></a></li>
+      </ul>
+      <a class="btn btn--bloom site-nav__cta" href="work-with-me.html#book">Book a session</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <section class="page-hero work-hero" aria-labelledby="work-title">
+    <div class="bloom bloom--work-hero drift" aria-hidden="true"></div>
+    <svg class="strand" viewBox="0 0 1440 112" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path stroke="url(#g-gold-fade)" stroke-width="1.5" stroke-linecap="round" d="M0 74C180 26 420 20 640 52C860 84 1100 92 1440 40"/>
+      <path stroke="url(#g-gold-fade)" stroke-width=".9" stroke-linecap="round" opacity=".7" d="M0 92C240 52 460 58 680 80C900 102 1140 96 1440 62"/>
+    </svg>
+    <div class="wrap page-hero__grid">
+      <h1 id="work-title">Work with me</h1>
+      <p class="lead">Three gentle ways to work together. If you are not sure which is right for you, send me a note and we will find it together.</p>
+    </div>
+  </section>
+
+  <section class="section offerings" id="offerings" aria-label="Offerings">
+    <div class="wrap">
+      <ul class="cards" role="list">
+        <li class="card offer" id="sound-bath">
+          <svg class="card__crown" viewBox="0 0 600 300" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#s-wash-crown" class="c-blush" width="600" height="300" mask="url(#m-fade-t)"/></svg>
+          <h2>Sound bath</h2>
+          <p class="card__meta">Small groups, 75 minutes</p>
+          <p>Lie back, be wrapped in blankets and let the bowls, chimes and drum do the work. You do nothing but breathe.</p>
+          <a class="btn btn--bloom" href="work-with-me.html?session=sound-bath#book">Book a sound bath</a>
+        </li>
+        <li class="card offer" id="one-to-one">
+          <svg class="card__crown" viewBox="0 0 600 300" preserveAspectRatio="none" aria-hidden="true" focusable="false" style="transform: scaleX(-1)"><use href="#s-wash-crown" class="c-lavender" width="600" height="300" mask="url(#m-fade-t)"/></svg>
+          <h2>One-to-one session</h2>
+          <p class="card__meta">Just you, 60 minutes</p>
+          <p>We begin with a conversation. Then sound and stillness, shaped around you and what you need today.</p>
+          <a class="btn btn--bloom" href="work-with-me.html?session=one-to-one#book">Book a one-to-one session</a>
+        </li>
+        <li class="card offer" id="cleansing">
+          <svg class="card__crown" viewBox="0 0 600 300" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#s-wash-crown" class="c-peach" width="600" height="300" mask="url(#m-fade-t)"/></svg>
+          <h2>Cleansing ceremony</h2>
+          <p class="card__meta">Homes and spaces, 90 minutes</p>
+          <p>Sage, palo santo, sound and intention for a home, a studio or a season that is ready for a fresh start.</p>
+          <a class="btn btn--bloom" href="work-with-me.html?session=cleansing#book">Book a cleansing ceremony</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--cream steps" id="session" aria-labelledby="session-title">
+    <div class="washes" aria-hidden="true">
+      <div class="bloom bloom--steps drift"></div>
+    </div>
+    <div class="wrap">
+      <header class="section-head">
+        <h2 id="session-title">What a session is like</h2>
+      </header>
+      <div class="steps__track">
+        <svg class="strand steps__curve" viewBox="0 0 1000 92" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path stroke="url(#g-gold-fade)" stroke-width="1.5" stroke-linecap="round" d="M-40 54C-16.7 49.7 43.3 26.3 100 28C156.7 29.7 233.3 64 300 64C366.7 64 433.3 28 500 28C566.7 28 633.3 64 700 64C766.7 64 843.3 30.3 900 28C956.7 25.7 1016.7 46.3 1040 50"/>
+        </svg>
+        <ol class="steps__list" role="list">
+          <li class="step" style="--y: 0px"><span class="step__num">1</span><div><h3>Arrive</h3><p>Come as you are. Shoes off, phone away, tea if you would like it.</p></div></li>
+          <li class="step" style="--y: 36px"><span class="step__num">2</span><div><h3>We talk</h3><p>A few quiet minutes on what brought you here and what you need today.</p></div></li>
+          <li class="step" style="--y: 0px"><span class="step__num">3</span><div><h3>Cleansing</h3><p>Sage and palo santo to clear the space, and a moment of stillness before we begin.</p></div></li>
+          <li class="step" style="--y: 36px"><span class="step__num">4</span><div><h3>Sound</h3><p>Bowls, chimes and drum, placed where they are needed. You simply rest and breathe.</p></div></li>
+          <li class="step" style="--y: 0px"><span class="step__num">5</span><div><h3>Rest</h3><p>Time to come back slowly. Nobody rushes you out.</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section breathe" id="breathe" aria-labelledby="breathe-title" data-breathe data-phase="rest">
+    <div class="wrap breathe__grid">
+      <div class="breathe__copy">
+        <h2 id="breathe-title">A minute for you</h2>
+        <p class="lead">Not ready to book? Take a minute just for you. Breathe in for four, hold for seven, and breathe out for eight.</p>
+        <button class="btn btn--bloom" type="button" data-breathe-toggle hidden>Begin</button>
+      </div>
+      <div class="breathe__stage">
+        <div class="breathe__ring" aria-hidden="true"></div>
+        <div class="breathe__bloom" data-breathe-bloom aria-hidden="true">
+          <div class="bloom bloom--breathe"></div>
+          <svg viewBox="0 0 600 600" preserveAspectRatio="none" focusable="false">
+            <use href="#s-wash-a" class="c-blush" x="10" y="10" width="520" height="520"/>
+            <use href="#s-wash-a" class="c-lavender" x="90" y="90" width="500" height="500" transform="rotate(180 340 340)"/>
+          </svg>
+          <div class="breathe__glow"></div>
+        </div>
+        <div class="breathe__readout">
+          <span class="breathe__count breathe__count--rest" data-breathe-count aria-hidden="true">4 · 7 · 8</span>
+          <p class="breathe__cue" data-breathe-cue aria-live="polite"></p>
+          <span class="breathe__rounds" data-breathe-rounds aria-hidden="true"><span class="pearl"></span><span class="pearl"></span><span class="pearl"></span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream oils" id="oils" aria-labelledby="oils-title">
+    <div class="washes" aria-hidden="true">
+      <div class="bloom bloom--oils-page drift"></div>
+    </div>
+    <div class="wrap">
+      <header class="section-head section-head--split section-head--top">
+        <h2 id="oils-title">The oils I use</h2>
+        <p>The essential oils I diffuse in every session are the same ones I use at home. I share them through doTERRA, and I am always happy to help you choose your first few.</p>
+      </header>
+      <ul class="oil-list" role="list">
+        <li class="oil" style="--c: var(--soft-lavender)">
+          <div class="oil__art" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="bottle c-lavender" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg></div>
+          <div><h3 class="oil__name">Lavender</h3><p class="oil__desc">Soft, floral and calming.</p></div>
+        </li>
+        <li class="oil" style="--c: var(--champagne-gold)">
+          <div class="oil__art" aria-hidden="true"><svg class="drop" focusable="false" style="transform: rotate(70deg)"><use href="#s-drop"/></svg><svg class="bottle c-gold" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg></div>
+          <div><h3 class="oil__name">Frankincense</h3><p class="oil__desc">Warm, grounding and steady.</p></div>
+        </li>
+        <li class="oil" style="--c: var(--soft-peach)">
+          <div class="oil__art" aria-hidden="true"><svg class="drop" focusable="false" style="transform: rotate(140deg)"><use href="#s-drop"/></svg><svg class="bottle c-peach" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg></div>
+          <div><h3 class="oil__name">Wild Orange</h3><p class="oil__desc">Bright, sweet and uplifting.</p></div>
+        </li>
+        <li class="oil" style="--c: var(--gentle-teal)">
+          <div class="oil__art" aria-hidden="true"><svg class="drop" focusable="false" style="transform: rotate(210deg)"><use href="#s-drop"/></svg><svg class="bottle c-teal" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg></div>
+          <div><h3 class="oil__name">Peppermint</h3><p class="oil__desc">Cool, crisp and refreshing.</p></div>
+        </li>
+        <li class="oil" style="--c: var(--sage-green)">
+          <div class="oil__art" aria-hidden="true"><svg class="drop" focusable="false" style="transform: rotate(280deg)"><use href="#s-drop"/></svg><svg class="bottle c-sage" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg></div>
+          <div><h3 class="oil__name">Eucalyptus</h3><p class="oil__desc">Fresh, clean and clearing.</p></div>
+        </li>
+      </ul>
+      <div class="oils__shop">
+        <a class="btn btn--bloom" href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener" aria-describedby="oils-note">Shop my oils<svg aria-hidden="true" focusable="false"><use href="#s-external"/></svg></a>
+        <p class="note" id="oils-note">Opens my doTERRA shop in a new tab.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section book" id="book" aria-labelledby="book-title">
+    <div class="washes" aria-hidden="true">
+      <div class="bloom bloom--book drift"></div>
+    </div>
+    <div class="wrap book__grid">
+      <div class="book__intro">
+        <h2 id="book-title">Begin your journey</h2>
+        <p class="lead">Tell me a little about what you are looking for, or simply say hello. I read every message myself and reply within a day or two.</p>
+        <ul class="contact-lines" role="list">
+          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4.5 7 7.5 6 7.5-6"/></svg>Email address to come.</li>
+          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.9" cy="7.1" r=".6"/></svg>Instagram to come.</li>
+          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>[City, State] and online.</li>
+        </ul>
+      </div>
+      <div class="form-card">
+        <svg class="form-card__wash" viewBox="0 0 600 600" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <use href="#s-wash-a" class="c-peach" width="600" height="600" mask="url(#m-fade-tr)"/>
+        </svg>
+        <form class="booking" action="https://formspree.io/f/your-form-id" method="POST" data-booking>
+          <div class="fields">
+            <div class="fields fields--pair">
+              <div class="field">
+                <label for="f-name">Your name</label>
+                <input id="f-name" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="f-email">Your email</label>
+                <input id="f-email" name="email" type="email" autocomplete="email" required>
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-session">Which session?</label>
+              <select id="f-session" name="session">
+                <option value="Sound bath" data-session="sound-bath">Sound bath</option>
+                <option value="One-to-one session" data-session="one-to-one">One-to-one session</option>
+                <option value="Cleansing ceremony" data-session="cleansing">Cleansing ceremony</option>
+                <option value="Not sure yet" data-session="not-sure" selected>Not sure yet</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-message">Your message</label>
+              <textarea id="f-message" name="message" rows="5" required></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn--bloom" type="submit">Send</button>
+          </div>
+          <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="washes" aria-hidden="true">
+    <div class="bloom bloom--footer-a"></div>
+    <div class="bloom bloom--footer-b"></div>
+  </div>
+  <div class="wrap">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="site-footer__logo" href="index.html"><img src="assets/brand/sog-logo-800.webp" srcset="assets/brand/sog-logo-800.webp 800w, assets/brand/sog-logo.webp 1600w" sizes="336px" width="1600" height="583" alt="Strands of Grace, home" loading="lazy" decoding="async"></a>
+        <p class="site-footer__tagline">Your journey begins with you.</p>
+        <p class="site-footer__sign">with love, Lisa</p>
+      </div>
+      <nav class="site-footer__nav" aria-label="Footer">
+        <ul role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Me</a></li>
+          <li><a href="story.html">Our Story</a></li>
+          <li><a href="work-with-me.html" aria-current="page">Work With Me</a></li>
+          <li><a href="work-with-me.html#book">Book a session</a></li>
+        </ul>
+      </nav>
+      <div class="site-footer__contact">
+        <ul role="list">
+          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4.5 7 7.5 6 7.5-6"/></svg>Email address to come</li>
+          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.9" cy="7.1" r=".6"/></svg>Instagram to come</li>
+          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>[City, State] and online</li>
+        </ul>
+        <a class="btn btn--quiet" href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener">Shop my oils<span class="vh"> (opens in a new tab)</span><svg aria-hidden="true" focusable="false"><use href="#s-external"/></svg></a>
+      </div>
+    </div>
+    <div class="site-footer__base">
+      <p>© 2026 Strands of Grace, Lisa Brunson</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

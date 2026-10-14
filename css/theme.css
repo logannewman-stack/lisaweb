@@ -1,0 +1,87 @@
+/* ==========================================================================
+   Strands of Grace: theme tokens
+   Option B, "Watercolour bloom". Every colour on the site comes from here.
+   ========================================================================== */
+
+:root {
+  /* --- Lisa's palette: her names and official HEX codes --------------- */
+
+  /* Primary accents: the most prominent colours after the foundation. */
+  --soft-lavender: #C8B4E8;   /* Soft Lavender: spirituality, intuition and reflection */
+  --blush-pink: #F2B7D2;      /* Blush Pink: love, compassion and kindness */
+  --champagne-gold: #D9B96B;  /* Champagne Gold: grace, elegance, light and beauty.
+                                 Lines, strands, pearls and ornaments only: never text on ivory */
+
+  /* Secondary accents: woven through subtly, never a whole section each. */
+  --serenity-blue: #A7C9EE;   /* Serenity Blue: peace, calm and communication */
+  --gentle-teal: #87D4D1;     /* Gentle Teal: balance, harmony and renewal */
+  --sage-green: #B6D7AA;      /* Sage Green: growth, healing and connection */
+  --soft-peach: #F6C6A8;      /* Soft Peach: warmth, creativity and new beginnings */
+
+  /* Foundation. */
+  --warm-ivory: #FFFDF8;      /* Warm Ivory: main background */
+  --soft-cream: #F8F3EA;      /* Soft Cream: alternate sections */
+  --deep-plum: #574467;       /* Deep Plum: headings (8.5:1 on ivory, 5.1:1 even on full blush) */
+  --charcoal: #39343D;        /* Charcoal: body text (11.9:1 on ivory) */
+
+  /* --- Supporting tones (decorative, or checked for contrast) ---------- */
+  --gold-deep: #C9A24E;       /* darker end of the gold strands; decorative only */
+  --gold-light: #E6CC8A;      /* lighter end of the gold strands; decorative only */
+  --pearl: #FDEDE5;           /* the pearls in her logo */
+  --ink-soft: #5E5566;        /* small notes and captions: 7:1 on ivory, 6.4:1 on cream */
+  --field-line: #8C7D98;      /* form field borders: 3.5:1 on cream, 3.8:1 on ivory */
+
+  /* The same colours as RGB channels, for translucent watercolour blooms:
+     rgb(var(--blush-rgb) / 0.5). Keep them in step with the HEX codes above. */
+  --lavender-rgb: 200 180 232;
+  --blush-rgb: 242 183 210;
+  --gold-rgb: 217 185 107;
+  --blue-rgb: 167 201 238;
+  --teal-rgb: 135 212 209;
+  --sage-rgb: 182 215 170;
+  --peach-rgb: 246 198 168;
+
+  /* --- Roles ----------------------------------------------------------- */
+  --bg: var(--warm-ivory);
+  --bg-alt: var(--soft-cream);
+  --heading: var(--deep-plum);
+  --text: var(--charcoal);
+  --focus: var(--deep-plum);
+
+  /* The blush-to-peach "bloom" button. Plum text on it is 5.1:1 or better. */
+  --bloom-fill: linear-gradient(118deg, var(--blush-pink) 0%, #F4BFC0 48%, var(--soft-peach) 100%);
+
+  /* --- Type ------------------------------------------------------------ */
+  --font-display: "Marcellus", Optima, Candara, "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --font-body: "Nunito Sans", "Avenir Next", Avenir, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-script: "Pinyon Script", "Snell Roundhand", "Apple Chancery", "Lucida Handwriting", cursive;
+
+  --step--1: clamp(0.875rem, 0.85rem + 0.12vw, 0.9375rem);
+  --step-0: clamp(1.0625rem, 1.02rem + 0.2vw, 1.1875rem);
+  --step-1: clamp(1.18rem, 1.08rem + 0.45vw, 1.42rem);
+  --step-2: clamp(1.4rem, 1.22rem + 0.8vw, 1.85rem);
+  --step-3: clamp(1.95rem, 1.5rem + 1.9vw, 3rem);
+  --step-4: clamp(2.6rem, 1.85rem + 3.2vw, 4.5rem);
+  --step-5: clamp(3.4rem, 2.2rem + 5.4vw, 7.25rem);
+
+  --measure: 34rem;           /* body line length: about 65 characters */
+
+  /* --- Space and shape ------------------------------------------------- */
+  --gutter: clamp(1rem, 4.6vw, 4.5rem);
+  --section: clamp(4.5rem, 3rem + 7vw, 9rem);
+  --max: 76rem;
+  --max-wide: 86rem;
+  --radius: 28px;
+  --radius-sm: 14px;
+  --header-h: 4.5rem;
+
+  --shadow-soft: 0 30px 60px -38px rgb(87 68 103 / 0.32), 0 2px 8px -4px rgb(87 68 103 / 0.08);
+
+  /* --- Motion (transform and opacity only) ----------------------------- */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-breath: cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+@media (min-width: 68em) {
+  :root { --header-h: 5.5rem; }
+}
