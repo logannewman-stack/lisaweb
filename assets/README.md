@@ -1,11 +1,10 @@
 # Assets
 
-| Folder or file | What it is |
+| Folder | What is in it |
 | --- | --- |
-| `assets/source/` | Lisa's original uploads, kept untouched for reference. They are not used by the site and are excluded from the Vercel deploy by `.vercelignore`. |
-| `assets/portraits/lisa-hero.jpg`, `lisa-hero-1200.jpg` | Her portrait at the beach, the hero. Two sizes; the browser picks. |
-| `assets/portraits/lisa-portrait.jpg` | A close 4:5 crop of the same photo, in the petal frame in "My story". |
-| `assets/logo.svg` | The mark, for the favicon and social previews. |
+| `assets/brand/` | The Strands of Grace logo in web sizes, the lotus on its own, icons and the share image. See `BRAND.md` for which file goes where. |
+| `assets/portraits/` | Lisa's portrait. `lisa-hero.jpg` (2000 px) and `lisa-hero-1200.jpg` are the beach photo; `lisa-portrait.jpg` is a close 4:5 crop of it. |
+| `assets/source/` | Original uploads, untouched, kept for reference. Excluded from every deploy by `.vercelignore`. Never link to them from the site. |
 
-To add a photo, make a copy no wider than 1600px, save it as a JPEG, and
-point to it from `index.html`.
+To add a photo, export a copy no wider than 2000 px as a JPEG (or WebP), put it
+in `assets/portraits/` and reference it from the page.
