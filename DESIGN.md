@@ -45,14 +45,14 @@ the design spends its boldness. Everything else stays quiet and exact.
   set. Sizes run from 10px in a strand to 78px on the colour tiles and about
   200px for the breathing pearl, all from the one symbol. `--s` sets the size.
 - **Strand** (`.strand`): a fine gold line with lighter passages along it,
-  seven pearls spaced evenly. Hero foot, footer top, phone menu, About and
-  Work With Me heroes, the quote divider.
+  seven pearls spaced evenly. Under the home emblem, footer top, phone menu,
+  About and Work With Me heroes, the quote divider.
 - **Light sweep** (`.strand__light`): once, on load, a short gold-and-white
   light travels the home strand from left to right and each pearl glints as
   it passes, then everything rests. Off under reduced motion.
 - **Lotus illustration** (`.lotus`): a fine-line lotus drawn in SVG, plum
   petals with a gold inner petal and a gold strand of seven pearls on gold
-  swashes. One per page, where the eye used to fall on nothing: beside the
+  swashes. One per page, where the eye used to fall on nothing: beneath the
   Welcome text, in the margin beside My background, beside the breathing
   exercise, and (petals only) above the Story strand, which runs through its
   base exactly as the pearls cross the logo. The petals are filled with the
@@ -66,7 +66,9 @@ the design spends its boldness. Everything else stays quiet and exact.
   every section heading.
 - **Capsules** (`.capsule`): portraits in tall, fully rounded capsules with a
   gold hairline inset inside the photograph, a thin gold outline offset up
-  and to the right, and a soft plum-tinted shadow.
+  and to the right, and a soft plum-tinted shadow. On the home page the
+  portrait sits beside the Welcome text, not in the hero: the hero belongs to
+  the emblem.
 - **Header**: a slim bar whose bottom hairline turns gold once the page has
   scrolled (`.is-scrolled`, set by the script); the current page is marked by
   a small gold pearl beneath its link.
@@ -85,12 +87,13 @@ the design spends its boldness. Everything else stays quiet and exact.
   rings, the line-drawn oil bottles with a pearl on each label.
 
 ## Motion
-- One entrance on the home hero, about 1.4s, then the light: the logo settles
-  from 0.985 scale and fades in, the intro rises 10px, then the buttons, then
-  the portrait unveils and its outline slides into place while the strand
-  draws and its pearls appear in turn; from 1s the light sweeps the strand
-  and rests by about 2s.
-- Ambient: the hero outline drifts a few pixels over 16s; the current guide
+- The home hero is the emblem: the full logo, large and centred on the ivory,
+  with the strand of seven pearls as its underline and the intro and buttons
+  beneath. One entrance, about 1.3s, then the light: the logo settles from
+  0.985 scale and fades in, the strand draws beneath it and its pearls appear
+  in turn, the intro rises 10px, then the buttons; from 1s the light sweeps
+  the strand and rests by about 2s.
+- Ambient: the Welcome portrait's outline drifts a few pixels over 16s; the current guide
   pearl's halo breathes. Quotes cross-fade and the quote stage eases its
   height to the quote on show, so a short quote is not left in a tall empty
   box. Nothing waits for a scroll observer; all content is visible at rest.
