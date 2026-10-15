@@ -21,8 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Nunito+Sans:ital,opsz,wght@0,6..12,300..700;1,6..12,300..700&family=Pinyon+Script&display=swap">
-<link rel="preload" as="image" href="assets/brand/sog-logo.webp" imagesrcset="assets/brand/sog-logo-800.webp 800w, assets/brand/sog-logo.webp 1600w" imagesizes="(min-width: 56em) 640px, 92vw" fetchpriority="high">
-<link rel="preload" as="image" href="assets/portraits/lisa-hero.jpg" imagesrcset="assets/portraits/lisa-hero-1200.jpg 1200w, assets/portraits/lisa-hero.jpg 2000w" imagesizes="(min-width: 56em) 1170px, 171vw">
+<link rel="preload" as="image" href="assets/brand/sog-logo.webp" imagesrcset="assets/brand/sog-logo-800.webp 800w, assets/brand/sog-logo.webp 1600w" imagesizes="(min-width: 56em) 704px, 92vw" fetchpriority="high">
 <link rel="stylesheet" href="css/theme.css">
 <link rel="stylesheet" href="css/site.css">
 <script>document.documentElement.classList.add('js');</script>
@@ -221,32 +220,59 @@
 <main id="main" tabindex="-1">
 
   <section class="hero" aria-label="Welcome">
-    <div class="hero__petals" aria-hidden="true">
-      <svg class="hero__petal hero__petal--phone-hide c-lavender" style="--x: 3%; --y: 7%; --w: 2.6rem; --r: -24deg; --o: .55; --t: 76s; --px: 10px; --py: 18px" focusable="false"><use href="#s-petal"/></svg>
-      <svg class="hero__petal hero__petal--phone-hide c-blush" style="--x: 47%; --y: 13%; --w: 3.4rem; --r: 18deg; --o: .5; --t: 64s; --px: -12px; --py: -22px" focusable="false"><use href="#s-petal"/></svg>
-      <svg class="hero__petal c-peach" style="--x: 22%; --y: 86%; --w: 2.3rem; --r: 40deg; --o: .55; --t: 82s; --px: 16px; --py: -18px" focusable="false"><use href="#s-petal"/></svg>
-      <svg class="hero__petal hero__petal--phone-hide c-blue" style="--x: 93%; --y: 9%; --w: 2.8rem; --r: -36deg; --o: .45; --t: 70s; --px: -10px; --py: 24px; --pr: -8deg" focusable="false"><use href="#s-petal"/></svg>
-      <svg class="hero__petal c-blush" style="--x: 86%; --y: 90%; --w: 2rem; --r: 70deg; --o: .5; --t: 58s; --px: 12px; --py: -14px" focusable="false"><use href="#s-petal"/></svg>
+    <div class="washes hero__washes" aria-hidden="true">
+      <div class="bloom hero__bloom hero__bloom--a"></div>
+      <div class="bloom hero__bloom hero__bloom--b"></div>
+      <svg class="wash hero__wash hero__wash--left" viewBox="0 0 600 600" focusable="false">
+        <use href="#s-wash-c" class="c-blush mul" x="40" y="40" width="440" height="440"/>
+        <use href="#s-wash-a" class="c-peach mul" x="240" y="300" width="300" height="300" opacity=".85"/>
+        <use href="#s-wash-c" class="c-blue mul" x="-20" y="380" width="170" height="170" opacity=".8"/>
+      </svg>
+      <svg class="wash hero__wash hero__wash--right" viewBox="0 0 600 600" focusable="false">
+        <use href="#s-wash-a" class="c-lavender mul" x="120" y="60" width="440" height="440"/>
+        <use href="#s-wash-c" class="c-blush mul" x="0" y="260" width="280" height="280" opacity=".8"/>
+        <use href="#s-wash-c" class="c-teal mul" x="380" y="420" width="150" height="150" opacity=".7"/>
+      </svg>
+      <svg class="swash hero__swash" viewBox="0 0 1000 260" focusable="false"><use href="#s-swash-long"/></svg>
     </div>
-    <div class="hero__inner wrap wrap--wide">
+    <div class="hero__petals" aria-hidden="true">
+      <svg class="hero__petal c-lavender" style="--x: 6%; --y: 10%; --w: 2.6rem; --r: -24deg; --o: .55; --t: 76s; --px: 10px; --py: 18px" focusable="false"><use href="#s-petal"/></svg>
+      <svg class="hero__petal hero__petal--phone-hide c-blush" style="--x: 90%; --y: 14%; --w: 3.2rem; --r: 18deg; --o: .5; --t: 64s; --px: -12px; --py: -22px" focusable="false"><use href="#s-petal"/></svg>
+      <svg class="hero__petal c-peach" style="--x: 5%; --y: 78%; --w: 2.3rem; --r: 40deg; --o: .55; --t: 82s; --px: 16px; --py: -18px" focusable="false"><use href="#s-petal"/></svg>
+      <svg class="hero__petal hero__petal--phone-hide c-blue" style="--x: 85%; --y: 64%; --w: 2.8rem; --r: -36deg; --o: .45; --t: 70s; --px: -10px; --py: 24px; --pr: -8deg" focusable="false"><use href="#s-petal"/></svg>
+      <svg class="hero__petal c-blush" style="--x: 58%; --y: 92%; --w: 2rem; --r: 70deg; --o: .5; --t: 58s; --px: 12px; --py: -14px" focusable="false"><use href="#s-petal"/></svg>
+    </div>
+    <div class="hero__inner wrap">
       <h1 class="hero__logo">
-        <img src="assets/brand/sog-logo.webp" srcset="assets/brand/sog-logo-800.webp 800w, assets/brand/sog-logo.webp 1600w" sizes="(min-width: 56em) 640px, 92vw" width="1600" height="583" alt="Strands of Grace: your journey begins with you" fetchpriority="high">
+        <img src="assets/brand/sog-logo.webp" srcset="assets/brand/sog-logo-800.webp 800w, assets/brand/sog-logo.webp 1600w" sizes="(min-width: 56em) 704px, 92vw" width="1600" height="583" alt="Strands of Grace: your journey begins with you" fetchpriority="high">
       </h1>
       <p class="hero__intro">Sound, ceremony and gentle guidance with Lisa Brunson, for the journey back to yourself.</p>
       <div class="hero__actions">
         <a class="btn btn--bloom" href="work-with-me.html#book">Book a session</a>
         <a class="btn btn--quiet" href="about.html">Meet Lisa</a>
       </div>
-      <figure class="hero__portrait petal">
-        <div class="bloom petal__bloom" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="section welcome" id="welcome" aria-labelledby="welcome-title">
+    <div class="wrap welcome__grid">
+      <div class="welcome__copy">
+        <h2 id="welcome-title">Welcome to Strands of Grace</h2>
+        <svg class="swash welcome__swash" viewBox="0 0 400 110" aria-hidden="true" focusable="false"><use href="#s-swash-flourish"/></svg>
+        <p>Every life is woven from many strands: the people we love, the seasons we walk through, the moments that change us. Strands of Grace is a gentle space to slow down, breathe and gather those strands back together, with kindness.</p>
+        <p>Whether you are looking for calm, for clarity or simply for a moment that belongs to you, you are welcome here.</p>
+        <a class="link-arrow" href="story.html">Read the story of Strands of Grace<svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+      </div>
+      <figure class="welcome__portrait petal">
+        <div class="bloom petal__bloom drift" aria-hidden="true"></div>
         <svg class="petal__wash" viewBox="0 0 660 680" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <use href="#s-wash-c" class="c-blush mul" x="-70" y="180" width="430" height="430"/>
+          <use href="#s-wash-c" class="c-blush mul" x="20" y="190" width="420" height="420"/>
           <use href="#s-wash-a" class="c-lavender mul" x="300" y="-20" width="380" height="380"/>
           <use href="#s-wash-c" class="c-peach mul" x="360" y="400" width="290" height="290"/>
-          <use href="#s-wash-c" class="c-blue mul" x="40" y="500" width="160" height="160" opacity=".8"/>
+          <use href="#s-wash-c" class="c-blue mul" x="100" y="500" width="160" height="160" opacity=".8"/>
         </svg>
         <div class="petal__frame">
-          <img src="assets/portraits/lisa-hero.jpg" srcset="assets/portraits/lisa-hero-1200.jpg 1200w, assets/portraits/lisa-hero.jpg 2000w" sizes="(min-width: 56em) 1170px, 171vw" width="2000" height="1335" alt="Lisa Brunson smiling on the beach, the ocean behind her" fetchpriority="high">
+          <img src="assets/portraits/lisa-hero.jpg" srcset="assets/portraits/lisa-hero-1200.jpg 1200w, assets/portraits/lisa-hero.jpg 2000w" sizes="(min-width: 56em) 1050px, 165vw" width="2000" height="1335" alt="Lisa Brunson smiling on the beach, the ocean behind her">
         </div>
         <svg class="petal__strand" viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true" focusable="false">
           <path stroke="url(#g-gold)" stroke-width="1.2" opacity=".85" fill="none" transform="translate(8 -7) scale(1.035)" d="M200 0C164 50 0 110 0 265C0 400 90 500 200 500C310 500 400 400 400 265C400 110 236 50 200 0Z"/>
@@ -254,25 +280,6 @@
           <use class="petal__tail" href="#s-swash-long-r" x="-570" y="436" width="560" height="146"/>
         </svg>
       </figure>
-    </div>
-  </section>
-
-  <section class="section welcome" id="welcome" aria-labelledby="welcome-title">
-    <div class="wrap welcome__grid">
-      <div class="welcome__head">
-        <svg class="welcome__drop" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
-          <use href="#s-wash-a" class="c-blush mul" x="40" y="60" width="400" height="400"/>
-          <use href="#s-wash-c" class="c-lavender mul" x="250" y="250" width="300" height="300" opacity=".85"/>
-        </svg>
-        <img class="welcome__lotus" src="assets/brand/sog-lotus.webp" width="600" height="259" alt="" loading="lazy" decoding="async">
-        <h2 id="welcome-title">Welcome to Strands of Grace</h2>
-        <svg class="swash welcome__swash" viewBox="0 0 400 110" aria-hidden="true" focusable="false"><use href="#s-swash-flourish"/></svg>
-      </div>
-      <div class="welcome__body">
-        <p>Every life is woven from many strands: the people we love, the seasons we walk through, the moments that change us. Strands of Grace is a gentle space to slow down, breathe and gather those strands back together, with kindness.</p>
-        <p>Whether you are looking for calm, for clarity or simply for a moment that belongs to you, you are welcome here.</p>
-        <a class="link-arrow" href="story.html">Read the story of Strands of Grace<svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
-      </div>
     </div>
   </section>
 

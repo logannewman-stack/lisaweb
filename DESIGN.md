@@ -68,13 +68,22 @@ The shared SVG kit (gradients, filters, masks, symbols) sits at the top of
 ## Signature elements
 - **Swashes:** `#s-swash-long`, `-long-r`, `-flourish`, `-arc`, `-arc-r` and
   `-wave` are filled calligraphic shapes (thick and thin like a nib) with one
-  teardrop loop each, after the swashes in the logo. The home hero's arc wraps
-  the portrait and sweeps left under the buttons on wide screens; About mirrors
-  it; Our Story carries the wave under its title; Work With Me has the long
-  swash under its title; Welcome has the flourish under its heading.
+  teardrop loop each, after the swashes in the logo. The home hero carries the
+  long swash along its bottom edge; the Welcome portrait's arc wraps the petal
+  and ends in its loop (the long tail is hidden there, beside a full column of
+  text); About's arc wraps her portrait and sweeps right under the heading;
+  Our Story carries the wave under its title; Work With Me has the long swash
+  under its title; Welcome has the flourish under its heading.
+- **Home hero:** the full logo is the centrepiece, large and centred on plain
+  ivory, with the intro line and the two buttons under it. The paint frames
+  it from the corners (a blush and peach cluster lower left, a lavender and
+  blue cluster upper right, two faint granulated blooms behind them) and
+  never runs behind the lettering; the swash runs along the bottom and five
+  petals drift at the edges. Her portrait is not in the hero.
 - **Petal portraits:** `clip-path: url(#clip-petal)` with a thin gold outline,
   three multiplied washes and a bloom behind, and the gold swash around. The
-  image is framed with `--img-w`, `--img-x` and `--img-y`.
+  image is framed with `--img-w`, `--img-x` and `--img-y`. On the home page
+  the portrait sits beside the Welcome text, the second moment of the page.
 - **Cards** (`.card`): a painted brush stroke runs edge to edge across the top
   (two glazes in different hues), clipped by the paper's rounded edge, with a
   thin wavy gold hairline beneath it. On the home page the three cards step
@@ -107,7 +116,8 @@ The shared SVG kit (gradients, filters, masks, symbols) sits at the top of
 ## Motion
 - One orchestrated entrance on the home hero, about 1.2 s in all: the logo
   settles from 0.985 scale and fades in, the intro rises 10px, then the
-  buttons, then the portrait blooms in with its washes and the swash fades up.
+  buttons, while the corner washes and blooms spread in and the swash and
+  petals fade up.
 - Ambient: `.drift` blooms move very slowly (50 to 70 s cycles), the petals
   drift over 60 to 80 s, the seven drops bob a few pixels.
 - The breathing bloom scales with the breath, timed by `--phase-dur`.
