@@ -32,6 +32,8 @@
   --field-line: #897C92;      /* Deep Plum at 70%: form field underlines. 3.8:1 on ivory (UI contrast) */
   --hairline: rgb(217 185 107 / .5);        /* Champagne Gold at 50%: rules and grid lines */
   --hairline-soft: rgb(217 185 107 / .3);   /* Champagne Gold at 30%: quiet dividers */
+  --gold-glow: rgb(217 185 107 / .45);      /* Champagne Gold at 45%: the glint as light passes a pearl */
+  --plum-shade: rgb(87 68 103 / .18);       /* Deep Plum at 18%: the soft shadow under the portrait */
 
   /* ---- Roles ------------------------------------------------------------- */
   --bg: var(--warm-ivory);
@@ -43,24 +45,24 @@
   --focus: var(--deep-plum);
 
   /* ---- Type -------------------------------------------------------------- */
-  --font-display: "Josefin Sans", "Futura", "Avenir Next", "Century Gothic", "Gill Sans", sans-serif;
+  --font-display: "Italiana", "Didot", "Bodoni MT", "Cormorant Garamond", "Times New Roman", serif;
   --font-serif: "Lora", "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
   --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   --step--1: .875rem;                                     /* 14px: notes, meta */
-  --step-0: clamp(1rem, .96rem + .19vw, 1.0625rem);       /* 16 to 17px: body */
-  --step-1: clamp(1.125rem, 1.05rem + .37vw, 1.3125rem);  /* 18 to 21px: leads */
-  --step-2: clamp(1.3125rem, 1.15rem + .7vw, 1.75rem);    /* 21 to 28px: card titles */
-  --step-3: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);       /* 28 to 40px: large quotes */
-  --step-4: clamp(2.125rem, 1.6rem + 2.4vw, 3.5rem);      /* 34 to 56px: section headings */
-  --step-5: clamp(2.625rem, 1.8rem + 3.6vw, 5.25rem);     /* 42 to 84px: page headings */
+  --step-0: clamp(1.0625rem, 1.03rem + .18vw, 1.125rem);  /* 17 to 18px: body */
+  --step-1: clamp(1.1875rem, 1.1rem + .45vw, 1.375rem);   /* 19 to 22px: leads */
+  --step-2: clamp(1.5rem, 1.3rem + .9vw, 2rem);           /* 24 to 32px: card titles */
+  --step-3: clamp(1.9rem, 1.5rem + 1.8vw, 2.75rem);       /* 30 to 44px: large quotes, years */
+  --step-4: clamp(2.6rem, 1.9rem + 3vw, 3.8rem);          /* 42 to 61px: section headings */
+  --step-5: clamp(3.25rem, 2.3rem + 4.2vw, 5.5rem);       /* 52 to 88px: page headings */
 
   /* ---- Space and grid ---------------------------------------------------- */
   --page-max: 1200px;
   --gutter: clamp(20px, 6.5vw, 120px);   /* side gutter, never under 20px */
   --col-gap: clamp(16px, 2vw, 28px);
   --section-y: clamp(4.5rem, 3rem + 5.5vw, 8.5rem);
-  --header-h: 68px;
+  --header-h: 62px;
 
   /* ---- Motion ------------------------------------------------------------ */
   --ease: cubic-bezier(.22, .61, .36, 1);
@@ -68,11 +70,12 @@
 }
 
 @media (min-width: 1024px) {
-  :root { --header-h: 88px; }
+  :root { --header-h: 78px; }
 }
 
 /* Pearl colours, by name, in the order of the lotus (the COPY.md order).
-   Pearls, top rules and dots follow this order down every page. */
+   Pearls, top rules and dots follow this order down every page. The classes
+   only set --c, so they can sit on a pearl or on anything that holds one. */
 .pearl--blush { --c: var(--blush-pink); }
 .pearl--lavender { --c: var(--soft-lavender); }
 .pearl--blue { --c: var(--serenity-blue); }
@@ -80,3 +83,4 @@
 .pearl--sage { --c: var(--sage-green); }
 .pearl--peach { --c: var(--soft-peach); }
 .pearl--gold { --c: var(--champagne-gold); }
+.pearl--pearl { --c: var(--pearl-white); }

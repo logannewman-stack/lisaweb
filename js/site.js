@@ -1,7 +1,8 @@
 /* Strands of Grace: site behaviour. No libraries.
-   Every page reads completely without this file: it only adds the phone
-   menu, the one-at-a-time quotes, the home scroll guide, the breathing
-   exercise, the timeline arrows and the booking form guard. */
+   Every page reads completely without this file: it only adds the header
+   hairline on scroll, the phone menu, the one-at-a-time quotes, the home
+   scroll guide, the breathing exercise, the timeline arrows and the booking
+   form guard. */
 (function () {
   'use strict';
 
@@ -11,6 +12,25 @@
 
   function $(selector, scope) { return (scope || doc).querySelector(selector); }
   function $$(selector, scope) { return Array.prototype.slice.call((scope || doc).querySelectorAll(selector)); }
+
+  /* ---- Header: a gold hairline once the page has scrolled --------------- */
+  function initHeader() {
+    var header = $('.site-header');
+    if (!header) return;
+    var ticking = false;
+
+    function update() {
+      ticking = false;
+      header.classList.toggle('is-scrolled', window.scrollY > 4);
+    }
+
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }, { passive: true });
+    update();
+  }
 
   /* ---- Phone menu: full-screen overlay, focus trapped while open -------- */
   function initMenu() {
@@ -116,11 +136,30 @@
     nav.hidden = false;
     if (total) total.textContent = String(items.length);
 
+    /* the stage is as tall as the quote on show; ease from the old height to the new */
+    var settle = null;
+    function easeHeight(from) {
+      if (settle) window.clearTimeout(settle);
+      list.style.height = '';
+      if (reduceMotion.matches) return;
+      var to = list.offsetHeight;
+      if (Math.abs(to - from) < 2) return;
+      list.style.height = from + 'px';
+      void list.offsetHeight;
+      window.requestAnimationFrame(function () { list.style.height = to + 'px'; });
+      settle = window.setTimeout(function () { list.style.height = ''; }, 700);
+    }
+    list.addEventListener('transitionend', function (event) {
+      if (event.target === list && event.propertyName === 'height') list.style.height = '';
+    });
+
     function show(i, announce) {
+      var from = list.offsetHeight;
       index = (i + items.length) % items.length;
       items.forEach(function (item, n) {
         item.classList.toggle('is-current', n === index);
       });
+      if (announce) easeHeight(from);
       if (current) current.textContent = String(index + 1);
       if (announce && live) {
         live.textContent = 'Quote ' + (index + 1) + ' of ' + items.length + ': ' + items[index].textContent.trim();
@@ -363,6 +402,7 @@
   }
 
   function init() {
+    initHeader();
     initMenu();
     initQuotes();
     initGuide();
