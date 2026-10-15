@@ -1,8 +1,9 @@
 /*
   Strands of Grace, option A "Classic grace": design tokens.
 
-  Colours, type and spacing live here as custom properties. Layout and
-  components are in site.css. Change a value here and it changes everywhere.
+  Colours, materials, type and spacing live here as custom properties.
+  Layout and components are in site.css. Change a value here and it changes
+  everywhere.
 */
 
 :root {
@@ -35,6 +36,7 @@
   --blush-pink-rgb: 242 183 210;
   --champagne-gold-rgb: 217 185 107;
   --serenity-blue-rgb: 167 201 238;
+  --gentle-teal-rgb: 135 212 209;
   --soft-peach-rgb: 246 198 168;
   --deep-plum-rgb: 87 68 103;
 
@@ -46,18 +48,37 @@
   --field-line: #8A7A96;      /* Form field borders: 3.9:1 on ivory (UI parts need 3:1). */
   --gold-light: #E8D5A4;      /* Inner hairline of double frames. */
   --gold-bright: #E4C987;     /* Gold button hover. Charcoal text on it: 7.4:1. */
+  --gold-deep: #B8933F;       /* The shadow end of the foil. */
   --lavender-mist: #F2ECF9;   /* Hover wash behind outline buttons. Plum on it: 7.7:1. */
   --lavender-wash: rgb(var(--soft-lavender-rgb) / 0.30);  /* Soft lavender wash on cream bands. */
   --blush-wash: rgb(var(--blush-pink-rgb) / 0.24);        /* Soft blush wash, paired with lavender. */
 
-  /* Pearls drawn in CSS (separators, nav marker, timeline nodes). The SVG
-     pearls in the strands use the same shading. */
-  --pearl-gold: radial-gradient(circle at 35% 30%, #fff8e6, #e4c987 45%, var(--champagne-gold) 70%, #be9c52);
-  --pearl-ivory: radial-gradient(circle at 36% 30%, #fff, #fcf6ef 32%, #eee0d9 68%, #d6c3ca 90%, #c2adbb);
+  /* ------------------------------------------------------------------
+     Materials
+     ------------------------------------------------------------------ */
 
-  /* A very fine paper grain laid over the soft washes. It keeps large, faint
-     gradients smooth (no visible rings) and reads as watercolour paper. */
+  /* Gold foil: the champagne gold as a leaf, for frames, hairlines, large
+     numerals and display flourishes. Never for small text. */
+  --gold-foil: linear-gradient(135deg, #B8933F 0%, #E9D6A0 28%, #C9A24B 52%, #F0E2B8 76%, #B8933F 100%);
+  --gold-foil-h: linear-gradient(90deg, rgb(201 162 75 / 0) 0%, #C9A24B 12%, #E9D6A0 32%, #B8933F 50%, #E9D6A0 68%, #C9A24B 88%, rgb(201 162 75 / 0) 100%);
+  --gold-foil-solid: linear-gradient(90deg, #B8933F, #E9D6A0 30%, #C9A24B 50%, #F0E2B8 70%, #B8933F);
+
+  /* Pearls drawn in CSS (nav marker, separators, list pearls): a highlight
+     top-left, a rim light in lavender bottom-right and a contact shadow.
+     The SVG pearls in the sprite share the same shading. */
+  --pearl: radial-gradient(circle at 34% 30%, #fff 0, #fdf9f4 18%, #f1e6e0 48%, #decbd4 76%, #c6b1c0 100%);
+  --pearl-gold: radial-gradient(circle at 34% 30%, #fff9ea 0, #f1dfae 30%, #d9b96b 66%, #b8933f 100%);
+  --pearl-sheen: inset -0.07em -0.1em 0.12em rgb(var(--soft-lavender-rgb) / 0.8),
+    inset 0.05em 0.06em 0.08em rgb(255 255 255 / 0.9),
+    0 0.1em 0.16em rgb(var(--deep-plum-rgb) / 0.22);
+  --pearl-sheen-gold: inset -0.07em -0.1em 0.12em rgb(184 147 63 / 0.7),
+    inset 0.05em 0.06em 0.08em rgb(255 255 255 / 0.85),
+    0 0.1em 0.16em rgb(var(--deep-plum-rgb) / 0.22);
+
+  /* A very fine paper grain laid over the soft washes and cream bands. It
+     keeps large, faint gradients smooth and reads as watercolour paper. */
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .34 0 0 0 0 .27 0 0 0 0 .4 0 0 0 .08 -.018'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  --grain-paper: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .3 0 0 0 0 .42 0 0 0 .055 -.012'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
 
   /* Semantic roles */
   --bg: var(--warm-ivory);
@@ -76,28 +97,28 @@
     "Helvetica Neue", Arial, sans-serif;
 
   /* Fluid type scale, 360px to 1440px viewports */
-  --step-0:clamp(1.03rem, 0.99rem + 0.18vw, 1.125rem);
-  --step-1: clamp(1.2rem, 1.12rem + 0.36vw, 1.42rem);
-  --step-2: clamp(1.38rem, 1.24rem + 0.62vw, 1.8rem);
-  --step-3: clamp(1.7rem, 1.46rem + 1.05vw, 2.4rem);
-  --step-4: clamp(2.1rem, 1.7rem + 1.8vw, 3.3rem);
-  --step-5: clamp(2.6rem, 1.96rem + 2.85vw, 4.5rem);
-  --step-6: clamp(3.4rem, 2.3rem + 4.9vw, 6.6rem);
+  --step-0: clamp(1.0625rem, 1.04rem + 0.12vw, 1.125rem);   /* body: 17 to 18px */
+  --step-1: clamp(1.2rem, 1.1rem + 0.42vw, 1.5rem);
+  --step-2: clamp(1.45rem, 1.26rem + 0.8vw, 2rem);
+  --step-3: clamp(1.8rem, 1.45rem + 1.5vw, 2.8rem);
+  --step-4: clamp(2.6rem, 4.6vw, 3.9rem);                    /* section headings */
+  --step-5: clamp(3rem, 1.8rem + 4.8vw, 5.4rem);             /* closings, the story title */
+  --step-6: clamp(3.6rem, 2rem + 6.6vw, 7rem);               /* page titles */
 
   /* Space */
-  --gutter: clamp(1.125rem, 0.6rem + 2.6vw, 3rem);
-  --space-m:clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+  --gutter: clamp(1rem, 0.5rem + 2.6vw, 3rem);
+  --space-m: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
   --space-l: clamp(2.25rem, 1.7rem + 2.4vw, 3.75rem);
   --space-xl: clamp(3.25rem, 2.3rem + 4.2vw, 6rem);
-  --space-section: clamp(4.5rem, 3.2rem + 5.6vw, 8.5rem);
+  --space-section: clamp(4.5rem, 3rem + 5.8vw, 8.5rem);
 
-  --measure: 34rem;           /* About 65 characters of body text */
-  --wide: 76rem;
+  --measure: 36rem;           /* About 64 characters of body text */
+  --wide: 78rem;
 
   /* Motion */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-breath: cubic-bezier(0.45, 0, 0.55, 1);
 
   /* Header heights */
-  --bar-h: 4.25rem;
+  --bar-h: 3.75rem;
 }
