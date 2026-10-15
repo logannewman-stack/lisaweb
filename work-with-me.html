@@ -29,7 +29,8 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- Shared drawing kit: petal mask, watercolour filters, washes, drops, gold. -->
+<!-- Shared drawing kit: petal mask, watercolour filters, washes, strokes, drops, swashes, pearls, bottles.
+     The same on every page: change every copy. -->
 <svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
   <defs>
     <linearGradient id="g-gold" x1="0" y1="0" x2="1" y2="1">
@@ -58,86 +59,137 @@
       <stop offset=".95" stop-color="#C9A24E"/>
       <stop offset="1" stop-color="#C9A24E" stop-opacity="0"/>
     </linearGradient>
+    <radialGradient id="g-pearl" cx=".34" cy=".3" r=".8">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset=".28" stop-color="#FDF3ED"/>
+      <stop offset=".62" stop-color="#F1DBD0"/>
+      <stop offset="1" stop-color="#D8BBA8"/>
+    </radialGradient>
     <clipPath id="clip-petal" clipPathUnits="objectBoundingBox">
       <path d="M.5 0C.41 .1 0 .22 0 .53C0 .8 .225 1 .5 1C.775 1 1 .8 1 .53C1 .22 .59 .1 .5 0Z"/>
     </clipPath>
-    <filter id="f-wash" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
-      <feTurbulence type="fractalNoise" baseFrequency=".011" numOctaves="4" seed="9" result="warp"/>
+    <!-- Watercolour wash: a ragged wet edge, pigment pooled darker along the rim,
+         a mottled granulated body and a soft bleed beyond the edge. -->
+    <filter id="f-paint" x="-22%" y="-22%" width="144%" height="144%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="3" seed="7" result="warp"/>
       <feDisplacementMap in="SourceGraphic" in2="warp" scale="46" xChannelSelector="R" yChannelSelector="G" result="shape"/>
-      <feGaussianBlur in="shape" stdDeviation="11" result="blurred"/>
-      <feComposite in="shape" in2="blurred" operator="arithmetic" k2=".75" k3="-.7" result="rim"/>
-      <feComponentTransfer in="shape" result="body"><feFuncA type="linear" slope=".3"/></feComponentTransfer>
-      <feGaussianBlur in="shape" stdDeviation="18" result="bleed"/>
-      <feComponentTransfer in="bleed" result="bleedSoft"><feFuncA type="linear" slope=".3"/></feComponentTransfer>
-      <feMerge result="paint"><feMergeNode in="bleedSoft"/><feMergeNode in="body"/><feMergeNode in="rim"/></feMerge>
-      <feGaussianBlur in="paint" stdDeviation=".9" result="soft"/>
-      <feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="2" seed="3" result="grain"/>
-      <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -.55 1.18" result="grainA"/>
-      <feComposite in="soft" in2="grainA" operator="in"/>
+      <feMorphology in="shape" operator="erode" radius="11" result="core"/>
+      <feGaussianBlur in="core" stdDeviation="9" result="coreSoft"/>
+      <feComposite in="shape" in2="coreSoft" operator="arithmetic" k2="1" k3="-1" result="rimA"/>
+      <feColorMatrix in="rimA" type="saturate" values="1.5" result="rimS"/>
+      <feColorMatrix in="rimS" type="matrix" values=".74 0 0 0 0  0 .74 0 0 0  0 0 .78 0 0  0 0 0 .95 0" result="rim"/>
+      <feComponentTransfer in="shape" result="bodyFlat"><feFuncA type="linear" slope=".52"/></feComponentTransfer>
+      <feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="2" seed="3" result="gran"/>
+      <feColorMatrix in="gran" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -.85 1.3" result="granA"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".008" numOctaves="1" seed="11" result="mottle"/>
+      <feColorMatrix in="mottle" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1 1.4" result="mottleA"/>
+      <feComposite in="granA" in2="mottleA" operator="arithmetic" k1="1" result="texture"/>
+      <feMerge result="paint"><feMergeNode in="bodyFlat"/><feMergeNode in="rim"/></feMerge>
+      <feComposite in="paint" in2="texture" operator="in" result="textured"/>
+      <feGaussianBlur in="shape" stdDeviation="14" result="bleedBlur"/>
+      <feComponentTransfer in="bleedBlur" result="bleed"><feFuncA type="linear" slope=".16"/></feComponentTransfer>
+      <feMerge><feMergeNode in="bleed"/><feMergeNode in="textured"/></feMerge>
     </filter>
+    <!-- A loaded flat brush dragged across the paper: bristle streaks and a pooled lower edge. -->
+    <filter id="f-stroke" x="-10%" y="-40%" width="120%" height="180%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".02 .05" numOctaves="3" seed="5" result="warp"/>
+      <feDisplacementMap in="SourceGraphic" in2="warp" scale="22" xChannelSelector="R" yChannelSelector="G" result="shape"/>
+      <feMorphology in="shape" operator="erode" radius="5" result="core"/>
+      <feGaussianBlur in="core" stdDeviation="6" result="coreSoft"/>
+      <feComposite in="shape" in2="coreSoft" operator="arithmetic" k2="1" k3="-1" result="rimA"/>
+      <feColorMatrix in="rimA" type="saturate" values="1.45" result="rimS"/>
+      <feColorMatrix in="rimS" type="matrix" values=".76 0 0 0 0  0 .76 0 0 0  0 0 .8 0 0  0 0 0 .9 0" result="rim"/>
+      <feComponentTransfer in="shape" result="bodyFlat"><feFuncA type="linear" slope=".58"/></feComponentTransfer>
+      <feTurbulence type="fractalNoise" baseFrequency=".004 .09" numOctaves="2" seed="2" result="streak"/>
+      <feColorMatrix in="streak" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -.9 1.35" result="streakA"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".06" numOctaves="2" seed="3" result="gran"/>
+      <feColorMatrix in="gran" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -.7 1.2" result="granA"/>
+      <feComposite in="streakA" in2="granA" operator="arithmetic" k1="1" result="texture"/>
+      <feMerge result="paint"><feMergeNode in="bodyFlat"/><feMergeNode in="rim"/></feMerge>
+      <feComposite in="paint" in2="texture" operator="in" result="textured"/>
+      <feGaussianBlur in="shape" stdDeviation="8" result="bleedBlur"/>
+      <feComponentTransfer in="bleedBlur" result="bleed"><feFuncA type="linear" slope=".14"/></feComponentTransfer>
+      <feMerge><feMergeNode in="bleed"/><feMergeNode in="textured"/></feMerge>
+    </filter>
+    <!-- Small drops: the same character at a small size (the seven colours, emblems, labels). -->
     <filter id="f-drop" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
-      <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="5" result="warp"/>
-      <feDisplacementMap in="SourceGraphic" in2="warp" scale="10" xChannelSelector="R" yChannelSelector="G" result="shape"/>
-      <feGaussianBlur in="shape" stdDeviation="3.2" result="blurred"/>
-      <feComposite in="shape" in2="blurred" operator="arithmetic" k2="1" k3="-.9" result="rim"/>
-      <feComponentTransfer in="shape" result="body"><feFuncA type="linear" slope=".5"/></feComponentTransfer>
-      <feGaussianBlur in="shape" stdDeviation="5" result="bleed"/>
-      <feComponentTransfer in="bleed" result="bleedSoft"><feFuncA type="linear" slope=".25"/></feComponentTransfer>
-      <feMerge result="paint"><feMergeNode in="bleedSoft"/><feMergeNode in="body"/><feMergeNode in="rim"/></feMerge>
-      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3" result="grain"/>
-      <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -.5 1.15" result="grainA"/>
-      <feComposite in="paint" in2="grainA" operator="in"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="2" seed="5" result="warp"/>
+      <feDisplacementMap in="SourceGraphic" in2="warp" scale="9" xChannelSelector="R" yChannelSelector="G" result="shape"/>
+      <feMorphology in="shape" operator="erode" radius="2.2" result="core"/>
+      <feGaussianBlur in="core" stdDeviation="2.4" result="coreSoft"/>
+      <feComposite in="shape" in2="coreSoft" operator="arithmetic" k2="1" k3="-1" result="rimA"/>
+      <feColorMatrix in="rimA" type="saturate" values="1.45" result="rimS"/>
+      <feColorMatrix in="rimS" type="matrix" values=".76 0 0 0 0  0 .76 0 0 0  0 0 .8 0 0  0 0 0 .92 0" result="rim"/>
+      <feComponentTransfer in="shape" result="bodyFlat"><feFuncA type="linear" slope=".6"/></feComponentTransfer>
+      <feTurbulence type="fractalNoise" baseFrequency=".2" numOctaves="2" seed="3" result="gran"/>
+      <feColorMatrix in="gran" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -.7 1.22" result="granA"/>
+      <feMerge result="paint"><feMergeNode in="bodyFlat"/><feMergeNode in="rim"/></feMerge>
+      <feComposite in="paint" in2="granA" operator="in" result="textured"/>
+      <feGaussianBlur in="shape" stdDeviation="4" result="bleedBlur"/>
+      <feComponentTransfer in="bleedBlur" result="bleed"><feFuncA type="linear" slope=".18"/></feComponentTransfer>
+      <feMerge><feMergeNode in="bleed"/><feMergeNode in="textured"/></feMerge>
     </filter>
-    <!-- Fades for the washes: each mask keeps one side of a wash crisp and lets
-         the other dissolve, like wet-in-wet paint. Named for the crisp side. -->
+    <!-- Fades for the washes: each mask keeps one side crisp and lets the other
+         dissolve, like wet-in-wet paint. Named for the crisp side. -->
     <linearGradient id="g-fade-tl" x1="0" y1="0" x2="1" y2="1"><stop offset=".2" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".7"/><stop offset=".85" stop-color="#fff" stop-opacity=".1"/></linearGradient>
     <linearGradient id="g-fade-br" x1="1" y1="1" x2="0" y2="0"><stop offset=".2" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".7"/><stop offset=".85" stop-color="#fff" stop-opacity=".1"/></linearGradient>
     <linearGradient id="g-fade-bl" x1="0" y1="1" x2="1" y2="0"><stop offset=".2" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".7"/><stop offset=".85" stop-color="#fff" stop-opacity=".1"/></linearGradient>
     <linearGradient id="g-fade-tr" x1="1" y1="0" x2="0" y2="1"><stop offset=".2" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".7"/><stop offset=".85" stop-color="#fff" stop-opacity=".1"/></linearGradient>
-    <linearGradient id="g-fade-t" x1="0" y1="0" x2="0" y2="1"><stop offset=".25" stop-color="#fff"/><stop offset=".6" stop-color="#fff" stop-opacity=".6"/><stop offset=".85" stop-color="#fff" stop-opacity=".12"/></linearGradient>
-    <linearGradient id="g-fade-r" x1="1" y1="0" x2="0" y2="0"><stop offset=".25" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".65"/><stop offset=".85" stop-color="#fff" stop-opacity=".1"/></linearGradient>
     <mask id="m-fade-tl" maskContentUnits="objectBoundingBox" x="-.4" y="-.4" width="1.8" height="1.8"><rect x="-.4" y="-.4" width="1.8" height="1.8" fill="url(#g-fade-tl)"/></mask>
     <mask id="m-fade-br" maskContentUnits="objectBoundingBox" x="-.4" y="-.4" width="1.8" height="1.8"><rect x="-.4" y="-.4" width="1.8" height="1.8" fill="url(#g-fade-br)"/></mask>
     <mask id="m-fade-bl" maskContentUnits="objectBoundingBox" x="-.4" y="-.4" width="1.8" height="1.8"><rect x="-.4" y="-.4" width="1.8" height="1.8" fill="url(#g-fade-bl)"/></mask>
     <mask id="m-fade-tr" maskContentUnits="objectBoundingBox" x="-.4" y="-.4" width="1.8" height="1.8"><rect x="-.4" y="-.4" width="1.8" height="1.8" fill="url(#g-fade-tr)"/></mask>
-    <mask id="m-fade-t" maskContentUnits="objectBoundingBox" x="-.4" y="-.4" width="1.8" height="1.8"><rect x="-.4" y="-.4" width="1.8" height="1.8" fill="url(#g-fade-t)"/></mask>
-    <mask id="m-fade-r" maskContentUnits="objectBoundingBox" x="-.4" y="-.4" width="1.8" height="1.8"><rect x="-.4" y="-.4" width="1.8" height="1.8" fill="url(#g-fade-r)"/></mask>
-    <symbol id="s-wash-a" viewBox="0 0 600 600" preserveAspectRatio="none" overflow="visible">
-      <path d="M190 120C280 50 430 60 500 140C570 220 560 380 470 460C380 540 210 540 140 450C80 370 110 190 190 120Z" fill="currentColor" filter="url(#f-wash)"/>
-    </symbol>
-    <symbol id="s-wash-b" viewBox="0 0 600 600" preserveAspectRatio="none" overflow="visible">
-      <path d="M96 300C110 190 250 120 390 126C520 132 584 220 540 300C494 384 360 440 230 430C130 422 86 380 96 300Z" fill="currentColor" filter="url(#f-wash)"/>
-    </symbol>
-    <symbol id="s-wash-c" viewBox="0 0 600 600" preserveAspectRatio="none" overflow="visible">
-      <path d="M250 160C330 120 440 170 450 260C460 350 380 430 290 420C200 410 150 330 170 250C180 210 210 180 250 160Z" fill="currentColor" filter="url(#f-wash)"/>
-    </symbol>
-    <symbol id="s-wash-crown" viewBox="0 0 600 300" preserveAspectRatio="none" overflow="visible">
-      <path d="M30 168C40 84 170 30 300 36C440 42 560 84 572 160C584 236 490 274 380 262C300 254 250 282 168 278C80 274 22 236 30 168Z" fill="currentColor" filter="url(#f-wash)"/>
+    <!-- Wash silhouettes, painted with #f-paint. Layer two or three in different
+         colours with class="mul" and new colours appear where they meet. -->
+    <symbol id="s-wash-a" viewBox="0 0 1000 1000" overflow="visible"><path d="M838 377C883 494 832 477 772 627C711 776 760 824 637 876C513 928 472 886 361 799C249 712 327 723 265 586C204 448 120 461 156 339C191 218 244 211 384 181C524 150 486 178 623 237C759 296 793 260 838 377Z" fill="currentColor" filter="url(#f-paint)"/></symbol>
+    <symbol id="s-wash-b" viewBox="0 0 1000 1000" overflow="visible"><path d="M914 573C892 671 785 623 661 692C537 760 623 768 500 800C377 832 347 872 249 799C152 726 157 680 175 557C193 435 249 509 309 390C370 271 278 244 377 162C476 79 533 54 640 115C747 176 652 228 734 365C816 502 936 475 914 573Z" fill="currentColor" filter="url(#f-paint)"/></symbol>
+    <symbol id="s-wash-c" viewBox="0 0 1000 1000" overflow="visible"><path d="M746 672C657 802 651 841 521 839C392 838 413 785 315 668C216 551 193 597 194 450C195 303 196 240 319 177C442 114 456 172 606 241C755 309 774 277 817 407C859 536 834 542 746 672Z" fill="currentColor" filter="url(#f-paint)"/></symbol>
+    <symbol id="s-stroke" viewBox="0 0 600 140" overflow="visible">
+      <path d="M0 66C40 28 120 18 220 24C330 30 440 18 600 36L600 102C540 112 480 124 400 118C330 112 300 130 230 122C150 114 70 118 0 74Z" fill="currentColor" filter="url(#f-stroke)"/>
     </symbol>
     <symbol id="s-drop" viewBox="0 0 100 100" overflow="visible">
       <path d="M51 12C71 13 88 30 85 53C82 76 65 88 47 87C26 86 12 71 15 49C18 27 33 11 51 12Z" fill="currentColor" filter="url(#f-drop)"/>
+    </symbol>
+    <symbol id="s-petal" viewBox="0 0 100 100" overflow="visible">
+      <path d="M50 2C64 24 94 42 94 68C94 88 74 98 50 98C26 98 6 88 6 68C6 42 36 24 50 2Z" fill="currentColor"/>
+      <path d="M50 2C64 24 94 42 94 68C94 88 74 98 50 98C26 98 6 88 6 68C6 42 36 24 50 2Z" fill="none" stroke="#D9B96B" stroke-opacity=".6" stroke-width="1" vector-effect="non-scaling-stroke"/>
+      <path d="M50 14C50 40 50 66 50 90" fill="none" stroke="#FFFDF8" stroke-opacity=".7" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    </symbol>
+    <symbol id="s-pearl" viewBox="0 0 24 24" overflow="visible">
+      <ellipse cx="12" cy="21" rx="7.5" ry="2.2" fill="#574467" opacity=".16"/>
+      <circle cx="12" cy="12" r="9" fill="url(#g-pearl)" stroke="#C9A24E" stroke-opacity=".75" stroke-width=".9"/>
+      <path d="M6 16.5A7.2 7.2 0 0 0 17.4 17" fill="none" stroke="#FFFFFF" stroke-opacity=".8" stroke-width="1.1" stroke-linecap="round"/>
+      <circle cx="9" cy="8.4" r="2.1" fill="#FFFFFF" opacity=".95"/>
     </symbol>
     <symbol id="s-flourish" viewBox="0 0 600 90" overflow="visible">
       <g fill="none" stroke="url(#g-gold-h)" stroke-width="1.4" stroke-linecap="round">
         <path vector-effect="non-scaling-stroke" d="M284 45C250 45 230 30 196 30C150 30 140 64 172 66C200 68 196 40 160 40C110 40 60 60 6 50"/>
         <path vector-effect="non-scaling-stroke" d="M316 45C350 45 370 60 404 60C450 60 460 26 428 24C400 22 404 50 440 50C490 50 540 30 594 40"/>
       </g>
-      <path d="M300 32L303.2 41.8L313 45L303.2 48.2L300 58L296.8 48.2L287 45L296.8 41.8Z" fill="#D9B96B"/>
+      <use href="#s-pearl" x="290" y="35" width="20" height="20"/>
     </symbol>
+    <symbol id="s-swash-long" viewBox="0 0 1000 260" overflow="visible"><path d="M0 150.1L51.8 133.3L74.9 126.6L98.5 120.6L130.7 113.2L155.5 108.3L180.8 104.1L206.5 100.7L232.7 98L259.3 96.2L286.2 95.2L313.4 95.1L340.9 95.8L368.7 97.4L415.4 102.2L443.7 106.4L472 111.5L500.4 117.7L536.9 127L558.8 133.9L578.9 141.6L597.1 149.8L617.2 160.7L634 171.8L644.4 181.3L653.8 192.8L657.4 199.3L659.3 205.3L659.6 210.4L658.7 214.4L656.3 218.6L653.3 221.7L648.6 224.7L641.9 227.4L636.9 228.7L629.9 229.4L623.8 229.2L618.2 228.3L613.3 226.6L610.9 224.3L608 218.6L606.7 212.7L606.9 204.8L608.5 198.1L611.3 191L614.4 185.7L619.8 178.6L624.9 173.4L630.8 168.4L637.8 163.8L645.7 159.7L654.5 156L660.9 154L681 149.7L728.2 141.2L857.7 122.5L928.5 111.1L976.2 101.9L994.1 97.8L1000 95.9L915.9 108L827.8 119.2L737.8 131.9L705.6 137.1L674.4 142.9L655.4 146.9L645.2 150.2L636 154.2L627.7 158.9L620.5 164.2L612.3 171.9L607.4 178.2L602.5 186.9L599.5 195.7L598.5 202.2L598.8 208.5L600.2 214.3L602.8 219.4L607.8 224.8L616.8 231.6L622.7 234.3L629.7 235.8L640.7 235.8L646.8 234.6L654.7 231.9L659.1 229.5L662.7 226.4L665.5 222.7L667.2 218.5L667.8 214.1L666.8 207.6L665.1 203.3L661.6 197L656.8 190.6L650.7 184.1L643.4 177.4L631.8 168.3L614.7 156.4L598.5 147.1L580.3 138.3L560.1 130.1L538.2 122.6L501.6 112.8L473.1 106.4L444.6 101L416.2 96.5L387.9 93.1L359.8 90.6L332 89L304.3 88.3L277 88.6L249.9 89.6L223.3 91.6L188.3 95.4L162.6 99.2L137.4 103.7L112.7 109.1L88.7 115.6L57.7 125.4L35.2 133.7L13.6 142.8L0 149.9Z" fill="url(#g-gold)"/></symbol>
+    <symbol id="s-swash-long-r" viewBox="0 0 1000 260" overflow="visible"><path d="M1000 149.9L986.3 143L964.6 134.1L942.2 125.9L911.2 116.2L887.2 109.7L862.6 104.1L837.4 99.2L811.7 95.4L776.7 91.6L750.1 89.6L723 88.6L695.7 88.3L668 89L640.2 90.6L612.1 93.1L583.8 96.5L555.4 101L526.9 106.4L498.4 112.8L461.8 122.6L439.9 130.1L419.7 138.3L401.5 147.1L385.3 156.4L368.2 168.3L356.6 177.4L349.3 184.1L343.2 190.6L338.4 197L334.9 203.3L333.2 207.6L332.2 214.1L332.8 218.5L334.5 222.7L337.3 226.4L340.9 229.5L345.3 231.9L353.2 234.6L359.3 235.8L370.3 235.8L377.3 234.3L383.2 231.6L392.2 224.8L397.2 219.4L399.8 214.3L401.2 208.5L401.5 202.2L400.5 195.7L397.5 186.9L392.6 178.2L387.7 171.9L379.5 164.2L372.3 158.9L364 154.2L354.8 150.2L344.6 146.9L325.6 142.9L294.4 137.1L262.2 131.9L206.5 123.9L0 95.9L5.9 97.9L29.7 103.5L83.3 113.7L118.7 119.5L222.4 133.7L271.8 141.2L319 149.7L339.1 154L345.5 156L354.3 159.7L362.2 163.8L369.2 168.4L375.1 173.4L380.2 178.6L385.6 185.7L388.7 191L391.5 198.1L393.1 204.8L393.3 212.7L392 218.6L389.1 224.3L386.7 226.6L381.8 228.3L376.2 229.2L370.1 229.4L363.1 228.7L358.1 227.4L351.4 224.7L346.7 221.7L343.7 218.6L341.3 214.4L340.4 210.4L340.7 205.3L342.6 199.3L346.2 192.8L355.6 181.3L366 171.8L382.8 160.7L402.9 149.8L421.1 141.6L441.2 133.9L463.1 127L499.6 117.7L528 111.5L556.3 106.4L584.6 102.2L631.3 97.4L659.1 95.8L686.6 95.1L713.8 95.2L740.7 96.2L767.3 98L793.5 100.7L819.2 104.1L852.9 109.6L877.5 114.4L901.7 119.9L925.3 126.1L948.3 132.8L1000 150.1Z" fill="url(#g-gold)"/></symbol>
+    <symbol id="s-swash-flourish" viewBox="0 0 400 110" overflow="visible"><path d="M400 39.9L375.4 34.7L341.6 29.2L299.3 24.8L263.2 22.5L228.7 21.8L199.9 22.7L172.4 25.2L146.4 29.3L135.9 31.5L123.4 35.2L115 38.5L104.9 43.3L96.3 48.5L89.2 54.1L83.6 60L79.5 66L77.3 72.1L77.1 76.7L78.2 80.8L81.5 85.1L88 90.3L94.2 93.2L102.3 94.8L114.5 94.9L120.4 94L125.5 92.5L129.9 90.4L133.4 87.5L135.8 84L136.8 80L136.7 76L135.5 72.2L133.6 68.6L130.1 64.2L117.5 53.5L110.9 49.5L105.2 46.9L92.3 43L80.1 41.3L69.8 41.6L56.8 43.2L43.1 46.4L30.6 50.7L18 56.7L7.1 63.6L0 69.9L23.2 58.2L34.7 53.9L45.8 50.7L59.2 48.2L71.8 47L82.3 46.7L93.7 47.9L107.8 51.6L119.3 57.2L122.1 59L125.4 62.4L129.5 69.3L130.4 72.5L130.4 76.3L129.2 79.8L126.9 82.8L123.7 85.2L120.1 86.9L115.4 88.3L109.3 89.2L102.6 89.5L95.2 89L88 87.3L85.6 86.3L84.8 85.4L83.3 80.5L84.1 75L87.1 68.6L92 62.5L97.5 57.4L104.5 52.3L113 47.5L120.4 44L131.5 39.9L140.8 37.2L162.1 33L184.6 30L208.3 28.1L233 27.4L258.7 27.7L280.8 28.7L308.1 30.7L400 40.1Z" fill="url(#g-gold)"/></symbol>
+    <symbol id="s-swash-arc" viewBox="0 0 600 760" overflow="visible"><path d="M330 -0.1L316.6 2L296.6 7L276.6 13.4L256.7 21.2L236.9 30.3L223.9 37L211.2 44.6L192.4 57L174.2 70.7L162.4 80.5L145.2 96.2L134.2 107.3L118.3 125L108.3 137.6L94.1 157.3L85.2 171.2L72.8 193L65.3 208.2L58.3 223.9L52 240.2L43.6 265.6L38.9 283.2L34.9 301.3L31.7 320L29.3 339.1L27.9 358.1L27.4 377L27.8 395.6L29.1 414L31.3 432.1L34.3 449.9L38.1 467.3L42.9 484.4L48.4 501.1L54.8 517.4L62 533.2L70 548.5L78.8 563.4L88.4 577.6L98.8 591.3L121.3 617.4L133.7 629.6L146.8 641.1L160.7 652L175.3 662.2L190.7 671.6L206.9 680.3L223.8 688.1L241.4 695.1L259.8 701.3L278.9 706.5L308.8 712.6L348.8 717.7L370.8 721.3L394 726.6L413.6 732.4L433.3 740.4L441.7 745L447.2 748.8L447.5 750.8L446.9 752.1L445.7 752.2L445.2 751.5L443.5 752.6L439.9 753.6L430.2 754.3L420.5 753.6L414.6 752.2L411 750.5L410.1 749.7L409.4 746.2L409.8 742L411.5 736.6L414.9 730.7L418.8 725.7L428.5 717.2L435.5 712.9L441.4 710L454.8 705.5L467.3 703.5L482.3 703.5L499.5 704.9L516.4 707.6L532.9 711.4L550.9 717L567.7 723.5L583.1 730.7L600 739.9L585.5 730.5L566.6 720.6L547.5 712.6L529.2 706.4L510.1 701.5L490.2 698.2L470 696.6L455.9 697.2L447.9 698.7L440.4 700.8L433.4 703.6L425 708.2L419.5 712.1L413.1 717.9L408.2 724.2L405.4 729.1L403.7 734.1L403.1 739L403.8 743.7L405.8 747.7L408.9 750.7L411.4 754.3L415.4 757.6L420.7 760L427.4 761.4L439 761.9L447.6 760.7L450.4 759.4L452.6 757.1L453.3 755.6L453 752.4L445 743.4L440.8 739.9L431.1 734.2L418.3 728.4L395.6 720.8L372.1 715L349.8 711L299.8 704.4L270.8 698.2L243.3 689.9L217.3 679.8L192.8 667.9L177.4 658.9L162.7 649.3L141.9 633.4L129 621.9L116.8 609.8L105.4 597L100.1 590.3L90.2 576.4L81 562L68.8 539.5L61.6 523.9L55.3 507.9L49.8 491.5L45.1 474.7L39.6 448.9L36.9 431.3L34.6 404.4L34 386.2L34.4 367.8L35.6 349.2L37.7 330.5L40.7 311.9L44.5 293.9L51.5 267.9L56.9 251.3L63 235.1L69.7 219.5L80.7 197.1L88.7 182.9L101.7 162.5L110.9 149.5L125.5 131.1L135.8 119.4L151.8 103L162.9 92.6L180.1 78.1L191.9 69.1L210 56.5L234.7 41.4L253.5 31.1L266.1 24.9L285.3 16.4L304.5 9L330 0.1Z" fill="url(#g-gold)"/></symbol>
+    <symbol id="s-swash-arc-r" viewBox="0 0 600 760" overflow="visible"><path d="M270 0.1L295.5 9L314.7 16.4L333.9 24.9L346.5 31.1L365.3 41.4L390 56.5L408.1 69.1L419.9 78.1L437.1 92.6L448.2 103L464.2 119.4L474.5 131.1L489.1 149.5L498.3 162.5L511.3 182.9L519.3 197.1L530.3 219.5L537 235.1L543.1 251.3L548.5 267.9L555.5 293.9L559.3 311.9L562.3 330.5L564.4 349.2L565.6 367.8L566 386.2L565.4 404.4L563.1 431.3L560.4 448.9L554.9 474.7L550.2 491.5L544.7 507.9L538.4 523.9L531.2 539.5L519 562L509.8 576.4L499.9 590.3L494.6 597L483.2 609.8L471 621.9L458.1 633.4L437.3 649.3L422.6 658.9L407.2 667.9L382.7 679.8L356.7 689.9L329.2 698.2L300.2 704.4L250.2 711L227.9 715L204.4 720.8L181.7 728.4L168.9 734.2L159.2 739.9L155 743.4L147 752.4L146.7 755.6L147.4 757.1L149.6 759.4L152.4 760.7L161 761.9L172.6 761.4L179.3 760L184.6 757.6L188.6 754.3L191.1 750.7L194.2 747.7L196.2 743.7L196.9 739L196.3 734.1L194.6 729.1L191.8 724.2L186.9 717.9L180.5 712.1L175 708.2L166.6 703.6L159.6 700.8L152.1 698.7L144.1 697.2L130 696.6L109.8 698.2L89.9 701.5L70.8 706.4L52.5 712.6L33.4 720.6L14.5 730.5L0 739.9L16.9 730.7L32.3 723.5L49.1 717L67.1 711.4L83.6 707.6L100.5 704.9L117.7 703.5L132.7 703.5L145.2 705.5L158.6 710L164.5 712.9L171.5 717.2L181.2 725.7L185.1 730.7L188.5 736.6L190.2 742L190.6 746.2L189.9 749.7L189 750.5L185.4 752.2L179.5 753.6L169.8 754.3L160.1 753.6L156.5 752.6L154.8 751.5L154.3 752.2L153.1 752.1L152.5 750.8L152.8 748.8L158.3 745L166.7 740.4L186.4 732.4L206 726.6L229.2 721.3L251.2 717.7L291.2 712.6L321.1 706.5L340.2 701.3L358.6 695.1L376.2 688.1L393.1 680.3L409.3 671.6L424.7 662.2L439.3 652L453.2 641.1L466.3 629.6L478.7 617.4L501.2 591.3L511.6 577.6L521.2 563.4L530 548.5L538 533.2L545.2 517.4L551.6 501.1L557.1 484.4L561.9 467.3L565.7 449.9L568.7 432.1L570.9 414L572.2 395.6L572.6 377L572.1 358.1L570.7 339.1L568.3 320L565.1 301.3L561.1 283.2L556.4 265.6L548 240.2L541.7 223.9L534.7 208.2L527.2 193L514.8 171.2L505.9 157.3L491.7 137.6L481.7 125L465.8 107.3L454.8 96.2L437.6 80.5L425.8 70.7L407.6 57L388.8 44.6L376.1 37L363.1 30.3L343.3 21.2L323.4 13.4L303.4 7L283.4 2L270 -0.1Z" fill="url(#g-gold)"/></symbol>
+    <symbol id="s-swash-wave" viewBox="0 0 900 130" overflow="visible"><path d="M0 70.1L55.7 60.3L87.2 55.5L132 49.7L170.7 46L209.6 44L241.9 43.5L280.3 44.5L312 46.7L349.2 51.1L385.4 57.4L404.2 62.8L413.8 66.7L422.4 71L429.8 75.7L438.2 83.8L442.7 90.4L444.2 94L444.7 97.3L443.7 101.7L441.7 104.4L439.6 106.1L433.3 108.4L425 109.3L419.5 109L415.9 108.2L414.4 106.5L413.2 102.6L413.4 96.9L414.9 91.7L417.9 85.9L421.5 81L426.4 76.1L430.9 72.6L442.1 66.2L456.2 61.4L470.2 59.1L510.4 58.1L553 58.8L597.4 60.7L726.6 67.9L786 69.7L821.7 69L855.9 66.9L881.7 63.8L894 61.6L900 59.9L848.9 63.6L821.6 64.4L793.3 64.3L719.3 62.1L597.7 55.3L545.9 53L496.6 52.3L469.8 52.9L460.5 53.6L451.9 55.1L444 57.2L436.7 59.9L428.1 64.3L422.5 68L416.2 73.6L412.4 78L408.5 84.2L406.3 90.6L405.7 95.2L406.7 101.1L408.7 104.7L411.7 107.5L419.7 112.9L424.4 114.5L430.2 115.1L439.6 114.2L444.3 112.8L447 111.3L449.3 109.3L451 106.8L451.9 104L451.9 99.8L449.5 93.2L443.8 85.7L435.7 78.3L423.4 69.4L414.9 64.4L405.4 59.8L394.9 55.8L386.4 53.2L356.1 47.3L318.8 42.2L280.6 39L235.4 37.7L196.4 38.4L150.8 41.3L105.5 46.4L73.6 51.7L30 61.1L11.8 66L0 69.9Z" fill="url(#g-gold)"/></symbol>
     <symbol id="s-arrow" viewBox="0 0 24 24">
       <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
     <symbol id="s-external" viewBox="0 0 24 24">
       <path d="M8 16 16.5 7.5M9.5 7h7.5v7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
+    <!-- An oil bottle: plum cap, gold collar, ivory glass and a label painted in the oil's colour. -->
     <symbol id="s-bottle" viewBox="0 0 60 112" overflow="visible">
-      <rect x="18" y="2" width="24" height="28" rx="4" fill="#574467"/>
-      <path d="M22 8v18M26 8v18M30 8v18M34 8v18M38 8v18" stroke="#FFFDF8" stroke-opacity=".22" stroke-width="1.2"/>
-      <rect x="21" y="30" width="18" height="7" fill="#D9B96B"/>
-      <path d="M15 37h30a7 7 0 0 1 7 7v57a9 9 0 0 1-9 9H17a9 9 0 0 1-9-9V44a7 7 0 0 1 7-7Z" fill="#FFFDF8" fill-opacity=".72" stroke="#C9A24E" stroke-width="1.4"/>
-      <rect x="12.5" y="58" width="35" height="32" rx="3" fill="currentColor" fill-opacity=".55"/>
-      <path d="M17 67h26M17 73h18" stroke="#574467" stroke-opacity=".35" stroke-width="1.4" stroke-linecap="round"/>
-      <path d="M14 45v48" stroke="#FFFFFF" stroke-opacity=".8" stroke-width="2.4" stroke-linecap="round"/>
+      <rect x="18" y="1" width="24" height="29" rx="4.5" fill="#574467"/>
+      <path d="M22.5 7v18M27 7v18M31.5 7v18M36 7v18" stroke="#FFFDF8" stroke-opacity=".2" stroke-width="1.2"/>
+      <rect x="20" y="29" width="20" height="8" rx="1" fill="url(#g-gold)"/>
+      <path d="M15 37h30a7 7 0 0 1 7 7v57a9 9 0 0 1-9 9H17a9 9 0 0 1-9-9V44a7 7 0 0 1 7-7Z" fill="#FFFDF8" fill-opacity=".9" stroke="#C9A24E" stroke-width="1.3"/>
+      <rect x="12.5" y="50" width="35" height="41" rx="2.5" fill="#FFFDF8" stroke="#D9B96B" stroke-opacity=".9" stroke-width=".9"/>
+      <path d="M17 58C22 48 44 50 46 60C48 72 41 80 30 80C18 80 12 68 17 58Z" fill="currentColor" filter="url(#f-drop)"/>
+      <path d="M19 82.5h22M24 86.5h12" stroke="#C9A24E" stroke-opacity=".75" stroke-width="1" stroke-linecap="round"/>
+      <path d="M13.5 45v46" stroke="#FFFFFF" stroke-opacity=".85" stroke-width="2.2" stroke-linecap="round"/>
     </symbol>
   </defs>
 </svg>
@@ -145,7 +197,7 @@
 <header class="site-header" data-header>
   <div class="site-header__inner wrap wrap--wide">
     <a class="brand" href="index.html">
-      <img src="assets/brand/sog-logo-header.webp" srcset="assets/brand/sog-logo-header-450.webp 450w, assets/brand/sog-logo-header.webp 900w" sizes="(min-width: 68em) 196px, 160px" width="900" height="319" alt="Strands of Grace, home">
+      <img src="assets/brand/sog-logo-header.webp" srcset="assets/brand/sog-logo-header-450.webp 450w, assets/brand/sog-logo-header.webp 900w" sizes="(min-width: 68em) 182px, 150px" width="900" height="319" alt="Strands of Grace, home">
     </a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden data-menu-toggle>
       <span class="menu-toggle__icon" aria-hidden="true"></span>
@@ -168,10 +220,7 @@
 
   <section class="page-hero work-hero" aria-labelledby="work-title">
     <div class="bloom bloom--work-hero drift" aria-hidden="true"></div>
-    <svg class="strand" viewBox="0 0 1440 112" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-      <path stroke="url(#g-gold-fade)" stroke-width="1.5" stroke-linecap="round" d="M0 74C180 26 420 20 640 52C860 84 1100 92 1440 40"/>
-      <path stroke="url(#g-gold-fade)" stroke-width=".9" stroke-linecap="round" opacity=".7" d="M0 92C240 52 460 58 680 80C900 102 1140 96 1440 62"/>
-    </svg>
+    <svg class="swash work-hero__swash" viewBox="0 0 1000 260" aria-hidden="true" focusable="false"><use href="#s-swash-long"/></svg>
     <div class="wrap page-hero__grid">
       <h1 id="work-title">Work with me</h1>
       <p class="lead">Three gentle ways to work together. If you are not sure which is right for you, send me a note and we will find it together.</p>
@@ -182,21 +231,33 @@
     <div class="wrap">
       <ul class="cards" role="list">
         <li class="card offer" id="sound-bath">
-          <svg class="card__crown" viewBox="0 0 600 300" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#s-wash-crown" class="c-blush" width="600" height="300" mask="url(#m-fade-t)"/></svg>
+          <svg class="card__stroke" viewBox="0 0 600 140" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <use href="#s-stroke" class="c-blush mul" width="600" height="140"/>
+            <use href="#s-stroke" class="c-peach mul" x="150" y="36" width="560" height="110" opacity=".55"/>
+          </svg>
+          <svg class="card__line" viewBox="0 0 600 16" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 8C150 2 300 14 600 8" fill="none" stroke="url(#g-gold-fade)" stroke-width="1.2" vector-effect="non-scaling-stroke"/></svg>
           <h2>Sound bath</h2>
           <p class="card__meta">Small groups, 75 minutes</p>
           <p>Lie back, be wrapped in blankets and let the bowls, chimes and drum do the work. You do nothing but breathe.</p>
           <a class="btn btn--bloom" href="work-with-me.html?session=sound-bath#book">Book a sound bath</a>
         </li>
         <li class="card offer" id="one-to-one">
-          <svg class="card__crown" viewBox="0 0 600 300" preserveAspectRatio="none" aria-hidden="true" focusable="false" style="transform: scaleX(-1)"><use href="#s-wash-crown" class="c-lavender" width="600" height="300" mask="url(#m-fade-t)"/></svg>
+          <svg class="card__stroke" viewBox="0 0 600 140" preserveAspectRatio="none" aria-hidden="true" focusable="false" style="transform: scaleX(-1)">
+            <use href="#s-stroke" class="c-lavender mul" width="600" height="140"/>
+            <use href="#s-stroke" class="c-blush mul" x="120" y="30" width="520" height="110" opacity=".5"/>
+          </svg>
+          <svg class="card__line" viewBox="0 0 600 16" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 8C150 14 300 2 600 8" fill="none" stroke="url(#g-gold-fade)" stroke-width="1.2" vector-effect="non-scaling-stroke"/></svg>
           <h2>One-to-one session</h2>
           <p class="card__meta">Just you, 60 minutes</p>
           <p>We begin with a conversation. Then sound and stillness, shaped around you and what you need today.</p>
           <a class="btn btn--bloom" href="work-with-me.html?session=one-to-one#book">Book a one-to-one session</a>
         </li>
         <li class="card offer" id="cleansing">
-          <svg class="card__crown" viewBox="0 0 600 300" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#s-wash-crown" class="c-peach" width="600" height="300" mask="url(#m-fade-t)"/></svg>
+          <svg class="card__stroke" viewBox="0 0 600 140" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <use href="#s-stroke" class="c-peach mul" width="600" height="140"/>
+            <use href="#s-stroke" class="c-lavender mul" x="-80" y="34" width="520" height="110" opacity=".45"/>
+          </svg>
+          <svg class="card__line" viewBox="0 0 600 16" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 8C150 2 300 14 600 8" fill="none" stroke="url(#g-gold-fade)" stroke-width="1.2" vector-effect="non-scaling-stroke"/></svg>
           <h2>Cleansing ceremony</h2>
           <p class="card__meta">Homes and spaces, 90 minutes</p>
           <p>Sage, palo santo, sound and intention for a home, a studio or a season that is ready for a fresh start.</p>
@@ -216,7 +277,7 @@
       </header>
       <div class="steps__track">
         <svg class="strand steps__curve" viewBox="0 0 1000 92" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <path stroke="url(#g-gold-fade)" stroke-width="1.5" stroke-linecap="round" d="M-40 54C-16.7 49.7 43.3 26.3 100 28C156.7 29.7 233.3 64 300 64C366.7 64 433.3 28 500 28C566.7 28 633.3 64 700 64C766.7 64 843.3 30.3 900 28C956.7 25.7 1016.7 46.3 1040 50"/>
+          <path stroke="url(#g-gold-fade)" stroke-width="1.6" stroke-linecap="round" d="M-40 54C-16.7 49.7 43.3 26.3 100 28C156.7 29.7 233.3 64 300 64C366.7 64 433.3 28 500 28C566.7 28 633.3 64 700 64C766.7 64 843.3 30.3 900 28C956.7 25.7 1016.7 46.3 1040 50"/>
         </svg>
         <ol class="steps__list" role="list">
           <li class="step" style="--y: 0px"><span class="step__num">1</span><div><h3>Arrive</h3><p>Come as you are. Shoes off, phone away, tea if you would like it.</p></div></li>
@@ -241,8 +302,8 @@
         <div class="breathe__bloom" data-breathe-bloom aria-hidden="true">
           <div class="bloom bloom--breathe"></div>
           <svg viewBox="0 0 600 600" preserveAspectRatio="none" focusable="false">
-            <use href="#s-wash-a" class="c-blush" x="10" y="10" width="520" height="520"/>
-            <use href="#s-wash-a" class="c-lavender" x="90" y="90" width="500" height="500" transform="rotate(180 340 340)"/>
+            <use href="#s-wash-a" class="c-blush mul" x="10" y="10" width="520" height="520"/>
+            <use href="#s-wash-b" class="c-lavender mul" x="90" y="90" width="500" height="500" transform="rotate(180 340 340)"/>
           </svg>
           <div class="breathe__glow"></div>
         </div>
@@ -264,28 +325,33 @@
         <h2 id="oils-title">The oils I use</h2>
         <p>The essential oils I diffuse in every session are the same ones I use at home. I share them through doTERRA, and I am always happy to help you choose your first few.</p>
       </header>
-      <ul class="oil-list" role="list">
-        <li class="oil" style="--c: var(--soft-lavender)">
-          <div class="oil__art" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="bottle c-lavender" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg></div>
-          <div><h3 class="oil__name">Lavender</h3><p class="oil__desc">Soft, floral and calming.</p></div>
-        </li>
-        <li class="oil" style="--c: var(--champagne-gold)">
-          <div class="oil__art" aria-hidden="true"><svg class="drop" focusable="false" style="transform: rotate(70deg)"><use href="#s-drop"/></svg><svg class="bottle c-gold" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg></div>
-          <div><h3 class="oil__name">Frankincense</h3><p class="oil__desc">Warm, grounding and steady.</p></div>
-        </li>
-        <li class="oil" style="--c: var(--soft-peach)">
-          <div class="oil__art" aria-hidden="true"><svg class="drop" focusable="false" style="transform: rotate(140deg)"><use href="#s-drop"/></svg><svg class="bottle c-peach" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg></div>
-          <div><h3 class="oil__name">Wild Orange</h3><p class="oil__desc">Bright, sweet and uplifting.</p></div>
-        </li>
-        <li class="oil" style="--c: var(--gentle-teal)">
-          <div class="oil__art" aria-hidden="true"><svg class="drop" focusable="false" style="transform: rotate(210deg)"><use href="#s-drop"/></svg><svg class="bottle c-teal" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg></div>
-          <div><h3 class="oil__name">Peppermint</h3><p class="oil__desc">Cool, crisp and refreshing.</p></div>
-        </li>
-        <li class="oil" style="--c: var(--sage-green)">
-          <div class="oil__art" aria-hidden="true"><svg class="drop" focusable="false" style="transform: rotate(280deg)"><use href="#s-drop"/></svg><svg class="bottle c-sage" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg></div>
-          <div><h3 class="oil__name">Eucalyptus</h3><p class="oil__desc">Fresh, clean and clearing.</p></div>
-        </li>
-      </ul>
+      <div class="oils__row">
+        <svg class="strand oils__strand" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path stroke="url(#g-gold-fade)" stroke-width="1.6" d="M-60 12C40 12 160 26 300 26C440 26 440 18 500 18C560 18 640 8 700 8C760 8 840 22 900 22C960 22 1000 20 1060 18"/>
+        </svg>
+        <ul class="oil-list" role="list">
+          <li class="oil" style="--c: var(--soft-lavender); --y: 4px">
+            <div class="oil__art" aria-hidden="true"><svg class="bottle c-lavender" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg><span class="pearl oil__pearl"></span></div>
+            <div><h3 class="oil__name">Lavender</h3><p class="oil__desc">Soft, floral and calming.</p></div>
+          </li>
+          <li class="oil" style="--c: var(--champagne-gold); --y: 18px">
+            <div class="oil__art" aria-hidden="true"><svg class="bottle c-gold" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg><span class="pearl oil__pearl"></span></div>
+            <div><h3 class="oil__name">Frankincense</h3><p class="oil__desc">Warm, grounding and steady.</p></div>
+          </li>
+          <li class="oil" style="--c: var(--soft-peach); --y: 10px">
+            <div class="oil__art" aria-hidden="true"><svg class="bottle c-peach" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg><span class="pearl oil__pearl"></span></div>
+            <div><h3 class="oil__name">Wild Orange</h3><p class="oil__desc">Bright, sweet and uplifting.</p></div>
+          </li>
+          <li class="oil" style="--c: var(--gentle-teal); --y: 0px">
+            <div class="oil__art" aria-hidden="true"><svg class="bottle c-teal" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg><span class="pearl oil__pearl"></span></div>
+            <div><h3 class="oil__name">Peppermint</h3><p class="oil__desc">Cool, crisp and refreshing.</p></div>
+          </li>
+          <li class="oil" style="--c: var(--sage-green); --y: 14px">
+            <div class="oil__art" aria-hidden="true"><svg class="bottle c-sage" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg><span class="pearl oil__pearl"></span></div>
+            <div><h3 class="oil__name">Eucalyptus</h3><p class="oil__desc">Fresh, clean and clearing.</p></div>
+          </li>
+        </ul>
+      </div>
       <div class="oils__shop">
         <a class="btn btn--bloom" href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener" aria-describedby="oils-note">Shop my oils<svg aria-hidden="true" focusable="false"><use href="#s-external"/></svg></a>
         <p class="note" id="oils-note">Opens my doTERRA shop in a new tab.</p>
@@ -308,8 +374,9 @@
         </ul>
       </div>
       <div class="form-card">
-        <svg class="form-card__wash" viewBox="0 0 600 600" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <use href="#s-wash-a" class="c-peach" width="600" height="600" mask="url(#m-fade-tr)"/>
+        <svg class="form-card__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
+          <use href="#s-wash-a" class="c-peach mul" width="600" height="600"/>
+          <use href="#s-wash-c" class="c-lavender mul" x="60" y="-30" width="260" height="260" opacity=".8"/>
         </svg>
         <form class="booking" action="https://formspree.io/f/your-form-id" method="POST" data-booking>
           <div class="fields">
@@ -352,6 +419,10 @@
   <div class="washes" aria-hidden="true">
     <div class="bloom bloom--footer-a"></div>
     <div class="bloom bloom--footer-b"></div>
+    <svg class="wash site-footer__wash" viewBox="0 0 600 600" focusable="false">
+      <use href="#s-wash-c" class="c-blush mul" x="40" y="60" width="380" height="380" opacity=".55"/>
+      <use href="#s-wash-a" class="c-peach mul" x="220" y="240" width="360" height="360" opacity=".5"/>
+    </svg>
   </div>
   <div class="wrap">
     <div class="site-footer__grid">
