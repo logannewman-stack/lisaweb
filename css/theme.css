@@ -86,7 +86,7 @@
   --text: var(--charcoal);
   --heading: var(--deep-plum);
   --line: var(--champagne-gold);
-  --focus: var(--deep-plum);
+  --focus: var(--gold-deep);        /* the focus ring: a gold ring with an offset, on ivory and cream alike */
 
   /* ------------------------------------------------------------------
      Type: Cormorant Garamond for headings and quotes, Jost for body and UI.

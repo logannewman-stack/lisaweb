@@ -92,6 +92,66 @@ and HEX codes, plus RGB-channel versions for soft washes.
   columns on desktop (pages, contact, shop), a hairline and the tagline in
   italic.
 
+## Flow and interaction (October 2026)
+- **Page flow:** home runs hero, welcome, ways to work together, seven
+  colours, words I keep close, kind words, oils, closing. The ways cards sit
+  on ivory (cream cards) and the lotus on cream, so the bands still
+  alternate. Each ways card is one link: an invisible cover (`.arch-card__cover`,
+  hidden from assistive technology) takes the whole surface to the offering
+  on Work With Me (`#sound-bath`, `#one-to-one`, `#cleansing`), while the
+  visible Learn more link is the one keyboard users reach.
+- **Continue block** (`.continue`, home, About Me and Our Story): a foil
+  hairline, a strand, the eyebrow "Next" between two gold pearls, the next
+  page's name as a large italic link with a drawn underline, and one line.
+  Work With Me ends at the form.
+- **Anchors:** every `[id]` carries `scroll-margin-top`, so targets land below
+  the fixed bar; scrolling is smooth only when motion is allowed.
+- **Phone booking bar** (`.book-bar`): one plum Book a session button fixed
+  to the bottom with a foil hairline, safe-area padding and a blurred ivory
+  ground. It shows once the hero has scrolled away and hides while the
+  booking form or the footer is on screen; the page gains bottom padding
+  while it is shown. Nothing on desktop, nothing without JavaScript.
+- **Back to top** (`.to-top`): a small round ivory button with a foil ring, a
+  pearl at its crown and a plum chevron, bottom right, above the phone bar
+  on phones; it appears after one screen.
+- **Reading progress:** a 2px foil line along the header's bottom edge whose
+  width is the scroll position.
+- **Offering details:** a native `<details>` "Good to know" in each offering
+  card with who it is for, what to bring and where, open on desktop and
+  closed on phones (JavaScript closes it; without JavaScript it stays open).
+- **Good to know** (`#faq`): six questions as `<details>` in a cream
+  invitation card, hairlines between them, a round plum chevron that turns,
+  one open at a time, the answer's height animated when motion is allowed.
+- **Session cards:** the four choices are radio inputs inside labels; the
+  chosen card takes a lavender-to-blush wash, a deep gold hairline with an
+  inner gold-light line and a lit gold pearl. The `<select id="f-session">`
+  stays as the no-JavaScript fallback and is kept in step with the cards,
+  which is also what `?session=` and the offering Book buttons set.
+- **Form states:** required fields carry a gold asterisk and the legend line;
+  hints sit under the labels; inline messages (a gold pearl and plum text)
+  appear under a field on blur and on submit, using the browser's validity
+  with the site's wording; the message box grows with its content; Send
+  becomes "Sending..." and is disabled while the post is in flight; a hidden
+  `website` honeypot is ignored by assistive technology. With the placeholder
+  action the guard notice shows; otherwise the form posts with `fetch`, then
+  hides the fields and shows the thank-you with "What happens next" (which
+  also sits under the form intro), or the error line.
+- **Focus and states:** one focus ring everywhere, 2px deep gold with a
+  3px offset (`--focus`). Buttons lift on hover and sink when pressed, cards
+  lift, underlines grow from the left. Transitions run 160 to 240ms,
+  ease-out, and none under reduced motion.
+- **Reveal:** elements with `.reveal` rise 14px and fade in once when they
+  enter the viewport (IntersectionObserver, threshold 0.15, unobserved after);
+  children of a `[data-stagger]` parent follow 90ms apart. Anything already
+  on screen at load shows at once; without JavaScript or under reduced motion
+  everything is simply visible. The reveal uses the `translate` property, so
+  hover transforms are untouched.
+- **Carousels:** previous and next, a counter, left and right arrow keys
+  while a control inside has focus, a swipe on touch, never auto-advance.
+- **404:** `404.html` with the same header and footer; a strand whose line
+  ends with three scattered pearls and one dropped lower (`#strand-loose`),
+  the heading, one line and two buttons, on a soft halo.
+
 ## Motion
 - One orchestrated entrance on the home hero, about 1.2 seconds: the logo
   settles from 0.985 scale and fades in, then the intro, the strand, the
@@ -111,8 +171,12 @@ the booking form guard with the `?session=` preselect. Without JavaScript every
 quote and kind word is listed and the nav links sit under the logo.
 
 ## Things to avoid when editing
-- The header, footer and SVG sprite are repeated in all four pages: change all
-  four together. The lotus illustration lives only in `index.html`.
+- The header, footer, phone bar, Back to top and SVG sprite are repeated in
+  all five pages (the four pages and `404.html`): change them all together.
+  The lotus illustration lives only in `index.html`.
+- Keep `id="f-session"` on the fallback `<select>` and the `data-session`
+  keys (`sound-bath`, `one-to-one`, `cleansing`) on both the options and the
+  session cards; the preselect and the Book buttons depend on them.
 - Never set text in a pastel or in gold. Gold foil is for frames, lines,
   pearls, the shelf, numerals and the quote marks only; text on a gold fill is
   charcoal.

@@ -21,7 +21,8 @@ Each design option lives on its own branch and has its own design notes in
 | Home | `index.html` |
 | About Me | `about.html` |
 | Our Story | `story.html` |
-| Work With Me (offerings, breathing exercise, booking form) | `work-with-me.html` |
+| Work With Me (offerings, Good to know, breathing exercise, booking form) | `work-with-me.html` |
+| Page not found | `404.html` (Vercel serves it for any missing path; it is linked from nowhere) |
 
 How to edit:
 - **Words:** edit the HTML directly. The header, footer and the SVG sprite
@@ -30,8 +31,15 @@ How to edit:
 - **Colours, fonts and spacing:** `css/theme.css`.
 - **Layout:** `css/site.css`, in page order: base, shared pieces, header,
   home, about, story, work with me, footer, then all motion at the end.
-- **Behaviour:** `js/site.js` (menu, quotes, kind words, breathing exercise,
-  booking form).
-- **Booking form:** replace `your-form-id` in the form's `action` in
-  `work-with-me.html` with the real Formspree id to switch it on.
+- **Behaviour:** `js/site.js` (menu, reading-progress line, the carousels,
+  breathing exercise, booking form and session cards, Good to know
+  accordion, scroll reveal, the phone booking bar, Back to top).
+- **Booking form:** to switch it on, replace `your-form-id` in the form's
+  `action` in `work-with-me.html` with the real Formspree id. While the
+  placeholder is there, Send shows a notice and nothing is sent. Once it is
+  replaced, the form posts with `fetch` (Accept: application/json), shows
+  "Sending..." while it waits, then the thank-you with "What happens next",
+  or the error line if the post fails. Without JavaScript it posts natively.
+  The hidden `website` field is a honeypot: leave it empty in the Formspree
+  settings (or ignore it).
 - Design notes and what to avoid: `DESIGN.md`.

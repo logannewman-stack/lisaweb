@@ -96,6 +96,15 @@ textarea {
 :focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.btn:focus-visible,
+.round-btn:focus-visible,
+.to-top:focus-visible,
+.arch-frame:focus-visible,
+.brand:focus-visible {
+  border-radius: 999px;
 }
 
 main:focus {
@@ -2763,6 +2772,8 @@ body.menu-open {
   min-height: 3rem;
   padding: 0.7rem 1rem;
   border: 1px solid var(--field-line);
+  font-size: max(1rem, var(--step-0));
+  font-size: max(1rem, var(--step-0));
   border-radius: 0.6rem;
   background-color: var(--warm-ivory);
   color: var(--charcoal);
@@ -2793,6 +2804,7 @@ body.menu-open {
 .field select:focus-visible,
 .field textarea:focus-visible {
   border-color: var(--deep-plum);
+  border-radius: 0.6rem;
   outline: 2px solid var(--focus);
   outline-offset: 2px;
 }
@@ -3080,7 +3092,7 @@ body.menu-open {
   /* small hover touches */
   .btn,
   .round-btn {
-    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), filter 0.35s var(--ease);
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, filter 0.2s ease-out, background-color 0.2s ease-out;
   }
 
   .btn:hover,
@@ -3090,7 +3102,7 @@ body.menu-open {
 
   .text-link::after,
   .site-nav__link::after {
-    transition: transform 0.45s var(--ease);
+    transition: transform 0.2s ease-out;
   }
 
   .site-nav__link[aria-current="page"]::after {
@@ -3098,7 +3110,7 @@ body.menu-open {
   }
 
   .text-link .icon--arrow {
-    transition: transform 0.35s var(--ease);
+    transition: transform 0.2s ease-out;
   }
 
   .text-link:hover .icon--arrow,
@@ -3107,11 +3119,11 @@ body.menu-open {
   }
 
   .btn .icon--arrow {
-    transition: transform 0.35s var(--ease);
+    transition: transform 0.2s ease-out;
   }
 
   .arch-card {
-    transition: transform 0.6s var(--ease), box-shadow 0.6s var(--ease);
+    transition: transform 0.24s ease-out, box-shadow 0.24s ease-out;
   }
 
   .arch-card:hover {
@@ -3140,7 +3152,7 @@ body.menu-open {
   }
 
   .swatch {
-    transition: transform 0.4s var(--ease);
+    transition: transform 0.2s ease-out;
   }
 
   .colour:hover .swatch {
@@ -3216,5 +3228,815 @@ body.menu-open {
   .breathe__orb,
   .breathe__circle[data-phase] .breathe__orb {
     transform: scale(0.84);
+  }
+}
+
+/* =====================================================================
+   10. UX and flow: anchors, states, the continue block, the phone bar,
+   back to top, the reading-progress line, offering details, the FAQ,
+   the session cards, form states, the 404 page and the scroll reveal
+   ===================================================================== */
+
+/* anchors land below the sticky header */
+[id] {
+  scroll-margin-top: calc(var(--bar-h) + 1.25rem);
+}
+
+/* pressed states: buttons sink */
+.btn:active {
+  transform: translateY(1px);
+  box-shadow: inset 0 0 0 3px var(--deep-plum), inset 0 0 0 4px rgb(var(--champagne-gold-rgb) / 0.7), 0 0.2rem 0.4rem -0.3rem rgb(var(--deep-plum-rgb) / 0.4);
+}
+
+.btn--outline:active,
+.btn--gold:active {
+  box-shadow: 0 0.2rem 0.4rem -0.3rem rgb(var(--deep-plum-rgb) / 0.4);
+}
+
+.round-btn:active {
+  transform: translateY(1px);
+}
+
+/* footer links: the underline grows from the left */
+.site-footer__nav a {
+  position: relative;
+}
+
+.site-footer__nav a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0.55rem;
+  left: 0;
+  height: 1px;
+  background: var(--line);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.site-footer__nav a:hover {
+  text-decoration: none;
+}
+
+.site-footer__nav a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Linked cards: the whole surface goes to the offering; the visible link
+   stays the one keyboard users reach */
+.arch-card__cover {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.arch-card--linked .arch-card__link {
+  position: relative;
+  z-index: 2;
+}
+
+.arch-card--linked:hover .arch-card__link::after {
+  transform: scaleX(1);
+}
+
+.arch-card--linked:hover .arch-card__link .icon--arrow {
+  transform: translateX(3px);
+}
+
+/* the home offer cards sit on ivory now, so they take the cream */
+.ways .arch-card {
+  background:
+    radial-gradient(70% 34% at 50% 0%, rgb(var(--soft-lavender-rgb) / 0.26), rgb(var(--soft-lavender-rgb) / 0)),
+    var(--grain-paper),
+    var(--soft-cream);
+}
+
+/* offering cards hold an article */
+.offering {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Continue: a quiet hand-off to the next page */
+.continue {
+  position: relative;
+  padding: var(--space-xl) 0;
+  text-align: center;
+}
+
+.continue::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: var(--gold-foil-h);
+}
+
+.continue__strand {
+  width: min(22rem, 100%);
+  margin: 0 auto var(--space-m);
+}
+
+.continue__eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: var(--plum-muted);
+}
+
+.continue__eyebrow::before,
+.continue__eyebrow::after {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--pearl-gold);
+  box-shadow: var(--pearl-sheen-gold);
+}
+
+.continue__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.9rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 1.6rem + 3.4vw, 4.4rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--heading);
+  text-decoration: none;
+}
+
+.continue__link::before,
+.continue__link::after {
+  content: "";
+  position: absolute;
+  right: 0.9em;
+  bottom: 0.02em;
+  left: 0;
+  height: 1px;
+  background: var(--line);
+}
+
+.continue__link::after {
+  background: var(--deep-plum);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.continue__link:hover::after {
+  transform: scaleX(1);
+}
+
+.continue__link .icon--arrow {
+  width: 0.55em;
+  height: 0.55em;
+}
+
+.continue__link:hover .icon--arrow {
+  transform: translateX(4px);
+}
+
+.continue__line {
+  max-width: 34rem;
+  margin: 1rem auto 0;
+  font-size: var(--step-1);
+  font-weight: 300;
+  text-wrap: balance;
+}
+
+/* The phone bar: one Book a session button fixed to the bottom */
+.book-bar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 35;
+  display: flex;
+  justify-content: center;
+  padding: 0.65rem var(--gutter) calc(0.65rem + env(safe-area-inset-bottom, 0px));
+  background: rgb(255 253 248 / 0.94);
+  box-shadow: 0 -0.5rem 1.5rem -1rem rgb(var(--deep-plum-rgb) / 0.35);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transform: translateY(110%);
+}
+
+.book-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: var(--gold-foil-h);
+}
+
+.book-bar.is-visible {
+  transform: none;
+}
+
+.book-bar__btn {
+  width: min(100%, 22rem);
+}
+
+body.has-book-bar {
+  padding-bottom: calc(4.6rem + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 960px) {
+  .book-bar {
+    display: none;
+  }
+
+  body.has-book-bar {
+    padding-bottom: 0;
+  }
+}
+
+/* Back to top: a small round button with a foil ring and a pearl crown */
+.to-top {
+  position: fixed;
+  right: clamp(1rem, 2vw, 1.75rem);
+  bottom: clamp(1rem, 2vw, 1.75rem);
+  z-index: 34;
+  display: grid;
+  place-items: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--warm-ivory);
+  color: var(--deep-plum);
+  box-shadow: 0 0.6rem 1.2rem -0.5rem rgb(var(--deep-plum-rgb) / 0.45);
+  cursor: pointer;
+  opacity: 0;
+  translate: 0 0.5rem;
+  pointer-events: none;
+}
+
+.to-top::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: 50%;
+  background: var(--gold-foil);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.to-top.is-visible {
+  opacity: 1;
+  translate: none;
+  pointer-events: auto;
+}
+
+.to-top:hover {
+  background: var(--lavender-mist);
+}
+
+.to-top__pearl {
+  position: absolute;
+  top: -0.42rem;
+  left: 50%;
+  width: 0.85rem;
+  height: 0.85rem;
+  overflow: visible;
+  translate: -50% 0;
+}
+
+.to-top__icon {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+@media (max-width: 959.98px) {
+  body.has-book-bar .to-top {
+    bottom: calc(5.1rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* The reading-progress line along the header's bottom edge */
+.site-header__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 2px;
+  background: var(--gold-foil-solid);
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+
+.site-header__progress.is-active {
+  opacity: 1;
+}
+
+/* Offering details: "Good to know" inside each card */
+.offer-details {
+  width: 100%;
+  margin: 0 0 1.5rem;
+  text-align: left;
+}
+
+.offer-details__summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0;
+  list-style: none;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--heading);
+  cursor: pointer;
+}
+
+.offer-details__summary::-webkit-details-marker {
+  display: none;
+}
+
+.offer-details__summary:hover .offer-details__label {
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 0.2em;
+}
+
+.offer-details__icon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--deep-plum);
+}
+
+.offer-details[open] .offer-details__icon {
+  transform: rotate(180deg);
+}
+
+.offer-details__list {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0.35rem 0 0;
+  padding: 0.9rem 0 0.1rem;
+  border-top: 1px solid rgb(var(--champagne-gold-rgb) / 0.55);
+}
+
+.offer-details__row {
+  display: grid;
+  grid-template-columns: 6.25rem minmax(0, 1fr);
+  gap: 0.75rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.offer-details__row dt {
+  font-weight: 500;
+  color: var(--plum-muted);
+}
+
+.offer-details__row dd {
+  margin: 0;
+}
+
+/* Good to know: the questions, one open at a time, in an invitation card */
+.faq__card {
+  max-width: 54rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.faq__card .section-head {
+  margin-bottom: var(--space-m);
+}
+
+.faq__list {
+  text-align: left;
+  border-top: 1px solid rgb(var(--champagne-gold-rgb) / 0.6);
+}
+
+.faq__item {
+  border-bottom: 1px solid rgb(var(--champagne-gold-rgb) / 0.6);
+}
+
+.faq__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 0.25rem;
+  list-style: none;
+  cursor: pointer;
+}
+
+.faq__summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq__question {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 1.1rem + 0.7vw, 1.65rem);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--heading);
+}
+
+.faq__summary:hover .faq__question {
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 0.2em;
+}
+
+.faq__icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--warm-ivory);
+  color: var(--deep-plum);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.faq__icon .icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.faq__item[open] .faq__icon {
+  background: var(--lavender-mist);
+  transform: rotate(180deg);
+}
+
+.faq__answer {
+  overflow: hidden;
+}
+
+.faq__answer p {
+  max-width: 42rem;
+  margin: 0;
+  padding: 0 0.25rem 1.3rem;
+}
+
+/* The session cards: four choices, the chosen one lit with a gold frame */
+.field--session {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.field__legend {
+  padding: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--heading);
+}
+
+.field__hint {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--plum-muted);
+}
+
+.field--session .field__hint {
+  margin: 0.15rem 0 0.6rem;
+}
+
+.session-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.session-card {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+
+.session-card__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.session-card__face {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 3.25rem;
+  padding: 0.7rem 0.9rem 0.7rem 0.85rem;
+  border-radius: 0.6rem;
+  background: var(--warm-ivory);
+  color: var(--charcoal);
+  box-shadow: inset 0 0 0 1px var(--field-line);
+}
+
+.session-card__pearl {
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  overflow: visible;
+  opacity: 0.4;
+}
+
+.session-card__name {
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.session-card:hover .session-card__face {
+  background: var(--lavender-mist);
+  box-shadow: inset 0 0 0 1px var(--deep-plum);
+}
+
+.session-card__input:checked + .session-card__face {
+  background:
+    linear-gradient(to right, rgb(var(--soft-lavender-rgb) / 0.28), rgb(var(--blush-pink-rgb) / 0.14)),
+    var(--warm-ivory);
+  color: var(--deep-plum);
+  box-shadow:
+    inset 0 0 0 1px var(--gold-deep),
+    inset 0 0 0 3px var(--warm-ivory),
+    inset 0 0 0 4px var(--gold-light);
+}
+
+.session-card__input:checked + .session-card__face .session-card__pearl {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.session-card__input:focus-visible + .session-card__face {
+  outline: 2px solid var(--gold-deep);
+  outline-offset: 3px;
+}
+
+.js .field--fallback {
+  display: none;
+}
+
+.no-js .session-cards {
+  display: none;
+}
+
+@media (max-width: 419.98px) {
+  .session-cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Form states */
+.form__required {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--plum-muted);
+}
+
+.req {
+  font-weight: 500;
+  color: var(--gold-deep);
+}
+
+.form__fields {
+  display: grid;
+  gap: 1.3rem;
+}
+
+.field__error {
+  display: none;
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--deep-plum);
+}
+
+.field__error:not(:empty) {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.field__error:not(:empty)::before {
+  content: "";
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 50%;
+  background: var(--pearl-gold);
+  box-shadow: var(--pearl-sheen-gold);
+}
+
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border-color: var(--gold-deep);
+  box-shadow: inset 0 0 0 1px var(--gold-deep);
+}
+
+.field textarea[data-autogrow] {
+  min-height: 8.5rem;
+  max-height: 24rem;
+  overflow: auto;
+  resize: none;
+  field-sizing: content;
+}
+
+.form__hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form__send[disabled] {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.form__success {
+  padding: 0.5rem 0 1rem;
+  text-align: center;
+}
+
+.form__success-strand {
+  width: min(22rem, 100%);
+  margin: 0 auto var(--space-m);
+}
+
+.form__success-title {
+  font-size: var(--step-4);
+  font-style: italic;
+  outline: none;
+}
+
+.form__success .book__next-title {
+  margin-top: var(--space-m);
+}
+
+.form__success .book__steps li {
+  justify-content: center;
+}
+
+/* What happens next */
+.book__next {
+  margin-top: var(--space-m);
+}
+
+.book__next-title {
+  font-size: var(--step-2);
+  font-weight: 600;
+}
+
+.book__steps {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.book__steps li {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.book__step-num {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--warm-ivory);
+  box-shadow: inset 0 0 0 1px var(--line);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--heading);
+  font-variant-numeric: lining-nums;
+}
+
+/* The 404 page: a strand that comes loose, a pearl that has dropped */
+.not-found {
+  min-height: 60vh;
+  padding-bottom: clamp(4rem, 3rem + 5vw, 7rem);
+}
+
+.not-found__strand {
+  display: block;
+  width: min(36rem, 100%);
+  height: auto;
+  margin: 0 auto var(--space-m);
+  overflow: visible;
+}
+
+.not-found__title {
+  font-size: var(--step-5);
+}
+
+.not-found__text {
+  max-width: 26em;
+  font-size: var(--step-2);
+}
+
+.not-found__actions {
+  margin-top: var(--space-m);
+}
+
+/* Scroll reveal: sections and cards rise and fade in once, only with
+   JavaScript and only when motion is allowed. The `translate` property keeps
+   the hover transforms untouched. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    opacity: 0;
+    translate: 0 14px;
+    transition: opacity 0.55s var(--ease) var(--reveal-delay, 0ms), translate 0.65s var(--ease) var(--reveal-delay, 0ms);
+  }
+
+  .js .reveal.is-visible {
+    opacity: 1;
+    translate: none;
+  }
+
+  .js .reveal.reveal--instant {
+    transition: none;
+  }
+
+  .faq__answer {
+    transition: height 0.24s ease-out;
+  }
+
+  .faq__icon,
+  .offer-details__icon {
+    transition: transform 0.2s ease-out, background-color 0.2s ease-out;
+  }
+
+  .book-bar {
+    transition: transform 0.24s ease-out;
+  }
+
+  .to-top {
+    transition: opacity 0.2s ease-out, translate 0.2s ease-out, background-color 0.2s ease-out;
+  }
+
+  .site-header__progress {
+    transition: opacity 0.2s ease-out;
+  }
+
+  .session-card__face {
+    transition: background-color 0.2s ease-out, box-shadow 0.2s ease-out, color 0.2s ease-out;
+  }
+
+  .session-card__pearl {
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+
+  .site-footer__nav a::after,
+  .continue__link::after {
+    transition: transform 0.2s ease-out;
+  }
+
+  .continue__link .icon--arrow {
+    transition: transform 0.2s ease-out;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    transition: border-color 0.16s ease-out, box-shadow 0.16s ease-out;
   }
 }

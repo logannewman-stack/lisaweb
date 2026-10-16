@@ -1,13 +1,18 @@
 /*
   Strands of Grace, option A "Classic grace": behaviour. No libraries.
   Every page reads completely without this file; it only adds:
-   1. the header that condenses into a slim bar once scrolled
+   1. the header that condenses into a slim bar once scrolled, and the
+      reading-progress line along its bottom edge
    2. the phone menu (focus stays inside while open; Escape closes it)
-   3. "Words I keep close": one quote at a time with a Next quote button
-   4. "Kind words": one at a time with previous and next buttons
-   5. "What I believe": hides the pearl that would start a wrapped line
-   6. the 4-7-8 breathing exercise
-   7. the booking form guard and the ?session= preselect
+   3. the carousels: "Words I keep close" and "Kind words", with previous and
+      next, arrow keys and a swipe on touch
+   4. "What I believe": hides the pearl that would start a wrapped line
+   5. the 4-7-8 breathing exercise
+   6. the booking form: session cards, hints, inline validation, the
+      ?session= preselect, sending with fetch and the thank-you
+   7. "Good to know" details on the offerings (closed on phones) and the
+      question accordion
+   8. the scroll reveal, the phone booking bar and Back to top
 */
 (function () {
   "use strict";
@@ -18,11 +23,19 @@
 
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   var desktop = window.matchMedia("(min-width: 960px)");
+  var motionOk = function () {
+    return !reducedMotion.matches;
+  };
+  var onMedia = function (mq, fn) {
+    if (mq.addEventListener) mq.addEventListener("change", fn);
+    else if (mq.addListener) mq.addListener(fn);
+  };
 
   /* 1. Header ------------------------------------------------------------ */
   var header = document.querySelector("[data-header]");
   var bar = header && header.querySelector(".site-header__bar");
   var heroLogo = document.querySelector(".hero__logo");
+  var progress = document.querySelector("[data-progress]");
 
   if (header && bar) {
     var condensed = false;
@@ -56,6 +69,12 @@
       if (shouldShowBrand !== brandShown) {
         brandShown = shouldShowBrand;
         header.classList.toggle("show-brand", brandShown);
+      }
+      if (progress) {
+        var max = root.scrollHeight - window.innerHeight;
+        var p = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
+        progress.style.transform = "scaleX(" + p.toFixed(4) + ")";
+        progress.classList.toggle("is-active", y > 2);
       }
     };
 
@@ -94,6 +113,8 @@
     var outside = [
       document.querySelector(".skip-link"),
       document.querySelector("main"),
+      document.querySelector("[data-book-bar]"),
+      document.querySelector("[data-to-top]"),
       document.querySelector(".site-footer")
     ].filter(Boolean);
 
@@ -155,41 +176,19 @@
       if (isOpen() && event.target.closest("a")) setOpen(false, false);
     });
 
-    var closeOnDesktop = function () {
+    onMedia(desktop, function () {
       if (desktop.matches && isOpen()) setOpen(false, false);
-    };
-    if (desktop.addEventListener) desktop.addEventListener("change", closeOnDesktop);
-    else if (desktop.addListener) desktop.addListener(closeOnDesktop);
+    });
   }
 
-  /* 3. Words I keep close ------------------------------------------------ */
-  Array.prototype.forEach.call(document.querySelectorAll("[data-quotes]"), function (box) {
-    var items = box.querySelectorAll(".quotes__item");
-    var next = box.querySelector("[data-quote-next]");
-    var index = box.querySelector("[data-quote-index]");
-    var live = box.querySelector("[data-quote-live]");
+  /* 3. Carousels: one item at a time, previous and next, arrow keys, swipe */
+  var carousel = function (box, sel, describe) {
+    var items = box.querySelectorAll(sel.item);
+    var prev = box.querySelector(sel.prev);
+    var next = box.querySelector(sel.next);
+    var index = box.querySelector(sel.index);
+    var live = box.querySelector(sel.live);
     if (!items.length || !next) return;
-    var current = 0;
-
-    next.addEventListener("click", function () {
-      items[current].classList.remove("is-current");
-      current = (current + 1) % items.length;
-      items[current].classList.add("is-current");
-      if (index) index.textContent = String(current + 1);
-      if (live) {
-        live.textContent = "Quote " + (current + 1) + " of " + items.length + ": " + items[current].textContent.trim();
-      }
-    });
-  });
-
-  /* 4. Kind words -------------------------------------------------------- */
-  Array.prototype.forEach.call(document.querySelectorAll("[data-carousel]"), function (box) {
-    var items = box.querySelectorAll(".kind__item");
-    var prev = box.querySelector("[data-prev]");
-    var next = box.querySelector("[data-next]");
-    var index = box.querySelector("[data-index]");
-    var live = box.querySelector("[data-live]");
-    if (!items.length || !prev || !next) return;
     var current = 0;
 
     var show = function (n) {
@@ -197,20 +196,59 @@
       current = (n + items.length) % items.length;
       items[current].classList.add("is-current");
       if (index) index.textContent = String(current + 1);
-      if (live) {
-        live.textContent = (current + 1) + " of " + items.length + ": " + items[current].textContent.replace(/\s+/g, " ").trim();
-      }
+      if (live) live.textContent = describe(current + 1, items.length, items[current].textContent.replace(/\s+/g, " ").trim());
     };
 
-    prev.addEventListener("click", function () {
-      show(current - 1);
-    });
     next.addEventListener("click", function () {
       show(current + 1);
     });
+    if (prev) {
+      prev.addEventListener("click", function () {
+        show(current - 1);
+      });
+    }
+
+    // left and right arrows while a control inside has focus
+    box.addEventListener("keydown", function (event) {
+      if (event.altKey || event.ctrlKey || event.metaKey) return;
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        show(current + 1);
+      } else if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        show(current - 1);
+      }
+    });
+
+    // a swipe on touch
+    var startX = null;
+    var startY = null;
+    box.addEventListener("touchstart", function (event) {
+      var t = event.changedTouches[0];
+      startX = t.clientX;
+      startY = t.clientY;
+    }, { passive: true });
+    box.addEventListener("touchend", function (event) {
+      if (startX === null) return;
+      var t = event.changedTouches[0];
+      var dx = t.clientX - startX;
+      var dy = t.clientY - startY;
+      startX = startY = null;
+      if (Math.abs(dx) > 44 && Math.abs(dx) > Math.abs(dy) * 1.5) show(dx < 0 ? current + 1 : current - 1);
+    }, { passive: true });
+  };
+
+  Array.prototype.forEach.call(document.querySelectorAll("[data-quotes]"), function (box) {
+    carousel(box, { item: ".quotes__item", prev: "[data-quote-prev]", next: "[data-quote-next]", index: "[data-quote-index]", live: "[data-quote-live]" },
+      function (i, n, text) { return "Quote " + i + " of " + n + ": " + text; });
   });
 
-  /* 5. What I believe: no pearl at the start of a wrapped line ------------ */
+  Array.prototype.forEach.call(document.querySelectorAll("[data-carousel]"), function (box) {
+    carousel(box, { item: ".kind__item", prev: "[data-prev]", next: "[data-next]", index: "[data-index]", live: "[data-live]" },
+      function (i, n, text) { return i + " of " + n + ": " + text; });
+  });
+
+  /* 4. What I believe: no pearl at the start of a wrapped line ------------ */
   var words = document.querySelector("[data-words]");
   if (words) {
     var markLineStarts = function () {
@@ -227,7 +265,7 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(markLineStarts);
   }
 
-  /* 6. A minute for you: breathe in for 4, hold for 7, out for 8, 3 rounds */
+  /* 5. A minute for you: breathe in for 4, hold for 7, out for 8, 3 rounds */
   var circle = document.querySelector("[data-breathe]");
   var breatheButton = document.querySelector("[data-breathe-toggle]");
 
@@ -292,15 +330,31 @@
     });
   }
 
-  /* 7. Booking form: the guard, and the session chosen from the address --- */
+  /* 6. Booking form -------------------------------------------------------- */
   var form = document.querySelector("[data-booking-form]");
   var sessionSelect = document.getElementById("f-session");
+  var sessionCards = Array.prototype.slice.call(document.querySelectorAll("[data-session-cards] input[type=radio]"));
+
+  // With JavaScript the cards are the control and the select is kept in step
+  // with them (it stays the fallback without JavaScript)
+  if (sessionSelect && sessionCards.length) {
+    sessionSelect.removeAttribute("name");
+    sessionCards.forEach(function (radio) {
+      radio.name = "session";
+      radio.addEventListener("change", function () {
+        if (radio.checked) sessionSelect.value = radio.value;
+      });
+    });
+  }
 
   var chooseSession = function (key) {
     if (!sessionSelect || !key) return false;
     var option = sessionSelect.querySelector('option[data-session="' + key + '"]');
     if (!option) return false;
     sessionSelect.value = option.value;
+    sessionCards.forEach(function (radio) {
+      radio.checked = radio.getAttribute("data-session") === key;
+    });
     return true;
   };
 
@@ -321,7 +375,7 @@
           window.history.pushState(null, "", link.getAttribute("href"));
         }
         var book = document.getElementById("book");
-        if (book) book.scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth", block: "start" });
+        if (book) book.scrollIntoView({ behavior: motionOk() ? "smooth" : "auto", block: "start" });
         var name = document.getElementById("f-name");
         if (name) name.focus({ preventScroll: true });
       });
@@ -330,15 +384,274 @@
 
   if (form) {
     var status = form.querySelector("[data-form-status]");
-    form.addEventListener("submit", function (event) {
-      if ((form.getAttribute("action") || "").indexOf("your-form-id") === -1) return;
-      event.preventDefault();
-      if (status) {
-        status.textContent = "";
-        window.setTimeout(function () {
-          status.textContent = "The booking form will be switched on before launch, so this message was not sent.";
-        }, 60);
+    var fields = form.querySelector("[data-form-fields]");
+    var success = form.querySelector("[data-form-success]");
+    var submit = form.querySelector("[data-submit]");
+    var honeypot = form.querySelector("[data-honeypot]");
+    var MESSAGES = {
+      "f-name": "Please add your name.",
+      "f-email": "Please add an email address I can reply to.",
+      "f-message": "Please add a short message."
+    };
+    var SUCCESS = "Your message is on its way, and I will reply within a day or two.";
+    var ERROR = "Something went wrong and your message was not sent. Please try again, or email me directly.";
+    var GUARD = "The booking form will be switched on before launch, so this message was not sent.";
+
+    // the browser's bubbles are replaced by inline messages
+    form.setAttribute("novalidate", "");
+
+    var inputs = Object.keys(MESSAGES).map(function (id) {
+      return document.getElementById(id);
+    }).filter(Boolean);
+
+    var errorFor = function (input) {
+      return document.getElementById(input.id + "-error");
+    };
+
+    var validate = function (input) {
+      var error = errorFor(input);
+      var ok = input.validity.valid;
+      input.setAttribute("aria-invalid", ok ? "false" : "true");
+      if (error) error.textContent = ok ? "" : MESSAGES[input.id];
+      return ok;
+    };
+
+    inputs.forEach(function (input) {
+      input.addEventListener("blur", function () {
+        if (input.value !== "" || input.getAttribute("aria-invalid") === "true" || input.hasAttribute("data-touched")) validate(input);
+        input.setAttribute("data-touched", "");
+      });
+      input.addEventListener("input", function () {
+        if (input.getAttribute("aria-invalid") === "true") validate(input);
+      });
+    });
+
+    // the message box grows with its content
+    var autogrow = form.querySelector("[data-autogrow]");
+    if (autogrow && !(window.CSS && CSS.supports && CSS.supports("field-sizing", "content"))) {
+      var grow = function () {
+        autogrow.style.height = "auto";
+        autogrow.style.height = Math.min(autogrow.scrollHeight + 2, 384) + "px";
+      };
+      autogrow.addEventListener("input", grow);
+      grow();
+    }
+
+    var setSending = function (sending) {
+      if (!submit) return;
+      submit.disabled = sending;
+      submit.textContent = sending ? "Sending..." : "Send";
+    };
+
+    var setStatus = function (text) {
+      if (!status) return;
+      status.textContent = "";
+      window.setTimeout(function () {
+        status.textContent = text;
+      }, 60);
+    };
+
+    var showSuccess = function () {
+      setSending(false);
+      if (fields) fields.hidden = true;
+      if (success) {
+        success.hidden = false;
+        var title = success.querySelector(".form__success-title");
+        if (title) {
+          title.setAttribute("tabindex", "-1");
+          title.focus({ preventScroll: true });
+        }
       }
+      setStatus(SUCCESS);
+    };
+
+    form.addEventListener("submit", function (event) {
+      var firstInvalid = null;
+      inputs.forEach(function (input) {
+        input.setAttribute("data-touched", "");
+        if (!validate(input) && !firstInvalid) firstInvalid = input;
+      });
+      if (firstInvalid) {
+        event.preventDefault();
+        firstInvalid.focus();
+        return;
+      }
+      if (honeypot && honeypot.value) {
+        event.preventDefault();
+        showSuccess();
+        return;
+      }
+      if ((form.getAttribute("action") || "").indexOf("your-form-id") !== -1) {
+        event.preventDefault();
+        setStatus(GUARD);
+        return;
+      }
+      if (!window.fetch || !window.FormData) return;
+      event.preventDefault();
+      setSending(true);
+      if (status) status.textContent = "";
+      window.fetch(form.getAttribute("action"), {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" }
+      }).then(function (response) {
+        if (!response.ok) throw new Error("not sent");
+        showSuccess();
+      }).catch(function () {
+        setSending(false);
+        setStatus(ERROR);
+      });
+    });
+  }
+
+  /* 7. Good to know: offering details, and the question accordion --------- */
+  var offerDetails = document.querySelectorAll("[data-offer-details]");
+  if (offerDetails.length) {
+    var applyOffer = function () {
+      Array.prototype.forEach.call(offerDetails, function (details) {
+        details.open = desktop.matches;
+      });
+    };
+    applyOffer();
+    onMedia(desktop, applyOffer);
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll("[data-accordion]"), function (accordion) {
+    var items = Array.prototype.slice.call(accordion.querySelectorAll("details"));
+
+    var settle = function (details, panel, open) {
+      panel.style.height = "";
+      details.open = open;
+      details.removeAttribute("data-animating");
+    };
+
+    var animate = function (details, open) {
+      var panel = details.querySelector(".faq__answer");
+      if (!panel || !motionOk()) {
+        details.open = open;
+        return;
+      }
+      if (details.hasAttribute("data-animating")) return;
+      details.setAttribute("data-animating", "");
+      if (open) details.open = true;
+      var from = open ? 0 : panel.scrollHeight;
+      var to = open ? panel.scrollHeight : 0;
+      panel.style.height = from + "px";
+      panel.getBoundingClientRect();
+      var done = function (event) {
+        if (event && event.target !== panel) return;
+        panel.removeEventListener("transitionend", done);
+        window.clearTimeout(fallback);
+        settle(details, panel, open);
+      };
+      var fallback = window.setTimeout(done, 400);
+      panel.addEventListener("transitionend", done);
+      panel.style.height = to + "px";
+    };
+
+    items.forEach(function (details) {
+      var summary = details.querySelector("summary");
+      if (!summary) return;
+      summary.addEventListener("click", function (event) {
+        event.preventDefault();
+        if (details.open) {
+          animate(details, false);
+          return;
+        }
+        items.forEach(function (other) {
+          if (other !== details && other.open) animate(other, false);
+        });
+        animate(details, true);
+      });
+    });
+  });
+
+  /* 8. Reveal, the phone booking bar and Back to top ---------------------- */
+  var reveals = document.querySelectorAll(".reveal");
+  if (reveals.length) {
+    if (!("IntersectionObserver" in window) || reducedMotion.matches) {
+      Array.prototype.forEach.call(reveals, function (el) {
+        el.classList.add("is-visible");
+      });
+    } else {
+      Array.prototype.forEach.call(document.querySelectorAll("[data-stagger]"), function (group) {
+        var i = 0;
+        Array.prototype.forEach.call(group.children, function (child) {
+          if (child.classList.contains("reveal")) {
+            child.style.setProperty("--reveal-delay", (i * 90) + "ms");
+            i += 1;
+          }
+        });
+      });
+      var revealer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: "0px 0px -4% 0px" });
+      var viewportHeight = window.innerHeight;
+      Array.prototype.forEach.call(reveals, function (el) {
+        var rect = el.getBoundingClientRect();
+        // anything already on screen shows at once, never late
+        if (rect.top < viewportHeight * 0.92 && rect.bottom > 0) {
+          el.classList.add("reveal--instant", "is-visible");
+        } else {
+          revealer.observe(el);
+        }
+      });
+    }
+  }
+
+  var bookBar = document.querySelector("[data-book-bar]");
+  if (bookBar && "IntersectionObserver" in window) {
+    var phone = window.matchMedia("(max-width: 959.98px)");
+    var hero = document.querySelector(".hero, .page-hero");
+    var bookSection = document.getElementById("book");
+    var footer = document.querySelector(".site-footer");
+    var seen = { hero: true, book: false, footer: false };
+    bookBar.hidden = false;
+
+    var renderBar = function () {
+      var show = phone.matches && !seen.hero && !seen.book && !seen.footer;
+      bookBar.classList.toggle("is-visible", show);
+      document.body.classList.toggle("has-book-bar", show);
+    };
+
+    var watcher = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.target === hero) seen.hero = entry.isIntersecting;
+        else if (entry.target === bookSection) seen.book = entry.isIntersecting;
+        else if (entry.target === footer) seen.footer = entry.isIntersecting;
+      });
+      renderBar();
+    }, { threshold: 0 });
+    [hero, bookSection, footer].forEach(function (el) {
+      if (el) watcher.observe(el);
+    });
+    onMedia(phone, renderBar);
+  }
+
+  var toTop = document.querySelector("[data-to-top]");
+  if (toTop) {
+    toTop.hidden = false;
+    var topTicking = false;
+    var updateTop = function () {
+      topTicking = false;
+      toTop.classList.toggle("is-visible", window.scrollY > window.innerHeight);
+    };
+    window.addEventListener("scroll", function () {
+      if (!topTicking) {
+        topTicking = true;
+        window.requestAnimationFrame(updateTop);
+      }
+    }, { passive: true });
+    updateTop();
+    toTop.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: motionOk() ? "smooth" : "auto" });
+      var main = document.getElementById("main");
+      if (main) main.focus({ preventScroll: true });
     });
   }
 })();
