@@ -214,6 +214,7 @@
       <a class="btn btn--bloom site-nav__cta" href="work-with-me.html#book">Book a session</a>
     </nav>
   </div>
+  <span class="site-header__progress" data-progress aria-hidden="true"></span>
 </header>
 
 <main id="main" tabindex="-1">
@@ -229,7 +230,7 @@
 
   <section class="section offerings" id="offerings" aria-label="Offerings">
     <div class="wrap">
-      <ul class="cards" role="list">
+      <ul class="cards" role="list" data-reveal-children>
         <li class="card offer" id="sound-bath">
           <svg class="card__stroke" viewBox="0 0 600 140" preserveAspectRatio="none" aria-hidden="true" focusable="false">
             <use href="#s-stroke" class="c-blush mul" width="600" height="140"/>
@@ -239,6 +240,14 @@
           <h2>Sound bath</h2>
           <p class="card__meta">Small groups, 75 minutes</p>
           <p>Lie back, be wrapped in blankets and let the bowls, chimes and drum do the work. You do nothing but breathe.</p>
+          <details class="offer__details">
+            <summary><span class="pearl" aria-hidden="true"></span>Good to know</summary>
+            <ul role="list">
+              <li><strong>Who it is for:</strong> Anyone who needs to rest deeply. No experience needed.</li>
+              <li><strong>What to bring:</strong> Comfortable clothes. Blankets are provided.</li>
+              <li><strong>Where:</strong> [Venue or area].</li>
+            </ul>
+          </details>
           <a class="btn btn--bloom" href="work-with-me.html?session=sound-bath#book">Book a sound bath</a>
         </li>
         <li class="card offer" id="one-to-one">
@@ -250,6 +259,14 @@
           <h2>One-to-one session</h2>
           <p class="card__meta">Just you, 60 minutes</p>
           <p>We begin with a conversation. Then sound and stillness, shaped around you and what you need today.</p>
+          <details class="offer__details">
+            <summary><span class="pearl" aria-hidden="true"></span>Good to know</summary>
+            <ul role="list">
+              <li><strong>Who it is for:</strong> You, when you want time shaped entirely around what you need today.</li>
+              <li><strong>What to bring:</strong> Just yourself. We begin with a conversation.</li>
+              <li><strong>Where:</strong> [Venue or area], or online.</li>
+            </ul>
+          </details>
           <a class="btn btn--bloom" href="work-with-me.html?session=one-to-one#book">Book a one-to-one session</a>
         </li>
         <li class="card offer" id="cleansing">
@@ -261,13 +278,21 @@
           <h2>Cleansing ceremony</h2>
           <p class="card__meta">Homes and spaces, 90 minutes</p>
           <p>Sage, palo santo, sound and intention for a home, a studio or a season that is ready for a fresh start.</p>
+          <details class="offer__details">
+            <summary><span class="pearl" aria-hidden="true"></span>Good to know</summary>
+            <ul role="list">
+              <li><strong>Who it is for:</strong> A home, a studio or a season that is ready for a fresh start.</li>
+              <li><strong>What to bring:</strong> Nothing. I bring the sage, the palo santo and the sound.</li>
+              <li><strong>Where:</strong> At your space, in [area]. [Travel details to come.]</li>
+            </ul>
+          </details>
           <a class="btn btn--bloom" href="work-with-me.html?session=cleansing#book">Book a cleansing ceremony</a>
         </li>
       </ul>
     </div>
   </section>
 
-  <section class="section section--cream steps" id="session" aria-labelledby="session-title">
+  <section class="section section--cream steps" id="session" aria-labelledby="session-title" data-reveal>
     <div class="washes" aria-hidden="true">
       <div class="bloom bloom--steps drift"></div>
     </div>
@@ -279,7 +304,7 @@
         <svg class="strand steps__curve" viewBox="0 0 1000 92" preserveAspectRatio="none" aria-hidden="true" focusable="false">
           <path stroke="url(#g-gold-fade)" stroke-width="1.6" stroke-linecap="round" d="M-40 54C-16.7 49.7 43.3 26.3 100 28C156.7 29.7 233.3 64 300 64C366.7 64 433.3 28 500 28C566.7 28 633.3 64 700 64C766.7 64 843.3 30.3 900 28C956.7 25.7 1016.7 46.3 1040 50"/>
         </svg>
-        <ol class="steps__list" role="list">
+        <ol class="steps__list" role="list" data-reveal-children>
           <li class="step" style="--y: 0px"><span class="step__num">1</span><div><h3>Arrive</h3><p>Come as you are. Shoes off, phone away, tea if you would like it.</p></div></li>
           <li class="step" style="--y: 36px"><span class="step__num">2</span><div><h3>We talk</h3><p>A few quiet minutes on what brought you here and what you need today.</p></div></li>
           <li class="step" style="--y: 0px"><span class="step__num">3</span><div><h3>Cleansing</h3><p>Sage and palo santo to clear the space, and a moment of stillness before we begin.</p></div></li>
@@ -290,7 +315,45 @@
     </div>
   </section>
 
-  <section class="section breathe" id="breathe" aria-labelledby="breathe-title" data-breathe data-phase="rest">
+  <section class="section faq" id="faq" aria-labelledby="faq-title" data-reveal>
+    <div class="washes" aria-hidden="true">
+      <div class="bloom bloom--faq drift"></div>
+    </div>
+    <div class="wrap">
+      <header class="section-head section-head--centre">
+        <h2 id="faq-title">Good to know</h2>
+        <p>A few things people often ask before their first session.</p>
+      </header>
+      <div class="faq__list" data-accordion>
+        <details class="faq__item">
+          <summary><span class="pearl" aria-hidden="true"></span><span class="faq__q">Do I need any experience?</span></summary>
+          <div class="faq__body" data-accordion-body><p>No. Come exactly as you are. Everything is explained as we go, and there is no right or wrong way to receive sound.</p></div>
+        </details>
+        <details class="faq__item">
+          <summary><span class="pearl" aria-hidden="true"></span><span class="faq__q">What should I wear?</span></summary>
+          <div class="faq__body" data-accordion-body><p>Something comfortable that you can rest in. You will be lying down or seated for most of a session.</p></div>
+        </details>
+        <details class="faq__item">
+          <summary><span class="pearl" aria-hidden="true"></span><span class="faq__q">Where do sessions happen?</span></summary>
+          <div class="faq__body" data-accordion-body><p>[Venue or area], and one-to-one sessions can also be held online.</p></div>
+        </details>
+        <details class="faq__item">
+          <summary><span class="pearl" aria-hidden="true"></span><span class="faq__q">What does it cost?</span></summary>
+          <div class="faq__body" data-accordion-body><p>[Prices to come.] Payment details are shared when we confirm your session.</p></div>
+        </details>
+        <details class="faq__item">
+          <summary><span class="pearl" aria-hidden="true"></span><span class="faq__q">What if I need to cancel?</span></summary>
+          <div class="faq__body" data-accordion-body><p>[Cancellation policy to come.]</p></div>
+        </details>
+        <details class="faq__item">
+          <summary><span class="pearl" aria-hidden="true"></span><span class="faq__q">Can I give a session as a gift?</span></summary>
+          <div class="faq__body" data-accordion-body><p>[Gift sessions: yes or no, and how to arrange one.]</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section breathe" id="breathe" aria-labelledby="breathe-title" data-breathe data-phase="rest" data-reveal>
     <div class="wrap breathe__grid">
       <div class="breathe__copy">
         <h2 id="breathe-title">A minute for you</h2>
@@ -316,7 +379,7 @@
     </div>
   </section>
 
-  <section class="section section--cream oils" id="oils" aria-labelledby="oils-title">
+  <section class="section section--cream oils" id="oils" aria-labelledby="oils-title" data-reveal>
     <div class="washes" aria-hidden="true">
       <div class="bloom bloom--oils-page drift"></div>
     </div>
@@ -329,7 +392,7 @@
         <svg class="strand oils__strand" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true" focusable="false">
           <path stroke="url(#g-gold-fade)" stroke-width="1.6" d="M-60 12C40 12 160 26 300 26C440 26 440 18 500 18C560 18 640 8 700 8C760 8 840 22 900 22C960 22 1000 20 1060 18"/>
         </svg>
-        <ul class="oil-list" role="list">
+        <ul class="oil-list" role="list" data-reveal-children>
           <li class="oil" style="--c: var(--soft-lavender); --y: 4px">
             <div class="oil__art" aria-hidden="true"><svg class="bottle c-lavender" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg><span class="pearl oil__pearl"></span></div>
             <div><h3 class="oil__name">Lavender</h3><p class="oil__desc">Soft, floral and calming.</p></div>
@@ -359,7 +422,7 @@
     </div>
   </section>
 
-  <section class="section book" id="book" aria-labelledby="book-title">
+  <section class="section book" id="book" aria-labelledby="book-title" data-reveal>
     <div class="washes" aria-hidden="true">
       <div class="bloom bloom--book drift"></div>
     </div>
@@ -372,6 +435,14 @@
           <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.9" cy="7.1" r=".6"/></svg>Instagram to come.</li>
           <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>[City, State] and online.</li>
         </ul>
+        <div class="what-next">
+          <h3 class="what-next__title">What happens next</h3>
+          <ol class="what-next__list" role="list">
+            <li><span class="what-next__num" aria-hidden="true">1</span>Send your note.</li>
+            <li><span class="what-next__num" aria-hidden="true">2</span>I reply within a day or two.</li>
+            <li><span class="what-next__num" aria-hidden="true">3</span>We find a time that suits you.</li>
+          </ol>
+        </div>
       </div>
       <div class="form-card">
         <svg class="form-card__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
@@ -379,35 +450,69 @@
           <use href="#s-wash-c" class="c-lavender mul" x="60" y="-30" width="260" height="260" opacity=".8"/>
         </svg>
         <form class="booking" action="https://formspree.io/f/your-form-id" method="POST" data-booking>
-          <div class="fields">
+          <p class="form-legend">Fields marked <span class="req">*</span> are required.</p>
+          <div class="fields" data-form-fields>
             <div class="fields fields--pair">
               <div class="field">
-                <label for="f-name">Your name</label>
-                <input id="f-name" name="name" type="text" autocomplete="name" required>
+                <label for="f-name">Your name <span class="req" aria-hidden="true">*</span></label>
+                <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-error">
+                <p class="field__error" id="f-name-error" aria-live="polite"></p>
               </div>
               <div class="field">
-                <label for="f-email">Your email</label>
-                <input id="f-email" name="email" type="email" autocomplete="email" required>
+                <label for="f-email">Your email <span class="req" aria-hidden="true">*</span></label>
+                <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-error">
+                <p class="field__error" id="f-email-error" aria-live="polite"></p>
               </div>
             </div>
+            <fieldset class="field session-cards" aria-describedby="f-session-hint">
+              <legend>Which session?</legend>
+              <p class="field__hint" id="f-session-hint">Choose one. You can change your mind later.</p>
+              <div class="session-cards__grid">
+                <label class="session-card" for="f-session">
+                  <input id="f-session" type="radio" name="session" value="Sound bath" data-session="sound-bath">
+                  <span class="session-card__mark" aria-hidden="true"></span>
+                  <span class="session-card__name">Sound bath</span>
+                </label>
+                <label class="session-card">
+                  <input type="radio" name="session" value="One-to-one session" data-session="one-to-one">
+                  <span class="session-card__mark" aria-hidden="true"></span>
+                  <span class="session-card__name">One-to-one session</span>
+                </label>
+                <label class="session-card">
+                  <input type="radio" name="session" value="Cleansing ceremony" data-session="cleansing">
+                  <span class="session-card__mark" aria-hidden="true"></span>
+                  <span class="session-card__name">Cleansing ceremony</span>
+                </label>
+                <label class="session-card">
+                  <input type="radio" name="session" value="Not sure yet" data-session="not-sure" checked>
+                  <span class="session-card__mark" aria-hidden="true"></span>
+                  <span class="session-card__name">Not sure yet</span>
+                </label>
+              </div>
+            </fieldset>
             <div class="field">
-              <label for="f-session">Which session?</label>
-              <select id="f-session" name="session">
-                <option value="Sound bath" data-session="sound-bath">Sound bath</option>
-                <option value="One-to-one session" data-session="one-to-one">One-to-one session</option>
-                <option value="Cleansing ceremony" data-session="cleansing">Cleansing ceremony</option>
-                <option value="Not sure yet" data-session="not-sure" selected>Not sure yet</option>
-              </select>
+              <label for="f-message">Your message <span class="req" aria-hidden="true">*</span></label>
+              <p class="field__hint" id="f-message-hint">A few words is plenty.</p>
+              <textarea id="f-message" name="message" rows="5" required aria-describedby="f-message-hint f-message-error" data-grow></textarea>
+              <p class="field__error" id="f-message-error" aria-live="polite"></p>
             </div>
-            <div class="field">
-              <label for="f-message">Your message</label>
-              <textarea id="f-message" name="message" rows="5" required></textarea>
-            </div>
+            <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
           </div>
           <div class="form-actions">
             <button class="btn btn--bloom" type="submit">Send</button>
           </div>
           <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+          <div class="form-success" data-form-success hidden tabindex="-1">
+            <span class="pearl form-success__pearl" aria-hidden="true"></span>
+            <h3>Thank you.</h3>
+            <p>Your message is on its way, and I will reply within a day or two.</p>
+            <h4>What happens next</h4>
+            <ol class="what-next__list" role="list">
+              <li><span class="what-next__num" aria-hidden="true">1</span>Send your note.</li>
+              <li><span class="what-next__num" aria-hidden="true">2</span>I reply within a day or two.</li>
+              <li><span class="what-next__num" aria-hidden="true">3</span>We find a time that suits you.</li>
+            </ol>
+          </div>
         </form>
       </div>
     </div>
@@ -454,5 +559,13 @@
     </div>
   </div>
 </footer>
+
+<!-- Phones only: a booking bar once past the hero, hidden at the form and the footer. -->
+<div class="phone-bar" data-phone-bar hidden>
+  <a class="btn btn--bloom phone-bar__btn" href="#book">Book a session</a>
+</div>
+<button class="to-top" type="button" aria-label="Back to top" hidden data-to-top>
+  <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
 </body>
 </html>

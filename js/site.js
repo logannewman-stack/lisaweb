@@ -1,28 +1,51 @@
 /* ==========================================================================
    Strands of Grace: site behaviour. No libraries.
    Every page reads completely without this file; it only adds:
-   1. the frosted header once scrolled   4. the 4-7-8 breathing exercise
-   2. the phone menu (focus trapped)     5. the booking form guard and ?session=
-   3. quotes one at a time               6. the gold strand on the story timeline
+    1. the frosted header and the reading-progress line
+    2. the phone menu (focus trapped)
+    3. the quote carousel, and the kind-words carousel on phones
+    4. the 4-7-8 breathing exercise
+    5. the phone booking bar and the back-to-top pearl
+    6. scroll-reveal (sections and cards rise in once, never under reduced motion)
+    7. the FAQ accordion (animated open and close, one open at a time)
+    8. the growing message box
+    9. the booking form: session cards and ?session=, validation, sending
+   10. the gold strand on the story timeline
    ========================================================================== */
 (function () {
   'use strict';
 
   var root = document.documentElement;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var slice = function (list) { return Array.prototype.slice.call(list); };
+  var behavior = function () { return reduceMotion.matches ? 'auto' : 'smooth'; };
 
-  /* 1. Header: a frosted ivory backdrop once the page is scrolled -------- */
+  /* Everything that reacts to scrolling shares one frame. */
+  var onScroll = [];
+  var ticking = false;
+  var runScroll = function () {
+    ticking = false;
+    onScroll.forEach(function (fn) { fn(); });
+  };
+  var scheduleScroll = function () {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(runScroll); }
+  };
+  window.addEventListener('scroll', scheduleScroll, { passive: true });
+  window.addEventListener('resize', scheduleScroll);
+
+  /* 1. Header: a frosted ivory backdrop once scrolled, and a thin gold line
+        along its bottom edge that grows with the reading progress -------------- */
   var header = document.querySelector('[data-header]');
+  var progress = document.querySelector('[data-progress]');
   if (header) {
-    var ticking = false;
-    var updateHeader = function () {
+    onScroll.push(function () {
       header.classList.toggle('is-scrolled', window.scrollY > 8);
-      ticking = false;
-    };
-    updateHeader();
-    window.addEventListener('scroll', function () {
-      if (!ticking) { ticking = true; window.requestAnimationFrame(updateHeader); }
-    }, { passive: true });
+      if (progress) {
+        var max = root.scrollHeight - window.innerHeight;
+        var p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+        progress.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+      }
+    });
   }
 
   /* 2. Phone menu: full-screen overlay, focus trapped while open ---------- */
@@ -31,12 +54,12 @@
   if (toggle && nav) {
     var label = toggle.querySelector('.menu-toggle__label');
     var desktop = window.matchMedia('(min-width: 68em)');
-    var outside = [document.querySelector('.skip-link'), document.getElementById('main'), document.querySelector('.site-footer')];
+    var outside = [document.querySelector('.skip-link'), document.getElementById('main'), document.querySelector('.site-footer'), document.querySelector('[data-phone-bar]'), document.querySelector('[data-to-top]')];
     toggle.hidden = false;
 
     var isOpen = function () { return toggle.getAttribute('aria-expanded') === 'true'; };
     var focusables = function () {
-      return [toggle].concat(Array.prototype.slice.call(nav.querySelectorAll('a[href], button:not([disabled])')));
+      return [toggle].concat(slice(nav.querySelectorAll('a[href], button:not([disabled])')));
     };
     var onKey = function (event) {
       if (event.key === 'Escape') { event.preventDefault(); closeMenu(true); return; }
@@ -77,11 +100,26 @@
     else if (desktop.addListener) desktop.addListener(onBreakpoint);
   }
 
-  /* 3. Quotes: one at a time, with a Next quote control ------------------- */
-  Array.prototype.forEach.call(document.querySelectorAll('[data-quotes]'), function (box) {
-    var items = Array.prototype.slice.call(box.querySelectorAll('.quotes__item'));
+  /* A swipe on touch: calls back with -1 (next) or 1 (previous). */
+  var onSwipe = function (el, fn) {
+    var x0 = null, y0 = null;
+    el.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+    el.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      var dy = e.changedTouches[0].clientY - y0;
+      x0 = y0 = null;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) fn(dx < 0 ? -1 : 1);
+    }, { passive: true });
+  };
+
+  /* 3. Words I keep close: one quote at a time, previous and next, arrow keys
+        and swipe; nothing advances on its own ---------------------------------- */
+  slice(document.querySelectorAll('[data-quotes]')).forEach(function (box) {
+    var items = slice(box.querySelectorAll('.quotes__item'));
     var controls = box.querySelector('[data-quotes-controls]');
     var next = box.querySelector('[data-quotes-next]');
+    var prev = box.querySelector('[data-quotes-prev]');
     var current = box.querySelector('[data-quotes-current]');
     var total = box.querySelector('[data-quotes-total]');
     var live = box.querySelector('[data-quotes-live]');
@@ -94,14 +132,46 @@
     window.requestAnimationFrame(function () {
       window.requestAnimationFrame(function () { box.classList.add('is-animated'); });
     });
-    next.addEventListener('click', function () {
+    var show = function (n) {
       items[index].classList.remove('is-current');
-      index = (index + 1) % items.length;
+      index = (n + items.length) % items.length;
       items[index].classList.add('is-current');
       if (current) current.textContent = index + 1;
       live.textContent = 'Quote ' + (index + 1) + ' of ' + items.length + ': ' + items[index].textContent.trim();
+    };
+    next.addEventListener('click', function () { show(index + 1); });
+    if (prev) prev.addEventListener('click', function () { show(index - 1); });
+    box.addEventListener('keydown', function (event) {
+      if (event.key === 'ArrowRight') { event.preventDefault(); show(index + 1); }
+      else if (event.key === 'ArrowLeft') { event.preventDefault(); show(index - 1); }
     });
+    onSwipe(box, function (dir) { show(index - dir); });
   });
+
+  /* Kind words: on phones the three cards sit in a snapping track with
+        previous and next; on wide screens all three show and the controls hide. */
+  var kind = document.querySelector('[data-kind]');
+  if (kind) {
+    var track = kind.querySelector('[data-kind-track]');
+    var kindControls = kind.querySelector('[data-kind-controls]');
+    var kindPrev = kind.querySelector('[data-kind-prev]');
+    var kindNext = kind.querySelector('[data-kind-next]');
+    if (track && kindControls) {
+      kindControls.hidden = false;
+      track.setAttribute('tabindex', '0');
+      var cards = slice(track.children);
+      var step = function (dir) {
+        var w = cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : cards[0].offsetWidth;
+        track.scrollBy({ left: dir * w, behavior: behavior() });
+      };
+      if (kindPrev) kindPrev.addEventListener('click', function () { step(-1); });
+      if (kindNext) kindNext.addEventListener('click', function () { step(1); });
+      track.addEventListener('keydown', function (event) {
+        if (event.key === 'ArrowRight') { event.preventDefault(); step(1); }
+        else if (event.key === 'ArrowLeft') { event.preventDefault(); step(-1); }
+      });
+    }
+  }
 
   /* 4. A minute for you: breathe in 4, hold 7, out 8, three rounds -------- */
   var breathe = document.querySelector('[data-breathe]');
@@ -179,64 +249,285 @@
     });
   }
 
-  /* 5. Booking: preselect the session from ?session=, and guard the form -- */
+  /* 5. The phone booking bar and the back-to-top pearl -------------------- */
+  var bar = document.querySelector('[data-phone-bar]');
+  var toTop = document.querySelector('[data-to-top]');
+  if (bar || toTop) {
+    var phone = window.matchMedia('(max-width: 47.99em)');
+    var hero = document.querySelector('main > section:first-of-type');
+    var book = document.getElementById('book');
+    var siteFooter = document.querySelector('.site-footer');
+    var bookOnScreen = false;
+    var footerOnScreen = false;
+    var updateBars = function () {
+      var y = window.scrollY;
+      var pastHero = hero ? y > hero.offsetTop + hero.offsetHeight - 120 : y > window.innerHeight;
+      if (bar) {
+        bar.hidden = false;
+        root.classList.toggle('has-phone-bar', phone.matches);
+        bar.classList.toggle('is-visible', phone.matches && pastHero && !bookOnScreen && !footerOnScreen);
+      }
+      if (toTop) {
+        toTop.hidden = false;
+        toTop.classList.toggle('is-visible', y > window.innerHeight);
+      }
+    };
+    if ('IntersectionObserver' in window) {
+      var watcher = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.target === book) bookOnScreen = entry.isIntersecting;
+          if (entry.target === siteFooter) footerOnScreen = entry.isIntersecting;
+        });
+        updateBars();
+      }, { threshold: 0 });
+      if (book) watcher.observe(book);
+      if (siteFooter) watcher.observe(siteFooter);
+    }
+    onScroll.push(updateBars);
+    updateBars();
+    if (toTop) {
+      toTop.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: behavior() });
+        var main = document.getElementById('main');
+        if (main) main.focus({ preventScroll: true });
+      });
+    }
+  }
+
+  /* 6. Scroll-reveal: sections and cards rise 14px and fade in once, with a
+        stagger inside card rows and timelines. Anything already on screen when
+        the page opens is left alone, and nothing moves under reduced motion. --- */
+  if (!reduceMotion.matches && 'IntersectionObserver' in window) {
+    var targets = slice(document.querySelectorAll('[data-reveal]'));
+    slice(document.querySelectorAll('[data-reveal-children]')).forEach(function (group) {
+      slice(group.children).forEach(function (child, i) {
+        child.style.setProperty('--i', i);
+        targets.push(child);
+      });
+    });
+    var fold = window.innerHeight * 0.92;
+    var pending = targets.filter(function (el) { return el.getBoundingClientRect().top > fold; });
+    pending.forEach(function (el) { el.classList.add('reveal'); });
+    var revealer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-in');
+        revealer.unobserve(entry.target);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -4% 0px' });
+    pending.forEach(function (el) { revealer.observe(el); });
+  }
+
+  /* 7. Good to know: the accordion opens and closes with a soft height
+        animation, one answer at a time; under reduced motion it is native. ---- */
+  slice(document.querySelectorAll('[data-accordion]')).forEach(function (list) {
+    var items = slice(list.querySelectorAll('details'));
+    var settle = function (body, after) {
+      var done = function () {
+        body.style.height = '';
+        body.style.overflow = '';
+        body.style.transition = '';
+        body.removeEventListener('transitionend', done);
+        if (after) after();
+      };
+      body.addEventListener('transitionend', done);
+    };
+    var open = function (d) {
+      var body = d.querySelector('[data-accordion-body]');
+      d.open = true;
+      var h = body.scrollHeight;
+      body.style.height = '0px';
+      body.style.overflow = 'hidden';
+      settle(body);
+      window.requestAnimationFrame(function () {
+        body.style.transition = 'height 0.32s cubic-bezier(0.22, 0.61, 0.36, 1)';
+        body.style.height = h + 'px';
+      });
+    };
+    var close = function (d) {
+      var body = d.querySelector('[data-accordion-body]');
+      body.style.height = body.scrollHeight + 'px';
+      body.style.overflow = 'hidden';
+      settle(body, function () { d.open = false; });
+      window.requestAnimationFrame(function () {
+        body.style.transition = 'height 0.26s cubic-bezier(0.22, 0.61, 0.36, 1)';
+        body.style.height = '0px';
+      });
+    };
+    items.forEach(function (d) {
+      var summary = d.querySelector('summary');
+      if (!summary || !d.querySelector('[data-accordion-body]')) return;
+      summary.addEventListener('click', function (event) {
+        if (reduceMotion.matches) {
+          items.forEach(function (o) { if (o !== d) o.open = false; });
+          return;
+        }
+        event.preventDefault();
+        if (d.open) { close(d); return; }
+        items.forEach(function (o) { if (o !== d && o.open) close(o); });
+        open(d);
+      });
+    });
+  });
+
+  /* 8. The message box grows with what is written, up to a sensible height. */
+  slice(document.querySelectorAll('textarea[data-grow]')).forEach(function (area) {
+    var MAX = 420;
+    var grow = function () {
+      area.style.height = 'auto';
+      var h = Math.min(area.scrollHeight + 2, MAX);
+      area.style.height = h + 'px';
+      area.style.overflowY = area.scrollHeight + 2 > MAX ? 'auto' : 'hidden';
+    };
+    area.addEventListener('input', grow);
+    grow();
+  });
+
+  /* 9. Booking: the session cards, ?session=, gentle validation, sending ---- */
   var form = document.querySelector('[data-booking]');
   if (form) {
-    var select = form.querySelector('#f-session');
     var status = form.querySelector('[data-form-status]');
+    var radios = slice(form.querySelectorAll('input[name="session"]'));
+    var first = document.getElementById('f-session');
+
+    /* The card group answers like the select it replaced (options and
+       selectedIndex), for anything that reads #f-session the old way. */
+    if (first && radios.length) {
+      var labelOf = function (r) {
+        var l = r.closest('label') || form.querySelector('label[for="' + r.id + '"]');
+        return l ? l.textContent.trim() : r.value;
+      };
+      try {
+        Object.defineProperty(first, 'options', { get: function () {
+          return radios.map(function (r) { return { value: r.value, text: labelOf(r) }; });
+        } });
+        Object.defineProperty(first, 'selectedIndex', { get: function () {
+          var found = 0;
+          radios.forEach(function (r, n) { if (r.checked) found = n; });
+          return found;
+        } });
+      } catch (e) { /* older engines: nothing depends on it */ }
+    }
+
+    var pick = function (key) {
+      var match = null;
+      radios.forEach(function (r) { if (r.getAttribute('data-session') === key) match = r; });
+      if (match) match.checked = true;
+      return match;
+    };
     var applySession = function () {
       var key = new URLSearchParams(window.location.search).get('session');
-      if (!key || !select) return false;
-      var match = Array.prototype.find.call(select.options, function (option) { return option.getAttribute('data-session') === key; });
-      if (match) select.value = match.value;
-      return !!match;
+      return key ? !!pick(key) : false;
     };
     applySession();
     window.addEventListener('popstate', applySession);
 
+    /* Gentle validation: the browser's checks, our words, shown under the field
+       once it has been visited, and for every field on submit. */
+    var messages = {
+      'f-name': 'Please add your name.',
+      'f-email': 'Please add an email address I can reply to.',
+      'f-message': 'Please add a short message.'
+    };
+    var fields = Object.keys(messages).map(function (id) { return document.getElementById(id); }).filter(Boolean);
+    form.noValidate = true;
+    var check = function (field, force) {
+      var ok = field.validity.valid;
+      var box = document.getElementById(field.id + '-error');
+      var wrap = field.closest('.field');
+      var show = !ok && (force || field.getAttribute('data-touched') === '1');
+      if (box) box.textContent = show ? messages[field.id] : '';
+      if (show) field.setAttribute('aria-invalid', 'true'); else field.removeAttribute('aria-invalid');
+      if (wrap) wrap.classList.toggle('is-invalid', show);
+      return ok;
+    };
+    fields.forEach(function (field) {
+      field.addEventListener('blur', function () { field.setAttribute('data-touched', '1'); check(field); });
+      field.addEventListener('input', function () { if (field.getAttribute('data-touched') === '1') check(field); });
+    });
+
+    var submit = form.querySelector('[type="submit"]');
+    var sendLabel = submit ? submit.textContent : 'Send';
+    var setSending = function (on) {
+      if (submit) { submit.disabled = on; submit.textContent = on ? 'Sending...' : sendLabel; }
+      form.classList.toggle('is-sending', on);
+    };
+    var success = form.querySelector('[data-form-success]');
+    var showSuccess = function () {
+      setSending(false);
+      status.textContent = '';
+      form.classList.add('is-sent');
+      if (success) { success.hidden = false; success.focus(); }
+    };
+
     form.addEventListener('submit', function (event) {
-      if ((form.getAttribute('action') || '').indexOf('your-form-id') !== -1) {
+      var valid = fields.map(function (field) { return check(field, true); }).every(Boolean);
+      if (!valid) {
         event.preventDefault();
-        status.textContent = '';
+        var firstBad = null;
+        fields.forEach(function (field) { if (!firstBad && !field.validity.valid) firstBad = field; });
+        if (firstBad) firstBad.focus();
+        return;
+      }
+      event.preventDefault();
+      status.textContent = '';
+      if ((form.getAttribute('action') || '').indexOf('your-form-id') !== -1) {
         window.setTimeout(function () {
           status.textContent = 'The booking form will be switched on before launch, so this message was not sent.';
         }, 60);
+        return;
       }
+      var data = new window.FormData(form);
+      if (data.get('website')) { showSuccess(); return; }   /* the honeypot: not a person */
+      data.delete('website');
+      setSending(true);
+      window.fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+        .then(function (res) { if (!res.ok) throw new Error(String(res.status)); showSuccess(); })
+        .catch(function () {
+          setSending(false);
+          status.textContent = 'Something went wrong and your message was not sent. Please try again, or email me directly.';
+        });
     });
 
     /* The Book buttons on this page choose the session without a reload. */
-    Array.prototype.forEach.call(document.querySelectorAll('a[href*="?session="]'), function (link) {
+    slice(document.querySelectorAll('a[href*="?session="]')).forEach(function (link) {
       link.addEventListener('click', function (event) {
         var url = new URL(link.href, window.location.href);
         if (url.pathname !== window.location.pathname || event.metaKey || event.ctrlKey || event.shiftKey) return;
         event.preventDefault();
         window.history.pushState(null, '', url.search + url.hash);
-        applySession();
+        var chosen = pick(url.searchParams.get('session'));
         var target = document.getElementById('book');
-        if (target) target.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth', block: 'start' });
-        if (select) select.focus({ preventScroll: true });
+        /* Focus first: moving focus would cut a smooth scroll short. */
+        if (chosen) chosen.focus({ preventScroll: true });
+        if (target) target.scrollIntoView({ behavior: behavior(), block: 'start' });
       });
     });
   }
 
-  /* 6. Our Story: a gold strand that meanders through each year's pearl --- */
+  /* 10. Our Story: a gold strand that meanders through each year's pearl --- */
   var timeline = document.querySelector('[data-timeline]');
   if (timeline) {
     var strand = timeline.querySelector('[data-timeline-strand]');
     var path = strand && strand.querySelector('path');
-    var nodes = Array.prototype.slice.call(timeline.querySelectorAll('[data-node]'));
+    var nodes = slice(timeline.querySelectorAll('[data-node]'));
     var wide = window.matchMedia('(min-width: 56em)');
     var round1 = function (n) { return Math.round(n * 10) / 10; };
+    /* Layout positions, not screen ones, so the reveal's lift never bends the strand. */
+    var within = function (el) {
+      var x = 0, y = 0;
+      while (el && el !== timeline) { x += el.offsetLeft; y += el.offsetTop; el = el.offsetParent; }
+      return [x, y];
+    };
 
     var draw = function () {
       if (!path || nodes.length < 2) return;
-      var box = timeline.getBoundingClientRect();
-      var w = box.width;
-      var h = box.height;
+      var w = timeline.offsetWidth;
+      var h = timeline.offsetHeight;
       strand.setAttribute('viewBox', '0 0 ' + round1(w) + ' ' + round1(h));
       var pts = nodes.map(function (node) {
-        var r = node.getBoundingClientRect();
-        return [round1(r.left + r.width / 2 - box.left), round1(r.top + r.height / 2 - box.top)];
+        var o = within(node);
+        return [round1(o[0] + node.offsetWidth / 2), round1(o[1] + node.offsetHeight / 2)];
       });
       if (!wide.matches) {
         /* Phones: the straight CSS strand through every pearl is enough. */

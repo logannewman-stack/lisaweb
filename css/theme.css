@@ -46,7 +46,7 @@
   --bg-alt: var(--soft-cream);
   --heading: var(--deep-plum);
   --text: var(--charcoal);
-  --focus: var(--deep-plum);
+  --focus: var(--gold-deep);      /* one focus ring everywhere: gold, offset from the element */
 
   /* The blush-to-peach "bloom" button. Plum text on it is 5.1:1 or better. */
   --bloom-fill: linear-gradient(118deg, var(--blush-pink) 0%, #F4BFC0 48%, var(--soft-peach) 100%);

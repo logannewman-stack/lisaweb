@@ -16,7 +16,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  scroll-padding-top: calc(var(--header-h) + 1.25rem);
+  /* Anchor targets carry scroll-margin-top instead (section 14). */
 }
 
 body {
@@ -175,7 +175,7 @@ main:focus { outline: none; }
   letter-spacing: 0.01em;
   text-align: center;
   text-decoration: none;
-  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
 }
 .btn::after {
   content: "";
@@ -189,7 +189,8 @@ main:focus { outline: none; }
 }
 .btn:hover { transform: translateY(-2px); }
 .btn:hover::after { opacity: 1; }
-.btn:active { transform: translateY(0); }
+.btn:active { transform: translateY(1px); transition-duration: 0.08s; }
+.btn:disabled { cursor: progress; opacity: 0.72; transform: none; }
 .btn:focus-visible { outline-offset: 4px; }
 .btn svg { width: 1.15rem; height: 1.15rem; flex: none; }
 
@@ -199,6 +200,9 @@ main:focus { outline: none; }
   box-shadow: inset 0 0 0 1px rgb(201 162 78 / 0.78), inset 0 1px 0 rgb(255 253 248 / 0.55), 0 18px 30px -18px rgb(87 68 103 / 0.55);
 }
 .btn--bloom:hover { box-shadow: inset 0 0 0 1px rgb(201 162 78 / 0.9), inset 0 1px 0 rgb(255 253 248 / 0.6), 0 22px 34px -18px rgb(87 68 103 / 0.6); }
+.btn--bloom:active { box-shadow: inset 0 0 0 1px rgb(201 162 78 / 0.9), 0 6px 14px -10px rgb(87 68 103 / 0.5); }
+.btn--quiet:hover { box-shadow: inset 0 0 0 1px var(--gold-deep), 0 14px 24px -18px rgb(87 68 103 / 0.45); }
+.btn--quiet:active { box-shadow: inset 0 0 0 1px var(--gold-deep); }
 .btn--quiet {
   color: var(--deep-plum);
   background: rgb(255 253 248 / 0.78);
@@ -224,12 +228,13 @@ main:focus { outline: none; }
   bottom: 0.45rem;
   height: 1px;
   background: var(--champagne-gold);
+  transform: scaleX(0.55);
   transform-origin: left center;
-  transition: transform 0.6s var(--ease-out);
+  transition: transform 0.24s var(--ease-out);
 }
-.link-arrow svg { width: 1.25rem; height: 1.25rem; flex: none; transition: transform 0.5s var(--ease-out); }
-.link-arrow:hover svg { transform: translateX(4px); }
-.link-arrow:hover::after { transform: scaleX(0.4); }
+.link-arrow svg { width: 1.25rem; height: 1.25rem; flex: none; transition: transform 0.2s var(--ease-out); }
+.link-arrow:hover svg, .link-arrow:focus-visible svg { transform: translateX(4px); }
+.link-arrow:hover::after, .link-arrow:focus-visible::after { transform: scaleX(1); }
 
 /* Pearls, as in the strand across her logo: a hot highlight, a soft blush
    reflection, a rim light along the bottom, a gold edge and a contact shadow. */
@@ -1222,9 +1227,9 @@ main:focus { outline: none; }
 @media (min-width: 56em) {
   .offerings .cards > :nth-child(2),
   .offerings .cards > :nth-child(3) { margin-top: 0; }
-  .offerings .cards { align-items: stretch; grid-template-rows: auto auto 1fr auto; row-gap: 0; }
+  .offerings .cards { align-items: stretch; grid-template-rows: auto auto 1fr auto auto; row-gap: 0; }
   @supports (grid-template-rows: subgrid) {
-    .offerings .card { display: grid; grid-row: span 4; grid-template-rows: subgrid; align-items: start; justify-items: start; row-gap: 0; }
+    .offerings .card { display: grid; grid-row: span 5; grid-template-rows: subgrid; align-items: start; justify-items: start; row-gap: 0; }
     .offerings .card .btn { align-self: end; }
   }
 }
@@ -1377,7 +1382,7 @@ main:focus { outline: none; }
 }
 .field input:focus-visible,
 .field select:focus-visible,
-.field textarea:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-color: var(--deep-plum); }
+.field textarea:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-color: var(--focus); }
 .form-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1.75rem; }
 .form-actions .btn { min-width: 9rem; }
 .form-status { margin: 0; }
@@ -1519,4 +1524,344 @@ main:focus { outline: none; }
     transition-delay: 0s !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* 14. Flow and interaction ------------------------------------------------
+   Anchors under the header, hover and reveal, the reading-progress line, the
+   continue block, the phone booking bar, back to top, offering details, the
+   FAQ, session cards, form states and the 404 page. */
+
+/* Anchor targets land below the sticky header. */
+[id] { scroll-margin-top: calc(var(--header-h) + 1.25rem); }
+
+/* Cards lift on hover; a home card is one link across its whole surface. */
+.card { transition: transform 0.22s var(--ease-out), box-shadow 0.22s var(--ease-out); }
+.card:hover,
+.card:focus-within { transform: translateY(-4px); box-shadow: 0 44px 70px -42px rgb(87 68 103 / 0.5), 0 18px 32px -22px rgb(87 68 103 / 0.28), 0 1px 3px -1px rgb(87 68 103 / 0.1); }
+.card--link .link-arrow { position: static; text-decoration: underline; text-decoration-color: var(--champagne-gold); text-decoration-thickness: 1px; text-underline-offset: 0.3em; transition: text-decoration-color 0.2s var(--ease-out); }
+.card--link .link-arrow::after { content: none; }
+.card--link .link-arrow::before { content: ""; position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+.card--link:hover .link-arrow { text-decoration-thickness: 2px; text-decoration-color: var(--gold-deep); }
+.card--link:hover .link-arrow svg { transform: translateX(4px); }
+@supports selector(:has(a)) {
+  .card--link:has(.link-arrow:focus-visible) { outline: 2px solid var(--focus); outline-offset: 3px; }
+  .card--link .link-arrow:focus-visible { outline: none; }
+}
+
+/* Scroll-reveal: only once the script has decided the element is below the
+   fold, and never under reduced motion (the script leaves it alone). */
+.js .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.6s var(--ease-out), transform 0.7s var(--ease-out); transition-delay: calc(var(--i, 0) * 90ms); }
+.js .reveal.is-in { opacity: 1; transform: none; }
+
+/* Reading progress: a 2px gold line along the header's bottom edge. */
+.site-header__progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 3;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--champagne-gold), var(--gold-deep));
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+/* Continue: a quiet hand-off to the next page, on a strand with one pearl. */
+.continue { position: relative; isolation: isolate; padding-block: clamp(2rem, 4vw, 3rem) clamp(3.5rem, 7vw, 6rem); text-align: center; }
+.continue__inner { display: grid; justify-items: center; gap: 0.45rem; }
+.continue__strand { width: min(24rem, 86%); height: auto; aspect-ratio: 400 / 40; overflow: visible; margin-bottom: 1rem; }
+.continue__eyebrow { margin: 0; font-size: var(--step--1); font-weight: 700; color: var(--ink-soft); }
+.continue__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.2rem 0.25rem 0.35rem;
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  line-height: 1.1;
+  color: var(--deep-plum);
+  text-decoration: none;
+  text-wrap: balance;
+}
+.continue__link::after {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  right: 2.6rem;
+  bottom: 0.15rem;
+  height: 1.5px;
+  background: var(--champagne-gold);
+  transform: scaleX(0.4);
+  transform-origin: left center;
+  transition: transform 0.24s var(--ease-out);
+}
+.continue__link:hover::after,
+.continue__link:focus-visible::after { transform: scaleX(1); }
+.continue__link svg { width: 1.3rem; height: 1.3rem; flex: none; transition: transform 0.2s var(--ease-out); }
+.continue__link:hover svg { transform: translateX(5px); }
+.continue__line { margin: 0.3rem auto 0; color: var(--charcoal); }
+
+/* The phone booking bar: one bloom button on a frosted strip, safe-area aware. */
+.phone-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  display: none;
+  padding: 0.6rem var(--gutter) calc(0.6rem + env(safe-area-inset-bottom, 0px));
+  background: rgb(255 253 248 / 0.9);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  backdrop-filter: blur(14px) saturate(1.15);
+  box-shadow: 0 -1px 0 rgb(210 177 105 / 0.7), 0 -18px 34px -30px rgb(87 68 103 / 0.4);
+  transform: translateY(110%);
+  visibility: hidden;
+  transition: transform 0.24s var(--ease-out), visibility 0s linear 0.24s;
+}
+.phone-bar__btn { width: 100%; }
+@media (max-width: 47.99em) {
+  .js .phone-bar:not([hidden]) { display: block; }
+  .phone-bar.is-visible { transform: none; visibility: visible; transition: transform 0.24s var(--ease-out), visibility 0s; }
+  .js.has-phone-bar main { padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px)); }
+}
+
+/* Back to top: a pearl with an arrow, bottom right; above the bar on phones. */
+.to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 41;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, #FFFFFF 0 10%, #FDF3ED 32%, #F3DFD4 62%, #E2C8B8 100%);
+  box-shadow: inset -1px -2px 3px rgb(255 255 255 / 0.9), inset 0 -4px 6px -3px rgb(242 183 210 / 0.5), inset 1px 2px 3px rgb(87 68 103 / 0.16), 0 0 0 1px rgb(201 162 78 / 0.8), 0 12px 22px -12px rgb(87 68 103 / 0.55);
+  color: var(--deep-plum);
+  opacity: 0;
+  transform: translateY(8px);
+  visibility: hidden;
+  transition: opacity 0.24s var(--ease-out), transform 0.24s var(--ease-out), visibility 0s linear 0.24s;
+}
+.to-top svg { width: 1.15rem; height: 1.15rem; }
+.to-top.is-visible { opacity: 1; transform: none; visibility: visible; transition: opacity 0.24s var(--ease-out), transform 0.24s var(--ease-out), visibility 0s; }
+.to-top:hover { transform: translateY(-2px); }
+.to-top:active { transform: translateY(1px); }
+@media (max-width: 47.99em) {
+  .to-top { right: 0.9rem; bottom: calc(5.4rem + env(safe-area-inset-bottom, 0px)); width: 2.75rem; height: 2.75rem; }
+}
+
+/* Details and accordions share one summary: a pearl, the question, a chevron. */
+.offer__details summary,
+.faq__item summary {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 44px;
+  cursor: pointer;
+  list-style: none;
+  color: var(--deep-plum);
+}
+.offer__details summary::-webkit-details-marker,
+.faq__item summary::-webkit-details-marker { display: none; }
+.offer__details summary .pearl,
+.faq__item summary .pearl { width: 0.62rem; height: 0.62rem; flex: none; transition: box-shadow 0.2s var(--ease-out); }
+.offer__details[open] summary .pearl,
+.faq__item[open] summary .pearl { box-shadow: inset -1px -1.5px 1.5px rgb(255 255 255 / 0.95), inset 0 -3px 4px -2px rgb(242 183 210 / 0.55), inset 1px 1.5px 2px rgb(87 68 103 / 0.22), 0 0 0 1px rgb(201 162 78 / 0.9), 0 0 0 4px rgb(217 185 107 / 0.22); }
+.offer__details summary::after,
+.faq__item summary::after {
+  content: "";
+  flex: none;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-left: auto;
+  border-right: 1.5px solid var(--gold-deep);
+  border-bottom: 1.5px solid var(--gold-deep);
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 0.22s var(--ease-out);
+}
+.offer__details[open] summary::after,
+.faq__item[open] summary::after { transform: translateY(2px) rotate(225deg); }
+
+/* Offering details: a compact "Good to know" under each offer. */
+.offer__details { width: 100%; margin: -0.6rem 0 1.5rem; border-top: 1px solid rgb(201 162 78 / 0.5); border-bottom: 1px solid rgb(201 162 78 / 0.5); }
+.offer__details summary { font-weight: 700; font-size: 0.98rem; }
+.offer__details ul { display: grid; gap: 0.45rem; padding: 0.1rem 0 1rem 1.3rem; font-size: 0.96rem; line-height: 1.55; }
+.offer__details li { max-width: 30em; }
+.offer__details strong { color: var(--deep-plum); font-weight: 700; }
+
+/* Good to know: the questions on a strand of gold hairlines. */
+.bloom--faq {
+  right: -16%; top: -10%; width: 44%; height: 80%;
+  --b1: var(--lavender-rgb); --o1: 0.3;
+  --b2: var(--blush-rgb); --o2: 0.24;
+  --b3: var(--peach-rgb); --o3: 0.18;
+  --b4: var(--blue-rgb); --o4: 0.12;
+  --drift: 66s; --dx: -1.5%;
+}
+.faq__list { max-width: 46rem; margin-inline: auto; border-top: 1px solid rgb(201 162 78 / 0.55); }
+.faq__item { border-bottom: 1px solid rgb(201 162 78 / 0.55); }
+.faq__item summary { padding: 1.05rem 0; font-family: var(--font-display); font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.55rem); line-height: 1.3; }
+.faq__item summary .faq__q { text-wrap: balance; }
+.faq__body { overflow: hidden; }
+.faq__body p { padding: 0 0 1.3rem 1.35rem; max-width: 36em; }
+
+/* The booking form: a legend line, hints, errors, session cards and sending. */
+.form-legend { margin: 0 0 1.1rem; font-size: var(--step--1); color: var(--ink-soft); }
+.req { color: var(--gold-deep); font-weight: 700; }
+.field__hint { margin: -0.2rem 0 0.1rem; font-size: var(--step--1); color: var(--ink-soft); }
+.field__error { margin: 0; font-size: var(--step--1); font-weight: 700; color: var(--deep-plum); }
+.field__error:empty { display: none; }
+.field__error::before { content: ""; display: inline-block; width: 0.45rem; height: 0.45rem; margin: 0 0.5rem 0.1rem 0; border-radius: 50%; background: var(--gold-deep); }
+.field.is-invalid input,
+.field.is-invalid textarea { border-color: var(--deep-plum); box-shadow: inset 0 0 0 1px var(--deep-plum); }
+.field textarea[data-grow] { overflow-y: hidden; field-sizing: content; max-height: 420px; }
+
+.session-cards { min-width: 0; margin: 0; padding: 0; border: 0; }
+.session-cards legend { padding: 0; margin-bottom: 0.45rem; font-size: 0.98rem; font-weight: 700; color: var(--deep-plum); }
+.session-cards__grid { display: grid; gap: 0.6rem; margin-top: 0.55rem; }
+.session-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-height: 3.25rem;
+  padding: 0.75rem 1rem 0.75rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background: var(--warm-ivory);
+  box-shadow: inset 0 0 0 1px var(--field-line);
+  color: var(--charcoal);
+  cursor: pointer;
+  transition: box-shadow 0.2s var(--ease-out), background-color 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+}
+.session-card:hover { box-shadow: inset 0 0 0 1px var(--gold-deep); transform: translateY(-1px); }
+.session-card input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.session-card__mark {
+  flex: none;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  background: var(--warm-ivory);
+  box-shadow: inset 0 0 0 1px var(--field-line);
+  transition: box-shadow 0.2s var(--ease-out), background 0.2s var(--ease-out);
+}
+.session-card input:checked + .session-card__mark {
+  background: radial-gradient(circle at 34% 30%, #FFFFFF 0 12%, #FDF3ED 30%, #F3DFD4 58%, #DEC3B2 86%, #ECD6CA 100%);
+  box-shadow: inset -1px -1.5px 1.5px rgb(255 255 255 / 0.95), inset 0 -3px 4px -2px rgb(242 183 210 / 0.55), inset 1px 1.5px 2px rgb(87 68 103 / 0.22), 0 0 0 1px rgb(201 162 78 / 0.9), 0 0 0 4px rgb(217 185 107 / 0.2);
+}
+.session-card input:checked ~ .session-card__name { color: var(--deep-plum); font-weight: 700; }
+.session-card:has(input:checked) {
+  background: linear-gradient(118deg, rgb(242 183 210 / 0.26) 0%, rgb(246 198 168 / 0.22) 100%), var(--warm-ivory);
+  box-shadow: inset 0 0 0 1.5px var(--gold-deep);
+}
+.session-card:has(input:focus-visible) { outline: 2px solid var(--focus); outline-offset: 3px; }
+@media (min-width: 40em) {
+  .session-cards__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.hp { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+.form-status:not(:empty) { font-weight: 600; }
+
+.what-next { margin-top: 2.25rem; }
+.what-next__title { font-size: var(--step-2); margin-bottom: 0.85rem; }
+.what-next__list { display: grid; gap: 0.65rem; }
+.what-next__list li { display: flex; align-items: center; gap: 0.85rem; }
+.what-next__num {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, #FFFFFF 0 14%, #FDF3ED 36%, #F3DFD4 64%, #E2C8B8 100%);
+  box-shadow: inset -1px -2px 3px rgb(255 255 255 / 0.9), inset 1px 2px 3px rgb(87 68 103 / 0.16), 0 0 0 1px var(--champagne-gold), 0 8px 14px -10px rgb(87 68 103 / 0.5);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--deep-plum);
+}
+
+.booking.is-sent [data-form-fields],
+.booking.is-sent .form-actions,
+.booking.is-sent .form-legend { display: none; }
+.form-success { position: relative; padding: 0.5rem 0 0.25rem 2.25rem; outline: none; }
+.form-success__pearl { position: absolute; left: 0.1rem; top: 1.05rem; width: 1.1rem; height: 1.1rem; }
+.form-success h3 { font-size: var(--step-3); margin-bottom: 0.5rem; }
+.form-success h4 { font-family: var(--font-display); font-weight: 400; font-size: var(--step-2); color: var(--deep-plum); margin: 1.5rem 0 0.75rem; }
+.form-success .what-next__list { gap: 0.6rem; }
+
+/* Kind words on phones: a snapping track with previous and next. */
+.kind__controls { display: flex; justify-content: center; gap: 0.75rem; margin-top: 1rem; }
+@media (max-width: 55.99em) {
+  .js .testimonials {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 6%;
+    padding: 0.25rem 6% 1.25rem;
+    margin-inline: calc(-1 * var(--gutter));
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .js .testimonials::-webkit-scrollbar { display: none; }
+  .js .testimonial { flex: 0 0 88%; scroll-snap-align: center; }
+  .js .testimonials:focus-visible { outline-offset: -3px; }
+}
+@media (min-width: 56em) {
+  .kind__controls { display: none; }
+}
+
+/* Words I keep close: the carousel region takes focus for the arrow keys. */
+.quotes { outline-offset: 10px; border-radius: 1rem; }
+.quotes__controls .btn { min-width: 10.5rem; }
+.arrow--back { transform: scaleX(-1); }
+.quotes__controls .btn:hover .arrow--back { transform: scaleX(-1) translateX(4px); }
+
+/* 404: a loose strand with a dropped pearl, and a way back. */
+.notfound {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-content: center;
+  min-height: min(calc(100svh - var(--header-h)), 44rem);
+  padding-block: clamp(3rem, 8vw, 6rem) clamp(4rem, 10vw, 8rem);
+  text-align: center;
+}
+.notfound__inner { display: grid; justify-items: center; gap: 1.25rem; }
+.notfound h1 { max-width: 14ch; }
+.notfound .lead { max-width: 32rem; }
+.notfound__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 0.5rem; }
+.bloom--notfound {
+  left: 50%; top: 50%; width: min(60rem, 140%); height: 100%;
+  translate: -50% -50%;
+  --blur: 40px;
+  --b1: var(--lavender-rgb); --o1: 0.28; --p1: 36% 46%;
+  --b2: var(--blush-rgb); --o2: 0.26; --p2: 66% 54%;
+  --b3: var(--peach-rgb); --o3: 0.16; --p3: 50% 80%;
+  --o4: 0;
+  --drift: 70s;
+}
+.notfound__wash { width: 20rem; height: 20rem; }
+.notfound__wash--a { left: -8rem; top: 4%; }
+.notfound__wash--b { right: -8rem; bottom: 2%; }
+.notfound__strand { position: absolute; left: -2%; bottom: 0.5rem; width: 104%; height: auto; aspect-ratio: 1000 / 200; overflow: visible; }
+@media (min-width: 56em) {
+  .notfound { padding-bottom: clamp(5rem, 12vw, 9rem); }
+  .notfound__wash { width: 30rem; height: 30rem; }
+  .notfound__wash--a { left: -9rem; top: 8%; }
+  .notfound__wash--b { right: -9rem; bottom: -4%; }
+  .notfound__strand { left: 14%; bottom: 2.5rem; width: 60%; }
 }

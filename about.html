@@ -215,6 +215,7 @@
       <a class="btn btn--bloom site-nav__cta" href="work-with-me.html#book">Book a session</a>
     </nav>
   </div>
+  <span class="site-header__progress" data-progress aria-hidden="true"></span>
 </header>
 
 <main id="main" tabindex="-1">
@@ -244,7 +245,7 @@
     </div>
   </section>
 
-  <section class="section background" id="background" aria-labelledby="background-title">
+  <section class="section background" id="background" aria-labelledby="background-title" data-reveal>
     <div class="wrap">
       <div class="background__inner">
         <svg class="strand strand--bio" viewBox="0 0 200 800" preserveAspectRatio="none" aria-hidden="true" focusable="false">
@@ -260,7 +261,7 @@
     </div>
   </section>
 
-  <section class="section section--cream creds" id="training" aria-labelledby="training-title">
+  <section class="section section--cream creds" id="training" aria-labelledby="training-title" data-reveal>
     <div class="washes" aria-hidden="true">
       <div class="bloom bloom--creds drift"></div>
     </div>
@@ -290,7 +291,7 @@
     </div>
   </section>
 
-  <section class="section believe" id="believe" aria-labelledby="believe-title">
+  <section class="section believe" id="believe" aria-labelledby="believe-title" data-reveal>
     <div class="washes" aria-hidden="true">
       <div class="bloom bloom--believe drift"></div>
     </div>
@@ -324,7 +325,7 @@
     </div>
   </section>
 
-  <section class="section section--cream about-quote" id="inhale" aria-label="A quote I keep close">
+  <section class="section section--cream about-quote" id="inhale" aria-label="A quote I keep close" data-reveal>
     <div class="washes" aria-hidden="true">
       <div class="bloom bloom--about-quote drift"></div>
     </div>
@@ -336,10 +337,22 @@
     </div>
   </section>
 
-  <section class="section next-steps" id="next" aria-label="Next steps">
+  <section class="section next-steps" id="next" aria-label="Next steps" data-reveal>
     <div class="wrap next-steps__inner">
       <a class="link-arrow" href="story.html">Read the story of Strands of Grace<svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
       <a class="btn btn--bloom" href="work-with-me.html#book">Book a session</a>
+    </div>
+  </section>
+
+  <section class="continue" id="continue" aria-labelledby="continue-eyebrow" data-reveal>
+    <div class="wrap continue__inner">
+      <svg class="continue__strand" viewBox="0 0 400 40" aria-hidden="true" focusable="false">
+        <path d="M0 26C90 12 150 32 200 24C250 16 310 6 400 20" fill="none" stroke="url(#g-gold-fade)" stroke-width="1.4" vector-effect="non-scaling-stroke"/>
+        <use href="#s-pearl" x="190" y="13" width="20" height="20"/>
+      </svg>
+      <p class="continue__eyebrow" id="continue-eyebrow">Next</p>
+      <a class="continue__link" href="story.html">Our Story<svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+      <p class="continue__line">How Strands of Grace grew, from 2017 to today.</p>
     </div>
   </section>
 
@@ -384,5 +397,13 @@
     </div>
   </div>
 </footer>
+
+<!-- Phones only: a booking bar once past the hero, hidden at the form and the footer. -->
+<div class="phone-bar" data-phone-bar hidden>
+  <a class="btn btn--bloom phone-bar__btn" href="work-with-me.html#book">Book a session</a>
+</div>
+<button class="to-top" type="button" aria-label="Back to top" hidden data-to-top>
+  <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
 </body>
 </html>

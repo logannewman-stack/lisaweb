@@ -127,6 +127,58 @@ The shared SVG kit (gradients, filters, masks, symbols) sits at the top of
   carry the rhythm.
 - Nothing waits at `opacity: 0` for a scroll observer.
 
+## Flow and interaction (the UX round)
+- **Page order and hand-offs:** Home runs hero, welcome, ways to work together,
+  seven colours, words I keep close, kind words, oils, closing. Every page but
+  Work With Me ends in a **continue block** (`.continue`): a strand with one
+  pearl, the eyebrow "Next", the next page's name as a large Marcellus link
+  whose gold underline grows on hover, and one line. Home leads to About Me,
+  About Me to Our Story, Our Story to Work With Me.
+- **Home cards** are one link across their whole surface (`.card--link`, the
+  "Learn more" link stretched with a pseudo-element) to the matching offering
+  on Work With Me; they lift on hover and the focus ring wraps the card.
+- **Anchors** land under the sticky header (`[id] { scroll-margin-top }`);
+  smooth scrolling only when motion is allowed.
+- **Phone booking bar** (`.phone-bar`, phones only): one bloom button on a
+  frosted strip with a gold hairline, safe-area aware. It slides up once the
+  visitor is past the hero and hides while the booking form or the footer is
+  on screen; `main` gets bottom padding so nothing hides behind it.
+- **Back to top** (`.to-top`): a pearl with an arrow, bottom right after one
+  screen of scrolling, above the bar on phones.
+- **Reading progress:** a 2px gold line along the header's bottom edge whose
+  width is the scroll progress.
+- **Hover, pressed and focus:** buttons lift and sink (160 to 240 ms, ease-out),
+  cards lift, underlines grow, and one focus ring everywhere: 2px gold
+  (`--focus`, the deeper gold) offset 3px. Nothing transitions under reduced
+  motion.
+- **Scroll-reveal:** `[data-reveal]` sections and `[data-reveal-children]`
+  rows rise 14px and fade in once (IntersectionObserver, threshold 0.15),
+  children staggered 90 ms. Anything on screen when the page opens, the hero
+  and everything under reduced motion or without JavaScript are left visible.
+- **Carousels:** Words I keep close has previous and next, a counter, arrow
+  keys when the group is focused and swipe on touch, never auto-advancing. On
+  phones Kind words becomes a snapping track with Previous and Next; on wide
+  screens all three cards show and the controls hide.
+- **Offering details:** each offer on Work With Me has a native
+  `<details>` "Good to know" (who it is for, what to bring, where) with a
+  pearl marker and a gold chevron, between gold hairlines.
+- **Good to know (FAQ):** six `<details>` on a strand of gold hairlines; the
+  script animates the height, one open at a time, native under reduced motion.
+- **Session cards:** the booking form's "Which session?" is four radio cards.
+  The chosen card gets a pearl, a gold hairline and a blush-to-peach wash;
+  `#f-session` is the first radio and `?session=` or an offering's Book button
+  selects the matching card and scrolls to the form. Required fields carry a
+  gold asterisk and the legend line; hints sit under the labels; errors appear
+  under a field in plum once it has been visited (and for every field on
+  submit); the message box grows with its content; the submit button reads
+  "Sending..." while a message is on its way; a hidden "website" field catches
+  bots. With the placeholder action the guard notice shows; with a real action
+  the page posts in the background and shows the thank-you with "What happens
+  next" (also listed beside the form intro with pearl numbers).
+- **404:** `404.html`, the same header and footer, a loose gold strand ending
+  in a dropped pearl, two washes and a faint bloom, and two buttons home. Its
+  links are root-relative because Vercel serves it at any missing address.
+
 ## Things to avoid when editing
 - Pastel or gold text, or small text placed over the dense middle of a wash.
   Check contrast after moving a bloom.
