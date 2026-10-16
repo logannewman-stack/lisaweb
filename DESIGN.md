@@ -102,6 +102,63 @@ the design spends its boldness. Everything else stays quiet and exact.
   light never appears, the quote stage resizes at once and the breathing
   pearl stays still (the cue and countdown carry the rhythm).
 
+## UX and flow (October 2026)
+The visitor journey is the same on every option; here it is strung in pearls.
+- **Page order and hand-offs**: the home page runs hero, welcome, ways to work
+  together, seven colours, words, kind words, oils, closing; the scroll guide
+  follows that order. Each home card is one link to its offering on Work With
+  Me (`#sound-bath`, `#one-to-one`, `#cleansing`); its body lifts 4px on hover
+  and the visible Learn more link stays. Above the footer of Home, About Me and
+  Our Story a **continue block** (`.continue`) hands over to the next page: a
+  gold pearl and the eyebrow "Next", the page name as a large Italiana link
+  with a gold arrow that slides on hover, and one Lora italic line beneath.
+  Every section and offering id has `scroll-margin-top`, so anchors land
+  below the header; smooth scrolling only when motion is allowed.
+- **Header**: a 2px gold reading-progress line along the header's bottom edge
+  (`.site-header__progress`, scaled by the script), over the hairline that
+  turns gold on scroll. The phone menu lists Book a session and Shop my oils
+  beneath the links.
+- **Phone booking bar** (`.book-bar`): one plum Book a session button fixed
+  to the bottom, safe-area aware, shown once the hero has scrolled past and
+  hidden while the booking form or the footer is on screen (the page gets
+  bottom padding while it shows). Desktop: none.
+- **Back to top** (`.to-top`): a 48px round button, gold hairline, with a gold
+  pearl above a swash; appears after one screen, bottom right, and sits above
+  the phone bar on phones.
+- **Offering details** (`.know`): a Good to know `<details>` in each offering
+  (who it is for, what to bring, where) as a small-caps summary with a gold
+  chevron and a hairline list; the script opens them on wide screens.
+- **Good to know, the questions** (`#faq`, `.faq`): six `<details>` on gold
+  hairlines, a pearl (lotus order) before each Italiana question and a plus
+  that turns into a cross; `name="faq"` keeps one open at a time natively and
+  the script eases the answer open and closed (instant under reduced motion).
+- **Booking form**: the legend "Fields marked * are required." with gold
+  asterisks; hints under labels; "Which session?" as four cards (radio inputs
+  inside labels) with a pearl each, chosen state a gold hairline frame with
+  an inset second hairline on ivory; the original select stays as the
+  no-script fallback (hidden with scripts on, disabled so only the cards
+  submit) and keeps `id="f-session"` for the `?session=` preselect. Inline
+  messages under invalid fields on blur and submit (browser validity, our
+  words), Sending... on the button while a fetch posts, a honeypot named
+  website out of sight, the pre-launch guard unchanged, and on success the
+  fields give way to the thank-you with a three-pearl strand and the "What
+  happens next" steps, which also sit under the form intro. The message box
+  grows with its content up to 520px.
+- **Interaction**: one gold focus ring (3px, 3px offset) on everything;
+  buttons lift 1px with a soft plum shadow and sink when pressed; underlines
+  thicken on hover; 160 to 240ms ease-out, none under reduced motion.
+  Sections and card rows rise 14px and fade in once as they enter the
+  viewport (`data-reveal`, `data-reveal-stagger` for staggered children);
+  anything already on screen shows at once, and nothing is hidden without
+  scripts or under reduced motion.
+- **Carousels**: the quotes take a swipe on touch as well as the arrows,
+  counter and arrow keys; on phones the kind words become a snapping row
+  with Previous and Next beneath. No auto-advance anywhere.
+- **404** (`404.html`): the same header and footer, a loose strand that
+  curls and ends with one dropped gold pearl, "This strand leads nowhere."
+  and two buttons. Its links and assets are root-relative, since Vercel
+  serves it for any missing path.
+
 ## When editing
 - Change colours only in `css/theme.css`; pearls take their colour from the
   `.pearl--name` classes. A pearl is

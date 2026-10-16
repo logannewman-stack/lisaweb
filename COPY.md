@@ -274,3 +274,73 @@ Everything else is placeholder.
   one-to-one, cleansing).
 - Contact lines: Email address to come. Instagram to come. [City, State] and
   online.
+
+---------------------------------------------------------------------------
+
+## UX additions (added October 2026)
+
+### Continue blocks
+- Eyebrow: Next
+- Home -> About Me. Link text: About Me. Line: Meet Lisa, and the path that led her here.
+- About Me -> Our Story. Link text: Our Story. Line: How Strands of Grace grew, from 2017 to today.
+- Our Story -> Work With Me. Link text: Work With Me. Line: Sound baths, one-to-one sessions and cleansing ceremonies.
+
+### Offerings, "Good to know"
+Sound bath
+- Who it is for: Anyone who needs to rest deeply. No experience needed.
+- What to bring: Comfortable clothes. Blankets are provided.
+- Where: [Venue or area].
+
+One-to-one session
+- Who it is for: You, when you want time shaped entirely around what you need today.
+- What to bring: Just yourself. We begin with a conversation.
+- Where: [Venue or area], or online.
+
+Cleansing ceremony
+- Who it is for: A home, a studio or a season that is ready for a fresh start.
+- What to bring: Nothing. I bring the sage, the palo santo and the sound.
+- Where: At your space, in [area]. [Travel details to come.]
+
+### Good to know (FAQ, id="faq")
+Heading: Good to know
+Lead: A few things people often ask before their first session.
+1. Do I need any experience?
+   No. Come exactly as you are. Everything is explained as we go, and there is no right or wrong way to receive sound.
+2. What should I wear?
+   Something comfortable that you can rest in. You will be lying down or seated for most of a session.
+3. Where do sessions happen?
+   [Venue or area], and one-to-one sessions can also be held online.
+4. What does it cost?
+   [Prices to come.] Payment details are shared when we confirm your session.
+5. What if I need to cancel?
+   [Cancellation policy to come.]
+6. Can I give a session as a gift?
+   [Gift sessions: yes or no, and how to arrange one.]
+
+### Booking form
+- Legend line: Fields marked * are required.
+- Session group label: Which session? (unchanged) with hint: Choose one. You can change your mind later.
+- Message hint: A few words is plenty.
+- Validation: Please add your name. / Please add an email address I can reply to. / Please add a short message.
+- Sending: Sending...
+- Success heading: Thank you.
+- Success text: Your message is on its way, and I will reply within a day or two.
+- Error: Something went wrong and your message was not sent. Please try again, or email me directly.
+- Guard (unchanged): The booking form will be switched on before launch, so this message was not sent.
+
+### What happens next
+Heading: What happens next
+1. Send your note.
+2. I reply within a day or two.
+3. We find a time that suits you.
+
+### Controls
+- Phone bar button: Book a session
+- Back to top: Back to top (aria-label)
+- Carousel: Previous quote / Next quote / counter "1 of 12" (Words I keep close); Previous / Next (Kind words)
+
+### 404 page
+- Title: Page not found, Strands of Grace
+- Heading: This strand leads nowhere.
+- Text: The page you were looking for is not here, or it has moved. Let's take you somewhere kinder.
+- Buttons: Home / Work with me

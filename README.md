@@ -30,7 +30,11 @@ How to edit:
   Layout and components: `css/site.css`. Behaviour: `js/site.js`.
 - Booking form: replace `your-form-id` in the form's `action` on
   `work-with-me.html` with the real Formspree id; the pre-launch guard then
-  switches itself off. `?session=sound-bath`, `one-to-one` or `cleansing`
-  preselects the session.
+  switches itself off and messages are sent in the page (the fields give way
+  to the thank-you and the "What happens next" steps; without JavaScript the
+  form posts normally). `?session=sound-bath`, `one-to-one` or `cleansing`
+  preselects the session card.
+- `404.html` is the not-found page: Vercel serves it for any missing path, so
+  its links and assets are root-relative. Nothing links to it.
 - Photos: add them to `assets/portraits/` and keep the `width` and `height`
   attributes in step with the file.
