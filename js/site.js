@@ -1,8 +1,9 @@
 /* Strands of Grace: site behaviour. No libraries.
-   Every page reads completely without this file: it only adds the header
-   hairline and reading-progress line, the phone menu, the one-at-a-time
-   quotes, the kind-words carousel on phones, the home scroll guide, the
-   phone booking bar, the back-to-top pearl, the scroll reveals, the
+   Every page reads completely without this file: it only adds the previews
+   of the two open decisions (?ink, ?tagline), the header hairline and
+   reading-progress line, the phone menu, the six pearls on About Me, the
+   one-at-a-time quotes, the kind-words carousel on phones, the scroll guide,
+   the phone booking bar, the back-to-top pearl, the scroll reveals, the
    breathing exercise, the timeline arrows, the offering details, the FAQ
    animation, and the booking form's session cards, validation and sending. */
 (function () {
@@ -30,6 +31,33 @@
 
   function scrollBehavior() { return reduceMotion.matches ? 'auto' : 'smooth'; }
 
+  /* ---- Previews of the two open decisions -------------------------------
+     ?ink=charcoal turns every heading charcoal (the headings all take their
+     colour from --heading) and ?ink=plum turns them back to deep plum;
+     ?tagline=2 shows the second story line on the home page and ?tagline=1
+     the first. The choice is kept in sessionStorage for the rest of the
+     visit in that tab. The same few lines run inline in each page's <head>
+     so the class is on <html> before the first paint; this copy keeps the
+     page right if that snippet is ever removed. Nothing links to these. */
+  function applyPreviews() {
+    var params = null;
+    var store = null;
+    try { params = new URLSearchParams(window.location.search); } catch (e) { params = null; }
+    try { store = window.sessionStorage; } catch (e) { store = null; }
+    function pick(key, allowed) {
+      var value = params ? params.get(key) : null;
+      if (value && allowed.indexOf(value) > -1) {
+        try { if (store) store.setItem('sog-' + key, value); } catch (e) { /* private mode */ }
+        return value;
+      }
+      try { value = store ? store.getItem('sog-' + key) : null; } catch (e) { value = null; }
+      return allowed.indexOf(value) > -1 ? value : allowed[0];
+    }
+    root.classList.toggle('ink-charcoal', pick('ink', ['plum', 'charcoal']) === 'charcoal');
+    root.classList.toggle('tagline-2', pick('tagline', ['1', '2']) === '2');
+  }
+  applyPreviews();
+
   /* ---- Header: a gold hairline once scrolled, a reading-progress line ---- */
   function initHeader() {
     var header = $('.site-header');
@@ -53,7 +81,7 @@
 
     var label = $('[data-menu-label]', toggle);
     var brand = $('.brand');
-    var small = window.matchMedia('(max-width: 1023.98px)');
+    var small = window.matchMedia('(max-width: 1099.98px)');
     var outside = $$('body > *').filter(function (el) {
       return !el.contains(menu) && el.tagName !== 'SCRIPT';
     });
@@ -129,6 +157,128 @@
     var onChange = function (event) { if (!event.matches) close(false); };
     if (small.addEventListener) small.addEventListener('change', onChange);
     else if (small.addListener) small.addListener(onChange);
+  }
+
+  /* ---- About Me: the six strands of my life, "Six pearls" ---------------
+     Six large pearls on a gold strand behave as a tablist: a click, a tap,
+     Enter or Space (and, with a mouse, simply resting on a pearl) chooses
+     a strand; the arrow keys, Home and End move along the strand; Previous
+     and Next walk it too. The chosen pearl lifts and glints and its summary
+     shows in the panel below, where a small clasp follows it. Without this
+     script all six summaries are listed in order. */
+  function initSixPearls() {
+    var box = $('[data-six-pearls]');
+    if (!box) return;
+
+    var list = $('[data-sp-tabs]', box);
+    var tabs = $$('[data-strand]', list);
+    var panels = tabs.map(function (tab) { return doc.getElementById(tab.getAttribute('aria-controls')); });
+    if (!tabs.length || panels.some(function (p) { return !p; })) return;
+
+    var stage = $('[data-sp-stage]', box);
+    var nav = $('[data-sp-nav]', box);
+    var prev = $('[data-sp-prev]', box);
+    var next = $('[data-sp-next]', box);
+    var current = $('[data-sp-current]', box);
+    var total = $('[data-sp-total]', box);
+    var live = $('[data-sp-live]', box);
+    var heading = $('h2', box.closest('section') || doc);
+    var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+    var index = -1;
+    var hoverTimer = null;
+
+    list.setAttribute('role', 'tablist');
+    if (heading && heading.id) list.setAttribute('aria-labelledby', heading.id);
+    tabs.forEach(function (tab, i) {
+      tab.setAttribute('role', 'tab');
+      panels[i].setAttribute('role', 'tabpanel');
+      panels[i].setAttribute('aria-labelledby', tab.id);
+    });
+    if (nav) nav.hidden = false;
+    if (total) total.textContent = String(tabs.length);
+
+    function nameOf(i) {
+      var n = $('.sp__name', tabs[i]);
+      return n ? n.textContent.trim() : '';
+    }
+
+    /* the clasp on the panel's gold rule sits under the chosen pearl */
+    function placeClasp() {
+      if (!stage || index < 0) return;
+      var bead = $('.sp__bead', tabs[index]) || tabs[index];
+      var b = bead.getBoundingClientRect();
+      var s = stage.getBoundingClientRect();
+      stage.style.setProperty('--x', (b.left + b.width / 2 - s.left).toFixed(1) + 'px');
+    }
+
+    function glint(tab) {
+      if (reduceMotion.matches) return;
+      tab.classList.remove('is-glinting');
+      void tab.offsetWidth;
+      tab.classList.add('is-glinting');
+      window.setTimeout(function () { tab.classList.remove('is-glinting'); }, 1000);
+    }
+
+    function select(i, opts) {
+      opts = opts || {};
+      i = (i + tabs.length) % tabs.length;
+      if (opts.focus) tabs[i].focus();
+      if (i === index) return;
+      var first = index < 0;
+      index = i;
+      tabs.forEach(function (tab, n) {
+        tab.setAttribute('aria-selected', n === i ? 'true' : 'false');
+        panels[n].classList.toggle('is-current', n === i);
+      });
+      if (current) current.textContent = String(i + 1);
+      placeClasp();
+      if (!first) glint(tabs[i]);
+      if (opts.announce && live) live.textContent = nameOf(i) + ', ' + (i + 1) + ' of ' + tabs.length;
+    }
+
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { select(i); });
+      /* with a mouse, resting on a pearl is enough */
+      tab.addEventListener('pointerenter', function (event) {
+        if (event.pointerType !== 'mouse' || !finePointer.matches) return;
+        window.clearTimeout(hoverTimer);
+        hoverTimer = window.setTimeout(function () { select(i); }, 110);
+      });
+      tab.addEventListener('pointerleave', function () { window.clearTimeout(hoverTimer); });
+    });
+
+    list.addEventListener('keydown', function (event) {
+      var from = tabs.indexOf(doc.activeElement);
+      if (from < 0) from = index;
+      var to = null;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') to = from + 1;
+      else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') to = from - 1;
+      else if (event.key === 'Home') to = 0;
+      else if (event.key === 'End') to = tabs.length - 1;
+      if (to === null) return;
+      event.preventDefault();
+      select(to, { focus: true });
+    });
+
+    if (prev) prev.addEventListener('click', function () { select(index - 1, { announce: true }); });
+    if (next) next.addEventListener('click', function () { select(index + 1, { announce: true }); });
+
+    window.addEventListener('resize', placeClasp);
+    if ('ResizeObserver' in window) new ResizeObserver(placeClasp).observe(box);
+
+    /* a light runs along the strand once, when the section first arrives */
+    if (!reduceMotion.matches && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          box.classList.add('is-lit');
+          io.disconnect();
+        });
+      }, { threshold: .35 });
+      io.observe(list);
+    }
+
+    select(0);
   }
 
   /* ---- Words I keep close: one quote at a time ------------------------- */
@@ -254,7 +404,7 @@
     update();
   }
 
-  /* ---- Home: the strand that follows the seven sections ---------------- */
+  /* ---- The strand that follows the page's sections (every page) -------- */
   function initGuide() {
     var guide = $('[data-guide]');
     var progress = $('[data-progress]');
@@ -600,7 +750,9 @@
 
     var MESSAGES = {
       sending: 'Sending...',
-      error: 'Something went wrong and your message was not sent. Please try again, or email me directly.',
+      error: 'Something went wrong and your message was not sent. Please try again, or ',
+      errorLink: 'email me directly',
+      errorEnd: '.',
       guard: 'The booking form will be switched on before launch, so this message was not sent.'
     };
 
@@ -676,6 +828,20 @@
       submit.textContent = on ? MESSAGES.sending : 'Send';
     }
 
+    /* the error ends with "email me directly" as a mailto link to Lisa */
+    var EMAIL = 'lisa@mystrandsofgrace.com';
+    function showError() {
+      if (!status) return;
+      status.textContent = '';
+      var link = doc.createElement('a');
+      link.className = 'inline-link';
+      link.href = 'mailto:' + EMAIL;
+      link.textContent = MESSAGES.errorLink;
+      status.appendChild(doc.createTextNode(MESSAGES.error));
+      status.appendChild(link);
+      status.appendChild(doc.createTextNode(MESSAGES.errorEnd));
+    }
+
     function showSuccess() {
       if (fields) fields.hidden = true;
       if (nextSteps) nextSteps.hidden = true;
@@ -718,7 +884,7 @@
         })
         .catch(function () {
           setSending(false);
-          if (status) status.textContent = MESSAGES.error;
+          showError();
         });
     });
   }
@@ -726,6 +892,7 @@
   function init() {
     initHeader();
     initMenu();
+    initSixPearls();
     initQuotes();
     initKind();
     initGuide();

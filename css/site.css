@@ -1,7 +1,7 @@
 /* ==========================================================================
    Strands of Grace: layout and components (design option C, "A string of pearls")
    Tokens live in theme.css. Mobile first; breakpoints at 600, 760, 820, 900,
-   1024 and 1200px. Motion animates transform, opacity and a little light,
+   1024, 1100 (the desktop navigation) and 1200px. Motion animates transform, opacity and a little light,
    and prefers-reduced-motion switches every animation and transition off.
    ========================================================================== */
 
@@ -27,7 +27,7 @@ body {
 img, svg { display: block; max-width: 100%; }
 img { height: auto; }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   margin: 0;
   color: var(--heading);
   font-family: var(--font-display);
@@ -487,7 +487,7 @@ section[id], article[id], li[id], [id^="f-"] { scroll-margin-top: calc(var(--hea
 
 /* Without JavaScript on small screens the nav simply wraps under the logo,
    and the taller header scrolls away with the page instead of sticking */
-@media (max-width: 1023.98px) {
+@media (max-width: 1099.98px) {
   html:not(.js) .site-header { position: relative; }
   html:not(.js) .progress { display: none; }
   html:not(.js) .site-header__inner { height: auto; min-height: var(--header-h); flex-wrap: wrap; padding-block: 10px; }
@@ -497,7 +497,7 @@ section[id], article[id], li[id], [id^="f-"] { scroll-margin-top: calc(var(--hea
 }
 
 /* With JavaScript on small screens: a Menu button and a full-screen ivory overlay */
-@media (max-width: 1023.98px) {
+@media (max-width: 1099.98px) {
   .js .menu-toggle {
     position: relative;
     z-index: 2;
@@ -557,10 +557,10 @@ section[id], article[id], li[id], [id^="f-"] { scroll-margin-top: calc(var(--hea
     display: flex;
     justify-content: flex-start;
     width: 100%;
-    min-height: 72px;
+    min-height: 60px;
     gap: .4em;
     color: var(--deep-plum);
-    font: 400 clamp(2rem, 1.4rem + 2.8vw, 2.75rem)/1.1 var(--font-display);
+    font: 400 clamp(1.75rem, 1.3rem + 2.4vw, 2.5rem)/1.1 var(--font-display);
   }
   .js .site-nav__link::after { display: none; }
   .js .site-nav__link .nav-pearl { position: static; translate: none; --s: 14px; margin-left: .35em; margin-top: -.15em; }
@@ -589,19 +589,27 @@ section[id], article[id], li[id], [id^="f-"] { scroll-margin-top: calc(var(--hea
     .js .site-nav.is-open .site-nav__list li:nth-child(3) { transition-delay: .08s; }
     .js .site-nav.is-open .site-nav__list li:nth-child(4) { transition-delay: .12s; }
     .js .site-nav.is-open .site-nav__list li:nth-child(5) { transition-delay: .16s; }
-    .js .site-nav.is-open .site-nav__cta { transition-delay: .2s; }
-    .js .site-nav.is-open .site-nav__shop { transition-delay: .24s; }
-    .js .site-nav.is-open .strand--menu { transition-delay: .26s; }
+    .js .site-nav.is-open .site-nav__list li:nth-child(6) { transition-delay: .2s; }
+    .js .site-nav.is-open .site-nav__list li:nth-child(7) { transition-delay: .24s; }
+    .js .site-nav.is-open .site-nav__cta { transition-delay: .28s; }
+    .js .site-nav.is-open .site-nav__shop { transition-delay: .32s; }
+    .js .site-nav.is-open .strand--menu { transition-delay: .34s; }
   }
 }
 
 html.menu-open { overflow: hidden; }
 
-@media (min-width: 1024px) {
+@media (min-width: 1100px) {
   .brand img { height: 58px; }
 }
+/* seven links and the button on one line: a little less air until 1280 */
+@media (min-width: 1100px) and (max-width: 1279.98px) {
+  .site-nav { gap: 20px; }
+  .site-nav__list { gap: 17px; }
+  .site-nav__cta { padding-inline: 1.2em; }
+}
 
-/* ---- Home: scroll guide (desktop) and pearl progress (smaller screens) ---- */
+/* ---- Scroll guide (desktop) and pearl progress (smaller screens), every page ---- */
 
 .guide { display: none; }
 
@@ -709,27 +717,38 @@ html.menu-open .progress { visibility: hidden; }
 .lotus .gold { stroke: var(--gold); }
 .section--alt .lotus { --lotus-fill: var(--soft-cream); }
 
-/* ---- Home: hero: the emblem, centred, underlined by the strand ---------- */
+/* ---- Home: hero: the emblem above the welcome, underlined by the strand -- */
 
 .hero {
   position: relative;
   display: grid;
   align-content: center;
   overflow-x: clip;
-  padding-block: clamp(28px, 4vw, 48px) clamp(48px, 6vw, 72px);
+  padding-block: clamp(24px, 3.4vw, 44px) clamp(48px, 6vw, 72px);
 }
-.hero__inner { text-align: center; }
-.hero__logo { width: min(100%, 820px); margin: 0 auto; }
-.hero__logo img { width: 100%; }
+.hero__inner { position: relative; text-align: center; }
+.hero__emblem {
+  width: min(92%, 600px);
+  margin: 0 auto;
+  /* the stand-in lotus is cropped at its sides; let them dissolve into the ivory */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.hero__title {
+  margin-top: clamp(6px, 1.2vw, 18px);
+  font-size: clamp(2.6rem, 1.75rem + 3.4vw, 4.9rem);
+  line-height: 1.04;
+  letter-spacing: -.015em;
+}
 .hero__strand {
-  width: min(100%, 720px);
-  margin: clamp(16px, 2.2vw, 28px) auto 0;
+  width: min(100%, 600px);
+  margin: clamp(18px, 2.2vw, 28px) auto 0;
   --strand-pad: 1.5%;
 }
-.hero__strand .pearl { --s: clamp(14px, 1.3vw, 20px); }
+.hero__strand .pearl { --s: clamp(13px, 1.2vw, 18px); }
 .hero__intro {
   max-width: 34ch;
-  margin: clamp(28px, 3.4vw, 46px) auto 0;
+  margin: clamp(24px, 3vw, 40px) auto 0;
   font-size: clamp(1.25rem, 1.05rem + .8vw, 1.625rem);
   line-height: 1.5;
 }
@@ -746,24 +765,29 @@ html.menu-open .progress { visibility: hidden; }
   .hero { min-height: min(calc(100svh - var(--header-h)), 880px); }
 }
 
-/* ---- Home: welcome, a two-column spread beside her portrait ------------- */
+/* ---- Home: the origin story, a two-column spread beside her portrait ---- */
 
-.welcome__grid { display: grid; gap: 44px var(--col-gap); align-items: center; }
-.welcome__text .prose { margin-top: clamp(22px, 2.6vw, 34px); }
-.welcome .lead { max-width: 36ch; color: var(--charcoal); }
-.welcome__media .capsule { --cw: min(72vw, 300px); --cr: 2 / 3; }
-.welcome__media img { object-position: 51% 46%; scale: 1.14; transform-origin: 50% 40%; }
-.lotus--welcome { display: none; width: min(100%, 220px); margin: clamp(28px, 4vw, 44px) 0 0; }
+.origin__grid { display: grid; gap: 44px var(--col-gap); align-items: center; }
+.origin__sub { margin-top: clamp(12px, 1.4vw, 18px); color: var(--heading); font: italic 400 var(--step-2)/1.3 var(--font-serif); }
+/* the two candidate story lines: version 1 unless ?tagline=2 (see js/site.js) */
+.tagline--2 { display: none; }
+.tagline-2 .tagline--1 { display: none; }
+.tagline-2 .tagline--2 { display: inline; }
+.origin__text .prose { margin-top: clamp(22px, 2.6vw, 34px); }
+.origin .lead { max-width: 36ch; color: var(--charcoal); }
+.origin__media .capsule { --cw: min(72vw, 300px); --cr: 2 / 3; }
+.origin__media img { object-position: 51% 46%; scale: 1.14; transform-origin: 50% 40%; }
+.lotus--origin { display: none; width: min(100%, 220px); margin: clamp(28px, 4vw, 44px) 0 0; }
 
 @media (min-width: 820px) {
-  .welcome__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
-  .welcome__text { grid-column: 1 / span 6; }
-  .welcome__media { grid-column: 8 / span 5; container-type: inline-size; }
-  .welcome__media .capsule { --cw: min(100cqi - 24px, 380px); }
-  .lotus--welcome { display: block; }
+  .origin__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .origin__text { grid-column: 1 / span 6; }
+  .origin__media { grid-column: 8 / span 5; container-type: inline-size; }
+  .origin__media .capsule { --cw: min(100cqi - 24px, 380px); }
+  .lotus--origin { display: block; }
 }
 
-/* ---- Home: seven colours ------------------------------------------------- */
+/* ---- Philosophy: seven colours -------------------------------------------- */
 
 .colours {
   display: grid;
@@ -899,7 +923,7 @@ html.menu-open .progress { visibility: hidden; }
   .offers--panel .offer__pearl { top: calc(-1 * var(--panel-pt)); }
 }
 
-/* ---- Home: words I keep close ------------------------------------------- */
+/* ---- Philosophy: words I keep close ------------------------------------- */
 
 .words { display: flex; flex-direction: column; }
 .words__head { display: contents; }
@@ -1044,20 +1068,6 @@ html.menu-open .progress { visibility: hidden; }
   .kind > li + li { border-left: 1px solid var(--hairline-soft); }
 }
 
-/* ---- Home: the oils band -------------------------------------------------- */
-
-.band { display: grid; gap: 24px var(--col-gap); align-items: center; }
-.band__head .mark { margin-bottom: 18px; }
-.band__text { max-width: 52ch; }
-.band__action { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 8px; }
-
-@media (min-width: 900px) {
-  .band { grid-template-columns: repeat(12, minmax(0, 1fr)); }
-  .band__head { grid-column: 1 / span 4; }
-  .band__text { grid-column: 5 / span 5; }
-  .band__action { grid-column: 10 / span 3; align-items: flex-end; margin-top: 0; text-align: right; }
-}
-
 /* ---- Home: closing, with a draped strand ---------------------------------- */
 
 .closing { text-align: center; }
@@ -1080,6 +1090,7 @@ html.menu-open .progress { visibility: hidden; }
 .drape .pearl:nth-child(7) { left: 70%; top: 57.3%; }
 .drape .pearl:nth-child(8) { left: 80%; top: 45.7%; }
 .closing__title { font-size: var(--step-5); line-height: 1.04; letter-spacing: -.015em; max-width: 14ch; }
+.closing__text--serif { color: var(--deep-plum); font: italic 400 var(--step-2)/1.4 var(--font-serif); }
 
 /* Our story closing: two strands that meet at one pearl */
 .meet {
@@ -1129,7 +1140,7 @@ html.menu-open .progress { visibility: hidden; }
   display: flex;
   align-items: center;
   gap: clamp(12px, 1.6vw, 24px);
-  color: var(--deep-plum);
+  color: var(--heading);
 }
 .span-line__year {
   font: 400 var(--step-3)/1 var(--font-display);
@@ -1171,19 +1182,20 @@ html.menu-open .progress { visibility: hidden; }
   .span-line__line .pearl { --s: 14px; }
 }
 
-/* Work with me */
-.work-hero { padding-bottom: clamp(32px, 4vw, 56px); }
-.work-hero__grid { display: grid; gap: 28px var(--col-gap); }
-.work-hero__strand { margin-top: clamp(28px, 3.4vw, 44px); max-width: 400px; --strand-pad: 0; }
-.work-hero__strand::before { background: linear-gradient(90deg, var(--gold), rgb(217 185 107 / .55) 40%, var(--gold) 80%, rgb(217 185 107 / 0)); }
-.work-hero__strand .pearl { --s: 16px; }
+/* Philosophy, Explore and Stay Connected: the heading and its strand on the
+   left, the lead on the right */
+.intro-hero--tight { padding-bottom: clamp(32px, 4vw, 56px); }
+.intro-hero__grid { display: grid; gap: 28px var(--col-gap); }
+.intro-hero__strand { margin-top: clamp(28px, 3.4vw, 44px); max-width: 400px; --strand-pad: 0; }
+.intro-hero__strand::before { background: linear-gradient(90deg, var(--gold), rgb(217 185 107 / .55) 40%, var(--gold) 80%, rgb(217 185 107 / 0)); }
+.intro-hero__strand .pearl { --s: 16px; }
 @media (min-width: 900px) {
-  .work-hero__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: end; }
-  .work-hero__text { grid-column: 1 / span 6; }
-  .work-hero__grid .lead { grid-column: 7 / span 6; max-width: 36ch; padding-bottom: 10px; }
+  .intro-hero__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: end; }
+  .intro-hero__text { grid-column: 1 / span 6; }
+  .intro-hero__grid .lead { grid-column: 7 / span 6; max-width: 36ch; padding-bottom: 10px; }
 }
 
-/* ---- About: background, training, at a glance, beliefs, quote ------------ */
+/* ---- About: background, at a glance, credentials; Philosophy: beliefs, quote */
 
 .reading { max-width: 680px; }
 .reading .h2 { margin-bottom: clamp(24px, 3vw, 36px); }
@@ -1201,7 +1213,7 @@ html.menu-open .progress { visibility: hidden; }
   }
 }
 
-/* the training table on a cream band, a pearl at the head of each row */
+/* the credentials table on a cream band, a pearl at the head of each row */
 .quals-band {
   padding: clamp(6px, 1.6vw, 20px) clamp(20px, 3.2vw, 44px);
   background: var(--soft-cream);
@@ -1290,7 +1302,7 @@ html.menu-open .progress { visibility: hidden; }
   border: 1px solid var(--hairline);
   border-radius: 999px;
   background: var(--warm-ivory);
-  color: var(--deep-plum);
+  color: var(--heading);
   font: 400 1.375rem/1.1 var(--font-display);
 }
 .pill .pearl { --s: 12px; }
@@ -1304,7 +1316,10 @@ html.menu-open .progress { visibility: hidden; }
   letter-spacing: -.01em;
 }
 
+.believe__quote { margin-top: clamp(64px, 8vw, 112px); }
 .next-steps { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 20px 36px; }
+.closing .next-steps { margin-top: 36px; }
+.closing .next-steps .btn { margin-top: 0; }
 
 /* ---- Story: what the name means, timeline -------------------------------- */
 
@@ -1398,7 +1413,7 @@ html.menu-open .progress { visibility: hidden; }
   .tl-year { margin-top: 32px; }
 }
 
-/* ---- Work with me: steps, breathing, oils, booking ----------------------- */
+/* ---- Explore: steps, oils; Philosophy: breathing; Stay Connected: booking -- */
 
 /* five numerals strung on a gold strand with a pearl at each node */
 .steps { display: grid; gap: 0; list-style: none; }
@@ -1601,7 +1616,6 @@ html.menu-open .progress { visibility: hidden; }
 .footer__grid { display: grid; gap: 40px var(--col-gap); padding-block: clamp(48px, 6vw, 80px) clamp(40px, 5vw, 64px); }
 .footer__logo { display: inline-block; border-radius: 4px; }
 .footer__logo img { width: min(100%, 300px); }
-.footer__title { margin-bottom: 10px; color: var(--deep-plum); font: 500 var(--step--1)/1.4 var(--font-body); }
 .footer__list { list-style: none; }
 .footer__list a {
   display: inline-flex;
@@ -1615,7 +1629,7 @@ html.menu-open .progress { visibility: hidden; }
 .footer__list a:hover { color: var(--deep-plum); text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: .35em; }
 .footer__list a[aria-current="page"] { color: var(--deep-plum); text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: .35em; }
 .footer__list .i-ext { width: 9px; height: 9px; }
-.footer__lines { display: grid; gap: 10px; margin: 0; padding-top: 10px; }
+.footer__lines { display: grid; gap: 10px; margin: 0; padding-top: 8px; }
 .footer__lines div { display: grid; gap: 2px; }
 .footer__lines dt { color: var(--text-soft); font-size: var(--step--1); }
 .footer__lines dd { margin: 0; }
@@ -1633,6 +1647,10 @@ html.menu-open .progress { visibility: hidden; }
   font-size: var(--step--1);
 }
 .footer__tagline { color: var(--deep-plum); font: italic 400 1.0625rem/1.4 var(--font-serif); }
+.footer__creds { margin-top: 20px; max-width: 36ch; color: var(--text-soft); font-size: var(--step--1); line-height: 1.6; }
+.footer__sep { margin-inline: .2em; color: var(--gold); }
+.footer__namaste { display: inline-flex; align-items: center; gap: 10px; color: var(--deep-plum); font: italic 400 1.0625rem/1.4 var(--font-serif); }
+.footer__namaste .orn { width: 16px; height: 16px; }
 
 @media (max-width: 599.98px) {
   .footer__list { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--col-gap); }
@@ -1654,24 +1672,28 @@ html.menu-open .progress { visibility: hidden; }
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 
-  /* the emblem settles, the strand draws beneath it and its pearls appear,
-     the intro rises, then the buttons; a light sweeps the strand and rests */
-  .hero__logo { animation: settle .7s var(--ease) both; }
-  .hero__strand::before { animation: draw .7s var(--ease) .3s both; }
+  /* the emblem settles, the welcome rises beneath it, the strand draws and
+     its pearls appear, the intro rises, then the buttons; a light sweeps the
+     strand and rests, and the stars come out */
+  .hero__emblem { animation: settle .8s var(--ease) both; }
+  .hero__title { animation: rise .7s var(--ease) .22s both; }
+  .hero__strand::before { animation: draw .7s var(--ease) .42s both; }
   .hero__strand .pearl {
     animation: pearl-in .4s var(--ease) both, glint .6s ease-out both;
-    animation-delay: calc(.42s + var(--i, 0) * 45ms), calc(.9s + var(--i, 0) * 120ms);
+    animation-delay: calc(.54s + var(--i, 0) * 45ms), calc(1.1s + var(--i, 0) * 120ms);
   }
-  .hero__intro { animation: rise .6s var(--ease) .5s both; }
-  .hero__actions { animation: rise .6s var(--ease) .66s both; }
-  .hero__strand .strand__light { animation: sweep .95s linear 1s both; }
-  .welcome .capsule::before { animation: drift 16s ease-in-out infinite; }
+  .hero__intro { animation: rise .6s var(--ease) .64s both; }
+  .hero__actions { animation: rise .6s var(--ease) .78s both; }
+  .hero__strand .strand__light { animation: sweep .95s linear 1.2s both; }
+  .sky--hero { animation: appear 1.4s ease-out 1s both; }
+  .origin .capsule::before { animation: drift 16s ease-in-out infinite; }
 
   .guide__link.is-current::after { animation: halo 3.6s ease-in-out infinite; }
   .breath__done:not([hidden]) { animation: rise .8s var(--ease) both; }
 }
 
-@keyframes settle { from { opacity: 0; transform: scale(.985); } }
+@keyframes settle { from { opacity: 0; transform: translateY(6px) scale(.975); } }
+@keyframes appear { from { opacity: 0; } }
 @keyframes rise { from { opacity: 0; transform: translateY(10px); } }
 @keyframes drift {
   0%, 100% { transform: translate(0, 0); }
@@ -1737,7 +1759,7 @@ html.menu-open .progress { visibility: hidden; }
   align-items: center;
   gap: .4em;
   margin-top: 14px;
-  color: var(--deep-plum);
+  color: var(--heading);
   font: 400 var(--step-4)/1.05 var(--font-display);
   letter-spacing: -.012em;
   text-decoration: underline;
@@ -1830,7 +1852,7 @@ html.menu-open .progress { visibility: hidden; }
   .js [data-reveal-stagger].is-instant > * { transition: none; }
 }
 
-/* ---- UX and flow: Work With Me, the booking path ------------------------- */
+/* ---- UX and flow: Explore and Stay Connected, the booking path ----------- */
 
 /* Good to know, inside each offering */
 .know { margin-top: 20px; border-top: 1px solid var(--hairline-soft); }
@@ -1866,7 +1888,7 @@ html.menu-open .progress { visibility: hidden; }
   min-height: 64px;
   padding: 18px 0;
   list-style: none;
-  color: var(--deep-plum);
+  color: var(--heading);
   font: 400 clamp(1.375rem, 1.2rem + .7vw, 1.75rem)/1.2 var(--font-display);
   cursor: pointer;
 }
@@ -1970,3 +1992,618 @@ html:not(.js) .session__cards { display: none; }
 .lost__strand use { color: var(--c, var(--champagne-gold)); }
 .lost .lead { margin-top: 22px; max-width: 44ch; text-wrap: balance; }
 .lost__actions { margin-top: 34px; }
+
+/* ==========================================================================
+   Round 4: the six-page framework, the six strands, celestial motifs,
+   the tree of life, gold over pink
+   ========================================================================== */
+
+/* ---- Small shared pieces ------------------------------------------------- */
+
+.eyebrow {
+  color: var(--text-soft);
+  font: 500 .75rem/1.2 var(--font-body);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+/* the brand keeps its own casing */
+.eyebrow--brand { margin-bottom: 14px; font-size: .875rem; letter-spacing: .04em; text-transform: none; }
+
+.mark--centre { justify-content: center; }
+.mark--centre::after { content: ""; width: 48px; height: 1px; margin-left: -1px; background: linear-gradient(90deg, var(--gold), rgb(217 185 107 / .35)); }
+
+.arrow-up { width: 10px !important; height: 16px !important; }
+.link-arrow:hover .arrow-up { transform: translateY(-3px); }
+
+/* the celestial ornaments: a crescent moon, a sun, a four-point sparkle, all gold */
+.orn { display: inline-block; flex: none; width: 1em; height: 1em; overflow: visible; color: var(--gold); }
+
+/* a moon in phases: the further along, the fuller (Coming soon, credentials) */
+.moonphase { flex: none; overflow: visible; }
+.moonphase__ring { fill: none; stroke: var(--gold); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.moonphase__lit { fill: rgb(217 185 107 / .42); stroke: var(--gold); stroke-width: 1; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+
+/* ---- Celestial: a quiet sky of sparkles (home hero, closings, coming soon, 404) */
+
+.sky { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.sky__star {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--s);
+  height: var(--s);
+  overflow: visible;
+  color: var(--gold);
+  opacity: var(--o);
+  translate: -50% -50%;
+}
+.hero__inner, .closing__inner, .lost__inner, .section--blush > .wrap { position: relative; z-index: 1; }
+@media (max-width: 759.98px) { .sky__star--wide { display: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  /* a very slow twinkle, each star on its own beat */
+  .sky__star, .tree__star { animation: twinkle 7.5s ease-in-out var(--d, 0s) infinite; }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: var(--o, .7); transform: scale(1); }
+  50% { opacity: calc(var(--o, .7) * .3); transform: scale(.7); }
+}
+
+/* ---- Gold over pink: a pale blush ground carrying gold linework ----------- */
+
+.section--blush { position: relative; isolation: isolate; background: var(--blush-wash); --lotus-fill: var(--blush-wash); }
+/* a double gold hairline along the top and the bottom, fading at the ends */
+.section--blush::before {
+  content: "";
+  position: absolute;
+  inset: clamp(10px, 1.4vw, 16px) 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgb(217 185 107 / 0), var(--gold) 14%, var(--gold) 86%, rgb(217 185 107 / 0)) 0 0 / 100% 1px no-repeat,
+    linear-gradient(90deg, rgb(217 185 107 / 0), rgb(217 185 107 / .45) 22%, rgb(217 185 107 / .45) 78%, rgb(217 185 107 / 0)) 0 5px / 100% 1px no-repeat,
+    linear-gradient(90deg, rgb(217 185 107 / 0), rgb(217 185 107 / .45) 22%, rgb(217 185 107 / .45) 78%, rgb(217 185 107 / 0)) 0 calc(100% - 5px) / 100% 1px no-repeat,
+    linear-gradient(90deg, rgb(217 185 107 / 0), var(--gold) 14%, var(--gold) 86%, rgb(217 185 107 / 0)) 0 100% / 100% 1px no-repeat;
+}
+.section--blush + .continue .continue__inner { border-top: 0; }
+
+/* the Namaste sign-off, between a crescent moon and a sun */
+.namaste {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: clamp(32px, 3.6vw, 48px);
+  color: var(--deep-plum);
+  font: italic 400 clamp(1.5rem, 1.3rem + .8vw, 1.875rem)/1.2 var(--font-serif);
+}
+.namaste::before, .namaste::after { content: ""; width: clamp(28px, 6vw, 72px); height: 1px; background: linear-gradient(90deg, rgb(217 185 107 / 0), var(--gold)); }
+.namaste::after { background: linear-gradient(90deg, var(--gold), rgb(217 185 107 / 0)); }
+.namaste__orn { width: 1.15em; height: 1.15em; }
+
+/* About: Namaste is the heading itself */
+.namaste-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 2.4vw, 36px);
+  max-width: none;
+}
+.namaste-title .namaste__orn { width: clamp(32px, 3.6vw, 52px); height: clamp(32px, 3.6vw, 52px); }
+.closing--namaste .closing__text { margin-top: clamp(18px, 2vw, 26px); }
+
+/* ---- Home: six strands of a life, a light teaser on a gold strand -------- */
+
+.teaser { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: clamp(28px, 4vw, 40px); list-style: none; }
+.teaser__link {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 4px 8px;
+  border-radius: 24px;
+  color: var(--heading);
+  text-decoration: none;
+}
+.teaser__sym { width: clamp(40px, 4vw, 52px); height: clamp(40px, 4vw, 52px); transition: transform .45s var(--ease); }
+.teaser__bead { position: relative; display: grid; place-items: center; align-self: stretch; height: 44px; margin-top: 12px; }
+/* each item carries its piece of the strand; side by side they make one line */
+.teaser__bead::before {
+  content: "";
+  position: absolute;
+  left: -4px; right: -4px;
+  top: calc(50% - 1px);
+  height: 1px;
+  background: var(--gold);
+}
+.teaser__bead .pearl { --s: clamp(26px, 2.4vw, 32px); position: relative; transition: transform .45s var(--ease); }
+.teaser__name {
+  margin-top: 10px;
+  font: 400 clamp(1.1875rem, 1rem + .7vw, 1.5rem)/1.15 var(--font-display);
+  text-align: center;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .22em;
+  transition: text-decoration-color .2s ease-out;
+}
+.teaser__link:hover .teaser__bead .pearl { transform: translateY(-4px) scale(1.08); }
+.teaser__link:hover .teaser__sym { transform: translateY(-2px); }
+.teaser__link:hover .teaser__name { text-decoration-color: var(--gold); }
+@media (max-width: 899.98px) {
+  .teaser__name { font-size: 1.125rem; letter-spacing: -.01em; }
+  /* two rows of three: each row's strand fades out at its ends */
+  .teaser__item:nth-child(3n + 1) .teaser__bead::before { background: linear-gradient(90deg, rgb(217 185 107 / 0), var(--gold) 50%); }
+  .teaser__item:nth-child(3n) .teaser__bead::before { background: linear-gradient(90deg, var(--gold) 50%, rgb(217 185 107 / 0)); }
+}
+.teaser__more { margin-top: clamp(32px, 4vw, 48px); text-align: center; }
+.ways__more { margin-top: clamp(24px, 3vw, 36px); }
+
+@media (min-width: 900px) {
+  .teaser { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .teaser__item:first-child .teaser__bead::before { background: linear-gradient(90deg, rgb(217 185 107 / 0), var(--gold) 50%); }
+  .teaser__item:last-child .teaser__bead::before { background: linear-gradient(90deg, var(--gold) 50%, rgb(217 185 107 / 0)); }
+}
+
+/* ---- Home: what's coming, two cards; the coming soon card on blush ------- */
+
+.coming { display: grid; gap: var(--col-gap); list-style: none; }
+.coming__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(28px, 3.6vw, 52px) clamp(24px, 3.4vw, 52px);
+  background: var(--warm-ivory);
+  border-top: 1px solid var(--gold);
+}
+.coming__card--blush { background: var(--blush-wash); border: 1px solid var(--gold); }
+.coming__card--blush::before { content: ""; position: absolute; inset: 6px; border: 1px solid rgb(217 185 107 / .45); pointer-events: none; }
+.coming__pearl { --s: 28px; margin-bottom: 18px; }
+.coming__phase { width: 30px; height: 30px; margin-bottom: 18px; }
+.coming__title { margin-top: 12px; font: 400 var(--step-3)/1.12 var(--font-display); }
+.coming__text { margin-top: 12px; font-size: var(--step-1); line-height: 1.5; }
+.coming__action { margin-top: auto; padding-top: 22px; }
+@media (min-width: 820px) { .coming { grid-template-columns: 1fr 1fr; } }
+
+/* ---- About: the six strands of my life, "Six pearls" ---------------------- */
+
+.strands__head { max-width: 780px; margin: 0 auto clamp(36px, 5vw, 64px); text-align: center; }
+.strands__intro { max-width: 46ch; margin: clamp(18px, 2vw, 26px) auto 0; }
+
+/* the necklace: six large pearls on a draped gold strand, a tablist.
+   --k is how far down the drape each pearl hangs (4x(1-x) at its column). */
+.sp {
+  --pad: 10px;
+  --sym: clamp(44px, 4.2vw, 60px);
+  --gap: 14px;
+  --bead: clamp(56px, 5.4vw, 78px);
+  --sag: clamp(20px, 2.4vw, 34px);
+}
+.sp__strand { position: relative; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.sp__drape {
+  position: relative;
+  z-index: 0;
+  grid-row: 1;
+  grid-column: 1 / -1;
+  align-self: start;
+  width: 100%;
+  height: var(--sag);
+  margin-top: calc(var(--pad) + var(--sym) + var(--gap) + var(--bead) * .469);
+  overflow: visible;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+.sp__drape--b { display: none; }
+.sp__line { fill: none; stroke: var(--gold); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+/* a light that runs along the strand once, when the section first arrives */
+.sp__light { fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 60 1000; stroke-dashoffset: 60; opacity: 0; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 3px rgb(217 185 107 / .9)); }
+
+.sp__pearl {
+  position: relative;
+  z-index: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  padding: var(--pad) 2px 12px;
+  border: 0;
+  border-radius: 28px;
+  background: none;
+  color: var(--heading);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.sp__pearl:nth-of-type(1) { grid-column: 1; --k: .3056; }
+.sp__pearl:nth-of-type(2) { grid-column: 2; --k: .75; }
+.sp__pearl:nth-of-type(3) { grid-column: 3; --k: .9722; }
+.sp__pearl:nth-of-type(4) { grid-column: 4; --k: .9722; }
+.sp__pearl:nth-of-type(5) { grid-column: 5; --k: .75; }
+.sp__pearl:nth-of-type(6) { grid-column: 6; --k: .3056; }
+.sp__sym { width: var(--sym); height: var(--sym); opacity: .78; transition: opacity .35s var(--ease), transform .45s var(--ease); }
+.sp__bead {
+  position: relative;
+  display: block;
+  width: var(--bead);
+  height: var(--bead);
+  margin-top: calc(var(--gap) + var(--sag) * var(--k, 0));
+  margin-bottom: calc(var(--sag) * (1 - var(--k, 0)));
+  transition: transform .5s var(--ease);
+}
+.sp__bead .pearl { --s: var(--bead); position: relative; z-index: 1; }
+/* a soft halo in the pearl's own colour, and a fine gold ring when chosen */
+.sp__bead::before {
+  content: "";
+  position: absolute;
+  inset: -32%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--c) 0%, rgb(255 253 248 / 0) 64%);
+  opacity: 0;
+  transition: opacity .5s var(--ease);
+}
+.sp__bead::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 46.9%;
+  width: calc(89.6% + 14px);
+  aspect-ratio: 1;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  opacity: 0;
+  translate: -50% -50%;
+  scale: .82;
+  transition: opacity .35s var(--ease), scale .5s var(--ease);
+}
+.sp__glint { position: absolute; z-index: 2; left: 14%; top: 8%; width: 34%; height: 34%; color: #fff; opacity: 0; pointer-events: none; filter: drop-shadow(0 0 4px rgb(217 185 107 / .95)); }
+.sp__name {
+  position: relative;
+  margin-top: 12px;
+  padding-bottom: 10px;
+  font: 400 clamp(1.25rem, 1.02rem + .8vw, 1.75rem)/1.15 var(--font-display);
+  text-align: center;
+}
+.sp__name::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 30px;
+  height: 1px;
+  background: var(--gold);
+  translate: -50% 0;
+  scale: 0 1;
+  transition: scale .45s var(--ease);
+}
+.sp__pearl:hover .sp__bead { transform: translateY(-4px); }
+.sp__pearl:hover .sp__sym { opacity: 1; }
+.sp__pearl[aria-selected="true"] .sp__bead { transform: translateY(-9px) scale(1.1); }
+.sp__pearl[aria-selected="true"] .sp__bead::before { opacity: .8; }
+.sp__pearl[aria-selected="true"] .sp__bead::after { opacity: 1; scale: 1; }
+.sp__pearl[aria-selected="true"] .sp__sym { opacity: 1; transform: translateY(-3px); }
+.sp__pearl[aria-selected="true"] .sp__name::after { scale: 1 1; }
+.sp__pearl:focus-visible { outline-offset: 0; }
+
+/* the stage below: a cream panel on a gold rule, with a clasp under the chosen pearl */
+.sp__stage {
+  position: relative;
+  margin-top: clamp(26px, 3.2vw, 40px);
+  padding: clamp(34px, 4.4vw, 60px) clamp(22px, 4.4vw, 68px) clamp(24px, 3vw, 36px);
+  background: var(--soft-cream);
+  border-top: 1px solid var(--gold);
+}
+.sp__clasp { position: absolute; top: 0; left: var(--x, 50%); line-height: 0; translate: -50% -50%; transition: left .55s var(--ease); }
+.sp__clasp .pearl { --s: 14px; }
+html:not(.js) .sp__clasp { display: none; }
+.sp__panels { display: grid; }
+.sp__panel { display: grid; gap: 22px clamp(28px, 4.4vw, 64px); align-items: center; }
+html:not(.js) .sp__panels { gap: 40px; }
+html:not(.js) .sp__panel + .sp__panel { padding-top: 40px; border-top: 1px solid var(--hairline); }
+.js .sp__panel {
+  grid-area: 1 / 1;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .3s var(--ease), transform .4s var(--ease), visibility 0s linear .3s;
+}
+.js .sp__panel.is-current {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition: opacity .5s var(--ease) .06s, transform .55s var(--ease) .06s, visibility 0s;
+}
+.sp__medal {
+  display: grid;
+  place-items: center;
+  width: clamp(104px, 11vw, 156px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--warm-ivory);
+  background: radial-gradient(circle at 50% 44%, color-mix(in srgb, var(--c) 40%, var(--warm-ivory)) 0%, var(--warm-ivory) 74%);
+  box-shadow: inset 0 0 0 1px var(--gold), 0 0 0 6px var(--soft-cream), 0 0 0 7px rgb(217 185 107 / .45);
+}
+.sp__medal .sym { width: 56%; height: auto; aspect-ratio: 1; overflow: visible; }
+.sp__colour { color: var(--text-soft); font: 500 .75rem/1.2 var(--font-body); letter-spacing: .14em; text-transform: uppercase; }
+.sp__title { margin-top: 10px; font: 400 var(--step-3)/1.1 var(--font-display); }
+.sp__summary { margin-top: 12px; max-width: 50ch; font-size: var(--step-1); line-height: 1.55; }
+.sp__link { margin-top: 8px; }
+.sp__nav { display: flex; align-items: center; gap: 16px; margin-top: clamp(22px, 2.6vw, 32px); padding-top: clamp(18px, 2vw, 24px); border-top: 1px solid var(--hairline-soft); }
+.sp__count { min-width: 4.5em; color: var(--charcoal); font-size: .9375rem; font-variant-numeric: tabular-nums; letter-spacing: .02em; text-align: center; }
+.sp__count .serif-italic { margin-inline: .1em; color: var(--text-soft); }
+.sp__current { color: var(--deep-plum); font-weight: 500; }
+
+@media (min-width: 760px) {
+  .sp__panel { grid-template-columns: auto minmax(0, 1fr); }
+}
+
+/* tablets and phones: two rows of three, each on its own drape */
+@media (max-width: 899.98px) {
+  .sp { --bead: 64px; --sag: 20px; --sym: 44px; }
+  .sp__strand { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 10px; }
+  .sp__drape--b { display: block; grid-row: 2; }
+  .sp__pearl:nth-of-type(1), .sp__pearl:nth-of-type(4) { grid-column: 1; --k: .5556; }
+  .sp__pearl:nth-of-type(2), .sp__pearl:nth-of-type(5) { grid-column: 2; --k: 1; }
+  .sp__pearl:nth-of-type(3), .sp__pearl:nth-of-type(6) { grid-column: 3; --k: .5556; }
+  .sp__pearl:nth-of-type(n + 4) { grid-row: 2; }
+}
+@media (max-width: 759.98px) {
+  .sp { --pad: 6px; --sym: 34px; --gap: 8px; --bead: 54px; --sag: 16px; }
+  .sp__strand { row-gap: 6px; }
+  .sp__name { font-size: 1.125rem; letter-spacing: -.01em; }
+  .sp__panel { justify-items: start; }
+  .sp__medal { width: 96px; }
+  .sp__nav { justify-content: space-between; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sp.is-lit .sp__light { animation: strand-light 1.6s ease-in-out .2s both; }
+  .sp__pearl.is-glinting .sp__glint { animation: sp-glint .95s ease-out both; }
+  .sp__pearl.is-glinting .sp__bead .pearl { animation: glint .8s ease-out both; }
+}
+@keyframes strand-light {
+  0% { opacity: 0; stroke-dashoffset: 60; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { opacity: 0; stroke-dashoffset: -1000; }
+}
+@keyframes sp-glint {
+  0% { opacity: 0; transform: scale(.2) rotate(0deg); }
+  35% { opacity: 1; transform: scale(1) rotate(30deg); }
+  100% { opacity: 0; transform: scale(.4) rotate(70deg); }
+}
+
+/* ---- About: the chapters, strung on a vertical strand -------------------- */
+
+.chapters__strand { position: relative; --node: clamp(22px, 2.2vw, 30px); }
+.chapters__strand::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--node) / 2);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, rgb(217 185 107 / 0), var(--gold) 3%, rgb(217 185 107 / .55) 50%, var(--gold) 97%, rgb(217 185 107 / 0));
+}
+.chapter {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px var(--col-gap);
+  padding-left: calc(var(--node) + clamp(22px, 4.4vw, 72px));
+}
+.chapter + .chapter { margin-top: clamp(80px, 10vw, 144px); }
+/* the pearl sits on the strand level with the chapter's heading */
+.chapter__node { position: absolute; left: 0; line-height: 0; margin-top: calc(var(--step-4) * .53 - var(--node) / 2); }
+.chapter__node .pearl { --s: var(--node); border-radius: 50%; box-shadow: 0 0 0 5px var(--bg-alt), 0 0 0 6px var(--hairline); }
+.chapter__title { font: 400 var(--step-4)/1.06 var(--font-display); letter-spacing: -.012em; }
+.chapter__body .prose { margin-top: clamp(16px, 2vw, 24px); }
+.chapter__back { margin-top: 18px; }
+
+/* the life photo: an empty capsule frame, ready for the photoshoot */
+.chapter__photo { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); justify-self: center; width: 100%; min-width: 0; margin: 0; }
+.chapter--portrait .chapter__photo { width: min(100%, 380px); }
+.chapter--landscape .chapter__photo { width: min(100%, 560px); }
+.chapter__frame {
+  position: relative;
+  isolation: isolate;
+  grid-area: 1 / 1;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 5;
+  border-radius: 999px;
+  background: var(--warm-ivory);
+  background: radial-gradient(120% 90% at 32% 24%, color-mix(in srgb, var(--c) 34%, var(--warm-ivory)) 0%, var(--warm-ivory) 72%);
+  box-shadow: 0 30px 56px -34px rgb(87 68 103 / .45);
+}
+.chapter--landscape .chapter__frame { aspect-ratio: 3 / 2; }
+/* the thin gold outline, offset up and to the right, as on the portraits */
+.chapter__frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border: 1px solid var(--gold);
+  border-radius: inherit;
+  translate: 14px -14px;
+}
+/* the gold mat just inside the edge */
+.chapter__frame::after { content: ""; position: absolute; inset: 9px; z-index: 2; border: 1px solid rgb(217 185 107 / .8); border-radius: inherit; pointer-events: none; }
+/* a photo dropped in fills the frame */
+.chapter__frame img { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+.chapter__sym { width: clamp(56px, 6vw, 76px); height: clamp(56px, 6vw, 76px); overflow: visible; translate: 0 -22px; opacity: .9; }
+.chapter__caption {
+  position: relative;
+  z-index: 3;
+  grid-area: 1 / 1;
+  align-self: center;
+  justify-self: center;
+  max-width: 20ch;
+  margin-top: clamp(84px, 9vw, 110px);
+  color: var(--charcoal-soft);
+  font: italic 400 1rem/1.45 var(--font-serif);
+  text-align: center;
+}
+.chapter__frame:has(img) .chapter__sym { display: none; }
+
+/* wide screens: the strand runs down the centre and the chapters hang from
+   it on alternate sides, text on one side and the photograph on the other */
+@media (min-width: 900px) {
+  .chapters__strand::before { left: 50%; }
+  .chapter { grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: center; padding-left: 0; }
+  .chapter__node { left: 50%; translate: calc(-50% + .5px) 0; }
+  .chapter__text { grid-column: 1 / span 5; grid-row: 1; }
+  .chapter__photo { grid-column: 8 / span 5; grid-row: 1; }
+  .chapter:nth-child(even) .chapter__text { grid-column: 8 / span 5; }
+  .chapter:nth-child(even) .chapter__photo { grid-column: 1 / span 5; }
+}
+
+/* ---- About: at a glance on ivory; credentials --------------------------- */
+
+#glance .glance li { background: var(--soft-cream); }
+.creds__lead {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: clamp(22px, 2.8vw, 34px);
+  color: var(--heading);
+  font: 400 var(--step-3)/1.15 var(--font-display);
+}
+.creds__lead .pearl { --s: 22px; }
+.section--alt .quals-band { background: var(--warm-ivory); }
+.creds__progress {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 20px;
+  margin-top: clamp(20px, 2.6vw, 32px);
+  padding: 18px clamp(20px, 3.2vw, 44px);
+  border: 1px solid var(--hairline);
+  background: var(--warm-ivory);
+}
+.creds__phase { width: 26px; height: 26px; }
+.creds__text { flex: 1 1 320px; }
+.creds__label { margin-right: .2em; color: var(--text-soft); font: 500 .75rem/1.2 var(--font-body); letter-spacing: .14em; text-transform: uppercase; }
+
+/* ---- Philosophy: in my own words, beside the tree of life ---------------- */
+
+.own-words { display: grid; gap: 40px var(--col-gap); align-items: center; }
+.own-words__text .prose { margin-top: clamp(22px, 2.6vw, 34px); }
+.tree { justify-self: center; width: min(100%, 470px); margin: 0; }
+.tree__art { width: 100%; height: auto; overflow: visible; }
+.tree__art path { fill: none; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.tree__strand { stroke: var(--gold); stroke-width: 1.25; }
+.tree__twig { stroke: var(--gold); stroke-width: 1.1; }
+.tree__root { stroke: var(--gold); stroke-width: 1.1; opacity: .85; }
+.tree__root--fine { opacity: .6; }
+.tree__ground { stroke: url(#tree-ground); stroke-width: 1; }
+.tree__ring { fill: none; stroke: var(--gold); stroke-width: 1; opacity: .6; vector-effect: non-scaling-stroke; }
+.tree__ring--inner { opacity: .32; }
+.tree__glow { fill: url(#tree-glow); }
+.tree__bail { fill: var(--bg-alt); stroke: var(--gold); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.tree__sun, .tree__star { color: var(--gold); }
+.tree__star { --o: .75; opacity: .75; transform-box: fill-box; transform-origin: center; }
+.tree use[class^="pearl--"] { color: var(--c); }
+@media (min-width: 900px) {
+  .own-words { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .own-words__text { grid-column: 1 / span 6; }
+  .tree { grid-column: 7 / span 6; }
+}
+
+/* ---- Explore: skills and practices, a hairline list ---------------------- */
+
+.skills { margin: 0; border-top: 1px solid var(--hairline); }
+.skill { display: grid; gap: 6px var(--col-gap); padding: 24px 0; border-bottom: 1px solid var(--hairline); }
+.skill__name { display: flex; align-items: center; gap: 16px; color: var(--heading); font: 400 var(--step-2)/1.2 var(--font-display); }
+.skill__name .pearl { --s: 14px; }
+.skill__text { margin: 0; max-width: 46ch; padding-left: 30px; }
+@media (min-width: 820px) {
+  .skill { grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: baseline; padding-block: 30px; }
+  .skill__name { grid-column: 1 / span 5; }
+  .skill__text { grid-column: 7 / span 6; padding-left: 0; }
+}
+
+/* ---- Stay Connected: events, coming soon, announcements ------------------ */
+
+.events { list-style: none; border-top: 1px solid var(--hairline); }
+.event {
+  position: relative;
+  display: grid;
+  gap: 14px var(--col-gap);
+  padding: clamp(28px, 3.4vw, 44px) 0 clamp(28px, 3.4vw, 44px) 40px;
+  border-bottom: 1px solid var(--hairline);
+}
+.event__pearl { --s: 20px; position: absolute; left: 0; top: clamp(32px, 3.8vw, 50px); }
+.event__date { color: var(--heading); font: 400 var(--step-2)/1.2 var(--font-display); }
+.event__place { margin-top: 6px; color: var(--text-soft); }
+.event__title { font: 400 var(--step-3)/1.1 var(--font-display); }
+.event__text { margin-top: 10px; max-width: 52ch; }
+.event__links { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 28px; margin-top: 14px; }
+.events__more { display: flex; align-items: center; gap: 12px; margin-top: clamp(24px, 3vw, 36px); color: var(--deep-plum); font: italic 400 var(--step-1)/1.4 var(--font-serif); }
+.events__star { width: 14px; height: 14px; }
+@media (min-width: 820px) {
+  .event { grid-template-columns: repeat(12, minmax(0, 1fr)); padding-left: 0; }
+  .event__pearl { position: relative; top: .3em; grid-column: 1; }
+  .event__when { grid-column: 2 / span 3; }
+  .event__body { grid-column: 6 / span 7; }
+}
+
+.soon { display: grid; gap: var(--col-gap); list-style: none; }
+.soon__item {
+  position: relative;
+  padding: clamp(28px, 3.2vw, 44px) clamp(22px, 2.6vw, 36px);
+  border: 1px solid var(--gold);
+  background: rgb(255 253 248 / .5);
+}
+.soon__item::before { content: ""; position: absolute; inset: 6px; border: 1px solid rgb(217 185 107 / .45); pointer-events: none; }
+.soon__phase { width: 40px; height: 40px; }
+.soon__title { margin-top: 22px; font: 400 var(--step-2)/1.2 var(--font-display); }
+.soon__text { margin-top: 10px; }
+@media (min-width: 820px) { .soon { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+.news { list-style: none; border-block: 1px solid var(--hairline); }
+.news__item { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 18px; align-items: baseline; padding: clamp(24px, 3vw, 36px) 0; }
+.news__pearl { --s: 14px; }
+.news__text { color: var(--deep-plum); font: italic 400 var(--step-1)/1.5 var(--font-serif); }
+.news__date { grid-column: 2; color: var(--text-soft); font-size: var(--step--1); }
+@media (min-width: 820px) {
+  .news__item { grid-template-columns: auto minmax(0, 1fr) auto; }
+  .news__date { grid-column: 3; }
+}
+
+/* ---- Footer: the credentials line and the sign-off ----------------------- */
+
+@media (min-width: 1024px) {
+  .footer__base { display: grid; grid-template-columns: 1fr auto 1fr; }
+  .footer__copy { text-align: right; }
+}
+
+/* Lisa's email: a quiet gold-underlined link, wrapping if a column is narrow */
+.footer__email, .contact-lines a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--deep-plum);
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-decoration-thickness: 1px;
+  text-underline-offset: .3em;
+  overflow-wrap: anywhere;
+  transition: text-decoration-color .2s ease-out, text-decoration-thickness .2s ease-out;
+}
+.footer__email:hover, .contact-lines a:hover { text-decoration-color: currentColor; text-decoration-thickness: 2px; }
+.form__status .inline-link { overflow-wrap: anywhere; }
+
+/* a long link wraps like a sentence on narrow screens, its arrow staying
+   with the last word; the padding keeps the tap area at 44px */
+.link-arrow--wrap { display: inline; padding-block: 7px; line-height: 1.75; }
+.link-arrow--wrap svg { display: inline-block; margin-left: .55em; vertical-align: -.05em; }
+.next-steps .link-arrow--wrap { text-align: center; }
+.nowrap { white-space: nowrap; }
+
+/* phones: every link and button is at least 48px tall to tap */
+@media (max-width: 819.98px) {
+  .btn--small, .link-arrow, .footer__list a, .footer__email, .contact-lines a, .js .menu-toggle, .know__summary, .continue__link { min-height: 48px; }
+  .brand { display: flex; align-items: center; min-height: 48px; }
+  .link-arrow--wrap { padding-block: 9px; }
+}

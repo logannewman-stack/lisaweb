@@ -34,11 +34,13 @@
   --hairline-soft: rgb(217 185 107 / .3);   /* Champagne Gold at 30%: quiet dividers */
   --gold-glow: rgb(217 185 107 / .45);      /* Champagne Gold at 45%: the glint as light passes a pearl */
   --plum-shade: rgb(87 68 103 / .18);       /* Deep Plum at 18%: the soft shadow under the portrait */
+  --blush-wash: #FCECEF;      /* Blush Pink at 24% on Warm Ivory: the pale blush ground under gold linework
+                                 (Namaste closings, Coming soon). Deep Plum on it is 7.6:1, Charcoal 10.6:1, Charcoal at 80% 5.7:1 */
 
   /* ---- Roles ------------------------------------------------------------- */
   --bg: var(--warm-ivory);
   --bg-alt: var(--soft-cream);
-  --heading: var(--deep-plum);
+  --heading: var(--deep-plum);   /* every heading takes its colour from here; see the ink preview below */
   --text: var(--charcoal);
   --text-soft: var(--charcoal-soft);
   --gold: var(--champagne-gold);
@@ -69,9 +71,13 @@
   --ease-soft: cubic-bezier(.45, 0, .2, 1);
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1100px) {
   :root { --header-h: 78px; }
 }
+
+/* Preview of the open heading-colour decision: ?ink=charcoal adds this class
+   to <html> (and remembers it for the visit), ?ink=plum removes it. */
+html.ink-charcoal { --heading: var(--charcoal); }
 
 /* Pearl colours, by name, in the order of the lotus (the COPY.md order).
    Pearls, top rules and dots follow this order down every page. The classes
