@@ -908,3 +908,50 @@
   if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', init);
   else init();
 })();
+
+/*
+  Sparkles never sit on words. The sky's stars are placed by percentage, so as
+  copy changes length (Lisa's own words will replace the placeholders) a star
+  can land on a heading or a line of text. After fonts load, after the
+  entrance settles and on every resize, any star that touches text in its own
+  section is hidden; the rest stay.
+*/
+(function () {
+  "use strict";
+  var stars = [].slice.call(document.querySelectorAll(".sky__star"));
+  if (!stars.length || !document.createRange) return;
+
+  function touchesText(star) {
+    var s = star.getBoundingClientRect();
+    if (!s.width || !s.height) return false;
+    var scope = star.closest("section, footer, .hero") || document.body;
+    var walker = document.createTreeWalker(scope, NodeFilter.SHOW_TEXT);
+    var range = document.createRange();
+    for (var node = walker.nextNode(); node; node = walker.nextNode()) {
+      if (!node.textContent.trim()) continue;
+      var el = node.parentElement;
+      if (!el || el.closest("svg, template, [hidden]")) continue;
+      range.selectNodeContents(node);
+      var rects = range.getClientRects();
+      for (var i = 0; i < rects.length; i++) {
+        var r = rects[i];
+        if (r.width < 1) continue;
+        if (s.left < r.right - 1 && s.right > r.left + 1 && s.top < r.bottom - 1 && s.bottom > r.top + 1) return true;
+      }
+    }
+    return false;
+  }
+
+  function settle() {
+    stars.forEach(function (star) { star.style.visibility = ""; });
+    stars.forEach(function (star) { if (touchesText(star)) star.style.visibility = "hidden"; });
+  }
+
+  var timer = 0;
+  function later(ms) { window.clearTimeout(timer); timer = window.setTimeout(settle, ms); }
+
+  settle();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(settle);
+  window.addEventListener("load", function () { later(1800); });
+  window.addEventListener("resize", function () { later(200); });
+})();
