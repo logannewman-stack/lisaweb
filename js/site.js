@@ -11,6 +11,10 @@
     8. the growing message box
     9. the booking form: session cards and ?session=, validation, sending
    10. the gold strand on the story timeline
+   11. the six strands of my life: the tree of life and its summaries
+   12. on Stay Connected, "Book a session" scrolls to the form in place
+   The two previews (?ink=charcoal|plum and ?tagline=1|2) are applied by the
+   small script in each page's <head>, before anything paints.
    ========================================================================== */
 (function () {
   'use strict';
@@ -485,7 +489,13 @@
         .then(function (res) { if (!res.ok) throw new Error(String(res.status)); showSuccess(); })
         .catch(function () {
           setSending(false);
-          status.textContent = 'Something went wrong and your message was not sent. Please try again, or email me directly.';
+          /* The error offers her email address as a way round. */
+          status.textContent = 'Something went wrong and your message was not sent. Please try again, ';
+          var direct = document.createElement('a');
+          direct.href = 'mailto:lisa@mystrandsofgrace.com';
+          direct.textContent = 'or email me directly';
+          status.appendChild(direct);
+          status.appendChild(document.createTextNode('.'));
         });
     });
 
@@ -569,5 +579,191 @@
     if ('ResizeObserver' in window) new window.ResizeObserver(draw).observe(timeline);
     else window.addEventListener('resize', draw);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+  }
+
+  /* 11. The six strands of my life, in one of three templates Lisa is
+        choosing between: the tree of life (the default, and the markup without
+        JavaScript), arches (cards that turn over) and pearls (a tablist on a
+        gold strand). ?strands=arches|pearls|tree sets the class on <html>; the
+        chosen template is swapped in from its <template>, so only one is ever
+        on the page.
+        Tree and pearls: each strand shows its summary in the panel, on hover
+        after a short pause (passing over a node changes nothing), tap, click,
+        Enter or Space. Arrow keys move along the strands, Home and End jump to
+        the first and last, Escape returns to the resting state, My Roots.
+        Arches: a card turns over on hover, focus, tap, Enter or Space, one at
+        a time; Escape or a tap on its back turns it back. ------------------- */
+  var strandsSection = document.getElementById('six-strands');
+  if (strandsSection) {
+    var wanted = root.classList.contains('strands-arches') ? 'arches' : root.classList.contains('strands-pearls') ? 'pearls' : 'tree';
+    var liveVariant = strandsSection.querySelector('[data-strands]');
+    var chosen = strandsSection.querySelector('template[data-strands-template="' + wanted + '"]');
+    if (liveVariant && chosen && liveVariant.getAttribute('data-strands') !== wanted) {
+      var resting = document.createElement('template');
+      resting.setAttribute('data-strands-template', liveVariant.getAttribute('data-strands'));
+      liveVariant.parentNode.insertBefore(resting, liveVariant);
+      resting.content.appendChild(liveVariant);
+      chosen.parentNode.replaceChild(document.importNode(chosen.content, true), chosen);
+    }
+  }
+  var strandsBox = document.querySelector('[data-strands]');
+  var variant = strandsBox ? strandsBox.getAttribute('data-strands') : null;
+  var strandNodes = strandsBox ? slice(strandsBox.querySelectorAll('button[data-strand]')) : [];
+  var summaries = strandsBox ? slice(strandsBox.querySelectorAll('[data-strand-summary]')) : [];
+  var ripple = function (el) {
+    if (reduceMotion.matches) return;
+    el.classList.remove('is-ripple');
+    void el.offsetWidth;   /* restart the animation */
+    el.classList.add('is-ripple');
+  };
+
+  if ((variant === 'tree' || variant === 'pearls') && strandNodes.length && summaries.length) {
+    var strandPanel = strandsBox.querySelector('[data-strand-panel]');
+    var stateAttr = variant === 'pearls' ? 'aria-selected' : 'aria-expanded';
+    var countNow = strandsBox.querySelector('[data-pearls-current]');
+    var pearlControls = strandsBox.querySelector('[data-pearls-controls]');
+    var currentIndex = -1;
+    var hoverTimer = null;
+    var lastPointer = 'mouse';
+    var selectStrand = function (index, withRipple) {
+      if (index === currentIndex) return;
+      currentIndex = index;
+      var key = strandNodes[index].getAttribute('data-strand');
+      strandNodes.forEach(function (n, k) { n.setAttribute(stateAttr, k === index ? 'true' : 'false'); });
+      summaries.forEach(function (sum) { sum.classList.toggle('is-current', sum.getAttribute('data-strand-summary') === key); });
+      if (countNow) countNow.textContent = index + 1;
+      if (withRipple) ripple(strandNodes[index]);
+    };
+    /* On a phone the panel sits under the strands: if a tap opens a summary
+       that is entirely below the screen, bring its top into view. */
+    var showPanel = function () {
+      var top = strandPanel.getBoundingClientRect().top;
+      if (top > window.innerHeight - 90) window.scrollBy({ top: top - window.innerHeight + 260, behavior: behavior() });
+    };
+    strandPanel.classList.add('is-enhanced');
+    strandPanel.setAttribute('aria-live', 'polite');
+    if (pearlControls) pearlControls.hidden = false;
+    selectStrand(0, false);
+    window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(function () { strandPanel.classList.add('is-animated'); });
+    });
+
+    strandNodes.forEach(function (node, i) {
+      node.addEventListener('pointerdown', function (event) { lastPointer = event.pointerType || 'mouse'; });
+      node.addEventListener('click', function () {
+        window.clearTimeout(hoverTimer);
+        selectStrand(i, true);
+        if (lastPointer === 'touch') showPanel();
+        lastPointer = 'mouse';
+      });
+      node.addEventListener('pointerenter', function (event) {
+        if (event.pointerType !== 'mouse') return;
+        window.clearTimeout(hoverTimer);
+        hoverTimer = window.setTimeout(function () { selectStrand(i, true); }, 120);
+      });
+      node.addEventListener('pointerleave', function () { window.clearTimeout(hoverTimer); });
+      node.addEventListener('keydown', function (event) {
+        var n = strandNodes.length;
+        var to = null;
+        if (event.key === 'ArrowUp' || event.key === 'ArrowRight') to = (i + 1) % n;
+        else if (event.key === 'ArrowDown' || event.key === 'ArrowLeft') to = (i - 1 + n) % n;
+        else if (event.key === 'Home') to = 0;
+        else if (event.key === 'End') to = n - 1;
+        if (to === null) return;
+        event.preventDefault();
+        strandNodes[to].focus();
+        selectStrand(to, true);
+      });
+    });
+    var step = function (dir) { selectStrand((currentIndex + dir + strandNodes.length) % strandNodes.length, true); };
+    var prevStrand = strandsBox.querySelector('[data-pearls-prev]');
+    var nextStrand = strandsBox.querySelector('[data-pearls-next]');
+    if (prevStrand) prevStrand.addEventListener('click', function () { step(-1); });
+    if (nextStrand) nextStrand.addEventListener('click', function () { step(1); });
+    strandsBox.addEventListener('keydown', function (event) {
+      if (event.key !== 'Escape' || currentIndex === 0) return;
+      var inside = strandsBox.contains(document.activeElement);
+      selectStrand(0, false);
+      if (inside) strandNodes[0].focus();
+    });
+  }
+
+  if (variant === 'arches' && strandNodes.length) {
+    var arches = strandNodes.map(function (button) { return button.closest('.arch'); });
+    var openArch = null;
+    var archTimer = null;
+    var quietFocus = false;
+    var setArch = function (arch, open) {
+      if (!arch) return;
+      arch.classList.toggle('is-open', open);
+      arch.querySelector('[data-strand]').setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) ripple(arch);
+    };
+    var openOne = function (arch) {
+      if (openArch === arch) return;
+      if (openArch) setArch(openArch, false);
+      openArch = arch;
+      setArch(arch, true);
+    };
+    var closeOne = function (arch) {
+      if (openArch !== arch) return;
+      setArch(arch, false);
+      openArch = null;
+    };
+    strandsBox.classList.add('is-enhanced');
+    arches.forEach(function (arch, i) {
+      var button = strandNodes[i];
+      var back = arch.querySelector('[data-strand-summary]');
+      button.addEventListener('click', function () { window.clearTimeout(archTimer); openOne(arch); });
+      button.addEventListener('focus', function () { if (!quietFocus) openOne(arch); });
+      arch.addEventListener('pointerenter', function (event) {
+        if (event.pointerType !== 'mouse') return;
+        window.clearTimeout(archTimer);
+        archTimer = window.setTimeout(function () { openOne(arch); }, 110);
+      });
+      arch.addEventListener('pointerleave', function (event) {
+        if (event.pointerType !== 'mouse') return;
+        window.clearTimeout(archTimer);
+        if (!arch.contains(document.activeElement)) closeOne(arch);
+      });
+      /* A tap or click on the back of a turned card (not on its link) turns it back. */
+      back.addEventListener('click', function (event) {
+        if (event.target.closest('a')) return;
+        closeOne(arch);
+      });
+      arch.addEventListener('keydown', function (event) {
+        var n = arches.length;
+        var to = null;
+        if (event.key === 'Escape' && openArch === arch) {
+          event.preventDefault();
+          closeOne(arch);
+          quietFocus = true;
+          button.focus();
+          quietFocus = false;
+          return;
+        }
+        if (event.target !== button) return;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') to = (i + 1) % n;
+        else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') to = (i - 1 + n) % n;
+        if (to === null) return;
+        event.preventDefault();
+        strandNodes[to].focus();
+      });
+    });
+  }
+
+  /* 12. On Stay Connected the booking form is on this page: "Book a session"
+        (the header button and the phone bar) scrolls to it without a reload,
+        keeping any ?session= choice. -------------------------------------- */
+  var bookHere = document.getElementById('book');
+  if (bookHere && document.querySelector('[data-booking]')) {
+    slice(document.querySelectorAll('a[href$="connect.html#book"]')).forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        if (event.metaKey || event.ctrlKey || event.shiftKey) return;
+        event.preventDefault();
+        if (window.location.hash !== '#book') window.history.pushState(null, '', '#book');
+        bookHere.scrollIntoView({ behavior: behavior(), block: 'start' });
+      });
+    });
   }
 })();

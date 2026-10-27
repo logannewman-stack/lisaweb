@@ -3,13 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Work With Me | Strands of Grace</title>
+<title>Stay Connected | Strands of Grace</title>
 <meta name="description" content="Strands of Grace with Lisa Brunson: sound, ceremony and gentle guidance for the journey back to yourself.">
-<meta property="og:title" content="Work With Me | Strands of Grace">
+<link rel="canonical" href="https://www.mystrandsofgrace.com/connect.html">
+<meta property="og:title" content="Stay Connected | Strands of Grace">
 <meta property="og:description" content="Strands of Grace with Lisa Brunson: sound, ceremony and gentle guidance for the journey back to yourself.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Strands of Grace">
-<meta property="og:image" content="https://lisaweb-lilac.vercel.app/assets/brand/og-image.jpg">
+<meta property="og:image" content="https://www.mystrandsofgrace.com/assets/brand/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="The Strands of Grace logo: a watercolour lotus with a strand of pearls">
@@ -23,7 +24,27 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Nunito+Sans:ital,opsz,wght@0,6..12,300..700;1,6..12,300..700&family=Pinyon+Script&display=swap">
 <link rel="stylesheet" href="css/theme.css">
 <link rel="stylesheet" href="css/site.css">
-<script>document.documentElement.classList.add('js');</script>
+<script>
+/* Before anything paints: mark that scripts run, and apply the previews
+   (?ink=charcoal|plum for heading colour, ?tagline=1|2 for the story line,
+   ?strands=tree|arches|pearls for the six strands on About Me).
+   A choice in the address is remembered for the visit (sessionStorage). */
+(function (c) {
+  c.add('js');
+  var q = null, s = null;
+  try { q = new URLSearchParams(location.search); } catch (e) {}
+  try { s = window.sessionStorage; } catch (e) {}
+  var pick = function (key, allowed) {
+    var v = q && q.get(key);
+    if (allowed.indexOf(v) !== -1) { try { s.setItem('sog-' + key, v); } catch (e) {} return v; }
+    try { return s.getItem('sog-' + key); } catch (e) { return null; }
+  };
+  if (pick('ink', ['plum', 'charcoal']) === 'charcoal') c.add('ink-charcoal');
+  if (pick('tagline', ['1', '2']) === '2') c.add('tagline-2');
+  var strands = pick('strands', ['tree', 'arches', 'pearls']);
+  if (strands === 'arches' || strands === 'pearls') c.add('strands-' + strands);
+})(document.documentElement.classList);
+</script>
 <script src="js/site.js" defer></script>
 </head>
 <body>
@@ -191,6 +212,19 @@
       <path d="M19 82.5h22M24 86.5h12" stroke="#C9A24E" stroke-opacity=".75" stroke-width="1" stroke-linecap="round"/>
       <path d="M13.5 45v46" stroke="#FFFFFF" stroke-opacity=".85" stroke-width="2.2" stroke-linecap="round"/>
     </symbol>
+    <!-- The six strands, drawn as fine gold lines (stroke colour and width come from the page).
+         Roots: a seed putting down roots. Calling: a star. Heart: a heart held in a lotus.
+         Growth: a leafing branch. Discovery: a crescent moon. Becoming: a rising sun. -->
+    <symbol id="s-sym-roots" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M24 12.5c3.4 2 4.5 5.7 2.6 8.8-.7 1.1-1.6 1.9-2.6 2.3-1-.4-1.9-1.2-2.6-2.3-1.9-3.1-.8-6.8 2.6-8.8ZM24 12.5c0-2.8 1.1-5 3.4-6.4M27.4 6.1c1.7-1.7 4-2.3 6.3-1.9-.6 2.3-2.7 3.8-6.3 1.9ZM5.5 24.2c3.8-1 7.9-1.2 12.1-.6M30.4 23.6c4.2-.6 8.3-.4 12.1.6M24 23.6v4c0 4.6-1.2 8.8-3.4 13M24 28c-3.4 1.2-6.4 3.8-8.4 8M24 28c3.4 1.2 6.4 3.8 8.4 8M24 31.6c2.4 2.4 3.4 6 3.6 9.4M15.6 36c-1.3 1.2-2.1 2.8-2.6 4.4M32.4 36c1.3 1.2 2.1 2.8 2.6 4.4"/></symbol>
+    <symbol id="s-sym-calling" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M24.0 9.5L28.1 20.3L39.7 20.9L30.7 28.2L33.7 39.3L24.0 33.0L14.3 39.3L17.3 28.2L8.3 20.9L19.9 20.3ZM39.5 5c.4 2.4 1.7 3.7 4.1 4.1-2.4.4-3.7 1.7-4.1 4.1-.4-2.4-1.7-3.7-4.1-4.1 2.4-.4 3.7-1.7 4.1-4.1Z"/></symbol>
+    <symbol id="s-sym-heart" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M24 33c-5.4-3.4-8.6-6.8-8.6-10.6a4.3 4.3 0 0 1 8.6-1.9 4.3 4.3 0 0 1 8.6 1.9c0 3.8-3.2 7.2-8.6 10.6ZM24 39.5c-3-7-9-11-17.5-11.5.6 7.2 7.6 11.5 17.5 11.5ZM24 39.5c3-7 9-11 17.5-11.5-.6 7.2-7.6 11.5-17.5 11.5ZM24 13.5V8M17.5 15.5l-2.5-3.5M30.5 15.5l2.5-3.5M14 43.5h20"/></symbol>
+    <symbol id="s-sym-growth" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M12 42C15.5 33 22 23.5 35.5 8.5M16.2 34.6c-4.6-.6-7.4-3.6-7.8-7.8 4.5.2 7.4 3.1 7.8 7.8ZM19.9 28.8c1.1-4.5 4.6-6.8 8.9-6.8-.6 4.5-3.9 7-8.9 6.8ZM24.3 22.8c-4.2-1.6-6.1-5.3-5.5-9.4 4.1 1.2 6.1 4.7 5.5 9.4ZM29.2 16.6c1.8-3.9 5.3-5.6 9.2-5-1.2 4.1-4.7 6-9.2 5ZM35.5 8.5c.6-1.8 2-3 3.8-3.4-.2 1.9-1.5 3.3-3.8 3.4Z"/></symbol>
+    <symbol id="s-sym-discovery" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M27.5 9.2A15.5 15.5 0 1 0 38.6 32.4 12.5 12.5 0 0 1 27.5 9.2ZM38.5 7.5c.4 2.5 1.8 3.9 4.3 4.3-2.5.4-3.9 1.8-4.3 4.3-.4-2.5-1.8-3.9-4.3-4.3 2.5-.4 3.9-1.8 4.3-4.3ZM41 21.5v.1"/></symbol>
+    <symbol id="s-sym-becoming" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M5 33.5h38M12 38.5h24M18 43h12M13.5 33.5a10.5 10.5 0 0 1 21 0M24 18.5v-6.5M15.2 22.2l-4.4-4.4M32.8 22.2l4.4-4.4M11.6 28.6H5.8M36.4 28.6h5.8"/></symbol>
+    <!-- The celestial layer: a four-point sparkle (filled), a crescent moon and a sun (fine lines). -->
+    <symbol id="s-star" viewBox="0 0 24 24" overflow="visible"><path d="M12 0C12.7 6.6 17.4 11.3 24 12 17.4 12.7 12.7 17.4 12 24 11.3 17.4 6.6 12.7 0 12 6.6 11.3 11.3 6.6 12 0Z" fill="currentColor"/></symbol>
+    <symbol id="s-moon" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M29 6.8A17.5 17.5 0 1 0 41.2 34 14 14 0 0 1 29 6.8Z"/></symbol>
+    <symbol id="s-sun" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M31.5 24a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0ZM24 5v6.5M24 36.5V43M5 24h6.5M36.5 24H43M10.6 10.6l4.6 4.6M32.8 32.8l4.6 4.6M10.6 37.4l4.6-4.6M32.8 15.2l4.6-4.6"/></symbol>
   </defs>
 </svg>
 
@@ -208,10 +242,12 @@
         <li style="--i: 0"><a href="index.html">Home</a></li>
         <li style="--i: 1"><a href="about.html">About Me</a></li>
         <li style="--i: 2"><a href="story.html">Our Story</a></li>
-        <li style="--i: 3"><a href="work-with-me.html" aria-current="page">Work With Me</a></li>
-        <li style="--i: 4"><a href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener">Shop Oils<span class="vh"> (opens in a new tab)</span><svg aria-hidden="true" focusable="false"><use href="#s-external"/></svg></a></li>
+        <li style="--i: 3"><a href="philosophy.html">Philosophy</a></li>
+        <li style="--i: 4"><a href="explore.html">Explore</a></li>
+        <li style="--i: 5"><a href="connect.html" aria-current="page">Stay Connected</a></li>
+        <li style="--i: 6"><a href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener">Shop Oils<span class="vh"> (opens in a new tab)</span><svg aria-hidden="true" focusable="false"><use href="#s-external"/></svg></a></li>
       </ul>
-      <a class="btn btn--bloom site-nav__cta" href="work-with-me.html#book">Book a session</a>
+      <a class="btn btn--bloom site-nav__cta" href="connect.html#book">Book a session</a>
     </nav>
   </div>
   <span class="site-header__progress" data-progress aria-hidden="true"></span>
@@ -219,206 +255,12 @@
 
 <main id="main" tabindex="-1">
 
-  <section class="page-hero work-hero" aria-labelledby="work-title">
+  <section class="page-hero connect-hero" aria-labelledby="connect-title">
     <div class="bloom bloom--work-hero drift" aria-hidden="true"></div>
     <svg class="swash work-hero__swash" viewBox="0 0 1000 260" aria-hidden="true" focusable="false"><use href="#s-swash-long"/></svg>
     <div class="wrap page-hero__grid">
-      <h1 id="work-title">Work with me</h1>
-      <p class="lead">Three gentle ways to work together. If you are not sure which is right for you, send me a note and we will find it together.</p>
-    </div>
-  </section>
-
-  <section class="section offerings" id="offerings" aria-label="Offerings">
-    <div class="wrap">
-      <ul class="cards" role="list" data-reveal-children>
-        <li class="card offer" id="sound-bath">
-          <svg class="card__stroke" viewBox="0 0 600 140" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-            <use href="#s-stroke" class="c-blush mul" width="600" height="140"/>
-            <use href="#s-stroke" class="c-peach mul" x="150" y="36" width="560" height="110" opacity=".55"/>
-          </svg>
-          <svg class="card__line" viewBox="0 0 600 16" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 8C150 2 300 14 600 8" fill="none" stroke="url(#g-gold-fade)" stroke-width="1.2" vector-effect="non-scaling-stroke"/></svg>
-          <h2>Sound bath</h2>
-          <p class="card__meta">Small groups, 75 minutes</p>
-          <p>Lie back, be wrapped in blankets and let the bowls, chimes and drum do the work. You do nothing but breathe.</p>
-          <details class="offer__details">
-            <summary><span class="pearl" aria-hidden="true"></span>Good to know</summary>
-            <ul role="list">
-              <li><strong>Who it is for:</strong> Anyone who needs to rest deeply. No experience needed.</li>
-              <li><strong>What to bring:</strong> Comfortable clothes. Blankets are provided.</li>
-              <li><strong>Where:</strong> [Venue or area].</li>
-            </ul>
-          </details>
-          <a class="btn btn--bloom" href="work-with-me.html?session=sound-bath#book">Book a sound bath</a>
-        </li>
-        <li class="card offer" id="one-to-one">
-          <svg class="card__stroke" viewBox="0 0 600 140" preserveAspectRatio="none" aria-hidden="true" focusable="false" style="transform: scaleX(-1)">
-            <use href="#s-stroke" class="c-lavender mul" width="600" height="140"/>
-            <use href="#s-stroke" class="c-blush mul" x="120" y="30" width="520" height="110" opacity=".5"/>
-          </svg>
-          <svg class="card__line" viewBox="0 0 600 16" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 8C150 14 300 2 600 8" fill="none" stroke="url(#g-gold-fade)" stroke-width="1.2" vector-effect="non-scaling-stroke"/></svg>
-          <h2>One-to-one session</h2>
-          <p class="card__meta">Just you, 60 minutes</p>
-          <p>We begin with a conversation. Then sound and stillness, shaped around you and what you need today.</p>
-          <details class="offer__details">
-            <summary><span class="pearl" aria-hidden="true"></span>Good to know</summary>
-            <ul role="list">
-              <li><strong>Who it is for:</strong> You, when you want time shaped entirely around what you need today.</li>
-              <li><strong>What to bring:</strong> Just yourself. We begin with a conversation.</li>
-              <li><strong>Where:</strong> [Venue or area], or online.</li>
-            </ul>
-          </details>
-          <a class="btn btn--bloom" href="work-with-me.html?session=one-to-one#book">Book a one-to-one session</a>
-        </li>
-        <li class="card offer" id="cleansing">
-          <svg class="card__stroke" viewBox="0 0 600 140" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-            <use href="#s-stroke" class="c-peach mul" width="600" height="140"/>
-            <use href="#s-stroke" class="c-lavender mul" x="-80" y="34" width="520" height="110" opacity=".45"/>
-          </svg>
-          <svg class="card__line" viewBox="0 0 600 16" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 8C150 2 300 14 600 8" fill="none" stroke="url(#g-gold-fade)" stroke-width="1.2" vector-effect="non-scaling-stroke"/></svg>
-          <h2>Cleansing ceremony</h2>
-          <p class="card__meta">Homes and spaces, 90 minutes</p>
-          <p>Sage, palo santo, sound and intention for a home, a studio or a season that is ready for a fresh start.</p>
-          <details class="offer__details">
-            <summary><span class="pearl" aria-hidden="true"></span>Good to know</summary>
-            <ul role="list">
-              <li><strong>Who it is for:</strong> A home, a studio or a season that is ready for a fresh start.</li>
-              <li><strong>What to bring:</strong> Nothing. I bring the sage, the palo santo and the sound.</li>
-              <li><strong>Where:</strong> At your space, in [area]. [Travel details to come.]</li>
-            </ul>
-          </details>
-          <a class="btn btn--bloom" href="work-with-me.html?session=cleansing#book">Book a cleansing ceremony</a>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="section section--cream steps" id="session" aria-labelledby="session-title" data-reveal>
-    <div class="washes" aria-hidden="true">
-      <div class="bloom bloom--steps drift"></div>
-    </div>
-    <div class="wrap">
-      <header class="section-head">
-        <h2 id="session-title">What a session is like</h2>
-      </header>
-      <div class="steps__track">
-        <svg class="strand steps__curve" viewBox="0 0 1000 92" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <path stroke="url(#g-gold-fade)" stroke-width="1.6" stroke-linecap="round" d="M-40 54C-16.7 49.7 43.3 26.3 100 28C156.7 29.7 233.3 64 300 64C366.7 64 433.3 28 500 28C566.7 28 633.3 64 700 64C766.7 64 843.3 30.3 900 28C956.7 25.7 1016.7 46.3 1040 50"/>
-        </svg>
-        <ol class="steps__list" role="list" data-reveal-children>
-          <li class="step" style="--y: 0px"><span class="step__num">1</span><div><h3>Arrive</h3><p>Come as you are. Shoes off, phone away, tea if you would like it.</p></div></li>
-          <li class="step" style="--y: 36px"><span class="step__num">2</span><div><h3>We talk</h3><p>A few quiet minutes on what brought you here and what you need today.</p></div></li>
-          <li class="step" style="--y: 0px"><span class="step__num">3</span><div><h3>Cleansing</h3><p>Sage and palo santo to clear the space, and a moment of stillness before we begin.</p></div></li>
-          <li class="step" style="--y: 36px"><span class="step__num">4</span><div><h3>Sound</h3><p>Bowls, chimes and drum, placed where they are needed. You simply rest and breathe.</p></div></li>
-          <li class="step" style="--y: 0px"><span class="step__num">5</span><div><h3>Rest</h3><p>Time to come back slowly. Nobody rushes you out.</p></div></li>
-        </ol>
-      </div>
-    </div>
-  </section>
-
-  <section class="section faq" id="faq" aria-labelledby="faq-title" data-reveal>
-    <div class="washes" aria-hidden="true">
-      <div class="bloom bloom--faq drift"></div>
-    </div>
-    <div class="wrap">
-      <header class="section-head section-head--centre">
-        <h2 id="faq-title">Good to know</h2>
-        <p>A few things people often ask before their first session.</p>
-      </header>
-      <div class="faq__list" data-accordion>
-        <details class="faq__item">
-          <summary><span class="pearl" aria-hidden="true"></span><span class="faq__q">Do I need any experience?</span></summary>
-          <div class="faq__body" data-accordion-body><p>No. Come exactly as you are. Everything is explained as we go, and there is no right or wrong way to receive sound.</p></div>
-        </details>
-        <details class="faq__item">
-          <summary><span class="pearl" aria-hidden="true"></span><span class="faq__q">What should I wear?</span></summary>
-          <div class="faq__body" data-accordion-body><p>Something comfortable that you can rest in. You will be lying down or seated for most of a session.</p></div>
-        </details>
-        <details class="faq__item">
-          <summary><span class="pearl" aria-hidden="true"></span><span class="faq__q">Where do sessions happen?</span></summary>
-          <div class="faq__body" data-accordion-body><p>[Venue or area], and one-to-one sessions can also be held online.</p></div>
-        </details>
-        <details class="faq__item">
-          <summary><span class="pearl" aria-hidden="true"></span><span class="faq__q">What does it cost?</span></summary>
-          <div class="faq__body" data-accordion-body><p>[Prices to come.] Payment details are shared when we confirm your session.</p></div>
-        </details>
-        <details class="faq__item">
-          <summary><span class="pearl" aria-hidden="true"></span><span class="faq__q">What if I need to cancel?</span></summary>
-          <div class="faq__body" data-accordion-body><p>[Cancellation policy to come.]</p></div>
-        </details>
-        <details class="faq__item">
-          <summary><span class="pearl" aria-hidden="true"></span><span class="faq__q">Can I give a session as a gift?</span></summary>
-          <div class="faq__body" data-accordion-body><p>[Gift sessions: yes or no, and how to arrange one.]</p></div>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <section class="section breathe" id="breathe" aria-labelledby="breathe-title" data-breathe data-phase="rest" data-reveal>
-    <div class="wrap breathe__grid">
-      <div class="breathe__copy">
-        <h2 id="breathe-title">A minute for you</h2>
-        <p class="lead">Not ready to book? Take a minute just for you. Breathe in for four, hold for seven, and breathe out for eight.</p>
-        <button class="btn btn--bloom" type="button" data-breathe-toggle hidden>Begin</button>
-      </div>
-      <div class="breathe__stage">
-        <div class="breathe__ring" aria-hidden="true"></div>
-        <div class="breathe__bloom" data-breathe-bloom aria-hidden="true">
-          <div class="bloom bloom--breathe"></div>
-          <svg viewBox="0 0 600 600" preserveAspectRatio="none" focusable="false">
-            <use href="#s-wash-a" class="c-blush mul" x="10" y="10" width="520" height="520"/>
-            <use href="#s-wash-b" class="c-lavender mul" x="90" y="90" width="500" height="500" transform="rotate(180 340 340)"/>
-          </svg>
-          <div class="breathe__glow"></div>
-        </div>
-        <div class="breathe__readout">
-          <span class="breathe__count breathe__count--rest" data-breathe-count aria-hidden="true">4 · 7 · 8</span>
-          <p class="breathe__cue" data-breathe-cue aria-live="polite"></p>
-          <span class="breathe__rounds" data-breathe-rounds aria-hidden="true"><span class="pearl"></span><span class="pearl"></span><span class="pearl"></span></span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--cream oils" id="oils" aria-labelledby="oils-title" data-reveal>
-    <div class="washes" aria-hidden="true">
-      <div class="bloom bloom--oils-page drift"></div>
-    </div>
-    <div class="wrap">
-      <header class="section-head section-head--split section-head--top">
-        <h2 id="oils-title">The oils I use</h2>
-        <p>The essential oils I diffuse in every session are the same ones I use at home. I share them through doTERRA, and I am always happy to help you choose your first few.</p>
-      </header>
-      <div class="oils__row">
-        <svg class="strand oils__strand" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <path stroke="url(#g-gold-fade)" stroke-width="1.6" d="M-60 12C40 12 160 26 300 26C440 26 440 18 500 18C560 18 640 8 700 8C760 8 840 22 900 22C960 22 1000 20 1060 18"/>
-        </svg>
-        <ul class="oil-list" role="list" data-reveal-children>
-          <li class="oil" style="--c: var(--soft-lavender); --y: 4px">
-            <div class="oil__art" aria-hidden="true"><svg class="bottle c-lavender" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg><span class="pearl oil__pearl"></span></div>
-            <div><h3 class="oil__name">Lavender</h3><p class="oil__desc">Soft, floral and calming.</p></div>
-          </li>
-          <li class="oil" style="--c: var(--champagne-gold); --y: 18px">
-            <div class="oil__art" aria-hidden="true"><svg class="bottle c-gold" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg><span class="pearl oil__pearl"></span></div>
-            <div><h3 class="oil__name">Frankincense</h3><p class="oil__desc">Warm, grounding and steady.</p></div>
-          </li>
-          <li class="oil" style="--c: var(--soft-peach); --y: 10px">
-            <div class="oil__art" aria-hidden="true"><svg class="bottle c-peach" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg><span class="pearl oil__pearl"></span></div>
-            <div><h3 class="oil__name">Wild Orange</h3><p class="oil__desc">Bright, sweet and uplifting.</p></div>
-          </li>
-          <li class="oil" style="--c: var(--gentle-teal); --y: 0px">
-            <div class="oil__art" aria-hidden="true"><svg class="bottle c-teal" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg><span class="pearl oil__pearl"></span></div>
-            <div><h3 class="oil__name">Peppermint</h3><p class="oil__desc">Cool, crisp and refreshing.</p></div>
-          </li>
-          <li class="oil" style="--c: var(--sage-green); --y: 14px">
-            <div class="oil__art" aria-hidden="true"><svg class="bottle c-sage" viewBox="0 0 60 112" focusable="false"><use href="#s-bottle"/></svg><span class="pearl oil__pearl"></span></div>
-            <div><h3 class="oil__name">Eucalyptus</h3><p class="oil__desc">Fresh, clean and clearing.</p></div>
-          </li>
-        </ul>
-      </div>
-      <div class="oils__shop">
-        <a class="btn btn--bloom" href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener" aria-describedby="oils-note">Shop my oils<svg aria-hidden="true" focusable="false"><use href="#s-external"/></svg></a>
-        <p class="note" id="oils-note">Opens my doTERRA shop in a new tab.</p>
-      </div>
+      <h1 id="connect-title">Stay connected</h1>
+      <p class="lead">Book a session, say hello, or see what’s coming up. I would love to hear from you.</p>
     </div>
   </section>
 
@@ -431,7 +273,7 @@
         <h2 id="book-title">Begin your journey</h2>
         <p class="lead">Tell me a little about what you are looking for, or simply say hello. I read every message myself and reply within a day or two.</p>
         <ul class="contact-lines" role="list">
-          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4.5 7 7.5 6 7.5-6"/></svg>Email address to come.</li>
+          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4.5 7 7.5 6 7.5-6"/></svg><a href="mailto:lisa@mystrandsofgrace.com">lisa@mystrandsofgrace.com</a></li>
           <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.9" cy="7.1" r=".6"/></svg>Instagram to come.</li>
           <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>[City, State] and online.</li>
         </ul>
@@ -518,6 +360,108 @@
     </div>
   </section>
 
+  <section class="section section--cream events" id="events" aria-labelledby="events-title" data-reveal>
+    <div class="washes" aria-hidden="true">
+      <div class="bloom bloom--events drift"></div>
+    </div>
+    <div class="wrap">
+      <header class="section-head section-head--split">
+        <h2 id="events-title">Events and wellness days</h2>
+        <p>Wellness days, sound baths and gatherings. New dates appear here first.</p>
+      </header>
+      <ul class="events__list" role="list" data-reveal-children>
+        <li class="card event">
+          <svg class="card__stroke" viewBox="0 0 600 140" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <use href="#s-stroke" class="c-sage mul" width="600" height="140"/>
+            <use href="#s-stroke" class="c-peach mul" x="160" y="34" width="540" height="110" opacity=".5"/>
+          </svg>
+          <svg class="card__line" viewBox="0 0 600 16" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 8C150 2 300 14 600 8" fill="none" stroke="url(#g-gold-fade)" stroke-width="1.2" vector-effect="non-scaling-stroke"/></svg>
+          <h3>[Wellness day name]</h3>
+          <ul class="event__meta" role="list">
+            <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>[Date and time]</li>
+            <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>[Place]</li>
+          </ul>
+          <p>[A line about the day.]</p>
+          <div class="event__links">
+            <a class="link-arrow" href="explore.html#sound-bath">About sound baths<svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+            <a class="link-arrow" href="explore.html#oils">Explore the oils<svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+          </div>
+        </li>
+        <li class="card event">
+          <svg class="card__stroke" viewBox="0 0 600 140" preserveAspectRatio="none" aria-hidden="true" focusable="false" style="transform: scaleX(-1)">
+            <use href="#s-stroke" class="c-lavender mul" width="600" height="140"/>
+            <use href="#s-stroke" class="c-blush mul" x="120" y="30" width="520" height="110" opacity=".5"/>
+          </svg>
+          <svg class="card__line" viewBox="0 0 600 16" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 8C150 14 300 2 600 8" fill="none" stroke="url(#g-gold-fade)" stroke-width="1.2" vector-effect="non-scaling-stroke"/></svg>
+          <h3>[Sound bath evening]</h3>
+          <ul class="event__meta" role="list">
+            <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>[Date and time]</li>
+            <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>[Place]</li>
+          </ul>
+          <p>[A line about the evening.]</p>
+          <div class="event__links">
+            <a class="btn btn--bloom" href="connect.html?session=sound-bath#book">Book your place</a>
+          </div>
+        </li>
+      </ul>
+      <p class="events__more"><span class="pearl" aria-hidden="true"></span>More dates to come.</p>
+    </div>
+  </section>
+
+  <section class="section section--blush coming-soon" id="coming-soon" aria-labelledby="coming-soon-title" data-reveal>
+    <div class="washes" aria-hidden="true">
+      <div class="bloom bloom--blush-a drift"></div>
+      <div class="bloom bloom--blush-b drift"></div>
+    </div>
+    <div class="sky coming-soon__sky" aria-hidden="true">
+      <svg class="sky__star" style="--x: 9%; --y: 20%; --s: 12px; --d: -2s; --t: 8s" focusable="false"><use href="#s-star"/></svg>
+      <svg class="sky__star sky__star--wide" style="--x: 16%; --y: 58%; --s: 7px; --d: -5s; --t: 9.5s" focusable="false"><use href="#s-star"/></svg>
+      <svg class="sky__star" style="--x: 90%; --y: 24%; --s: 9px; --d: -1s; --t: 7.5s" focusable="false"><use href="#s-star"/></svg>
+      <svg class="sky__star sky__star--wide" style="--x: 84%; --y: 66%; --s: 13px; --d: -6s; --t: 8.5s" focusable="false"><use href="#s-star"/></svg>
+    </div>
+    <div class="wrap">
+      <header class="section-head section-head--centre">
+        <h2 id="coming-soon-title">Coming soon</h2>
+        <p>Certifications and services I am working towards now.</p>
+      </header>
+      <div class="soon">
+        <svg class="soon__line" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M-20 22C120 10 260 10 333 20S540 32 667 20 880 8 1020 18" fill="none" stroke="url(#g-gold-fade)" stroke-width="1.4" vector-effect="non-scaling-stroke"/></svg>
+        <ol class="soon__list" role="list" data-reveal-children>
+          <li class="soon__item">
+            <svg class="soon__phase" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="16"/><path class="soon__lit" d="M24 8A16 16 0 0 1 24 40A10 16 0 0 1 24 8Z"/></svg>
+            <h3>Sound ceremony certification.</h3>
+            <p>In progress, completing in July.</p>
+          </li>
+          <li class="soon__item">
+            <svg class="soon__phase" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="16"/><path class="soon__lit" d="M24 8A16 16 0 0 1 24 40A9 16 0 0 0 24 8Z"/></svg>
+            <h3>[Another certification in progress].</h3>
+            <p>[When it completes.]</p>
+          </li>
+          <li class="soon__item">
+            <svg class="soon__phase" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="24" cy="24" r="16"/><path d="M33 13.5c.3 1.9 1.4 3 3.3 3.3-1.9.3-3 1.4-3.3 3.3-.3-1.9-1.4-3-3.3-3.3 1.9-.3 3-1.4 3.3-3.3Z" class="soon__spark"/></svg>
+            <h3>[A future service].</h3>
+            <p>[A line about it.]</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section announcements" id="announcements" aria-labelledby="announcements-title" data-reveal>
+    <div class="wrap wrap--narrow">
+      <header class="section-head section-head--centre">
+        <h2 id="announcements-title">Announcements</h2>
+      </header>
+      <ul class="news" role="list">
+        <li class="news__item">
+          <svg class="flourish" viewBox="0 0 600 90" aria-hidden="true" focusable="false"><use href="#s-flourish"/></svg>
+          <p class="news__text">[Your latest news, in a sentence or two.]</p>
+          <p class="news__date">[Date]</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
 </main>
 
 <footer class="site-footer">
@@ -534,20 +478,22 @@
       <div class="site-footer__brand">
         <a class="site-footer__logo" href="index.html"><img src="assets/brand/sog-logo-800.webp" srcset="assets/brand/sog-logo-800.webp 800w, assets/brand/sog-logo.webp 1600w" sizes="336px" width="1600" height="583" alt="Strands of Grace, home" loading="lazy" decoding="async"></a>
         <p class="site-footer__tagline">Your journey begins with you.</p>
-        <p class="site-footer__sign">with love, Lisa</p>
+        <p class="site-footer__sign"><svg class="sym site-footer__moon" aria-hidden="true" focusable="false"><use href="#s-moon"/></svg>Namaste.</p>
       </div>
       <nav class="site-footer__nav" aria-label="Footer">
         <ul role="list">
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About Me</a></li>
           <li><a href="story.html">Our Story</a></li>
-          <li><a href="work-with-me.html" aria-current="page">Work With Me</a></li>
-          <li><a href="work-with-me.html#book">Book a session</a></li>
+          <li><a href="philosophy.html">Philosophy</a></li>
+          <li><a href="explore.html">Explore</a></li>
+          <li><a href="connect.html" aria-current="page">Stay Connected</a></li>
+          <li><a href="connect.html#book">Book a session</a></li>
         </ul>
       </nav>
       <div class="site-footer__contact">
         <ul role="list">
-          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4.5 7 7.5 6 7.5-6"/></svg>Email address to come</li>
+          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4.5 7 7.5 6 7.5-6"/></svg><a href="mailto:lisa@mystrandsofgrace.com">lisa@mystrandsofgrace.com</a></li>
           <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.9" cy="7.1" r=".6"/></svg>Instagram to come</li>
           <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>[City, State] and online</li>
         </ul>
@@ -555,6 +501,7 @@
       </div>
     </div>
     <div class="site-footer__base">
+      <p class="site-footer__creds">doTERRA Wellness Advocate · [Certification] · [Certification]</p>
       <p>© 2026 Strands of Grace, Lisa Brunson</p>
     </div>
   </div>
@@ -562,7 +509,7 @@
 
 <!-- Phones only: a booking bar once past the hero, hidden at the form and the footer. -->
 <div class="phone-bar" data-phone-bar hidden>
-  <a class="btn btn--bloom phone-bar__btn" href="#book">Book a session</a>
+  <a class="btn btn--bloom phone-bar__btn" href="connect.html#book">Book a session</a>
 </div>
 <button class="to-top" type="button" aria-label="Back to top" hidden data-to-top>
   <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>

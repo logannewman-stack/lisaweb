@@ -1,6 +1,6 @@
 # Strands of Grace: brand guide for the website
 
-Everything here comes from Lisa's own brief (her ChatGPT conversation) and her
+Everything here comes from Lisa's own written brief and her
 logo. It applies to every design option.
 
 ## Name and logo
@@ -17,6 +17,7 @@ logo. It applies to every design option.
 | `assets/brand/sog-logo.webp` (1600 px) and `sog-logo-800.webp` | Full logo with tagline, transparent. Home hero, footer. |
 | `assets/brand/sog-logo-header.webp` (900 px) and `sog-logo-header-450.webp` | Same logo without the tagline, transparent. The site header. |
 | `assets/brand/sog-lotus.webp` | The lotus and pearls only, fading out at the bottom. Decoration, small marks. |
+| `assets/brand/emblem.webp` | The emblem above the home page heading. A stand-in (the lotus, 724 x 313, transparent) until her celestial woman emblem arrives: replace this one file. |
 | `assets/brand/sog-logo.png` | PNG fallback of the full logo (1200 px). |
 | `assets/brand/favicon-32.png`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` | Browser and phone icons (the lotus). |
 | `assets/brand/og-image.jpg` | 1200 x 630 share image for link previews. |

@@ -5,11 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Strands of Grace</title>
 <meta name="description" content="Strands of Grace with Lisa Brunson: sound, ceremony and gentle guidance for the journey back to yourself.">
+<link rel="canonical" href="https://www.mystrandsofgrace.com/">
 <meta property="og:title" content="Strands of Grace">
 <meta property="og:description" content="Strands of Grace with Lisa Brunson: sound, ceremony and gentle guidance for the journey back to yourself.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Strands of Grace">
-<meta property="og:image" content="https://lisaweb-lilac.vercel.app/assets/brand/og-image.jpg">
+<meta property="og:image" content="https://www.mystrandsofgrace.com/assets/brand/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="The Strands of Grace logo: a watercolour lotus with a strand of pearls">
@@ -21,10 +22,30 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Nunito+Sans:ital,opsz,wght@0,6..12,300..700;1,6..12,300..700&family=Pinyon+Script&display=swap">
-<link rel="preload" as="image" href="assets/brand/sog-logo.webp" imagesrcset="assets/brand/sog-logo-800.webp 800w, assets/brand/sog-logo.webp 1600w" imagesizes="(min-width: 56em) 704px, 92vw" fetchpriority="high">
+<link rel="preload" as="image" href="assets/brand/emblem.webp" fetchpriority="high">
 <link rel="stylesheet" href="css/theme.css">
 <link rel="stylesheet" href="css/site.css">
-<script>document.documentElement.classList.add('js');</script>
+<script>
+/* Before anything paints: mark that scripts run, and apply the previews
+   (?ink=charcoal|plum for heading colour, ?tagline=1|2 for the story line,
+   ?strands=tree|arches|pearls for the six strands on About Me).
+   A choice in the address is remembered for the visit (sessionStorage). */
+(function (c) {
+  c.add('js');
+  var q = null, s = null;
+  try { q = new URLSearchParams(location.search); } catch (e) {}
+  try { s = window.sessionStorage; } catch (e) {}
+  var pick = function (key, allowed) {
+    var v = q && q.get(key);
+    if (allowed.indexOf(v) !== -1) { try { s.setItem('sog-' + key, v); } catch (e) {} return v; }
+    try { return s.getItem('sog-' + key); } catch (e) { return null; }
+  };
+  if (pick('ink', ['plum', 'charcoal']) === 'charcoal') c.add('ink-charcoal');
+  if (pick('tagline', ['1', '2']) === '2') c.add('tagline-2');
+  var strands = pick('strands', ['tree', 'arches', 'pearls']);
+  if (strands === 'arches' || strands === 'pearls') c.add('strands-' + strands);
+})(document.documentElement.classList);
+</script>
 <script src="js/site.js" defer></script>
 </head>
 <body>
@@ -192,6 +213,19 @@
       <path d="M19 82.5h22M24 86.5h12" stroke="#C9A24E" stroke-opacity=".75" stroke-width="1" stroke-linecap="round"/>
       <path d="M13.5 45v46" stroke="#FFFFFF" stroke-opacity=".85" stroke-width="2.2" stroke-linecap="round"/>
     </symbol>
+    <!-- The six strands, drawn as fine gold lines (stroke colour and width come from the page).
+         Roots: a seed putting down roots. Calling: a star. Heart: a heart held in a lotus.
+         Growth: a leafing branch. Discovery: a crescent moon. Becoming: a rising sun. -->
+    <symbol id="s-sym-roots" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M24 12.5c3.4 2 4.5 5.7 2.6 8.8-.7 1.1-1.6 1.9-2.6 2.3-1-.4-1.9-1.2-2.6-2.3-1.9-3.1-.8-6.8 2.6-8.8ZM24 12.5c0-2.8 1.1-5 3.4-6.4M27.4 6.1c1.7-1.7 4-2.3 6.3-1.9-.6 2.3-2.7 3.8-6.3 1.9ZM5.5 24.2c3.8-1 7.9-1.2 12.1-.6M30.4 23.6c4.2-.6 8.3-.4 12.1.6M24 23.6v4c0 4.6-1.2 8.8-3.4 13M24 28c-3.4 1.2-6.4 3.8-8.4 8M24 28c3.4 1.2 6.4 3.8 8.4 8M24 31.6c2.4 2.4 3.4 6 3.6 9.4M15.6 36c-1.3 1.2-2.1 2.8-2.6 4.4M32.4 36c1.3 1.2 2.1 2.8 2.6 4.4"/></symbol>
+    <symbol id="s-sym-calling" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M24.0 9.5L28.1 20.3L39.7 20.9L30.7 28.2L33.7 39.3L24.0 33.0L14.3 39.3L17.3 28.2L8.3 20.9L19.9 20.3ZM39.5 5c.4 2.4 1.7 3.7 4.1 4.1-2.4.4-3.7 1.7-4.1 4.1-.4-2.4-1.7-3.7-4.1-4.1 2.4-.4 3.7-1.7 4.1-4.1Z"/></symbol>
+    <symbol id="s-sym-heart" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M24 33c-5.4-3.4-8.6-6.8-8.6-10.6a4.3 4.3 0 0 1 8.6-1.9 4.3 4.3 0 0 1 8.6 1.9c0 3.8-3.2 7.2-8.6 10.6ZM24 39.5c-3-7-9-11-17.5-11.5.6 7.2 7.6 11.5 17.5 11.5ZM24 39.5c3-7 9-11 17.5-11.5-.6 7.2-7.6 11.5-17.5 11.5ZM24 13.5V8M17.5 15.5l-2.5-3.5M30.5 15.5l2.5-3.5M14 43.5h20"/></symbol>
+    <symbol id="s-sym-growth" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M12 42C15.5 33 22 23.5 35.5 8.5M16.2 34.6c-4.6-.6-7.4-3.6-7.8-7.8 4.5.2 7.4 3.1 7.8 7.8ZM19.9 28.8c1.1-4.5 4.6-6.8 8.9-6.8-.6 4.5-3.9 7-8.9 6.8ZM24.3 22.8c-4.2-1.6-6.1-5.3-5.5-9.4 4.1 1.2 6.1 4.7 5.5 9.4ZM29.2 16.6c1.8-3.9 5.3-5.6 9.2-5-1.2 4.1-4.7 6-9.2 5ZM35.5 8.5c.6-1.8 2-3 3.8-3.4-.2 1.9-1.5 3.3-3.8 3.4Z"/></symbol>
+    <symbol id="s-sym-discovery" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M27.5 9.2A15.5 15.5 0 1 0 38.6 32.4 12.5 12.5 0 0 1 27.5 9.2ZM38.5 7.5c.4 2.5 1.8 3.9 4.3 4.3-2.5.4-3.9 1.8-4.3 4.3-.4-2.5-1.8-3.9-4.3-4.3 2.5-.4 3.9-1.8 4.3-4.3ZM41 21.5v.1"/></symbol>
+    <symbol id="s-sym-becoming" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M5 33.5h38M12 38.5h24M18 43h12M13.5 33.5a10.5 10.5 0 0 1 21 0M24 18.5v-6.5M15.2 22.2l-4.4-4.4M32.8 22.2l4.4-4.4M11.6 28.6H5.8M36.4 28.6h5.8"/></symbol>
+    <!-- The celestial layer: a four-point sparkle (filled), a crescent moon and a sun (fine lines). -->
+    <symbol id="s-star" viewBox="0 0 24 24" overflow="visible"><path d="M12 0C12.7 6.6 17.4 11.3 24 12 17.4 12.7 12.7 17.4 12 24 11.3 17.4 6.6 12.7 0 12 6.6 11.3 11.3 6.6 12 0Z" fill="currentColor"/></symbol>
+    <symbol id="s-moon" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M29 6.8A17.5 17.5 0 1 0 41.2 34 14 14 0 0 1 29 6.8Z"/></symbol>
+    <symbol id="s-sun" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M31.5 24a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0ZM24 5v6.5M24 36.5V43M5 24h6.5M36.5 24H43M10.6 10.6l4.6 4.6M32.8 32.8l4.6 4.6M10.6 37.4l4.6-4.6M32.8 15.2l4.6-4.6"/></symbol>
   </defs>
 </svg>
 
@@ -209,10 +243,12 @@
         <li style="--i: 0"><a href="index.html" aria-current="page">Home</a></li>
         <li style="--i: 1"><a href="about.html">About Me</a></li>
         <li style="--i: 2"><a href="story.html">Our Story</a></li>
-        <li style="--i: 3"><a href="work-with-me.html">Work With Me</a></li>
-        <li style="--i: 4"><a href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener">Shop Oils<span class="vh"> (opens in a new tab)</span><svg aria-hidden="true" focusable="false"><use href="#s-external"/></svg></a></li>
+        <li style="--i: 3"><a href="philosophy.html">Philosophy</a></li>
+        <li style="--i: 4"><a href="explore.html">Explore</a></li>
+        <li style="--i: 5"><a href="connect.html">Stay Connected</a></li>
+        <li style="--i: 6"><a href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener">Shop Oils<span class="vh"> (opens in a new tab)</span><svg aria-hidden="true" focusable="false"><use href="#s-external"/></svg></a></li>
       </ul>
-      <a class="btn btn--bloom site-nav__cta" href="work-with-me.html#book">Book a session</a>
+      <a class="btn btn--bloom site-nav__cta" href="connect.html#book">Book a session</a>
     </nav>
   </div>
   <span class="site-header__progress" data-progress aria-hidden="true"></span>
@@ -220,7 +256,7 @@
 
 <main id="main" tabindex="-1">
 
-  <section class="hero" aria-label="Welcome">
+  <section class="hero" aria-labelledby="hero-title">
     <div class="washes hero__washes" aria-hidden="true">
       <div class="bloom hero__bloom hero__bloom--a"></div>
       <div class="bloom hero__bloom hero__bloom--b"></div>
@@ -232,7 +268,6 @@
       <svg class="wash hero__wash hero__wash--right" viewBox="0 0 600 600" focusable="false">
         <use href="#s-wash-a" class="c-lavender mul" x="120" y="60" width="440" height="440"/>
         <use href="#s-wash-c" class="c-blush mul" x="0" y="260" width="280" height="280" opacity=".8"/>
-        <use href="#s-wash-c" class="c-teal mul" x="380" y="420" width="150" height="150" opacity=".7"/>
       </svg>
       <svg class="swash hero__swash" viewBox="0 0 1000 260" focusable="false"><use href="#s-swash-long"/></svg>
     </div>
@@ -243,34 +278,44 @@
       <svg class="hero__petal hero__petal--phone-hide c-blue" style="--x: 85%; --y: 64%; --w: 2.8rem; --r: -36deg; --o: .45; --t: 70s; --px: -10px; --py: 24px; --pr: -8deg" focusable="false"><use href="#s-petal"/></svg>
       <svg class="hero__petal c-blush" style="--x: 58%; --y: 92%; --w: 2rem; --r: 70deg; --o: .5; --t: 58s; --px: 12px; --py: -14px" focusable="false"><use href="#s-petal"/></svg>
     </div>
+    <div class="sky hero__sky" aria-hidden="true">
+      <svg class="sky__star" style="--x: 27%; --y: 15%; --s: 15px; --d: -2s; --t: 7s" focusable="false"><use href="#s-star"/></svg>
+      <svg class="sky__star sky__star--wide" style="--x: 31.5%; --y: 27%; --s: 7px; --d: -5s; --t: 9s" focusable="false"><use href="#s-star"/></svg>
+      <svg class="sky__star sky__star--wide" style="--x: 22%; --y: 33%; --s: 9px; --d: -1s; --t: 8s" focusable="false"><use href="#s-star"/></svg>
+      <svg class="sky__star" style="--x: 71%; --y: 13%; --s: 10px; --d: -6s; --t: 8.5s" focusable="false"><use href="#s-star"/></svg>
+      <svg class="sky__star sky__star--wide" style="--x: 76%; --y: 29%; --s: 16px; --d: -3s; --t: 7.5s" focusable="false"><use href="#s-star"/></svg>
+      <svg class="sky__star sky__star--wide" style="--x: 67.5%; --y: 36%; --s: 6px; --d: -4s; --t: 9.5s" focusable="false"><use href="#s-star"/></svg>
+      <svg class="sky__star sky__star--wide" style="--x: 40%; --y: 6%; --s: 7px; --d: -7s; --t: 10s" focusable="false"><use href="#s-star"/></svg>
+      <svg class="sky__star" style="--x: 60%; --y: 7%; --s: 9px; --d: -2.5s; --t: 8s" focusable="false"><use href="#s-star"/></svg>
+    </div>
     <div class="hero__inner wrap">
-      <h1 class="hero__logo">
-        <img src="assets/brand/sog-logo.webp" srcset="assets/brand/sog-logo-800.webp 800w, assets/brand/sog-logo.webp 1600w" sizes="(min-width: 56em) 704px, 92vw" width="1600" height="583" alt="Strands of Grace: your journey begins with you" fetchpriority="high">
-      </h1>
+      <img class="hero__emblem" src="assets/brand/emblem.webp" width="724" height="313" alt="The Strands of Grace emblem" fetchpriority="high">
+      <h1 class="hero__title" id="hero-title">Welcome to Strands of Grace</h1>
       <p class="hero__intro">Sound, ceremony and gentle guidance with Lisa Brunson, for the journey back to yourself.</p>
       <div class="hero__actions">
-        <a class="btn btn--bloom" href="work-with-me.html#book">Book a session</a>
+        <a class="btn btn--bloom" href="connect.html#book">Book a session</a>
         <a class="btn btn--quiet" href="about.html">Meet Lisa</a>
       </div>
     </div>
   </section>
 
-  <section class="section welcome" id="welcome" aria-labelledby="welcome-title" data-reveal>
-    <div class="wrap welcome__grid">
-      <div class="welcome__copy">
-        <h2 id="welcome-title">Welcome to Strands of Grace</h2>
-        <svg class="swash welcome__swash" viewBox="0 0 400 110" aria-hidden="true" focusable="false"><use href="#s-swash-flourish"/></svg>
-        <p>Every life is woven from many strands: the people we love, the seasons we walk through, the moments that change us. Strands of Grace is a gentle space to slow down, breathe and gather those strands back together, with kindness.</p>
+  <section class="section origin" id="origin" aria-labelledby="origin-title">
+    <div class="wrap origin__grid">
+      <div class="origin__copy">
+        <h2 id="origin-title">Every strand has a story.</h2>
+        <p class="origin__sub"><span class="tagline tagline--1">Every story has a purpose.</span><span class="tagline tagline--2">Together, they share a purpose.</span></p>
+        <svg class="swash origin__swash" viewBox="0 0 400 110" aria-hidden="true" focusable="false"><use href="#s-swash-flourish"/></svg>
+        <p class="origin__lead">Every life is woven from many strands: the people we love, the seasons we walk through, the moments that change us. Strands of Grace is a gentle space to slow down, breathe and gather those strands back together, with kindness.</p>
+        <p>[How Strands of Grace began, in two or three sentences: 2017, the moment and the question that started it all.]</p>
         <p>Whether you are looking for calm, for clarity or simply for a moment that belongs to you, you are welcome here.</p>
-        <a class="link-arrow" href="story.html">Read the story of Strands of Grace<svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+        <a class="link-arrow" href="story.html">Read the story behind Strands of Grace<svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
       </div>
-      <figure class="welcome__portrait petal">
+      <figure class="origin__portrait petal">
         <div class="bloom petal__bloom drift" aria-hidden="true"></div>
         <svg class="petal__wash" viewBox="0 0 660 680" preserveAspectRatio="none" aria-hidden="true" focusable="false">
           <use href="#s-wash-c" class="c-blush mul" x="20" y="190" width="420" height="420"/>
           <use href="#s-wash-a" class="c-lavender mul" x="300" y="-20" width="380" height="380"/>
           <use href="#s-wash-c" class="c-peach mul" x="360" y="400" width="290" height="290"/>
-          <use href="#s-wash-c" class="c-blue mul" x="100" y="500" width="160" height="160" opacity=".8"/>
         </svg>
         <div class="petal__frame">
           <img src="assets/portraits/lisa-hero.jpg" srcset="assets/portraits/lisa-hero-1200.jpg 1200w, assets/portraits/lisa-hero.jpg 2000w" sizes="(min-width: 56em) 1050px, 165vw" width="2000" height="1335" alt="Lisa Brunson smiling on the beach, the ocean behind her" loading="lazy" decoding="async">
@@ -281,6 +326,31 @@
           <use class="petal__tail" href="#s-swash-long-r" x="-570" y="436" width="560" height="146"/>
         </svg>
       </figure>
+    </div>
+  </section>
+
+  <section class="section section--cream strands-teaser" id="strands" aria-labelledby="strands-title" data-reveal>
+    <div class="washes" aria-hidden="true">
+      <div class="bloom bloom--strands-a drift"></div>
+      <div class="bloom bloom--strands-b drift"></div>
+    </div>
+    <div class="wrap">
+      <header class="section-head section-head--centre">
+        <h2 id="strands-title">Six strands of a life</h2>
+        <p>My Roots, My Calling, My Heart, My Growth, My Discovery, My Becoming. Six strands, woven into one story.</p>
+      </header>
+      <div class="strand-row">
+        <svg class="strand strand-row__line" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path stroke="url(#g-gold-fade)" stroke-width="1.5" stroke-linecap="round" d="M-60 60C-36 58 32 45 83 46C135 47 194 67 250 68C306 69 361 49 417 50C472 51 528 72 583 72C639 72 694 49 750 48C806 47 865 63 917 64C968 65 1036 54 1060 52"/></svg>
+        <ul class="strand-row__list" role="list" data-reveal-children>
+          <li style="--y: 4px"><a class="strand-link" href="about.html#strand-roots" style="--c: var(--soft-peach)"><span class="strand-link__mark" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-roots"/></svg></span><span class="strand-link__name">My Roots</span></a></li>
+          <li style="--y: 26px"><a class="strand-link" href="about.html#strand-calling" style="--c: var(--soft-lavender)"><span class="strand-link__mark" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-calling"/></svg></span><span class="strand-link__name">My Calling</span></a></li>
+          <li style="--y: 8px"><a class="strand-link" href="about.html#strand-heart" style="--c: var(--blush-pink)"><span class="strand-link__mark" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-heart"/></svg></span><span class="strand-link__name">My Heart</span></a></li>
+          <li style="--y: 30px"><a class="strand-link" href="about.html#strand-growth" style="--c: var(--sage-green)"><span class="strand-link__mark" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-growth"/></svg></span><span class="strand-link__name">My Growth</span></a></li>
+          <li style="--y: 6px"><a class="strand-link" href="about.html#strand-discovery" style="--c: var(--gentle-teal)"><span class="strand-link__mark" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-discovery"/></svg></span><span class="strand-link__name">My Discovery</span></a></li>
+          <li style="--y: 22px"><a class="strand-link" href="about.html#strand-becoming" style="--c: var(--champagne-gold)"><span class="strand-link__mark" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-becoming"/></svg></span><span class="strand-link__name">My Becoming</span></a></li>
+        </ul>
+      </div>
+      <p class="strands-teaser__more"><a class="link-arrow" href="about.html#six-strands">Follow the six strands<svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a></p>
     </div>
   </section>
 
@@ -299,7 +369,7 @@
           <h3>Sound bath</h3>
           <p class="card__meta">Small groups, 75 minutes</p>
           <p>Lie back, be wrapped in blankets and let the sound do the work.</p>
-          <a class="link-arrow" href="work-with-me.html#sound-bath">Learn more<span class="vh"> about the sound bath</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+          <a class="link-arrow" href="explore.html#sound-bath">Learn more<span class="vh"> about the sound bath</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
         </li>
         <li class="card card--link">
           <svg class="card__stroke" viewBox="0 0 600 140" preserveAspectRatio="none" aria-hidden="true" focusable="false" style="transform: scaleX(-1)">
@@ -310,7 +380,7 @@
           <h3>One-to-one session</h3>
           <p class="card__meta">Just you, 60 minutes</p>
           <p>Time, sound and stillness shaped around you and what you need today.</p>
-          <a class="link-arrow" href="work-with-me.html#one-to-one">Learn more<span class="vh"> about the one-to-one session</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+          <a class="link-arrow" href="explore.html#one-to-one">Learn more<span class="vh"> about the one-to-one session</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
         </li>
         <li class="card card--link">
           <svg class="card__stroke" viewBox="0 0 600 140" preserveAspectRatio="none" aria-hidden="true" focusable="false">
@@ -321,104 +391,43 @@
           <h3>Cleansing ceremony</h3>
           <p class="card__meta">Homes and spaces, 90 minutes</p>
           <p>Sage, palo santo, sound and intention for a space that is ready for a fresh start.</p>
-          <a class="link-arrow" href="work-with-me.html#cleansing">Learn more<span class="vh"> about the cleansing ceremony</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+          <a class="link-arrow" href="explore.html#cleansing">Learn more<span class="vh"> about the cleansing ceremony</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
         </li>
       </ul>
+      <p class="ways__more"><a class="link-arrow" href="explore.html">Explore all possibilities<svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a></p>
     </div>
   </section>
 
-  <section class="section section--cream colours" id="colours" aria-labelledby="colours-title" data-reveal>
-    <div class="washes" aria-hidden="true">
-      <div class="bloom bloom--colours-a drift"></div>
-      <div class="bloom bloom--colours-b drift"></div>
-    </div>
+  <section class="section coming" id="coming" aria-labelledby="coming-title" data-reveal>
     <div class="wrap">
-      <header class="section-head section-head--split">
-        <h2 id="colours-title">Seven colours, seven intentions</h2>
-        <p>Each petal of the Strands of Grace lotus carries a colour, and each colour carries an intention.</p>
+      <header class="section-head">
+        <h2 id="coming-title">What’s coming</h2>
       </header>
-      <div class="colours__band">
-        <svg class="strand colours__strand" viewBox="0 0 700 132" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-          <path stroke="url(#g-gold-fade)" stroke-width="1.6" stroke-linecap="round" d="M-70 20C-50 25.3 13.3 43.5 50 52C86.7 60.5 116.7 66.3 150 71C183.3 75.7 216.7 80.5 250 80C283.3 79.5 316.7 73.2 350 68C383.3 62.8 416.7 52.8 450 49C483.3 45.2 516.7 42.8 550 45C583.3 47.2 613.3 57.8 650 62C686.7 66.2 750 68.7 770 70"/>
-        </svg>
-        <ul class="colours__list" role="list" data-reveal-children>
-          <li class="colour" style="--c: var(--blush-pink); --y: 8px; --i: 0">
-            <svg class="drop" aria-hidden="true" focusable="false"><use href="#s-drop"/></svg>
-            <span class="colour__name">Blush Pink</span>
-            <span class="colour__meaning">Love, compassion and kindness</span>
-          </li>
-          <li class="colour" style="--c: var(--soft-lavender); --y: 27px; --i: 1">
-            <svg class="drop" aria-hidden="true" focusable="false" style="transform: rotate(70deg)"><use href="#s-drop"/></svg>
-            <span class="colour__name">Soft Lavender</span>
-            <span class="colour__meaning">Spirituality, intuition and reflection</span>
-          </li>
-          <li class="colour" style="--c: var(--serenity-blue); --y: 36px; --i: 2">
-            <svg class="drop" aria-hidden="true" focusable="false" style="transform: rotate(140deg)"><use href="#s-drop"/></svg>
-            <span class="colour__name">Serenity Blue</span>
-            <span class="colour__meaning">Peace, calm and communication</span>
-          </li>
-          <li class="colour" style="--c: var(--gentle-teal); --y: 24px; --i: 3">
-            <svg class="drop" aria-hidden="true" focusable="false" style="transform: rotate(210deg)"><use href="#s-drop"/></svg>
-            <span class="colour__name">Gentle Teal</span>
-            <span class="colour__meaning">Balance, harmony and renewal</span>
-          </li>
-          <li class="colour" style="--c: var(--sage-green); --y: 5px; --i: 4">
-            <svg class="drop" aria-hidden="true" focusable="false" style="transform: rotate(280deg)"><use href="#s-drop"/></svg>
-            <span class="colour__name">Sage Green</span>
-            <span class="colour__meaning">Growth, healing and connection</span>
-          </li>
-          <li class="colour" style="--c: var(--soft-peach); --y: 1px; --i: 5">
-            <svg class="drop" aria-hidden="true" focusable="false" style="transform: rotate(30deg)"><use href="#s-drop"/></svg>
-            <span class="colour__name">Soft Peach</span>
-            <span class="colour__meaning">Warmth, creativity and new beginnings</span>
-          </li>
-          <li class="colour" style="--c: var(--champagne-gold); --y: 18px; --i: 6">
-            <svg class="drop" aria-hidden="true" focusable="false" style="transform: rotate(100deg)"><use href="#s-drop"/></svg>
-            <span class="colour__name">Champagne Gold</span>
-            <span class="colour__meaning">Grace, elegance, light and beauty</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="section words" id="words" aria-labelledby="words-title" data-reveal>
-    <div class="washes" aria-hidden="true">
-      <div class="bloom bloom--words drift"></div>
-      <svg class="wash words__wash words__wash--a" viewBox="0 0 600 600" focusable="false">
-        <use href="#s-wash-a" class="c-blush mul" width="600" height="600" opacity=".45"/>
-        <use href="#s-wash-c" class="c-peach mul" x="260" y="300" width="300" height="300" opacity=".4"/>
-      </svg>
-      <svg class="wash words__wash words__wash--b" viewBox="0 0 600 600" focusable="false">
-        <use href="#s-wash-b" class="c-lavender mul" width="600" height="600" opacity=".45"/>
-        <use href="#s-wash-c" class="c-blue mul" x="20" y="60" width="260" height="260" opacity=".4"/>
-      </svg>
-    </div>
-    <div class="wrap">
-      <h2 class="words__title" id="words-title">Words I keep close</h2>
-      <svg class="flourish" viewBox="0 0 600 90" aria-hidden="true" focusable="false"><use href="#s-flourish"/></svg>
-      <div class="quotes" data-quotes tabindex="0" role="group" aria-labelledby="words-title">
-        <ol class="quotes__list" role="list">
-          <li class="quotes__item"><blockquote><p>Not all storms come to disrupt your life. Some come to clear your path.</p></blockquote></li>
-          <li class="quotes__item"><blockquote><p>Inner peace begins the moment you choose not to allow another person or event to control your emotions.</p></blockquote></li>
-          <li class="quotes__item"><blockquote><p>On the darkest days, when I feel inadequate, unloved and unworthy, I remember that I am the daughter of the King, and I straighten my crown.</p></blockquote></li>
-          <li class="quotes__item"><blockquote><p>Listen to your dreams. They’re smarter than you are.</p></blockquote></li>
-          <li class="quotes__item"><blockquote><p>Smile, shine, and take it one day at a time.</p></blockquote></li>
-          <li class="quotes__item"><blockquote><p>Inhale courage. Exhale fear.</p></blockquote></li>
-          <li class="quotes__item"><blockquote><p>It is never too late to be what you might have been.</p></blockquote></li>
-          <li class="quotes__item"><blockquote><p>Find joy every day.</p></blockquote></li>
-          <li class="quotes__item"><blockquote><p>Move from doing to being.</p></blockquote></li>
-          <li class="quotes__item"><blockquote><p>Remember to be kind.</p></blockquote></li>
-          <li class="quotes__item"><blockquote><p>Everything is possible.</p></blockquote></li>
-          <li class="quotes__item"><blockquote><p>Rediscover you.</p></blockquote></li>
-        </ol>
-        <div class="quotes__controls" hidden data-quotes-controls>
-          <button class="btn btn--quiet" type="button" data-quotes-prev><svg class="arrow--back" aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg>Previous quote</button>
-          <p class="quotes__count" aria-hidden="true"><span data-quotes-current>1</span> of <span data-quotes-total>12</span></p>
-          <button class="btn btn--quiet" type="button" data-quotes-next>Next quote<svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></button>
-        </div>
-        <p class="vh" aria-live="polite" data-quotes-live></p>
-      </div>
+      <ul class="coming__cards" role="list" data-reveal-children>
+        <li class="card card--link coming-card">
+          <svg class="card__stroke" viewBox="0 0 600 140" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <use href="#s-stroke" class="c-lavender mul" width="600" height="140"/>
+            <use href="#s-stroke" class="c-blue mul" x="170" y="34" width="520" height="110" opacity=".45"/>
+          </svg>
+          <svg class="card__line" viewBox="0 0 600 16" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 8C150 2 300 14 600 8" fill="none" stroke="url(#g-gold-fade)" stroke-width="1.2" vector-effect="non-scaling-stroke"/></svg>
+          <p class="eyebrow">Events</p>
+          <h3>Wellness days.</h3>
+          <p>[Next wellness day: date and place.]</p>
+          <a class="link-arrow" href="connect.html#events">See events<svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+        </li>
+        <li class="card card--link card--blush coming-card">
+          <span class="card__frame" aria-hidden="true"></span>
+          <span class="card__sky" aria-hidden="true">
+            <svg class="sym card__moon" focusable="false"><use href="#s-moon"/></svg>
+            <svg class="sky__star" style="--x: 78%; --y: 16%; --s: 10px; --d: -3s; --t: 8s" focusable="false"><use href="#s-star"/></svg>
+            <svg class="sky__star" style="--x: 89%; --y: 34%; --s: 6px; --d: -6s; --t: 9s" focusable="false"><use href="#s-star"/></svg>
+          </span>
+          <p class="eyebrow">Coming soon</p>
+          <h3>Sound ceremony certification.</h3>
+          <p>In progress, completing in July.</p>
+          <a class="link-arrow" href="connect.html#coming-soon">See what’s coming<svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -436,7 +445,6 @@
             <div class="testimonial__paper">
               <svg class="testimonial__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
                 <use href="#s-wash-a" class="c-blush mul" width="600" height="600"/>
-                <use href="#s-wash-c" class="c-peach mul" x="200" y="280" width="320" height="320" opacity=".8"/>
               </svg>
               <figure>
                 <blockquote><p>“I walked in carrying the whole week and walked out carrying nothing. I have never felt so held.”</p></blockquote>
@@ -449,7 +457,6 @@
             <div class="testimonial__paper">
               <svg class="testimonial__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
                 <use href="#s-wash-b" class="c-lavender mul" width="600" height="600"/>
-                <use href="#s-wash-c" class="c-blush mul" x="240" y="40" width="320" height="320" opacity=".8"/>
               </svg>
               <figure>
                 <blockquote><p>“The sound did something my mind could not. I slept properly for the first time in months.”</p></blockquote>
@@ -462,7 +469,6 @@
             <div class="testimonial__paper">
               <svg class="testimonial__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
                 <use href="#s-wash-c" class="c-peach mul" width="600" height="600"/>
-                <use href="#s-wash-a" class="c-blush mul" x="-60" y="260" width="320" height="320" opacity=".8"/>
               </svg>
               <figure>
                 <blockquote><p>“Lisa cleansed our new home, and it finally felt like ours.”</p></blockquote>
@@ -479,49 +485,27 @@
     </div>
   </section>
 
-  <section class="section oils-band" id="oils" aria-labelledby="oils-title" data-reveal>
-    <div class="wrap oils-band__grid">
-      <div class="oils-band__art" aria-hidden="true">
-        <div class="bloom bloom--oils drift"></div>
-        <svg class="oils-band__scene" viewBox="0 0 440 400" focusable="false">
-          <use href="#s-wash-b" class="c-lavender mul" x="20" y="10" width="320" height="320"/>
-          <use href="#s-wash-c" class="c-peach mul" x="170" y="140" width="270" height="270"/>
-          <use href="#s-wash-c" class="c-sage mul" x="-20" y="240" width="160" height="160" opacity=".85"/>
-          <use href="#s-wash-a" class="c-blush mul" x="250" y="-30" width="200" height="200" opacity=".7"/>
-          <path d="M-40 334C70 306 150 314 220 308C290 302 360 282 480 300" fill="none" stroke="url(#g-gold-fade)" stroke-width="1.6" vector-effect="non-scaling-stroke"/>
-          <use href="#s-pearl" x="52" y="309" width="16" height="16"/>
-          <use href="#s-pearl" x="152" y="303" width="16" height="16"/>
-          <use href="#s-pearl" x="244" y="297" width="16" height="16"/>
-          <use href="#s-pearl" x="352" y="286" width="16" height="16"/>
-          <use href="#s-pearl" x="412" y="285" width="16" height="16"/>
-          <use class="bottle-use c-peach" href="#s-bottle" x="94" y="200" width="60" height="112"/>
-          <use class="bottle-use c-lavender" href="#s-bottle" x="186" y="196" width="60" height="112"/>
-          <use class="bottle-use c-sage" href="#s-bottle" x="278" y="187" width="60" height="112"/>
-        </svg>
-      </div>
-      <div class="oils-band__copy">
-        <h2 id="oils-title">The oils I use</h2>
-        <p class="lead">The essential oils I diffuse in every session are the same ones I use at home. I share them through doTERRA, and I am always happy to help you choose your first few.</p>
-        <p><a class="btn btn--bloom" href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener" aria-describedby="oils-note">Shop my oils<svg aria-hidden="true" focusable="false"><use href="#s-external"/></svg></a></p>
-        <p class="note" id="oils-note">Opens my doTERRA shop in a new tab.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section closing" id="closing" aria-labelledby="closing-title" data-reveal>
+  <section class="section section--blush closing" id="closing" aria-labelledby="closing-title" data-reveal>
     <div class="washes" aria-hidden="true">
-      <div class="bloom bloom--closing-a drift"></div>
-      <div class="bloom bloom--closing-b drift"></div>
+      <div class="bloom bloom--blush-a drift"></div>
+      <div class="bloom bloom--blush-b drift"></div>
+    </div>
+    <div class="sky closing__sky" aria-hidden="true">
+      <svg class="sky__star" style="--x: 14%; --y: 22%; --s: 12px; --d: -2s; --t: 8s" focusable="false"><use href="#s-star"/></svg>
+      <svg class="sky__star sky__star--wide" style="--x: 20%; --y: 64%; --s: 7px; --d: -5s; --t: 9.5s" focusable="false"><use href="#s-star"/></svg>
+      <svg class="sky__star" style="--x: 85%; --y: 30%; --s: 9px; --d: -1s; --t: 7.5s" focusable="false"><use href="#s-star"/></svg>
+      <svg class="sky__star sky__star--wide" style="--x: 79%; --y: 72%; --s: 14px; --d: -6s; --t: 8.5s" focusable="false"><use href="#s-star"/></svg>
     </div>
     <div class="wrap">
       <svg class="flourish" viewBox="0 0 600 90" aria-hidden="true" focusable="false"><use href="#s-flourish"/></svg>
       <h2 id="closing-title">Your journey begins with you.</h2>
       <p>When you are ready, I would love to walk a little of it with you.</p>
-      <a class="btn btn--bloom" href="work-with-me.html#book">Book a session</a>
+      <a class="btn btn--bloom" href="connect.html#book">Book a session</a>
+      <p class="namaste"><svg class="sym namaste__moon" aria-hidden="true" focusable="false"><use href="#s-moon"/></svg><span class="namaste__word">Namaste.</span><svg class="sym namaste__sun" aria-hidden="true" focusable="false"><use href="#s-sun"/></svg></p>
     </div>
   </section>
 
-  <section class="continue" id="continue" aria-labelledby="continue-eyebrow" data-reveal>
+  <section class="continue" id="continue" aria-labelledby="continue-eyebrow" data-reveal data-continue>
     <div class="wrap continue__inner">
       <svg class="continue__strand" viewBox="0 0 400 40" aria-hidden="true" focusable="false">
         <path d="M0 26C90 12 150 32 200 24C250 16 310 6 400 20" fill="none" stroke="url(#g-gold-fade)" stroke-width="1.4" vector-effect="non-scaling-stroke"/>
@@ -549,20 +533,22 @@
       <div class="site-footer__brand">
         <a class="site-footer__logo" href="index.html"><img src="assets/brand/sog-logo-800.webp" srcset="assets/brand/sog-logo-800.webp 800w, assets/brand/sog-logo.webp 1600w" sizes="336px" width="1600" height="583" alt="Strands of Grace, home" loading="lazy" decoding="async"></a>
         <p class="site-footer__tagline">Your journey begins with you.</p>
-        <p class="site-footer__sign">with love, Lisa</p>
+        <p class="site-footer__sign"><svg class="sym site-footer__moon" aria-hidden="true" focusable="false"><use href="#s-moon"/></svg>Namaste.</p>
       </div>
       <nav class="site-footer__nav" aria-label="Footer">
         <ul role="list">
           <li><a href="index.html" aria-current="page">Home</a></li>
           <li><a href="about.html">About Me</a></li>
           <li><a href="story.html">Our Story</a></li>
-          <li><a href="work-with-me.html">Work With Me</a></li>
-          <li><a href="work-with-me.html#book">Book a session</a></li>
+          <li><a href="philosophy.html">Philosophy</a></li>
+          <li><a href="explore.html">Explore</a></li>
+          <li><a href="connect.html">Stay Connected</a></li>
+          <li><a href="connect.html#book">Book a session</a></li>
         </ul>
       </nav>
       <div class="site-footer__contact">
         <ul role="list">
-          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4.5 7 7.5 6 7.5-6"/></svg>Email address to come</li>
+          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4.5 7 7.5 6 7.5-6"/></svg><a href="mailto:lisa@mystrandsofgrace.com">lisa@mystrandsofgrace.com</a></li>
           <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.9" cy="7.1" r=".6"/></svg>Instagram to come</li>
           <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>[City, State] and online</li>
         </ul>
@@ -570,6 +556,7 @@
       </div>
     </div>
     <div class="site-footer__base">
+      <p class="site-footer__creds">doTERRA Wellness Advocate · [Certification] · [Certification]</p>
       <p>© 2026 Strands of Grace, Lisa Brunson</p>
     </div>
   </div>
@@ -577,7 +564,7 @@
 
 <!-- Phones only: a booking bar once past the hero, hidden at the form and the footer. -->
 <div class="phone-bar" data-phone-bar hidden>
-  <a class="btn btn--bloom phone-bar__btn" href="work-with-me.html#book">Book a session</a>
+  <a class="btn btn--bloom phone-bar__btn" href="connect.html#book">Book a session</a>
 </div>
 <button class="to-top" type="button" aria-label="Back to top" hidden data-to-top>
   <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>

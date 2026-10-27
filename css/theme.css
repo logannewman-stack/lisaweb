@@ -28,8 +28,10 @@
   --gold-deep: #C9A24E;       /* darker end of the gold strands; decorative only */
   --gold-light: #E6CC8A;      /* lighter end of the gold strands; decorative only */
   --pearl: #FDEDE5;           /* the pearls in her logo */
-  --ink-soft: #5E5566;        /* small notes and captions: 7:1 on ivory, 6.4:1 on cream */
+  --ink-soft: #5E5566;        /* small notes and captions: 7:1 on ivory, 6.4:1 on cream, 6.3:1 on pale blush */
   --field-line: #8C7D98;      /* form field borders: 3.5:1 on cream, 3.8:1 on ivory */
+  --blush-pale: #FCEFF3;      /* a pale blush from her Blush Pink, for "gold over pink" grounds:
+                                 plum is 7.7:1, charcoal 10.8:1, --ink-soft 6.3:1 on it */
 
   /* The same colours as RGB channels, for translucent watercolour blooms:
      rgb(var(--blush-rgb) / 0.5). Keep them in step with the HEX codes above. */
@@ -44,6 +46,9 @@
   /* --- Roles ----------------------------------------------------------- */
   --bg: var(--warm-ivory);
   --bg-alt: var(--soft-cream);
+  /* Every heading and display line takes its colour from --heading, so one
+     switch changes them all: deep plum by default; ?ink=charcoal previews
+     charcoal (the class is set in each page's <head>). */
   --heading: var(--deep-plum);
   --text: var(--charcoal);
   --focus: var(--gold-deep);      /* one focus ring everywhere: gold, offset from the element */
@@ -92,6 +97,9 @@
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-breath: cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
+
+/* Heading ink preview: ?ink=charcoal adds this class to <html>. */
+:root.ink-charcoal { --heading: var(--charcoal); }
 
 @media (min-width: 68em) {
   :root { --header-h: 5rem; }

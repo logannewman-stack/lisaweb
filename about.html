@@ -5,11 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About Me | Strands of Grace</title>
 <meta name="description" content="Strands of Grace with Lisa Brunson: sound, ceremony and gentle guidance for the journey back to yourself.">
+<link rel="canonical" href="https://www.mystrandsofgrace.com/about.html">
 <meta property="og:title" content="About Me | Strands of Grace">
 <meta property="og:description" content="Strands of Grace with Lisa Brunson: sound, ceremony and gentle guidance for the journey back to yourself.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Strands of Grace">
-<meta property="og:image" content="https://lisaweb-lilac.vercel.app/assets/brand/og-image.jpg">
+<meta property="og:image" content="https://www.mystrandsofgrace.com/assets/brand/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="The Strands of Grace logo: a watercolour lotus with a strand of pearls">
@@ -24,7 +25,27 @@
 <link rel="preload" as="image" href="assets/portraits/lisa-portrait.jpg" fetchpriority="high">
 <link rel="stylesheet" href="css/theme.css">
 <link rel="stylesheet" href="css/site.css">
-<script>document.documentElement.classList.add('js');</script>
+<script>
+/* Before anything paints: mark that scripts run, and apply the previews
+   (?ink=charcoal|plum for heading colour, ?tagline=1|2 for the story line,
+   ?strands=tree|arches|pearls for the six strands on About Me).
+   A choice in the address is remembered for the visit (sessionStorage). */
+(function (c) {
+  c.add('js');
+  var q = null, s = null;
+  try { q = new URLSearchParams(location.search); } catch (e) {}
+  try { s = window.sessionStorage; } catch (e) {}
+  var pick = function (key, allowed) {
+    var v = q && q.get(key);
+    if (allowed.indexOf(v) !== -1) { try { s.setItem('sog-' + key, v); } catch (e) {} return v; }
+    try { return s.getItem('sog-' + key); } catch (e) { return null; }
+  };
+  if (pick('ink', ['plum', 'charcoal']) === 'charcoal') c.add('ink-charcoal');
+  if (pick('tagline', ['1', '2']) === '2') c.add('tagline-2');
+  var strands = pick('strands', ['tree', 'arches', 'pearls']);
+  if (strands === 'arches' || strands === 'pearls') c.add('strands-' + strands);
+})(document.documentElement.classList);
+</script>
 <script src="js/site.js" defer></script>
 </head>
 <body>
@@ -192,6 +213,19 @@
       <path d="M19 82.5h22M24 86.5h12" stroke="#C9A24E" stroke-opacity=".75" stroke-width="1" stroke-linecap="round"/>
       <path d="M13.5 45v46" stroke="#FFFFFF" stroke-opacity=".85" stroke-width="2.2" stroke-linecap="round"/>
     </symbol>
+    <!-- The six strands, drawn as fine gold lines (stroke colour and width come from the page).
+         Roots: a seed putting down roots. Calling: a star. Heart: a heart held in a lotus.
+         Growth: a leafing branch. Discovery: a crescent moon. Becoming: a rising sun. -->
+    <symbol id="s-sym-roots" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M24 12.5c3.4 2 4.5 5.7 2.6 8.8-.7 1.1-1.6 1.9-2.6 2.3-1-.4-1.9-1.2-2.6-2.3-1.9-3.1-.8-6.8 2.6-8.8ZM24 12.5c0-2.8 1.1-5 3.4-6.4M27.4 6.1c1.7-1.7 4-2.3 6.3-1.9-.6 2.3-2.7 3.8-6.3 1.9ZM5.5 24.2c3.8-1 7.9-1.2 12.1-.6M30.4 23.6c4.2-.6 8.3-.4 12.1.6M24 23.6v4c0 4.6-1.2 8.8-3.4 13M24 28c-3.4 1.2-6.4 3.8-8.4 8M24 28c3.4 1.2 6.4 3.8 8.4 8M24 31.6c2.4 2.4 3.4 6 3.6 9.4M15.6 36c-1.3 1.2-2.1 2.8-2.6 4.4M32.4 36c1.3 1.2 2.1 2.8 2.6 4.4"/></symbol>
+    <symbol id="s-sym-calling" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M24.0 9.5L28.1 20.3L39.7 20.9L30.7 28.2L33.7 39.3L24.0 33.0L14.3 39.3L17.3 28.2L8.3 20.9L19.9 20.3ZM39.5 5c.4 2.4 1.7 3.7 4.1 4.1-2.4.4-3.7 1.7-4.1 4.1-.4-2.4-1.7-3.7-4.1-4.1 2.4-.4 3.7-1.7 4.1-4.1Z"/></symbol>
+    <symbol id="s-sym-heart" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M24 33c-5.4-3.4-8.6-6.8-8.6-10.6a4.3 4.3 0 0 1 8.6-1.9 4.3 4.3 0 0 1 8.6 1.9c0 3.8-3.2 7.2-8.6 10.6ZM24 39.5c-3-7-9-11-17.5-11.5.6 7.2 7.6 11.5 17.5 11.5ZM24 39.5c3-7 9-11 17.5-11.5-.6 7.2-7.6 11.5-17.5 11.5ZM24 13.5V8M17.5 15.5l-2.5-3.5M30.5 15.5l2.5-3.5M14 43.5h20"/></symbol>
+    <symbol id="s-sym-growth" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M12 42C15.5 33 22 23.5 35.5 8.5M16.2 34.6c-4.6-.6-7.4-3.6-7.8-7.8 4.5.2 7.4 3.1 7.8 7.8ZM19.9 28.8c1.1-4.5 4.6-6.8 8.9-6.8-.6 4.5-3.9 7-8.9 6.8ZM24.3 22.8c-4.2-1.6-6.1-5.3-5.5-9.4 4.1 1.2 6.1 4.7 5.5 9.4ZM29.2 16.6c1.8-3.9 5.3-5.6 9.2-5-1.2 4.1-4.7 6-9.2 5ZM35.5 8.5c.6-1.8 2-3 3.8-3.4-.2 1.9-1.5 3.3-3.8 3.4Z"/></symbol>
+    <symbol id="s-sym-discovery" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M27.5 9.2A15.5 15.5 0 1 0 38.6 32.4 12.5 12.5 0 0 1 27.5 9.2ZM38.5 7.5c.4 2.5 1.8 3.9 4.3 4.3-2.5.4-3.9 1.8-4.3 4.3-.4-2.5-1.8-3.9-4.3-4.3 2.5-.4 3.9-1.8 4.3-4.3ZM41 21.5v.1"/></symbol>
+    <symbol id="s-sym-becoming" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M5 33.5h38M12 38.5h24M18 43h12M13.5 33.5a10.5 10.5 0 0 1 21 0M24 18.5v-6.5M15.2 22.2l-4.4-4.4M32.8 22.2l4.4-4.4M11.6 28.6H5.8M36.4 28.6h5.8"/></symbol>
+    <!-- The celestial layer: a four-point sparkle (filled), a crescent moon and a sun (fine lines). -->
+    <symbol id="s-star" viewBox="0 0 24 24" overflow="visible"><path d="M12 0C12.7 6.6 17.4 11.3 24 12 17.4 12.7 12.7 17.4 12 24 11.3 17.4 6.6 12.7 0 12 6.6 11.3 11.3 6.6 12 0Z" fill="currentColor"/></symbol>
+    <symbol id="s-moon" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M29 6.8A17.5 17.5 0 1 0 41.2 34 14 14 0 0 1 29 6.8Z"/></symbol>
+    <symbol id="s-sun" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M31.5 24a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0ZM24 5v6.5M24 36.5V43M5 24h6.5M36.5 24H43M10.6 10.6l4.6 4.6M32.8 32.8l4.6 4.6M10.6 37.4l4.6-4.6M32.8 15.2l4.6-4.6"/></symbol>
   </defs>
 </svg>
 
@@ -209,10 +243,12 @@
         <li style="--i: 0"><a href="index.html">Home</a></li>
         <li style="--i: 1"><a href="about.html" aria-current="page">About Me</a></li>
         <li style="--i: 2"><a href="story.html">Our Story</a></li>
-        <li style="--i: 3"><a href="work-with-me.html">Work With Me</a></li>
-        <li style="--i: 4"><a href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener">Shop Oils<span class="vh"> (opens in a new tab)</span><svg aria-hidden="true" focusable="false"><use href="#s-external"/></svg></a></li>
+        <li style="--i: 3"><a href="philosophy.html">Philosophy</a></li>
+        <li style="--i: 4"><a href="explore.html">Explore</a></li>
+        <li style="--i: 5"><a href="connect.html">Stay Connected</a></li>
+        <li style="--i: 6"><a href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener">Shop Oils<span class="vh"> (opens in a new tab)</span><svg aria-hidden="true" focusable="false"><use href="#s-external"/></svg></a></li>
       </ul>
-      <a class="btn btn--bloom site-nav__cta" href="work-with-me.html#book">Book a session</a>
+      <a class="btn btn--bloom site-nav__cta" href="connect.html#book">Book a session</a>
     </nav>
   </div>
   <span class="site-header__progress" data-progress aria-hidden="true"></span>
@@ -256,95 +292,658 @@
         <p>[A warm introduction: who you are, where you are from and what you love.]</p>
         <p>[Your path: the work and the experiences that led you to this calling.]</p>
         <p>[What it is like to work with you, and who you love to work with.]</p>
-        <p class="signoff">with love, Lisa</p>
       </div>
     </div>
   </section>
 
-  <section class="section section--cream creds" id="training" aria-labelledby="training-title" data-reveal>
+  <section class="section section--cream six-strands" id="six-strands" aria-labelledby="six-strands-title" data-reveal>
+    <div class="wrap six-strands__grid" data-strands="tree">
+      <header class="six-strands__head">
+        <h2 id="six-strands-title">The six strands of my life</h2>
+        <p class="lead">My life has been woven from six strands. Hover over or tap a strand to see what it holds, then follow it into the full chapter.</p>
+      </header>
+      <div class="tree">
+        <div class="bloom tree__bloom" aria-hidden="true"></div>
+        <!-- The tree of life: six gold strands braided into one trunk. The same art is on
+             philosophy.html (without the nodes); keep the two copies identical. -->
+        <svg class="tree__art" viewBox="0 0 600 720" aria-hidden="true" focusable="false">
+          <defs>
+            <g id="t-leaf"><path d="M0 0C-7.5-6-7.5-15 0-24C7.5-15 7.5-6 0 0Z" fill="currentColor" fill-opacity=".62"/><path d="M0 0C-7.5-6-7.5-15 0-24C7.5-15 7.5-6 0 0ZM0-2V-20" fill="none" stroke="#C9A24E" stroke-opacity=".75" stroke-width=".7"/></g>
+            <radialGradient id="g-sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFFDF8" stop-opacity=".9"/><stop offset=".55" stop-color="#F6E3B4" stop-opacity=".55"/><stop offset="1" stop-color="#F6E3B4" stop-opacity="0"/></radialGradient>
+          </defs>
+          <g class="tree__washes">
+            <use href="#s-wash-c" class="c-lavender mul" x="150" y="-6" width="300" height="300" opacity=".5"/>
+            <use href="#s-wash-a" class="c-sage mul" x="20" y="70" width="330" height="330" opacity=".55"/>
+            <use href="#s-wash-b" class="c-teal mul" x="270" y="60" width="330" height="330" opacity=".38"/>
+            <use href="#s-wash-a" class="c-blush mul" x="196" y="138" width="270" height="270" opacity=".45"/>
+            <use href="#s-wash-c" class="c-peach mul" x="64" y="168" width="230" height="230" opacity=".4"/>
+            <use href="#s-wash-b" class="c-peach mul" x="160" y="510" width="280" height="250" opacity=".5"/>
+          </g>
+          <g class="tree__sun">
+            <circle cx="300" cy="74" r="92" fill="url(#g-sun)"/>
+            <circle cx="300" cy="74" r="36" fill="none" stroke="url(#g-gold)" stroke-width="1.1"/>
+            <path d="M254.0 74.0L234.0 74.0M255.6 62.1L244.0 59.0M260.2 51.0L242.8 41.0M267.5 41.5L259.0 33.0M277.0 34.2L267.0 16.8M288.1 29.6L285.0 18.0M300.0 28.0L300.0 8.0M311.9 29.6L315.0 18.0M323.0 34.2L333.0 16.8M332.5 41.5L341.0 33.0M339.8 51.0L357.2 41.0M344.4 62.1L356.0 59.0M346.0 74.0L366.0 74.0" fill="none" stroke="#C9A24E" stroke-opacity=".8" stroke-width="1" stroke-linecap="round"/>
+          </g>
+          <g class="tree__moon" transform="translate(528 150) rotate(-18)">
+            <path d="M6-26A26 26 0 1 0 6 26A20 20 0 1 1 6-26Z" fill="#87D4D1" fill-opacity=".22" stroke="url(#g-gold)" stroke-width="1.2" stroke-linejoin="round"/>
+          </g>
+          <path d="M150 569 C210 564 260 570 300 567 S400 563 452 568" fill="none" stroke="url(#g-gold-fade)" stroke-width="1.2" stroke-linecap="round"/>
+          <g class="tree__leaves">
+            <g class="c-sage">
+              <use href="#t-leaf" transform="translate(388 289) rotate(-11) scale(1)"/>
+              <use href="#t-leaf" transform="translate(443 309) rotate(85) scale(1)"/>
+              <use href="#t-leaf" transform="translate(472 265) rotate(68) scale(1)"/>
+              <use href="#t-leaf" transform="translate(511 286) rotate(127) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(465 284) rotate(130) scale(1)"/>
+              <use href="#t-leaf" transform="translate(285 215) rotate(12) scale(1)"/>
+              <use href="#t-leaf" transform="translate(345 184) rotate(28) scale(1)"/>
+              <use href="#t-leaf" transform="translate(320 117) rotate(-43) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(367 90) rotate(70) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(349 93) rotate(-46) scale(1)"/>
+              <use href="#t-leaf" transform="translate(227 240) rotate(-31) scale(1)"/>
+              <use href="#t-leaf" transform="translate(156 232) rotate(266) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(184 166) rotate(33) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(211 258) rotate(18) scale(1)"/>
+              <use href="#t-leaf" transform="translate(157 157) rotate(-71) scale(1)"/>
+              <use href="#t-leaf" transform="translate(198 261) rotate(-16) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(150 320) rotate(222) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(105 281) rotate(207) scale(1)"/>
+              <use href="#t-leaf" transform="translate(203 300) rotate(-23) scale(1)"/>
+              <use href="#t-leaf" transform="translate(91 266) rotate(14) scale(1)"/>
+              <use href="#t-leaf" transform="translate(325 203) rotate(42) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(270 134) rotate(69) scale(1)"/>
+              <use href="#t-leaf" transform="translate(249 97) rotate(-94) scale(1)"/>
+              <use href="#t-leaf" transform="translate(276 177) rotate(-74) scale(1)"/>
+              <use href="#t-leaf" transform="translate(251 68) rotate(51) scale(1)"/>
+              <use href="#t-leaf" transform="translate(417 235) rotate(120) scale(1)"/>
+              <use href="#t-leaf" transform="translate(426 187) rotate(-58) scale(1)"/>
+              <use href="#t-leaf" transform="translate(458 157) rotate(27) scale(1)"/>
+              <use href="#t-leaf" transform="translate(414 223) rotate(-23) scale(1)"/>
+            </g>
+            <g class="c-teal">
+              <use href="#t-leaf" transform="translate(396 274) rotate(68) scale(1)"/>
+              <use href="#t-leaf" transform="translate(466 276) rotate(-10) scale(1)"/>
+              <use href="#t-leaf" transform="translate(475 256) rotate(16) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(431 292) rotate(23) scale(1)"/>
+              <use href="#t-leaf" transform="translate(494 274) rotate(9) scale(1)"/>
+              <use href="#t-leaf" transform="translate(331 190) rotate(105) scale(1)"/>
+              <use href="#t-leaf" transform="translate(357 181) rotate(80) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(361 92) rotate(18) scale(1)"/>
+              <use href="#t-leaf" transform="translate(309 222) rotate(76) scale(1)"/>
+              <use href="#t-leaf" transform="translate(225 257) rotate(47) scale(1)"/>
+              <use href="#t-leaf" transform="translate(232 226) rotate(21) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(180 174) rotate(-19) scale(1)"/>
+              <use href="#t-leaf" transform="translate(152 160) rotate(-102) scale(1)"/>
+              <use href="#t-leaf" transform="translate(169 190) rotate(30) scale(1)"/>
+              <use href="#t-leaf" transform="translate(152 138) rotate(44) scale(1)"/>
+              <use href="#t-leaf" transform="translate(159 312) rotate(274) scale(1)"/>
+              <use href="#t-leaf" transform="translate(136 278) rotate(9) scale(1)"/>
+              <use href="#t-leaf" transform="translate(91 290) rotate(232) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(168 293) rotate(-134) scale(1)"/>
+              <use href="#t-leaf" transform="translate(316 215) rotate(-11) scale(1)"/>
+              <use href="#t-leaf" transform="translate(271 189) rotate(-105) scale(1)"/>
+              <use href="#t-leaf" transform="translate(283 116) rotate(43) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(241 92) rotate(-18) scale(1)"/>
+              <use href="#t-leaf" transform="translate(253 93) rotate(-64) scale(1)"/>
+              <use href="#t-leaf" transform="translate(376 257) rotate(-47) scale(1)"/>
+              <use href="#t-leaf" transform="translate(445 233) rotate(95) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(422 175) rotate(20) scale(1)"/>
+              <use href="#t-leaf" transform="translate(391 256) rotate(92) scale(1)"/>
+              <use href="#t-leaf" transform="translate(433 188) rotate(79) scale(1)"/>
+            </g>
+            <g class="c-lavender">
+              <use href="#t-leaf" transform="translate(401 260) rotate(15) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(497 278) rotate(152) scale(1)"/>
+              <use href="#t-leaf" transform="translate(510 263) rotate(96) scale(1)"/>
+              <use href="#t-leaf" transform="translate(332 134) rotate(-69) scale(1)"/>
+              <use href="#t-leaf" transform="translate(326 177) rotate(-35) scale(1)"/>
+              <use href="#t-leaf" transform="translate(183 234) rotate(-119) scale(1)"/>
+              <use href="#t-leaf" transform="translate(143 156) rotate(-26) scale(1)"/>
+              <use href="#t-leaf" transform="translate(211 290) rotate(10) scale(1)"/>
+              <use href="#t-leaf" transform="translate(129 268) rotate(-69) scale(1)"/>
+              <use href="#t-leaf" transform="translate(134 286) rotate(-20) scale(1)"/>
+              <use href="#t-leaf" transform="translate(257 183) rotate(-27) scale(1)"/>
+              <use href="#t-leaf" transform="translate(235 89) rotate(-70) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(373 240) rotate(32) scale(1)"/>
+              <use href="#t-leaf" transform="translate(417 167) rotate(-32) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(446 156) rotate(-39) scale(1)"/>
+            </g>
+            <g class="c-blush">
+              <use href="#t-leaf" transform="translate(431 301) rotate(163) scale(1)"/>
+              <use href="#t-leaf" transform="translate(506 282) rotate(76) scale(1)"/>
+              <use href="#t-leaf" transform="translate(294 231) rotate(-67) scale(1)"/>
+              <use href="#t-leaf" transform="translate(326 124) rotate(9) scale(1)"/>
+              <use href="#t-leaf" transform="translate(340 132) rotate(70) scale(1)"/>
+              <use href="#t-leaf" transform="translate(169 232) rotate(-42) scale(1)"/>
+              <use href="#t-leaf" transform="translate(137 154) rotate(-78) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(203 275) rotate(-68) scale(1)"/>
+              <use href="#t-leaf" transform="translate(126 259) rotate(-17) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(108 277) rotate(-120) scale(1)"/>
+              <use href="#t-leaf" transform="translate(245 181) rotate(-80) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(292 222) rotate(35) scale(1)"/>
+              <use href="#t-leaf" transform="translate(369 226) rotate(-21) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(449 161) rotate(103) scale(1)"/>
+              <use href="#t-leaf" transform="translate(451 136) rotate(66) scale(1)"/>
+            </g>
+            <g class="c-peach">
+              <use href="#t-leaf" transform="translate(452 318) rotate(137) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(397 299) rotate(132) scale(1)"/>
+              <use href="#t-leaf" transform="translate(276 203) rotate(-41) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(353 98) rotate(94) scale(1)"/>
+              <use href="#t-leaf" transform="translate(352 68) rotate(59) scale(1)"/>
+              <use href="#t-leaf" transform="translate(175 186) rotate(59) scale(1)"/>
+              <use href="#t-leaf" transform="translate(188 225) rotate(-87) scale(1)"/>
+              <use href="#t-leaf" transform="translate(171 303) rotate(197) scale(1)"/>
+              <use href="#t-leaf" transform="translate(96 286) rotate(283) scale(1)"/>
+              <use href="#t-leaf" transform="translate(308 230) rotate(67) scale(1)"/>
+              <use href="#t-leaf" transform="translate(276 123) rotate(-9) scale(1)"/>
+              <use href="#t-leaf" transform="translate(262 132) rotate(40) scale(1)"/>
+              <use href="#t-leaf" transform="translate(432 232) rotate(42) scale(1)"/>
+              <use href="#t-leaf" transform="translate(465 155) rotate(79) scale(1.2)"/>
+            </g>
+          </g>
+          <g class="tree__strands" fill="url(#g-gold)">
+            <path d="M373.3 306.2l5.7-5l5.2-5.5l4.6-6l2.7-4.3l2.4-4.4l3-6.9l2.4-7.2l2-7.2l-.6-.2l-2.1 7.2l-2.5 7l-3.2 6.8l-2.4 4.3l-2.7 4.1l-4.7 5.8l-5.2 5.3l-5.7 4.8z"/>
+            <path d="M413.9 296.5l7.2 1.6l4.7 1.6l4.6 1.9l4.3 2.4l4.2 2.7l3.9 3l3.7 3.3l5.2 5.3l.4-.4l-5.1-5.4l-3.6-3.5l-3.9-3.2l-4.2-2.9l-4.4-2.5l-4.5-2.1l-4.8-1.7l-7.3-1.9z"/>
+            <path d="M456.1 287l3.9-3.3l3.5-3.6l4.6-6.1l2.4-4.4l2.1-4.6l2.7-8.9l-.5-.1l-3.1 8.7l-2.1 4.4l-2.5 4.3l-4.7 5.7l-3.5 3.4l-3.9 3.1z"/>
+            <path d="M486.6 277.9l4.9 .2l2.5 .3l4.7 1.2l2.3 .9l4.4 2.3l5.4 3.6l.4-.5l-5.3-3.9l-4.4-2.5l-2.4-1l-4.8-1.5l-2.6-.5l-5-.4z"/>
+            <path d="M299.1 252.4l-.9-7.5l-1.6-7.4l-2.4-7.2l-2-4.6l-2.4-4.5l-4-6.4l-4.5-6l-4.9-5.7l-.4 .4l4.7 5.8l4.4 6l3.8 6.4l2.2 4.4l1.9 4.6l2.2 7.1l1.4 7.3l.7 7.4z"/>
+            <path d="M317.9 201.5l5.4-5.2l3.8-3.1l4.1-2.7l4.3-2.4l4.6-2l4.6-1.7l4.8-1.3l7.3-1.5l-.1-.5l-7.3 1.3l-4.9 1.2l-4.8 1.5l-4.7 1.9l-4.5 2.3l-4.2 2.7l-4.1 3.1l-5.5 5.1z"/>
+            <path d="M336.4 148.8l-.9-4.9l-1.3-5l-2.8-7l-2.5-4.4l-3-4.1l-6.1-6.9l-.5 .3l5.9 7.1l2.8 4.2l2.3 4.3l2.5 7l1.1 4.8l.7 4.9z"/>
+            <path d="M347.2 105.9l2.9-4l1.6-1.9l3.6-3.3l2-1.5l4.2-2.5l6-2.6l-.2-.5l-6.2 2.3l-4.5 2.4l-2.1 1.4l-3.9 3.3l-1.7 1.8l-3.1 4z"/>
+            <path d="M228.7 279.1l-1.8-7.2l-1.1-7.4l-.3-7.4l.2-4.9l.6-5l1.4-7.3l2.1-7.1l2.5-7.1l-.5-.2l-2.7 7l-2.2 7.2l-1.7 7.4l-.7 5l-.3 5l.1 7.6l1 7.5l1.6 7.3z"/>
+            <path d="M199.7 240.6l-6.6-3.6l-4.7-2l-4.8-1.6l-4.9-1.2l-5-.7l-5-.4l-5 0l-7.5 .5l.1 .6l7.4-.3l4.9 .1l5 .5l4.9 .9l4.7 1.2l4.7 1.7l4.4 2.1l6.4 3.8z"/>
+            <path d="M175.4 200.9l-.2-5l.2-4.9l1.3-7.3l1.5-4.7l2-4.5l4.5-8l-.4-.3l-4.9 7.9l-2.2 4.5l-1.7 4.8l-1.6 7.4l-.4 5.1l.1 5z"/>
+            <path d="M160.3 165.9l-3.7-3.5l-2-1.6l-4.3-2.7l-2.3-1.2l-4.7-1.7l-6.5-1.4l-.1 .5l6.3 1.8l4.6 1.9l2.1 1.1l4 2.8l1.9 1.6l3.4 3.6z"/>
+            <path d="M227.5 305.4l-5.7-4.7l-5.4-5.2l-4.7-5.7l-2.8-4.1l-2.5-4.3l-3.2-6.7l-2.7-7l-2.2-7.1l-.6 .2l2.1 7.2l2.6 7.1l3.1 6.8l2.4 4.4l2.8 4.3l4.7 5.9l5.3 5.4l5.7 4.9z"/>
+            <path d="M187.8 296.4l-7.3 2l-4.8 1.8l-4.5 2.2l-4.4 2.6l-4.1 2.9l-3.8 3.3l-3.6 3.5l-5 5.5l.4 .4l5.1-5.4l3.7-3.3l3.8-3.2l4.1-2.7l4.4-2.4l4.5-2l4.6-1.6l7.2-1.8z"/>
+            <path d="M146.9 288l-3.9-3l-3.7-3.4l-4.7-5.6l-2.6-4.2l-2.2-4.4l-3.2-8.7l-.6 .2l3 8.8l2.1 4.6l2.5 4.4l4.7 6l3.6 3.5l3.9 3.2z"/>
+            <path d="M115 279l-5 .6l-2.5 .5l-4.9 1.6l-2.3 1.1l-4.3 2.5l-5.3 4.1l.4 .4l5.3-3.7l4.4-2.3l2.3-.9l4.7-1.4l2.4-.3l4.9-.4z"/>
+            <path d="M303.5 252.4l.9-7.3l1.5-7.3l2.2-7.1l2-4.6l2.2-4.4l3.9-6.3l4.5-6l4.8-5.7l-.4-.4l-5 5.6l-4.6 6l-4.1 6.3l-2.4 4.4l-2.1 4.6l-2.4 7.2l-1.7 7.4l-1.1 7.5z"/>
+            <path d="M284.8 199.9l-5.5-5.2l-4-3.1l-4.3-2.7l-4.5-2.4l-4.6-1.9l-4.8-1.6l-4.9-1.2l-7.3-1.4l-.1 .5l7.3 1.6l4.8 1.4l4.6 1.6l4.5 2.1l4.3 2.4l4.1 2.8l3.8 3.2l5.3 5.2z"/>
+            <path d="M267.3 148.6l.7-4.9l1.1-4.8l2.6-6.9l2.3-4.3l2.8-4.1l5.9-7.1l-.4-.4l-6.2 6.9l-2.9 4.1l-2.6 4.4l-2.9 7l-1.3 4.9l-.9 5z"/>
+            <path d="M256.3 104.3l-3.1-4l-1.7-1.8l-3.9-3.3l-2.1-1.4l-4.5-2.4l-6.2-2.3l-.2 .5l6 2.6l4.2 2.5l2 1.5l3.6 3.3l1.6 1.8l2.9 4.1z"/>
+            <path d="M373.4 279.8l1.7-7.3l1-7.5l.3-7.6l-.3-5l-.7-5l-1.6-7.4l-2.2-7.2l-2.6-7l-.5 .2l2.4 7l2.1 7.2l1.4 7.3l.5 5l.2 4.9l-.4 7.4l-1.2 7.4l-1.8 7.2z"/>
+            <path d="M401.9 242.7l6.5-3.7l4.5-2l4.6-1.7l4.8-1.2l4.9-.8l5-.4l4.9-.1l7.4 .4l.1-.6l-7.5-.6l-5 0l-5 .2l-5 .7l-4.9 1.2l-4.8 1.5l-4.7 2l-6.7 3.6z"/>
+            <path d="M427.5 201.7l.2-5l-.4-5.1l-1.5-7.4l-1.6-4.8l-2.2-4.6l-4.7-8l-.5 .3l4.4 8.1l2 4.6l1.4 4.7l1.3 7.3l.1 4.9l-.3 4.9z"/>
+            <path d="M442.5 168.1l3.4-3.6l1.9-1.6l4-2.7l2.2-1.2l4.6-1.8l6.3-1.7l-.1-.5l-6.5 1.4l-4.8 1.6l-2.3 1.1l-4.3 2.7l-2 1.5l-3.7 3.5z"/>
+            <path d="M320.1 661.4l6.9 2.9l4.4 2.3l4.3 2.5l4.2 2.7l3.9 3.1l3.6 3.3l3.4 3.7l3.4 5l.3-.2l-1.9-3l-3-4l-3.5-3.7l-3.8-3.3l-4-3l-6.4-4l-4.5-2.3l-6.8-3.1z"/>
+            <path d="M379.6 621.2l6.9 2.9l4.4 2.2l4.3 2.5l4.2 2.8l3.9 3l3.6 3.4l3.4 3.7l3.4 5l.3-.2l-1.9-3.1l-3-3.9l-3.5-3.7l-3.8-3.3l-4-3l-6.4-4l-4.4-2.4l-6.9-3.1z"/>
+            <path d="M351.6 648.7l6.8 3l4.5 2.2l4.3 2.5l4.1 2.8l3.9 3l3.7 3.4l3.3 3.7l3.5 5l.3-.2l-1.9-3.1l-3.1-4l-3.5-3.6l-3.7-3.3l-4.1-3l-6.4-4l-4.4-2.4l-6.9-3.1z"/>
+            <path d="M280.1 660.3l-6.8 3.1l-4.5 2.3l-6.4 4l-4 3l-3.8 3.3l-3.5 3.7l-3 4l-1.9 3l.3 .2l3.4-5l3.4-3.7l3.6-3.3l3.9-3.1l4.2-2.7l4.3-2.5l4.4-2.3l6.9-2.9z"/>
+            <path d="M221.3 618.9l-6.9 3.1l-4.4 2.3l-6.4 4l-4 3l-3.8 3.4l-3.5 3.6l-3 4l-1.9 3.1l.3 .1l3.4-4.9l3.4-3.7l3.6-3.4l3.9-3.1l4.2-2.7l4.3-2.5l4.4-2.3l6.9-2.9z"/>
+            <path d="M248.7 647.6l-6.9 3.1l-4.4 2.4l-6.4 4l-4.1 3l-3.7 3.3l-3.5 3.6l-3.1 4l-1.9 3.1l.3 .2l3.5-5l3.3-3.7l3.7-3.4l3.9-3l4.1-2.8l4.3-2.5l4.5-2.2l6.8-3z"/>
+            <path d="M340.1 711.7l-2.6-1.6l-2.4-2.1l-4.2-4.8l-3.7-5.1l-3.4-5.4l-4.8-8.3l-2.9-5.6l-4-8.7l-2.5-5.9l-3.4-8.9l-3-9.1l-1.7-6.1l-1.4-6.2l-1.8-9.3l-.8-6.3l-.4-6.3l-.1-6.3l.7-9.4l1.2-6.1l1.7-6l2.5-5.6l3.1-5.4l1.8-2.4l8.6-9.5l3.9-5.4l1.6-3l1.2-3.2l.8-3.4l.4-3.4l-.2-3.5l-.7-3.3l-2.1-6.4l-2.9-5.9l-7.8-13.9l-2.8-5.7l-8.8-20.5l-4.6-11.8l-2.5-9.1l-1.1-6.1l-.6-6.2l0-3.1l.4-6.2l1-6.1l2.4-9.1l3.1-9l3.6-8.7l2.9-5.6l3.2-5.4l10.7-15.9l3.3-5.6l2.8-6.1l1.1-3.2l.6-3.4l.2-3.5l-.3-3.4l-2.2-9.4l-.5-2.9l0-3l.5-2.8l1-2.8l1.3-2.7l1.6-2.5l2-2.2l4.6-4.1l2.6-1.8l5.3-3.2l5.7-2.9l5.8-2.5l11.9-4.3l9.2-2.7l9.2-2.6l18.6-4.5l50-11.3l15.5-4.1l12.2-3.8l12-4.7l5.8-2.7l5.6-3.3l5.1-3.9l2.3-2.2l2.1-2.5l1.7-2.6l-.6-.4l-1.7 2.5l-2 2.4l-2.3 2.2l-5.1 3.8l-5.5 3.1l-5.8 2.7l-11.9 4.5l-12.3 3.6l-15.5 3.9l-50 10.8l-18.8 4.3l-9.3 2.4l-9.2 2.7l-12.2 4.2l-6 2.4l-5.9 2.9l-5.6 3.2l-2.7 1.9l-5.1 4.3l-2.2 2.5l-2 2.8l-1.6 3.1l-1.1 3.2l-.6 3.4l-.1 3.5l.4 3.4l2.1 9.3l.2 2.9l-.1 2.9l-.6 2.9l-.9 2.9l-2.6 5.5l-3.2 5.4l-10.8 16l-3.3 5.6l-2.9 5.8l-3.7 9l-3.2 9.1l-2.5 9.5l-1.1 6.5l-.4 6.6l0 3.3l.6 6.5l1.2 6.5l2.6 9.4l4.6 12.1l8.9 20.6l2.9 5.8l7.8 14l2.8 5.6l2 5.8l.5 2.9l.2 2.9l-.3 2.9l-.7 2.9l-1.1 2.7l-1.4 2.7l-3.5 4.9l-6.4 7.1l-4.1 5.2l-1.8 2.8l-2.9 6l-2.1 6.2l-1.4 6.4l-.8 6.5l-.3 9.8l.4 6.5l.8 6.4l1.1 6.4l2.1 9.4l2.7 9.3l2.1 6.1l3.4 9l2.5 5.9l4.1 8.8l4.6 8.5l4.9 8.2l3.6 5.4l4 5.1l4.3 4.7l2.5 2.1l2.9 1.6z"/>
+            <path d="M476 641.7l-22.2-2.6l-18.9-3.1l-18.7-4.1l-15.4-4.3l-15-5.1l-8.9-3.6l-5.8-2.6l-5.7-2.8l-8.2-4.7l-5.3-3.5l-5-3.8l-4.7-4.1l-4.2-4.6l-3.6-5l-1.5-2.6l-1.3-2.8l-1-2.9l-.7-2.9l-.3-3l-.1-3l.7-6.3l-.1-3.5l-.6-3.4l-1.2-3.3l-1.5-3l-3.6-5.6l-16.3-19.8l-5.2-7.7l-2.9-5.5l-2.3-5.8l-1.8-6l-2.5-9.2l-1.5-9.2l-.3-6.2l.4-6.2l1.6-9.2l1.7-6.1l3.1-8.9l7.4-17.7l11.9-29.7l2.1-6.3l.7-3.2l.5-3.3l.2-3.4l-.1-3.4l-.6-3.4l-.9-3.3l-1.3-3.1l-1.5-3l-3.6-5.5l-6.2-7.5l-7.3-10.3l-3.1-5.3l-1.4-2.8l-2.2-5.8l-.9-3l-1.3-6.1l-1-9.4l.2-9.4l.9-9.4l1.1-6.3l2-9.3l2.4-9.2l3.7-12.2l7.3-21.1l14.6-39l6.5-18.1l7.1-21.3l5.4-18.4l4.7-18.7l3.7-18.8l2.7-19.1l.8-9.5l.6-10.4l-.6 0l-.8 10.3l-.9 9.5l-2.8 19l-3.9 18.8l-4.8 18.5l-5.6 18.4l-7.2 21.1l-6.7 18l-14.9 38.9l-7.6 21.1l-3.9 12.2l-2.5 9.3l-2.1 9.5l-1.2 6.3l-1.1 9.7l-.2 9.8l.9 9.7l1.3 6.4l.9 3.2l2.3 6.2l1.3 2.9l3.3 5.8l5.4 8l8 10l3.4 5.2l2.5 5.5l.8 2.8l.5 3l.1 3l-.1 3l-.5 3l-.7 2.9l-1.9 6l-11.9 29.6l-7.4 17.7l-3.3 9.2l-1.7 6.3l-1.3 6.4l-.4 3.3l-.4 6.6l.3 6.5l.4 3.3l1.2 6.5l2.5 9.3l1.9 6.2l2.5 6.1l3 5.9l5.5 8.1l16.2 19.8l3.4 5.1l1.3 2.7l1 2.8l.5 2.8l.1 2.9l-.6 6.4l.1 3.4l.4 3.4l.9 3.3l1.1 3.1l1.5 3.1l1.6 2.9l4 5.3l4.6 4.7l4.9 4.3l5.3 3.8l5.4 3.5l5.7 3.2l5.7 2.9l5.9 2.7l9 3.6l9.1 3.2l9.2 2.9l15.5 4l18.9 3.8l12.7 1.9l9.5 1.2l19.2 1.6z"/>
+            <path d="M414 689.7l-6.2-1.2l-6-2l-2.9-1.2l-5.6-3l-5.2-3.7l-4.8-4.1l-4.4-4.6l-4-4.8l-3.7-5.2l-3.5-5.3l-6.3-11l-7.2-14.3l-16.3-34.8l-6-11.4l-5-8.3l-5.6-8l-4.1-5l-13.7-13.7l-6.3-7l-3.6-4.9l-2.9-5.4l-1.1-2.8l-.7-2.9l-.5-3l-.1-6.1l.6-6.2l3-18.8l1.6-6.1l3-9l8.5-20.6l3.5-9.1l2.8-9.3l1.3-6.5l.7-6.5l.3-9.7l-.1-6.5l-.6-6.6l-.6-3.2l-2-6.4l-2.8-6.1l-3.5-5.6l-3.9-5.2l-12.3-14.7l-3.7-5l-1.6-2.6l-2.8-5.8l-3.3-5.5l-5.3-8.1l-5.6-7.9l-11.6-15.3l-30.1-37.4l-13.7-17.7l-13.1-18.1l-5.4-8l-6.8-10.8l-6.4-11l-5.9-11.3l-5.4-11.6l-4.9-11.8l-3.2-9l-3.7-12.3l-3-12.4l-2-10.4l-.6 .2l1.8 10.4l2.9 12.5l3.6 12.3l3.1 9.1l4.8 11.9l5.3 11.7l5.9 11.4l6.3 11.2l6.7 10.9l5.3 8l12.9 18.4l13.6 17.8l27.7 35.3l13.3 17.9l5.4 7.9l5.1 8l3.1 5.5l2.6 5.8l1.8 2.9l3.9 5.2l12.4 14.8l5.4 7.6l3 5.4l2.2 5.7l1.3 6l.6 6.2l-.1 12.6l-.4 6.3l-.4 3l-1.2 6.2l-2.7 9l-3.4 8.9l-8.6 20.7l-3.1 9.2l-1.6 6.4l-3 19.1l-.7 6.5l.2 6.7l.5 3.3l.8 3.3l1.2 3.2l1.5 3l1.7 2.9l3.9 5.3l6.5 7.3l13.5 13.5l5.9 7.3l5.4 7.8l4.9 8.2l4.5 8.4l16.9 34.4l7.5 14.3l6.6 11l3.6 5.3l3.9 5.2l4.2 4.9l4.6 4.5l5 4.1l5.3 3.7l5.8 2.9l3 1.2l6.2 1.8l6.4 1z"/>
+            <path d="M262.2 712.3l2.7-1.7l2.4-2.2l4.3-4.8l3.8-5.2l3.5-5.4l6.3-11.2l5.6-11.6l3.7-8.9l2.3-6l3.9-12.3l3-12.5l1.2-6.4l.8-6.4l.5-6.5l.1-6.4l-.8-9.8l-.5-3.2l-1.6-6.4l-2.2-6.2l-3.1-5.9l-1.7-2.8l-2-2.7l-8.6-9.5l-3.4-5l-1.3-2.7l-1-2.8l-.6-2.8l-.2-3l.3-2.9l.6-2.9l2.2-5.7l2.8-5.6l7.8-14l2.8-5.8l7.6-17.7l3.7-9l3.1-9.2l1.6-6.4l1.1-6.4l.5-6.6l-.2-6.6l-.3-3.3l-1.1-6.4l-2.6-9.5l-4.4-12.1l-2.6-6l-3.1-5.8l-3.3-5.6l-12.4-18.6l-2.8-5.4l-1.1-2.9l-.9-2.8l-.5-2.9l0-3l.4-2.9l2.1-9.4l.3-3.4l-.3-3.5l-.7-3.4l-1.3-3.2l-1.7-3l-2.1-2.6l-2.3-2.5l-5.1-4.1l-2.8-1.8l-5.7-3.2l-5.9-2.6l-6.1-2.4l-12.2-4l-15.6-4l-18.8-4.1l-37.7-7.4l-15.6-3.3l-12.4-2.9l-12.3-3.4l-12.1-4.3l-5.8-2.6l-5.5-3l-5.2-3.7l-2.3-2.2l-2-2.4l-1.1-1.8l-.6 .4l1.1 1.8l2.1 2.5l2.3 2.3l5.2 3.8l5.6 3.2l5.9 2.7l12 4.4l12.3 3.5l12.5 3.1l53.2 11.4l18.7 4.3l15.3 4.2l12.1 4.1l5.8 2.4l5.7 2.7l5.5 3.1l2.6 1.7l4.7 3.9l2.1 2.3l1.7 2.4l1.5 2.6l1 2.7l.6 2.9l.1 2.9l-.3 3l-2.3 9.2l-.4 3.4l.1 3.5l.5 3.4l1 3.3l1.2 3.1l3.1 5.9l12.4 18.7l3.2 5.4l2.9 5.5l2.6 5.8l4.3 11.9l2.5 9.1l1 6.1l.3 3.1l.2 6.2l-.5 6.2l-1 6.1l-1.6 6.1l-3 9l-3.6 8.8l-7.5 17.6l-2.8 5.6l-7.8 14l-2.9 5.8l-2.3 6.3l-.8 3.3l-.3 3.5l.2 3.4l.7 3.4l1.2 3.3l1.5 3l3.8 5.6l8.6 9.5l1.8 2.4l1.7 2.6l3 5.4l2.1 5.8l1.6 6l.6 3.1l.9 9.3l0 6.3l-.4 6.3l-.7 6.3l-1 6.3l-2.8 12.4l-3.6 12.2l-4.4 11.9l-5.2 11.7l-5.8 11.3l-3.2 5.5l-3.5 5.4l-3.8 5.1l-2.1 2.3l-2.2 2.2l-2.7 1.7z"/>
+            <path d="M128 640.3l12.8-1l9.6-1l19-2.8l15.7-3l9.4-2.3l9.3-2.5l15.3-5l9-3.6l5.9-2.6l5.7-2.9l5.7-3.1l5.5-3.5l5.2-3.9l4.9-4.3l4.5-4.9l3.8-5.4l1.6-3l1.3-3.1l1-3.2l.7-3.3l.3-3.4l0-3.4l-.6-6.2l.2-2.8l.8-2.9l1.1-2.7l1.4-2.7l3.5-5.1l14.3-17.2l3.9-5.2l3.5-5.6l2.9-5.9l2.3-6.1l2.7-9.3l1.6-6.4l1.1-6.4l.3-3.3l.2-6.6l-.5-6.6l-.5-3.2l-1.4-6.4l-1.8-6.3l-2.2-6.1l-8.6-20.7l-11.8-29.7l-1.8-5.9l-.6-3l-.4-3l0-3l.3-2.9l.6-3l.9-2.8l1.3-2.8l3.1-5.2l3.8-5l4.3-4.9l7.2-10.8l3.1-5.8l2.4-6.1l1-3.1l1.6-6.4l.5-3.2l.7-6.5l0-9.7l-.4-6.5l-.9-6.4l-1.1-6.4l-2-9.4l-2.5-9.4l-3.8-12.2l-7.4-21.2l-14.5-39l-6.5-18.1l-7-21.2l-5.4-18.4l-4.6-18.6l-3.8-18.8l-2.7-19l-.9-9.5l-.8-10.5l-.6 0l.6 10.5l.8 9.6l2.6 19.1l3.6 18.8l4.5 18.7l5.3 18.5l6.8 21.4l6.4 18.1l14.1 39.1l7.1 21.2l3.7 12.3l2.3 9.2l2 9.3l1 6.3l.7 6.3l.4 6.3l-.2 9.4l-.6 6.2l-.6 3.1l-1.5 6.1l-1 2.9l-2.5 5.7l-3 5.5l-7.2 10.3l-4.1 4.8l-4 5.2l-3.4 5.7l-1.4 3.1l-1.1 3.2l-.7 3.4l-.3 3.4l0 3.4l.4 3.3l.7 3.3l1.9 6.3l11.9 29.8l7.4 17.7l3.2 8.9l1.8 6l1.8 9.2l.5 6.2l-.2 6.2l-.3 3.1l-1 6.1l-4.2 15.3l-2.2 5.8l-2.7 5.6l-3.3 5.3l-3.7 5l-14.4 17.2l-3.7 5.5l-1.6 3l-1.3 3.1l-.9 3.4l-.3 3.5l.7 6.5l0 3l-.2 3l-.6 2.9l-.8 2.9l-1.2 2.8l-1.4 2.7l-3.4 5.1l-4.2 4.6l-4.6 4.2l-5 3.8l-5.3 3.5l-5.4 3.2l-5.6 2.9l-5.8 2.7l-8.8 3.6l-15 5.2l-9.2 2.7l-9.3 2.4l-15.6 3.4l-18.9 3.1l-22.2 2.6z"/>
+            <path d="M188 690.3l3.2-.4l6.3-1.5l6.1-2.3l5.7-3l5.3-3.7l4.9-4.2l4.4-4.7l4.1-5l3.8-5.2l3.5-5.4l6.5-11.2l5.8-11.4l16.6-34.6l6-11.2l4.9-8.1l3.6-5.3l5.7-7.4l4.3-4.6l11.4-11.3l4.4-4.8l4-5.2l3.5-5.7l1.3-3.1l1.1-3.2l.7-3.3l.4-3.4l.1-3.3l-.5-6.6l-2.9-19.1l-1.5-6.4l-3-9.3l-9.7-23.7l-3.3-8.9l-2.6-9.1l-1.1-6.1l-.7-9.4l-.1-6.3l.2-6.3l.7-6.1l1.5-6l2.4-5.6l3.1-5.4l5.6-7.5l10.3-12.3l4-5.1l1.8-2.8l1.6-3l1.2-2.9l4.7-8.2l5.2-8l5.5-7.8l11.4-15.3l29.9-37.5l13.7-17.8l13.1-18.3l7.1-10.7l5-8.1l6.4-11.2l5.9-11.4l5.5-11.6l4.8-11.9l3.2-9.1l3.6-12.3l2.9-12.4l1.8-10.2l-.6-.2l-2 10.2l-3 12.4l-3.8 12.2l-3.2 9l-4.9 11.8l-5.5 11.5l-6 11.3l-6.5 11l-5.1 8.1l-7.2 10.6l-13.2 18l-13.8 17.6l-30.4 37.2l-13.7 17.8l-5.5 7.9l-5.3 8.1l-3.3 5.6l-1.3 3l-1.4 2.6l-1.7 2.6l-3.9 4.9l-10.3 12.3l-5.8 7.9l-3.3 5.7l-2.6 6.1l-1.6 6.5l-.8 6.6l-.2 6.5l.1 6.4l.7 9.8l1.2 6.5l2.7 9.4l3.4 9.1l9.7 23.6l2.8 9l1.5 6.1l2.8 18.8l.5 6.2l-.5 6l-.6 3l-.9 2.9l-1.2 2.7l-3.2 5.3l-3.8 4.9l-4.2 4.6l-11.4 11.2l-4.4 4.8l-4.1 5.1l-5.4 8.1l-4.9 8.4l-5.9 11.5l-16 34.9l-5.6 11.5l-6.1 11.1l-3.4 5.4l-3.6 5.2l-3.9 5l-4.3 4.6l-4.7 4.3l-5.1 3.7l-5.5 3.1l-2.9 1.3l-6 2l-6.2 1.3z"/>
+          </g>
+          <g class="tree__pearls">
+            <use href="#s-pearl" x="507.5" y="250.5" width="13" height="13"/>
+            <use href="#s-pearl" x="345.5" y="52.5" width="13" height="13"/>
+            <use href="#s-pearl" x="143.5" y="120.5" width="13" height="13"/>
+            <use href="#s-pearl" x="81.5" y="254.5" width="13" height="13"/>
+            <use href="#s-pearl" x="243.5" y="50.5" width="13" height="13"/>
+            <use href="#s-pearl" x="445.5" y="120.5" width="13" height="13"/>
+          </g>
+        </svg>
+        <div class="sky tree__sky" aria-hidden="true">
+          <svg class="sky__star" style="--x: 38%; --y: 5%; --s: 9px; --d: -2s; --t: 8s" focusable="false"><use href="#s-star"/></svg>
+          <svg class="sky__star" style="--x: 64%; --y: 3%; --s: 12px; --d: -5s; --t: 9s" focusable="false"><use href="#s-star"/></svg>
+          <svg class="sky__star" style="--x: 95%; --y: 16%; --s: 8px; --d: -1s; --t: 7.5s" focusable="false"><use href="#s-star"/></svg>
+          <svg class="sky__star" style="--x: 81%; --y: 9%; --s: 6px; --d: -6s; --t: 10s" focusable="false"><use href="#s-star"/></svg>
+        </div>
+        <div class="tree__nodes" role="group" aria-label="The six strands">
+          <button class="tree__node" type="button" data-strand="roots" data-label="right" aria-controls="strand-summary-roots" style="--x: 50%; --y: 90.6%; --c: var(--soft-peach)">
+            <span class="tree__drop" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-roots"/></svg></span>
+            <span class="tree__label">My Roots</span>
+          </button>
+          <button class="tree__node" type="button" data-strand="calling" data-label="left" aria-controls="strand-summary-calling" style="--x: 50%; --y: 75.4%; --c: var(--soft-lavender)">
+            <span class="tree__drop" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-calling"/></svg></span>
+            <span class="tree__label">My Calling</span>
+          </button>
+          <button class="tree__node" type="button" data-strand="heart" data-label="right" aria-controls="strand-summary-heart" style="--x: 50%; --y: 57.2%; --c: var(--blush-pink)">
+            <span class="tree__drop" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-heart"/></svg></span>
+            <span class="tree__label">My Heart</span>
+          </button>
+          <button class="tree__node" type="button" data-strand="growth" data-label="below" aria-controls="strand-summary-growth" style="--x: 24.5%; --y: 31%; --c: var(--sage-green)">
+            <span class="tree__drop" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-growth"/></svg></span>
+            <span class="tree__label">My Growth</span>
+          </button>
+          <button class="tree__node" type="button" data-strand="discovery" data-label="below" aria-controls="strand-summary-discovery" style="--x: 74.5%; --y: 27.5%; --c: var(--gentle-teal)">
+            <span class="tree__drop" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-discovery"/></svg></span>
+            <span class="tree__label">My Discovery</span>
+          </button>
+          <button class="tree__node" type="button" data-strand="becoming" data-label="right" aria-controls="strand-summary-becoming" style="--x: 50%; --y: 15.4%; --c: var(--champagne-gold)">
+            <span class="tree__drop" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-becoming"/></svg></span>
+            <span class="tree__label">My Becoming</span>
+          </button>
+        </div>
+      </div>
+      <div class="strand-panel" data-strand-panel>
+        <div class="strand-summary" id="strand-summary-roots" data-strand-summary="roots" style="--c: var(--soft-peach)">
+          <svg class="strand-summary__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-b" class="mul" width="600" height="600"/></svg>
+          <span class="strand-summary__mark" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-roots"/></svg></span>
+          <h3 class="strand-summary__name">My Roots</h3>
+          <p class="strand-summary__colour">Soft Peach</p>
+          <p class="strand-summary__text">[Where you come from: the family, the home and the people who shaped you.]</p>
+          <a class="link-arrow" href="#strand-roots">Read the chapter<span class="vh">: My Roots</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+        </div>
+        <div class="strand-summary" id="strand-summary-calling" data-strand-summary="calling" style="--c: var(--soft-lavender)">
+          <svg class="strand-summary__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-a" class="mul" width="600" height="600"/></svg>
+          <span class="strand-summary__mark" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-calling"/></svg></span>
+          <h3 class="strand-summary__name">My Calling</h3>
+          <p class="strand-summary__colour">Soft Lavender</p>
+          <p class="strand-summary__text">[The moment you knew this work was yours to do.]</p>
+          <a class="link-arrow" href="#strand-calling">Read the chapter<span class="vh">: My Calling</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+        </div>
+        <div class="strand-summary" id="strand-summary-heart" data-strand-summary="heart" style="--c: var(--blush-pink)">
+          <svg class="strand-summary__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-c" class="mul" width="600" height="600"/></svg>
+          <span class="strand-summary__mark" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-heart"/></svg></span>
+          <h3 class="strand-summary__name">My Heart</h3>
+          <p class="strand-summary__colour">Blush Pink</p>
+          <p class="strand-summary__text">[What you love most, and who you do this work for.]</p>
+          <a class="link-arrow" href="#strand-heart">Read the chapter<span class="vh">: My Heart</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+        </div>
+        <div class="strand-summary" id="strand-summary-growth" data-strand-summary="growth" style="--c: var(--sage-green)">
+          <svg class="strand-summary__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-a" class="mul" width="600" height="600"/></svg>
+          <span class="strand-summary__mark" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-growth"/></svg></span>
+          <h3 class="strand-summary__name">My Growth</h3>
+          <p class="strand-summary__colour">Sage Green</p>
+          <p class="strand-summary__text">[The seasons that stretched you, and what they taught you.]</p>
+          <a class="link-arrow" href="#strand-growth">Read the chapter<span class="vh">: My Growth</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+        </div>
+        <div class="strand-summary" id="strand-summary-discovery" data-strand-summary="discovery" style="--c: var(--gentle-teal)">
+          <svg class="strand-summary__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-b" class="mul" width="600" height="600"/></svg>
+          <span class="strand-summary__mark" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-discovery"/></svg></span>
+          <h3 class="strand-summary__name">My Discovery</h3>
+          <p class="strand-summary__colour">Gentle Teal</p>
+          <p class="strand-summary__text">[What you found along the way, and how it changed you.]</p>
+          <a class="link-arrow" href="#strand-discovery">Read the chapter<span class="vh">: My Discovery</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+        </div>
+        <div class="strand-summary" id="strand-summary-becoming" data-strand-summary="becoming" style="--c: var(--champagne-gold)">
+          <svg class="strand-summary__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-c" class="mul" width="600" height="600"/></svg>
+          <span class="strand-summary__mark" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-becoming"/></svg></span>
+          <h3 class="strand-summary__name">My Becoming</h3>
+          <p class="strand-summary__colour">Champagne Gold</p>
+          <p class="strand-summary__text">[Who you are becoming now, and where Strands of Grace is headed.]</p>
+          <a class="link-arrow" href="#strand-becoming">Read the chapter<span class="vh">: My Becoming</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <!-- Two more templates of this section for Lisa to choose from: ?strands=arches
+         and ?strands=pearls (?strands=tree returns to the tree of life). They wait,
+         inert, in <template> elements; the script swaps the chosen one in, so only
+         one is ever on the page. -->
+    <template data-strands-template="arches">
+      <div class="wrap six-strands__arches" data-strands="arches">
+        <header class="six-strands__head six-strands__head--centre">
+          <h2 id="six-strands-title">The six strands of my life</h2>
+          <p class="lead">My life has been woven from six strands. Hover over or tap a strand to see what it holds, then follow it into the full chapter.</p>
+        </header>
+        <ul class="arches" role="list">
+          <li class="arch" style="--c: var(--soft-peach)">
+            <div class="arch__card">
+              <div class="arch__face arch__front">
+                <button class="arch__turn" type="button" data-strand="roots" aria-expanded="false" aria-controls="strand-summary-roots">
+                  <span class="arch__mark" aria-hidden="true"><svg class="arch__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-b" class="mul" width="600" height="600"/></svg><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-roots"/></svg></span>
+                  <span class="arch__name">My Roots</span>
+                </button>
+              </div>
+              <div class="arch__face arch__back" id="strand-summary-roots" data-strand-summary="roots">
+                <svg class="sym arch__sym" aria-hidden="true" focusable="false"><use href="#s-sym-roots"/></svg>
+                <h3 class="arch__title">My Roots</h3>
+                <p class="arch__text">[Where you come from: the family, the home and the people who shaped you.]</p>
+                <a class="link-arrow" href="#strand-roots">Read the chapter<span class="vh">: My Roots</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+              </div>
+            </div>
+          </li>
+          <li class="arch" style="--c: var(--soft-lavender)">
+            <div class="arch__card">
+              <div class="arch__face arch__front">
+                <button class="arch__turn" type="button" data-strand="calling" aria-expanded="false" aria-controls="strand-summary-calling">
+                  <span class="arch__mark" aria-hidden="true"><svg class="arch__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-a" class="mul" width="600" height="600"/></svg><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-calling"/></svg></span>
+                  <span class="arch__name">My Calling</span>
+                </button>
+              </div>
+              <div class="arch__face arch__back" id="strand-summary-calling" data-strand-summary="calling">
+                <svg class="sym arch__sym" aria-hidden="true" focusable="false"><use href="#s-sym-calling"/></svg>
+                <h3 class="arch__title">My Calling</h3>
+                <p class="arch__text">[The moment you knew this work was yours to do.]</p>
+                <a class="link-arrow" href="#strand-calling">Read the chapter<span class="vh">: My Calling</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+              </div>
+            </div>
+          </li>
+          <li class="arch" style="--c: var(--blush-pink)">
+            <div class="arch__card">
+              <div class="arch__face arch__front">
+                <button class="arch__turn" type="button" data-strand="heart" aria-expanded="false" aria-controls="strand-summary-heart">
+                  <span class="arch__mark" aria-hidden="true"><svg class="arch__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-c" class="mul" width="600" height="600"/></svg><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-heart"/></svg></span>
+                  <span class="arch__name">My Heart</span>
+                </button>
+              </div>
+              <div class="arch__face arch__back" id="strand-summary-heart" data-strand-summary="heart">
+                <svg class="sym arch__sym" aria-hidden="true" focusable="false"><use href="#s-sym-heart"/></svg>
+                <h3 class="arch__title">My Heart</h3>
+                <p class="arch__text">[What you love most, and who you do this work for.]</p>
+                <a class="link-arrow" href="#strand-heart">Read the chapter<span class="vh">: My Heart</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+              </div>
+            </div>
+          </li>
+          <li class="arch" style="--c: var(--sage-green)">
+            <div class="arch__card">
+              <div class="arch__face arch__front">
+                <button class="arch__turn" type="button" data-strand="growth" aria-expanded="false" aria-controls="strand-summary-growth">
+                  <span class="arch__mark" aria-hidden="true"><svg class="arch__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-a" class="mul" width="600" height="600"/></svg><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-growth"/></svg></span>
+                  <span class="arch__name">My Growth</span>
+                </button>
+              </div>
+              <div class="arch__face arch__back" id="strand-summary-growth" data-strand-summary="growth">
+                <svg class="sym arch__sym" aria-hidden="true" focusable="false"><use href="#s-sym-growth"/></svg>
+                <h3 class="arch__title">My Growth</h3>
+                <p class="arch__text">[The seasons that stretched you, and what they taught you.]</p>
+                <a class="link-arrow" href="#strand-growth">Read the chapter<span class="vh">: My Growth</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+              </div>
+            </div>
+          </li>
+          <li class="arch" style="--c: var(--gentle-teal)">
+            <div class="arch__card">
+              <div class="arch__face arch__front">
+                <button class="arch__turn" type="button" data-strand="discovery" aria-expanded="false" aria-controls="strand-summary-discovery">
+                  <span class="arch__mark" aria-hidden="true"><svg class="arch__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-b" class="mul" width="600" height="600"/></svg><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-discovery"/></svg></span>
+                  <span class="arch__name">My Discovery</span>
+                </button>
+              </div>
+              <div class="arch__face arch__back" id="strand-summary-discovery" data-strand-summary="discovery">
+                <svg class="sym arch__sym" aria-hidden="true" focusable="false"><use href="#s-sym-discovery"/></svg>
+                <h3 class="arch__title">My Discovery</h3>
+                <p class="arch__text">[What you found along the way, and how it changed you.]</p>
+                <a class="link-arrow" href="#strand-discovery">Read the chapter<span class="vh">: My Discovery</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+              </div>
+            </div>
+          </li>
+          <li class="arch" style="--c: var(--champagne-gold)">
+            <div class="arch__card">
+              <div class="arch__face arch__front">
+                <button class="arch__turn" type="button" data-strand="becoming" aria-expanded="false" aria-controls="strand-summary-becoming">
+                  <span class="arch__mark" aria-hidden="true"><svg class="arch__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-c" class="mul" width="600" height="600"/></svg><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-becoming"/></svg></span>
+                  <span class="arch__name">My Becoming</span>
+                </button>
+              </div>
+              <div class="arch__face arch__back" id="strand-summary-becoming" data-strand-summary="becoming">
+                <svg class="sym arch__sym" aria-hidden="true" focusable="false"><use href="#s-sym-becoming"/></svg>
+                <h3 class="arch__title">My Becoming</h3>
+                <p class="arch__text">[Who you are becoming now, and where Strands of Grace is headed.]</p>
+                <a class="link-arrow" href="#strand-becoming">Read the chapter<span class="vh">: My Becoming</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </template>
+    <template data-strands-template="pearls">
+      <div class="wrap six-strands__pearls" data-strands="pearls">
+        <header class="six-strands__head six-strands__head--centre">
+          <h2 id="six-strands-title">The six strands of my life</h2>
+          <p class="lead">My life has been woven from six strands. Hover over or tap a strand to see what it holds, then follow it into the full chapter.</p>
+        </header>
+        <div class="pearls">
+          <svg class="pearls__strand" viewBox="0 0 1000 144" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M-70 22C-44 28 30 48 83 56C137 64 194 68 250 72C306 76 361 80 417 82C472 84 528 84 583 82C639 80 694 76 750 72C806 68 863 64 917 56C970 48 1044 28 1070 22" stroke="url(#g-gold-fade)" stroke-width="1.6"/><path d="M-70 27C-44 33 30 53 83 61C137 69 194 73 250 77C306 81 361 85 417 87C472 89 528 89 583 87C639 85 694 81 750 77C806 73 863 69 917 61C970 53 1044 33 1070 27" stroke="url(#g-gold-fade)" stroke-width="0.8" opacity=".7"/></svg>
+          <div class="pearls__list" role="tablist" aria-label="The six strands">
+            <button class="pearl-tab" type="button" role="tab" id="strand-tab-roots" data-strand="roots" aria-selected="true" aria-controls="strand-summary-roots" style="--c: var(--soft-peach); --y: 0px">
+              <span class="pearl-tab__pearl" aria-hidden="true"><svg class="pearl-tab__paint" viewBox="0 0 100 100" focusable="false"><circle cx="50" cy="50" r="41" fill="currentColor" filter="url(#f-drop)"/></svg><span class="pearl-tab__sheen"></span><svg class="sym" focusable="false"><use href="#s-sym-roots"/></svg><svg class="pearl-tab__glint" viewBox="0 0 24 24" focusable="false"><use href="#s-star"/></svg></span>
+              <span class="pearl-tab__name">My Roots</span>
+            </button>
+            <button class="pearl-tab" type="button" role="tab" id="strand-tab-calling" data-strand="calling" aria-selected="false" aria-controls="strand-summary-calling" style="--c: var(--soft-lavender); --y: 16px">
+              <span class="pearl-tab__pearl" aria-hidden="true"><svg class="pearl-tab__paint" viewBox="0 0 100 100" focusable="false"><circle cx="50" cy="50" r="41" fill="currentColor" filter="url(#f-drop)"/></svg><span class="pearl-tab__sheen"></span><svg class="sym" focusable="false"><use href="#s-sym-calling"/></svg><svg class="pearl-tab__glint" viewBox="0 0 24 24" focusable="false"><use href="#s-star"/></svg></span>
+              <span class="pearl-tab__name">My Calling</span>
+            </button>
+            <button class="pearl-tab" type="button" role="tab" id="strand-tab-heart" data-strand="heart" aria-selected="false" aria-controls="strand-summary-heart" style="--c: var(--blush-pink); --y: 26px">
+              <span class="pearl-tab__pearl" aria-hidden="true"><svg class="pearl-tab__paint" viewBox="0 0 100 100" focusable="false"><circle cx="50" cy="50" r="41" fill="currentColor" filter="url(#f-drop)"/></svg><span class="pearl-tab__sheen"></span><svg class="sym" focusable="false"><use href="#s-sym-heart"/></svg><svg class="pearl-tab__glint" viewBox="0 0 24 24" focusable="false"><use href="#s-star"/></svg></span>
+              <span class="pearl-tab__name">My Heart</span>
+            </button>
+            <button class="pearl-tab" type="button" role="tab" id="strand-tab-growth" data-strand="growth" aria-selected="false" aria-controls="strand-summary-growth" style="--c: var(--sage-green); --y: 26px">
+              <span class="pearl-tab__pearl" aria-hidden="true"><svg class="pearl-tab__paint" viewBox="0 0 100 100" focusable="false"><circle cx="50" cy="50" r="41" fill="currentColor" filter="url(#f-drop)"/></svg><span class="pearl-tab__sheen"></span><svg class="sym" focusable="false"><use href="#s-sym-growth"/></svg><svg class="pearl-tab__glint" viewBox="0 0 24 24" focusable="false"><use href="#s-star"/></svg></span>
+              <span class="pearl-tab__name">My Growth</span>
+            </button>
+            <button class="pearl-tab" type="button" role="tab" id="strand-tab-discovery" data-strand="discovery" aria-selected="false" aria-controls="strand-summary-discovery" style="--c: var(--gentle-teal); --y: 16px">
+              <span class="pearl-tab__pearl" aria-hidden="true"><svg class="pearl-tab__paint" viewBox="0 0 100 100" focusable="false"><circle cx="50" cy="50" r="41" fill="currentColor" filter="url(#f-drop)"/></svg><span class="pearl-tab__sheen"></span><svg class="sym" focusable="false"><use href="#s-sym-discovery"/></svg><svg class="pearl-tab__glint" viewBox="0 0 24 24" focusable="false"><use href="#s-star"/></svg></span>
+              <span class="pearl-tab__name">My Discovery</span>
+            </button>
+            <button class="pearl-tab" type="button" role="tab" id="strand-tab-becoming" data-strand="becoming" aria-selected="false" aria-controls="strand-summary-becoming" style="--c: var(--champagne-gold); --y: 0px">
+              <span class="pearl-tab__pearl" aria-hidden="true"><svg class="pearl-tab__paint" viewBox="0 0 100 100" focusable="false"><circle cx="50" cy="50" r="41" fill="currentColor" filter="url(#f-drop)"/></svg><span class="pearl-tab__sheen"></span><svg class="sym" focusable="false"><use href="#s-sym-becoming"/></svg><svg class="pearl-tab__glint" viewBox="0 0 24 24" focusable="false"><use href="#s-star"/></svg></span>
+              <span class="pearl-tab__name">My Becoming</span>
+            </button>
+          </div>
+        </div>
+        <div class="strand-panel pearls__panel" data-strand-panel>
+          <div class="strand-summary" role="tabpanel" id="strand-summary-roots" aria-labelledby="strand-tab-roots" data-strand-summary="roots" style="--c: var(--soft-peach)">
+            <svg class="strand-summary__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-b" class="mul" width="600" height="600"/></svg>
+            <span class="strand-summary__mark" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-roots"/></svg></span>
+            <h3 class="strand-summary__name">My Roots</h3>
+            <p class="strand-summary__colour">Soft Peach</p>
+            <p class="strand-summary__text">[Where you come from: the family, the home and the people who shaped you.]</p>
+            <a class="link-arrow" href="#strand-roots">Read the chapter<span class="vh">: My Roots</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+          </div>
+          <div class="strand-summary" role="tabpanel" id="strand-summary-calling" aria-labelledby="strand-tab-calling" data-strand-summary="calling" style="--c: var(--soft-lavender)">
+            <svg class="strand-summary__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-a" class="mul" width="600" height="600"/></svg>
+            <span class="strand-summary__mark" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-calling"/></svg></span>
+            <h3 class="strand-summary__name">My Calling</h3>
+            <p class="strand-summary__colour">Soft Lavender</p>
+            <p class="strand-summary__text">[The moment you knew this work was yours to do.]</p>
+            <a class="link-arrow" href="#strand-calling">Read the chapter<span class="vh">: My Calling</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+          </div>
+          <div class="strand-summary" role="tabpanel" id="strand-summary-heart" aria-labelledby="strand-tab-heart" data-strand-summary="heart" style="--c: var(--blush-pink)">
+            <svg class="strand-summary__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-c" class="mul" width="600" height="600"/></svg>
+            <span class="strand-summary__mark" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-heart"/></svg></span>
+            <h3 class="strand-summary__name">My Heart</h3>
+            <p class="strand-summary__colour">Blush Pink</p>
+            <p class="strand-summary__text">[What you love most, and who you do this work for.]</p>
+            <a class="link-arrow" href="#strand-heart">Read the chapter<span class="vh">: My Heart</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+          </div>
+          <div class="strand-summary" role="tabpanel" id="strand-summary-growth" aria-labelledby="strand-tab-growth" data-strand-summary="growth" style="--c: var(--sage-green)">
+            <svg class="strand-summary__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-a" class="mul" width="600" height="600"/></svg>
+            <span class="strand-summary__mark" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-growth"/></svg></span>
+            <h3 class="strand-summary__name">My Growth</h3>
+            <p class="strand-summary__colour">Sage Green</p>
+            <p class="strand-summary__text">[The seasons that stretched you, and what they taught you.]</p>
+            <a class="link-arrow" href="#strand-growth">Read the chapter<span class="vh">: My Growth</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+          </div>
+          <div class="strand-summary" role="tabpanel" id="strand-summary-discovery" aria-labelledby="strand-tab-discovery" data-strand-summary="discovery" style="--c: var(--gentle-teal)">
+            <svg class="strand-summary__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-b" class="mul" width="600" height="600"/></svg>
+            <span class="strand-summary__mark" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-discovery"/></svg></span>
+            <h3 class="strand-summary__name">My Discovery</h3>
+            <p class="strand-summary__colour">Gentle Teal</p>
+            <p class="strand-summary__text">[What you found along the way, and how it changed you.]</p>
+            <a class="link-arrow" href="#strand-discovery">Read the chapter<span class="vh">: My Discovery</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+          </div>
+          <div class="strand-summary" role="tabpanel" id="strand-summary-becoming" aria-labelledby="strand-tab-becoming" data-strand-summary="becoming" style="--c: var(--champagne-gold)">
+            <svg class="strand-summary__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-c" class="mul" width="600" height="600"/></svg>
+            <span class="strand-summary__mark" aria-hidden="true"><svg class="drop" focusable="false"><use href="#s-drop"/></svg><svg class="sym" focusable="false"><use href="#s-sym-becoming"/></svg></span>
+            <h3 class="strand-summary__name">My Becoming</h3>
+            <p class="strand-summary__colour">Champagne Gold</p>
+            <p class="strand-summary__text">[Who you are becoming now, and where Strands of Grace is headed.]</p>
+            <a class="link-arrow" href="#strand-becoming">Read the chapter<span class="vh">: My Becoming</span><svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+          </div>
+        </div>
+        <div class="pearls__controls" hidden data-pearls-controls>
+          <button class="btn btn--quiet" type="button" data-pearls-prev><svg class="arrow--back" aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg>Previous</button>
+          <p class="pearls__count"><span data-pearls-current>1</span> of 6</p>
+          <button class="btn btn--quiet" type="button" data-pearls-next>Next<svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></button>
+        </div>
+      </div>
+    </template>
+  </section>
+
+  <section class="section chapters" id="chapters" aria-label="The six chapters">
+    <div class="wrap">
+      <article class="chapter chapter--portrait" id="strand-roots" aria-labelledby="strand-roots-title" style="--c: var(--soft-peach); --c2: var(--blush-pink)">
+        <figure class="chapter__photo">
+          <svg class="chapter__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-b" class="mul" width="600" height="600"/></svg>
+          <div class="frame">
+            <svg class="sym frame__sym" aria-hidden="true" focusable="false"><use href="#s-sym-roots"/></svg>
+          </div>
+          <figcaption>[Photo: a moment from your roots]</figcaption>
+        </figure>
+        <div class="chapter__text">
+          <svg class="sym chapter__sym" aria-hidden="true" focusable="false"><use href="#s-sym-roots"/></svg>
+          <h2 id="strand-roots-title">My Roots</h2>
+          <svg class="swash chapter__swash" viewBox="0 0 400 110" aria-hidden="true" focusable="false"><use href="#s-swash-flourish"/></svg>
+          <p>[Your roots in your own words: the heart of the story.]</p>
+          <p>[What this strand gave you, and how it shows up in your work today.]</p>
+          <a class="link-arrow link-arrow--back" href="#six-strands">Back to the six strands<svg class="arrow--up" aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+        </div>
+      </article>
+      <article class="chapter chapter--landscape" id="strand-calling" aria-labelledby="strand-calling-title" style="--c: var(--soft-lavender); --c2: var(--serenity-blue)">
+        <figure class="chapter__photo">
+          <svg class="chapter__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-a" class="mul" width="600" height="600"/></svg>
+          <div class="frame">
+            <svg class="sym frame__sym" aria-hidden="true" focusable="false"><use href="#s-sym-calling"/></svg>
+          </div>
+          <figcaption>[Photo: a moment from your calling]</figcaption>
+        </figure>
+        <div class="chapter__text">
+          <svg class="sym chapter__sym" aria-hidden="true" focusable="false"><use href="#s-sym-calling"/></svg>
+          <h2 id="strand-calling-title">My Calling</h2>
+          <svg class="swash chapter__swash" viewBox="0 0 400 110" aria-hidden="true" focusable="false"><use href="#s-swash-flourish"/></svg>
+          <p>[Your calling in your own words: the heart of the story.]</p>
+          <p>[What this strand gave you, and how it shows up in your work today.]</p>
+          <a class="link-arrow link-arrow--back" href="#six-strands">Back to the six strands<svg class="arrow--up" aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+        </div>
+      </article>
+      <article class="chapter chapter--portrait" id="strand-heart" aria-labelledby="strand-heart-title" style="--c: var(--blush-pink); --c2: var(--soft-peach)">
+        <figure class="chapter__photo">
+          <svg class="chapter__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-c" class="mul" width="600" height="600"/></svg>
+          <div class="frame">
+            <svg class="sym frame__sym" aria-hidden="true" focusable="false"><use href="#s-sym-heart"/></svg>
+          </div>
+          <figcaption>[Photo: a moment from your heart]</figcaption>
+        </figure>
+        <div class="chapter__text">
+          <svg class="sym chapter__sym" aria-hidden="true" focusable="false"><use href="#s-sym-heart"/></svg>
+          <h2 id="strand-heart-title">My Heart</h2>
+          <svg class="swash chapter__swash" viewBox="0 0 400 110" aria-hidden="true" focusable="false"><use href="#s-swash-flourish"/></svg>
+          <p>[Your heart in your own words: the heart of the story.]</p>
+          <p>[What this strand gave you, and how it shows up in your work today.]</p>
+          <a class="link-arrow link-arrow--back" href="#six-strands">Back to the six strands<svg class="arrow--up" aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+        </div>
+      </article>
+      <article class="chapter chapter--landscape" id="strand-growth" aria-labelledby="strand-growth-title" style="--c: var(--sage-green); --c2: var(--gentle-teal)">
+        <figure class="chapter__photo">
+          <svg class="chapter__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-a" class="mul" width="600" height="600"/></svg>
+          <div class="frame">
+            <svg class="sym frame__sym" aria-hidden="true" focusable="false"><use href="#s-sym-growth"/></svg>
+          </div>
+          <figcaption>[Photo: a moment from your growth]</figcaption>
+        </figure>
+        <div class="chapter__text">
+          <svg class="sym chapter__sym" aria-hidden="true" focusable="false"><use href="#s-sym-growth"/></svg>
+          <h2 id="strand-growth-title">My Growth</h2>
+          <svg class="swash chapter__swash" viewBox="0 0 400 110" aria-hidden="true" focusable="false"><use href="#s-swash-flourish"/></svg>
+          <p>[Your growth in your own words: the heart of the story.]</p>
+          <p>[What this strand gave you, and how it shows up in your work today.]</p>
+          <a class="link-arrow link-arrow--back" href="#six-strands">Back to the six strands<svg class="arrow--up" aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+        </div>
+      </article>
+      <article class="chapter chapter--portrait" id="strand-discovery" aria-labelledby="strand-discovery-title" style="--c: var(--gentle-teal); --c2: var(--soft-lavender)">
+        <figure class="chapter__photo">
+          <svg class="chapter__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-b" class="mul" width="600" height="600"/></svg>
+          <div class="frame">
+            <svg class="sym frame__sym" aria-hidden="true" focusable="false"><use href="#s-sym-discovery"/></svg>
+          </div>
+          <figcaption>[Photo: a moment from your discovery]</figcaption>
+        </figure>
+        <div class="chapter__text">
+          <svg class="sym chapter__sym" aria-hidden="true" focusable="false"><use href="#s-sym-discovery"/></svg>
+          <h2 id="strand-discovery-title">My Discovery</h2>
+          <svg class="swash chapter__swash" viewBox="0 0 400 110" aria-hidden="true" focusable="false"><use href="#s-swash-flourish"/></svg>
+          <p>[Your discovery in your own words: the heart of the story.]</p>
+          <p>[What this strand gave you, and how it shows up in your work today.]</p>
+          <a class="link-arrow link-arrow--back" href="#six-strands">Back to the six strands<svg class="arrow--up" aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+        </div>
+      </article>
+      <article class="chapter chapter--landscape" id="strand-becoming" aria-labelledby="strand-becoming-title" style="--c: var(--champagne-gold); --c2: var(--soft-peach)">
+        <figure class="chapter__photo">
+          <svg class="chapter__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><use href="#s-wash-c" class="mul" width="600" height="600"/></svg>
+          <div class="frame">
+            <svg class="sym frame__sym" aria-hidden="true" focusable="false"><use href="#s-sym-becoming"/></svg>
+          </div>
+          <figcaption>[Photo: a moment from your becoming]</figcaption>
+        </figure>
+        <div class="chapter__text">
+          <svg class="sym chapter__sym" aria-hidden="true" focusable="false"><use href="#s-sym-becoming"/></svg>
+          <h2 id="strand-becoming-title">My Becoming</h2>
+          <svg class="swash chapter__swash" viewBox="0 0 400 110" aria-hidden="true" focusable="false"><use href="#s-swash-flourish"/></svg>
+          <p>[Your becoming in your own words: the heart of the story.]</p>
+          <p>[What this strand gave you, and how it shows up in your work today.]</p>
+          <a class="link-arrow link-arrow--back" href="#six-strands">Back to the six strands<svg class="arrow--up" aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section--cream glance-band" id="glance" aria-labelledby="glance-title" data-reveal>
+    <div class="wrap">
+      <header class="section-head section-head--centre">
+        <h2 id="glance-title">At a glance</h2>
+      </header>
+        <ul class="glance__list" role="list" data-reveal-children>
+          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>Based in [City, State]</li>
+          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Practising since [year]</li>
+          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="11" rx="1.6"/><path d="M9 19.5h6M12 15.5v4"/></svg>Sessions in person and online</li>
+          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg>Works with [who you work with]</li>
+        </ul>
+    </div>
+  </section>
+
+  <section class="section creds" id="credentials" aria-labelledby="credentials-title" data-reveal>
     <div class="washes" aria-hidden="true">
       <div class="bloom bloom--creds drift"></div>
     </div>
     <div class="wrap creds__grid">
-      <div class="creds__list">
-        <h2 id="training-title">Training and qualifications</h2>
+      <div class="creds__intro">
+        <h2 id="credentials-title">Credentials</h2>
+        <p class="creds__advocate"><svg class="sym" aria-hidden="true" focusable="false"><use href="#s-sym-growth"/></svg>doTERRA Wellness Advocate</p>
+        <div class="creds__progress">
+          <svg class="sym creds__moon" aria-hidden="true" focusable="false"><use href="#s-moon"/></svg>
+          <p><strong>In progress:</strong> Sound ceremony certification, completing in July.</p>
+          <a class="link-arrow" href="connect.html#coming-soon">See what’s coming<svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+        </div>
+      </div>
         <ol class="quals" role="list">
           <li><span class="pearl" aria-hidden="true"></span><span class="quals__what">[Certification or training]<span class="vh">,</span></span><span class="quals__who">[Organisation]<span class="vh">,</span></span><span class="quals__when">[Year]</span></li>
           <li><span class="pearl" aria-hidden="true"></span><span class="quals__what">[Certification or training]<span class="vh">,</span></span><span class="quals__who">[Organisation]<span class="vh">,</span></span><span class="quals__when">[Year]</span></li>
           <li><span class="pearl" aria-hidden="true"></span><span class="quals__what">[Certification or training]<span class="vh">,</span></span><span class="quals__who">[Organisation]<span class="vh">,</span></span><span class="quals__when">[Year]</span></li>
           <li><span class="pearl" aria-hidden="true"></span><span class="quals__what">[Certification or training]<span class="vh">,</span></span><span class="quals__who">[Organisation]<span class="vh">,</span></span><span class="quals__when">[Year]</span></li>
         </ol>
-      </div>
-      <section class="glance" aria-labelledby="glance-title">
-        <svg class="glance__wash" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
-          <use href="#s-wash-a" class="c-peach mul" width="600" height="600"/>
-          <use href="#s-wash-c" class="c-blush mul" x="20" y="-40" width="300" height="300" opacity=".8"/>
-        </svg>
-        <h2 id="glance-title">At a glance</h2>
-        <ul role="list">
-          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>Based in [City, State]</li>
-          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Practising since [year]</li>
-          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="11" rx="1.6"/><path d="M9 19.5h6M12 15.5v4"/></svg>Sessions in person and online</li>
-          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg>Works with [who you work with]</li>
-        </ul>
-      </section>
     </div>
   </section>
 
-  <section class="section believe" id="believe" aria-labelledby="believe-title" data-reveal>
+  <section class="section section--blush closing closing--namaste" id="closing" aria-labelledby="closing-title" data-reveal>
     <div class="washes" aria-hidden="true">
-      <div class="bloom bloom--believe drift"></div>
+      <div class="bloom bloom--blush-a drift"></div>
+      <div class="bloom bloom--blush-b drift"></div>
+    </div>
+    <div class="sky closing__sky" aria-hidden="true">
+      <svg class="sky__star" style="--x: 13%; --y: 24%; --s: 12px; --d: -2s; --t: 8s" focusable="false"><use href="#s-star"/></svg>
+      <svg class="sky__star sky__star--wide" style="--x: 22%; --y: 70%; --s: 7px; --d: -5s; --t: 9.5s" focusable="false"><use href="#s-star"/></svg>
+      <svg class="sky__star" style="--x: 86%; --y: 26%; --s: 9px; --d: -1s; --t: 7.5s" focusable="false"><use href="#s-star"/></svg>
+      <svg class="sky__star sky__star--wide" style="--x: 78%; --y: 74%; --s: 14px; --d: -6s; --t: 8.5s" focusable="false"><use href="#s-star"/></svg>
     </div>
     <div class="wrap">
-      <header class="section-head">
-        <h2 id="believe-title">What I believe</h2>
-        <p>A few words from my vision board for this year.</p>
-      </header>
-      <div class="vision-field">
-        <ul class="vision" role="list">
-          <li style="--c: 2 / 5; --r: 1; --s: 2.3rem">Faith</li>
-          <li style="--c: 9 / 12; --r: 1; --s: 2.3rem; --dy: 6px">Breathe</li>
-          <li style="--c: 5 / 9; --r: 1; --s: 3.3rem">Love</li>
-          <li style="--c: 10 / 13; --r: 3; --s: 2rem; --dy: 6px">Mindfulness</li>
-          <li style="--c: 2 / 7; --r: 2; --s: 2.5rem; --dy: -2px">Find joy every day</li>
-          <li style="--c: 8 / 12; --r: 2; --s: 1.9rem; --dy: 4px">Remember to be kind</li>
-          <li style="--c: 4 / 10; --r: 3; --s: 2.8rem">Everything is possible</li>
-          <li style="--c: 2 / 7; --r: 4; --s: 2rem; --dy: -2px">Mind over matter</li>
-          <li style="--c: 1 / 4; --r: 3; --s: 1.9rem">Rise and shine</li>
-          <li style="--c: 7 / 12; --r: 4; --s: 3.2rem">Rediscover you</li>
-        </ul>
-        <div class="vision__pearls" aria-hidden="true">
-          <span class="pearl" style="--x: 35%; --y: 8%"></span>
-          <span class="pearl" style="--x: 65%; --y: 8%"></span>
-          <span class="pearl" style="--x: 55%; --y: 36%"></span>
-          <span class="pearl" style="--x: 27%; --y: 63%"></span>
-          <span class="pearl" style="--x: 74%; --y: 63%"></span>
-          <span class="pearl" style="--x: 50%; --y: 92%"></span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--cream about-quote" id="inhale" aria-label="A quote I keep close" data-reveal>
-    <div class="washes" aria-hidden="true">
-      <div class="bloom bloom--about-quote drift"></div>
-    </div>
-    <div class="wrap">
+      <h2 class="namaste namaste--title" id="closing-title"><svg class="sym namaste__moon" aria-hidden="true" focusable="false"><use href="#s-moon"/></svg><span class="namaste__word">Namaste.</span><svg class="sym namaste__sun" aria-hidden="true" focusable="false"><use href="#s-sun"/></svg></h2>
       <svg class="flourish" viewBox="0 0 600 90" aria-hidden="true" focusable="false"><use href="#s-flourish"/></svg>
-      <figure>
-        <blockquote><p><span>Inhale courage.</span> <span>Exhale fear.</span></p></blockquote>
-      </figure>
+      <p class="closing__light">The light in me honours the light in you.</p>
+      <div class="closing__actions">
+        <a class="link-arrow" href="story.html">Read the story behind Strands of Grace<svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+        <a class="btn btn--bloom" href="connect.html#book">Book a session</a>
+      </div>
     </div>
   </section>
 
-  <section class="section next-steps" id="next" aria-label="Next steps" data-reveal>
-    <div class="wrap next-steps__inner">
-      <a class="link-arrow" href="story.html">Read the story of Strands of Grace<svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
-      <a class="btn btn--bloom" href="work-with-me.html#book">Book a session</a>
-    </div>
-  </section>
-
-  <section class="continue" id="continue" aria-labelledby="continue-eyebrow" data-reveal>
+  <section class="continue" id="continue" aria-labelledby="continue-eyebrow" data-reveal data-continue>
     <div class="wrap continue__inner">
       <svg class="continue__strand" viewBox="0 0 400 40" aria-hidden="true" focusable="false">
         <path d="M0 26C90 12 150 32 200 24C250 16 310 6 400 20" fill="none" stroke="url(#g-gold-fade)" stroke-width="1.4" vector-effect="non-scaling-stroke"/>
@@ -372,20 +971,22 @@
       <div class="site-footer__brand">
         <a class="site-footer__logo" href="index.html"><img src="assets/brand/sog-logo-800.webp" srcset="assets/brand/sog-logo-800.webp 800w, assets/brand/sog-logo.webp 1600w" sizes="336px" width="1600" height="583" alt="Strands of Grace, home" loading="lazy" decoding="async"></a>
         <p class="site-footer__tagline">Your journey begins with you.</p>
-        <p class="site-footer__sign">with love, Lisa</p>
+        <p class="site-footer__sign"><svg class="sym site-footer__moon" aria-hidden="true" focusable="false"><use href="#s-moon"/></svg>Namaste.</p>
       </div>
       <nav class="site-footer__nav" aria-label="Footer">
         <ul role="list">
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html" aria-current="page">About Me</a></li>
           <li><a href="story.html">Our Story</a></li>
-          <li><a href="work-with-me.html">Work With Me</a></li>
-          <li><a href="work-with-me.html#book">Book a session</a></li>
+          <li><a href="philosophy.html">Philosophy</a></li>
+          <li><a href="explore.html">Explore</a></li>
+          <li><a href="connect.html">Stay Connected</a></li>
+          <li><a href="connect.html#book">Book a session</a></li>
         </ul>
       </nav>
       <div class="site-footer__contact">
         <ul role="list">
-          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4.5 7 7.5 6 7.5-6"/></svg>Email address to come</li>
+          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4.5 7 7.5 6 7.5-6"/></svg><a href="mailto:lisa@mystrandsofgrace.com">lisa@mystrandsofgrace.com</a></li>
           <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.9" cy="7.1" r=".6"/></svg>Instagram to come</li>
           <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>[City, State] and online</li>
         </ul>
@@ -393,6 +994,7 @@
       </div>
     </div>
     <div class="site-footer__base">
+      <p class="site-footer__creds">doTERRA Wellness Advocate · [Certification] · [Certification]</p>
       <p>© 2026 Strands of Grace, Lisa Brunson</p>
     </div>
   </div>
@@ -400,7 +1002,7 @@
 
 <!-- Phones only: a booking bar once past the hero, hidden at the form and the footer. -->
 <div class="phone-bar" data-phone-bar hidden>
-  <a class="btn btn--bloom phone-bar__btn" href="work-with-me.html#book">Book a session</a>
+  <a class="btn btn--bloom phone-bar__btn" href="connect.html#book">Book a session</a>
 </div>
 <button class="to-top" type="button" aria-label="Back to top" hidden data-to-top>
   <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>

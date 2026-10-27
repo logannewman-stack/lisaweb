@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wellness Philosophy | Strands of Grace</title>
+<meta name="description" content="Strands of Grace with Lisa Brunson: sound, ceremony and gentle guidance for the journey back to yourself.">
+<link rel="canonical" href="https://www.mystrandsofgrace.com/philosophy.html">
+<meta property="og:title" content="Wellness Philosophy | Strands of Grace">
+<meta property="og:description" content="Strands of Grace with Lisa Brunson: sound, ceremony and gentle guidance for the journey back to yourself.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Strands of Grace">
+<meta property="og:image" content="https://www.mystrandsofgrace.com/assets/brand/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Strands of Grace logo: a watercolour lotus with a strand of pearls">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFDF8">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/brand/icon-192.png">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Nunito+Sans:ital,opsz,wght@0,6..12,300..700;1,6..12,300..700&family=Pinyon+Script&display=swap">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/site.css">
+<script>
+/* Before anything paints: mark that scripts run, and apply the previews
+   (?ink=charcoal|plum for heading colour, ?tagline=1|2 for the story line,
+   ?strands=tree|arches|pearls for the six strands on About Me).
+   A choice in the address is remembered for the visit (sessionStorage). */
+(function (c) {
+  c.add('js');
+  var q = null, s = null;
+  try { q = new URLSearchParams(location.search); } catch (e) {}
+  try { s = window.sessionStorage; } catch (e) {}
+  var pick = function (key, allowed) {
+    var v = q && q.get(key);
+    if (allowed.indexOf(v) !== -1) { try { s.setItem('sog-' + key, v); } catch (e) {} return v; }
+    try { return s.getItem('sog-' + key); } catch (e) { return null; }
+  };
+  if (pick('ink', ['plum', 'charcoal']) === 'charcoal') c.add('ink-charcoal');
+  if (pick('tagline', ['1', '2']) === '2') c.add('tagline-2');
+  var strands = pick('strands', ['tree', 'arches', 'pearls']);
+  if (strands === 'arches' || strands === 'pearls') c.add('strands-' + strands);
+})(document.documentElement.classList);
+</script>
+<script src="js/site.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Shared drawing kit: petal mask, watercolour filters, washes, strokes, drops, swashes, pearls, bottles.
+     The same on every page: change every copy. -->
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="g-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#D9B96B"/>
+      <stop offset=".5" stop-color="#E6CC8A"/>
+      <stop offset="1" stop-color="#C9A24E"/>
+    </linearGradient>
+    <linearGradient id="g-gold-h" x1="0" y1="0" x2="600" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D9B96B" stop-opacity="0"/>
+      <stop offset=".2" stop-color="#D9B96B"/>
+      <stop offset=".5" stop-color="#E6CC8A"/>
+      <stop offset=".8" stop-color="#C9A24E"/>
+      <stop offset="1" stop-color="#C9A24E" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="g-gold-fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#D9B96B" stop-opacity="0"/>
+      <stop offset=".16" stop-color="#D9B96B"/>
+      <stop offset=".5" stop-color="#E2C47E"/>
+      <stop offset=".84" stop-color="#C9A24E"/>
+      <stop offset="1" stop-color="#C9A24E" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="g-gold-v" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#D9B96B" stop-opacity="0"/>
+      <stop offset=".05" stop-color="#D9B96B"/>
+      <stop offset=".5" stop-color="#E2C47E"/>
+      <stop offset=".95" stop-color="#C9A24E"/>
+      <stop offset="1" stop-color="#C9A24E" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="g-pearl" cx=".34" cy=".3" r=".8">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset=".28" stop-color="#FDF3ED"/>
+      <stop offset=".62" stop-color="#F1DBD0"/>
+      <stop offset="1" stop-color="#D8BBA8"/>
+    </radialGradient>
+    <clipPath id="clip-petal" clipPathUnits="objectBoundingBox">
+      <path d="M.5 0C.41 .1 0 .22 0 .53C0 .8 .225 1 .5 1C.775 1 1 .8 1 .53C1 .22 .59 .1 .5 0Z"/>
+    </clipPath>
+    <!-- Watercolour wash: a ragged wet edge, pigment pooled darker along the rim,
+         a mottled granulated body and a soft bleed beyond the edge. -->
+    <filter id="f-paint" x="-22%" y="-22%" width="144%" height="144%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="3" seed="7" result="warp"/>
+      <feDisplacementMap in="SourceGraphic" in2="warp" scale="46" xChannelSelector="R" yChannelSelector="G" result="shape"/>
+      <feMorphology in="shape" operator="erode" radius="11" result="core"/>
+      <feGaussianBlur in="core" stdDeviation="9" result="coreSoft"/>
+      <feComposite in="shape" in2="coreSoft" operator="arithmetic" k2="1" k3="-1" result="rimA"/>
+      <feColorMatrix in="rimA" type="saturate" values="1.5" result="rimS"/>
+      <feColorMatrix in="rimS" type="matrix" values=".74 0 0 0 0  0 .74 0 0 0  0 0 .78 0 0  0 0 0 .95 0" result="rim"/>
+      <feComponentTransfer in="shape" result="bodyFlat"><feFuncA type="linear" slope=".52"/></feComponentTransfer>
+      <feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="2" seed="3" result="gran"/>
+      <feColorMatrix in="gran" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -.85 1.3" result="granA"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".008" numOctaves="1" seed="11" result="mottle"/>
+      <feColorMatrix in="mottle" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1 1.4" result="mottleA"/>
+      <feComposite in="granA" in2="mottleA" operator="arithmetic" k1="1" result="texture"/>
+      <feMerge result="paint"><feMergeNode in="bodyFlat"/><feMergeNode in="rim"/></feMerge>
+      <feComposite in="paint" in2="texture" operator="in" result="textured"/>
+      <feGaussianBlur in="shape" stdDeviation="14" result="bleedBlur"/>
+      <feComponentTransfer in="bleedBlur" result="bleed"><feFuncA type="linear" slope=".16"/></feComponentTransfer>
+      <feMerge><feMergeNode in="bleed"/><feMergeNode in="textured"/></feMerge>
+    </filter>
+    <!-- A loaded flat brush dragged across the paper: bristle streaks and a pooled lower edge. -->
+    <filter id="f-stroke" x="-10%" y="-40%" width="120%" height="180%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".02 .05" numOctaves="3" seed="5" result="warp"/>
+      <feDisplacementMap in="SourceGraphic" in2="warp" scale="22" xChannelSelector="R" yChannelSelector="G" result="shape"/>
+      <feMorphology in="shape" operator="erode" radius="5" result="core"/>
+      <feGaussianBlur in="core" stdDeviation="6" result="coreSoft"/>
+      <feComposite in="shape" in2="coreSoft" operator="arithmetic" k2="1" k3="-1" result="rimA"/>
+      <feColorMatrix in="rimA" type="saturate" values="1.45" result="rimS"/>
+      <feColorMatrix in="rimS" type="matrix" values=".76 0 0 0 0  0 .76 0 0 0  0 0 .8 0 0  0 0 0 .9 0" result="rim"/>
+      <feComponentTransfer in="shape" result="bodyFlat"><feFuncA type="linear" slope=".58"/></feComponentTransfer>
+      <feTurbulence type="fractalNoise" baseFrequency=".004 .09" numOctaves="2" seed="2" result="streak"/>
+      <feColorMatrix in="streak" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -.9 1.35" result="streakA"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".06" numOctaves="2" seed="3" result="gran"/>
+      <feColorMatrix in="gran" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -.7 1.2" result="granA"/>
+      <feComposite in="streakA" in2="granA" operator="arithmetic" k1="1" result="texture"/>
+      <feMerge result="paint"><feMergeNode in="bodyFlat"/><feMergeNode in="rim"/></feMerge>
+      <feComposite in="paint" in2="texture" operator="in" result="textured"/>
+      <feGaussianBlur in="shape" stdDeviation="8" result="bleedBlur"/>
+      <feComponentTransfer in="bleedBlur" result="bleed"><feFuncA type="linear" slope=".14"/></feComponentTransfer>
+      <feMerge><feMergeNode in="bleed"/><feMergeNode in="textured"/></feMerge>
+    </filter>
+    <!-- Small drops: the same character at a small size (the seven colours, emblems, labels). -->
+    <filter id="f-drop" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="2" seed="5" result="warp"/>
+      <feDisplacementMap in="SourceGraphic" in2="warp" scale="9" xChannelSelector="R" yChannelSelector="G" result="shape"/>
+      <feMorphology in="shape" operator="erode" radius="2.2" result="core"/>
+      <feGaussianBlur in="core" stdDeviation="2.4" result="coreSoft"/>
+      <feComposite in="shape" in2="coreSoft" operator="arithmetic" k2="1" k3="-1" result="rimA"/>
+      <feColorMatrix in="rimA" type="saturate" values="1.45" result="rimS"/>
+      <feColorMatrix in="rimS" type="matrix" values=".76 0 0 0 0  0 .76 0 0 0  0 0 .8 0 0  0 0 0 .92 0" result="rim"/>
+      <feComponentTransfer in="shape" result="bodyFlat"><feFuncA type="linear" slope=".6"/></feComponentTransfer>
+      <feTurbulence type="fractalNoise" baseFrequency=".2" numOctaves="2" seed="3" result="gran"/>
+      <feColorMatrix in="gran" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -.7 1.22" result="granA"/>
+      <feMerge result="paint"><feMergeNode in="bodyFlat"/><feMergeNode in="rim"/></feMerge>
+      <feComposite in="paint" in2="granA" operator="in" result="textured"/>
+      <feGaussianBlur in="shape" stdDeviation="4" result="bleedBlur"/>
+      <feComponentTransfer in="bleedBlur" result="bleed"><feFuncA type="linear" slope=".18"/></feComponentTransfer>
+      <feMerge><feMergeNode in="bleed"/><feMergeNode in="textured"/></feMerge>
+    </filter>
+    <!-- Fades for the washes: each mask keeps one side crisp and lets the other
+         dissolve, like wet-in-wet paint. Named for the crisp side. -->
+    <linearGradient id="g-fade-tl" x1="0" y1="0" x2="1" y2="1"><stop offset=".2" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".7"/><stop offset=".85" stop-color="#fff" stop-opacity=".1"/></linearGradient>
+    <linearGradient id="g-fade-br" x1="1" y1="1" x2="0" y2="0"><stop offset=".2" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".7"/><stop offset=".85" stop-color="#fff" stop-opacity=".1"/></linearGradient>
+    <linearGradient id="g-fade-bl" x1="0" y1="1" x2="1" y2="0"><stop offset=".2" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".7"/><stop offset=".85" stop-color="#fff" stop-opacity=".1"/></linearGradient>
+    <linearGradient id="g-fade-tr" x1="1" y1="0" x2="0" y2="1"><stop offset=".2" stop-color="#fff"/><stop offset=".55" stop-color="#fff" stop-opacity=".7"/><stop offset=".85" stop-color="#fff" stop-opacity=".1"/></linearGradient>
+    <mask id="m-fade-tl" maskContentUnits="objectBoundingBox" x="-.4" y="-.4" width="1.8" height="1.8"><rect x="-.4" y="-.4" width="1.8" height="1.8" fill="url(#g-fade-tl)"/></mask>
+    <mask id="m-fade-br" maskContentUnits="objectBoundingBox" x="-.4" y="-.4" width="1.8" height="1.8"><rect x="-.4" y="-.4" width="1.8" height="1.8" fill="url(#g-fade-br)"/></mask>
+    <mask id="m-fade-bl" maskContentUnits="objectBoundingBox" x="-.4" y="-.4" width="1.8" height="1.8"><rect x="-.4" y="-.4" width="1.8" height="1.8" fill="url(#g-fade-bl)"/></mask>
+    <mask id="m-fade-tr" maskContentUnits="objectBoundingBox" x="-.4" y="-.4" width="1.8" height="1.8"><rect x="-.4" y="-.4" width="1.8" height="1.8" fill="url(#g-fade-tr)"/></mask>
+    <!-- Wash silhouettes, painted with #f-paint. Layer two or three in different
+         colours with class="mul" and new colours appear where they meet. -->
+    <symbol id="s-wash-a" viewBox="0 0 1000 1000" overflow="visible"><path d="M838 377C883 494 832 477 772 627C711 776 760 824 637 876C513 928 472 886 361 799C249 712 327 723 265 586C204 448 120 461 156 339C191 218 244 211 384 181C524 150 486 178 623 237C759 296 793 260 838 377Z" fill="currentColor" filter="url(#f-paint)"/></symbol>
+    <symbol id="s-wash-b" viewBox="0 0 1000 1000" overflow="visible"><path d="M914 573C892 671 785 623 661 692C537 760 623 768 500 800C377 832 347 872 249 799C152 726 157 680 175 557C193 435 249 509 309 390C370 271 278 244 377 162C476 79 533 54 640 115C747 176 652 228 734 365C816 502 936 475 914 573Z" fill="currentColor" filter="url(#f-paint)"/></symbol>
+    <symbol id="s-wash-c" viewBox="0 0 1000 1000" overflow="visible"><path d="M746 672C657 802 651 841 521 839C392 838 413 785 315 668C216 551 193 597 194 450C195 303 196 240 319 177C442 114 456 172 606 241C755 309 774 277 817 407C859 536 834 542 746 672Z" fill="currentColor" filter="url(#f-paint)"/></symbol>
+    <symbol id="s-stroke" viewBox="0 0 600 140" overflow="visible">
+      <path d="M0 66C40 28 120 18 220 24C330 30 440 18 600 36L600 102C540 112 480 124 400 118C330 112 300 130 230 122C150 114 70 118 0 74Z" fill="currentColor" filter="url(#f-stroke)"/>
+    </symbol>
+    <symbol id="s-drop" viewBox="0 0 100 100" overflow="visible">
+      <path d="M51 12C71 13 88 30 85 53C82 76 65 88 47 87C26 86 12 71 15 49C18 27 33 11 51 12Z" fill="currentColor" filter="url(#f-drop)"/>
+    </symbol>
+    <symbol id="s-petal" viewBox="0 0 100 100" overflow="visible">
+      <path d="M50 2C64 24 94 42 94 68C94 88 74 98 50 98C26 98 6 88 6 68C6 42 36 24 50 2Z" fill="currentColor"/>
+      <path d="M50 2C64 24 94 42 94 68C94 88 74 98 50 98C26 98 6 88 6 68C6 42 36 24 50 2Z" fill="none" stroke="#D9B96B" stroke-opacity=".6" stroke-width="1" vector-effect="non-scaling-stroke"/>
+      <path d="M50 14C50 40 50 66 50 90" fill="none" stroke="#FFFDF8" stroke-opacity=".7" stroke-width="1" vector-effect="non-scaling-stroke"/>
+    </symbol>
+    <symbol id="s-pearl" viewBox="0 0 24 24" overflow="visible">
+      <ellipse cx="12" cy="21" rx="7.5" ry="2.2" fill="#574467" opacity=".16"/>
+      <circle cx="12" cy="12" r="9" fill="url(#g-pearl)" stroke="#C9A24E" stroke-opacity=".75" stroke-width=".9"/>
+      <path d="M6 16.5A7.2 7.2 0 0 0 17.4 17" fill="none" stroke="#FFFFFF" stroke-opacity=".8" stroke-width="1.1" stroke-linecap="round"/>
+      <circle cx="9" cy="8.4" r="2.1" fill="#FFFFFF" opacity=".95"/>
+    </symbol>
+    <symbol id="s-flourish" viewBox="0 0 600 90" overflow="visible">
+      <g fill="none" stroke="url(#g-gold-h)" stroke-width="1.4" stroke-linecap="round">
+        <path vector-effect="non-scaling-stroke" d="M284 45C250 45 230 30 196 30C150 30 140 64 172 66C200 68 196 40 160 40C110 40 60 60 6 50"/>
+        <path vector-effect="non-scaling-stroke" d="M316 45C350 45 370 60 404 60C450 60 460 26 428 24C400 22 404 50 440 50C490 50 540 30 594 40"/>
+      </g>
+      <use href="#s-pearl" x="290" y="35" width="20" height="20"/>
+    </symbol>
+    <symbol id="s-swash-long" viewBox="0 0 1000 260" overflow="visible"><path d="M0 150.1L51.8 133.3L74.9 126.6L98.5 120.6L130.7 113.2L155.5 108.3L180.8 104.1L206.5 100.7L232.7 98L259.3 96.2L286.2 95.2L313.4 95.1L340.9 95.8L368.7 97.4L415.4 102.2L443.7 106.4L472 111.5L500.4 117.7L536.9 127L558.8 133.9L578.9 141.6L597.1 149.8L617.2 160.7L634 171.8L644.4 181.3L653.8 192.8L657.4 199.3L659.3 205.3L659.6 210.4L658.7 214.4L656.3 218.6L653.3 221.7L648.6 224.7L641.9 227.4L636.9 228.7L629.9 229.4L623.8 229.2L618.2 228.3L613.3 226.6L610.9 224.3L608 218.6L606.7 212.7L606.9 204.8L608.5 198.1L611.3 191L614.4 185.7L619.8 178.6L624.9 173.4L630.8 168.4L637.8 163.8L645.7 159.7L654.5 156L660.9 154L681 149.7L728.2 141.2L857.7 122.5L928.5 111.1L976.2 101.9L994.1 97.8L1000 95.9L915.9 108L827.8 119.2L737.8 131.9L705.6 137.1L674.4 142.9L655.4 146.9L645.2 150.2L636 154.2L627.7 158.9L620.5 164.2L612.3 171.9L607.4 178.2L602.5 186.9L599.5 195.7L598.5 202.2L598.8 208.5L600.2 214.3L602.8 219.4L607.8 224.8L616.8 231.6L622.7 234.3L629.7 235.8L640.7 235.8L646.8 234.6L654.7 231.9L659.1 229.5L662.7 226.4L665.5 222.7L667.2 218.5L667.8 214.1L666.8 207.6L665.1 203.3L661.6 197L656.8 190.6L650.7 184.1L643.4 177.4L631.8 168.3L614.7 156.4L598.5 147.1L580.3 138.3L560.1 130.1L538.2 122.6L501.6 112.8L473.1 106.4L444.6 101L416.2 96.5L387.9 93.1L359.8 90.6L332 89L304.3 88.3L277 88.6L249.9 89.6L223.3 91.6L188.3 95.4L162.6 99.2L137.4 103.7L112.7 109.1L88.7 115.6L57.7 125.4L35.2 133.7L13.6 142.8L0 149.9Z" fill="url(#g-gold)"/></symbol>
+    <symbol id="s-swash-long-r" viewBox="0 0 1000 260" overflow="visible"><path d="M1000 149.9L986.3 143L964.6 134.1L942.2 125.9L911.2 116.2L887.2 109.7L862.6 104.1L837.4 99.2L811.7 95.4L776.7 91.6L750.1 89.6L723 88.6L695.7 88.3L668 89L640.2 90.6L612.1 93.1L583.8 96.5L555.4 101L526.9 106.4L498.4 112.8L461.8 122.6L439.9 130.1L419.7 138.3L401.5 147.1L385.3 156.4L368.2 168.3L356.6 177.4L349.3 184.1L343.2 190.6L338.4 197L334.9 203.3L333.2 207.6L332.2 214.1L332.8 218.5L334.5 222.7L337.3 226.4L340.9 229.5L345.3 231.9L353.2 234.6L359.3 235.8L370.3 235.8L377.3 234.3L383.2 231.6L392.2 224.8L397.2 219.4L399.8 214.3L401.2 208.5L401.5 202.2L400.5 195.7L397.5 186.9L392.6 178.2L387.7 171.9L379.5 164.2L372.3 158.9L364 154.2L354.8 150.2L344.6 146.9L325.6 142.9L294.4 137.1L262.2 131.9L206.5 123.9L0 95.9L5.9 97.9L29.7 103.5L83.3 113.7L118.7 119.5L222.4 133.7L271.8 141.2L319 149.7L339.1 154L345.5 156L354.3 159.7L362.2 163.8L369.2 168.4L375.1 173.4L380.2 178.6L385.6 185.7L388.7 191L391.5 198.1L393.1 204.8L393.3 212.7L392 218.6L389.1 224.3L386.7 226.6L381.8 228.3L376.2 229.2L370.1 229.4L363.1 228.7L358.1 227.4L351.4 224.7L346.7 221.7L343.7 218.6L341.3 214.4L340.4 210.4L340.7 205.3L342.6 199.3L346.2 192.8L355.6 181.3L366 171.8L382.8 160.7L402.9 149.8L421.1 141.6L441.2 133.9L463.1 127L499.6 117.7L528 111.5L556.3 106.4L584.6 102.2L631.3 97.4L659.1 95.8L686.6 95.1L713.8 95.2L740.7 96.2L767.3 98L793.5 100.7L819.2 104.1L852.9 109.6L877.5 114.4L901.7 119.9L925.3 126.1L948.3 132.8L1000 150.1Z" fill="url(#g-gold)"/></symbol>
+    <symbol id="s-swash-flourish" viewBox="0 0 400 110" overflow="visible"><path d="M400 39.9L375.4 34.7L341.6 29.2L299.3 24.8L263.2 22.5L228.7 21.8L199.9 22.7L172.4 25.2L146.4 29.3L135.9 31.5L123.4 35.2L115 38.5L104.9 43.3L96.3 48.5L89.2 54.1L83.6 60L79.5 66L77.3 72.1L77.1 76.7L78.2 80.8L81.5 85.1L88 90.3L94.2 93.2L102.3 94.8L114.5 94.9L120.4 94L125.5 92.5L129.9 90.4L133.4 87.5L135.8 84L136.8 80L136.7 76L135.5 72.2L133.6 68.6L130.1 64.2L117.5 53.5L110.9 49.5L105.2 46.9L92.3 43L80.1 41.3L69.8 41.6L56.8 43.2L43.1 46.4L30.6 50.7L18 56.7L7.1 63.6L0 69.9L23.2 58.2L34.7 53.9L45.8 50.7L59.2 48.2L71.8 47L82.3 46.7L93.7 47.9L107.8 51.6L119.3 57.2L122.1 59L125.4 62.4L129.5 69.3L130.4 72.5L130.4 76.3L129.2 79.8L126.9 82.8L123.7 85.2L120.1 86.9L115.4 88.3L109.3 89.2L102.6 89.5L95.2 89L88 87.3L85.6 86.3L84.8 85.4L83.3 80.5L84.1 75L87.1 68.6L92 62.5L97.5 57.4L104.5 52.3L113 47.5L120.4 44L131.5 39.9L140.8 37.2L162.1 33L184.6 30L208.3 28.1L233 27.4L258.7 27.7L280.8 28.7L308.1 30.7L400 40.1Z" fill="url(#g-gold)"/></symbol>
+    <symbol id="s-swash-arc" viewBox="0 0 600 760" overflow="visible"><path d="M330 -0.1L316.6 2L296.6 7L276.6 13.4L256.7 21.2L236.9 30.3L223.9 37L211.2 44.6L192.4 57L174.2 70.7L162.4 80.5L145.2 96.2L134.2 107.3L118.3 125L108.3 137.6L94.1 157.3L85.2 171.2L72.8 193L65.3 208.2L58.3 223.9L52 240.2L43.6 265.6L38.9 283.2L34.9 301.3L31.7 320L29.3 339.1L27.9 358.1L27.4 377L27.8 395.6L29.1 414L31.3 432.1L34.3 449.9L38.1 467.3L42.9 484.4L48.4 501.1L54.8 517.4L62 533.2L70 548.5L78.8 563.4L88.4 577.6L98.8 591.3L121.3 617.4L133.7 629.6L146.8 641.1L160.7 652L175.3 662.2L190.7 671.6L206.9 680.3L223.8 688.1L241.4 695.1L259.8 701.3L278.9 706.5L308.8 712.6L348.8 717.7L370.8 721.3L394 726.6L413.6 732.4L433.3 740.4L441.7 745L447.2 748.8L447.5 750.8L446.9 752.1L445.7 752.2L445.2 751.5L443.5 752.6L439.9 753.6L430.2 754.3L420.5 753.6L414.6 752.2L411 750.5L410.1 749.7L409.4 746.2L409.8 742L411.5 736.6L414.9 730.7L418.8 725.7L428.5 717.2L435.5 712.9L441.4 710L454.8 705.5L467.3 703.5L482.3 703.5L499.5 704.9L516.4 707.6L532.9 711.4L550.9 717L567.7 723.5L583.1 730.7L600 739.9L585.5 730.5L566.6 720.6L547.5 712.6L529.2 706.4L510.1 701.5L490.2 698.2L470 696.6L455.9 697.2L447.9 698.7L440.4 700.8L433.4 703.6L425 708.2L419.5 712.1L413.1 717.9L408.2 724.2L405.4 729.1L403.7 734.1L403.1 739L403.8 743.7L405.8 747.7L408.9 750.7L411.4 754.3L415.4 757.6L420.7 760L427.4 761.4L439 761.9L447.6 760.7L450.4 759.4L452.6 757.1L453.3 755.6L453 752.4L445 743.4L440.8 739.9L431.1 734.2L418.3 728.4L395.6 720.8L372.1 715L349.8 711L299.8 704.4L270.8 698.2L243.3 689.9L217.3 679.8L192.8 667.9L177.4 658.9L162.7 649.3L141.9 633.4L129 621.9L116.8 609.8L105.4 597L100.1 590.3L90.2 576.4L81 562L68.8 539.5L61.6 523.9L55.3 507.9L49.8 491.5L45.1 474.7L39.6 448.9L36.9 431.3L34.6 404.4L34 386.2L34.4 367.8L35.6 349.2L37.7 330.5L40.7 311.9L44.5 293.9L51.5 267.9L56.9 251.3L63 235.1L69.7 219.5L80.7 197.1L88.7 182.9L101.7 162.5L110.9 149.5L125.5 131.1L135.8 119.4L151.8 103L162.9 92.6L180.1 78.1L191.9 69.1L210 56.5L234.7 41.4L253.5 31.1L266.1 24.9L285.3 16.4L304.5 9L330 0.1Z" fill="url(#g-gold)"/></symbol>
+    <symbol id="s-swash-arc-r" viewBox="0 0 600 760" overflow="visible"><path d="M270 0.1L295.5 9L314.7 16.4L333.9 24.9L346.5 31.1L365.3 41.4L390 56.5L408.1 69.1L419.9 78.1L437.1 92.6L448.2 103L464.2 119.4L474.5 131.1L489.1 149.5L498.3 162.5L511.3 182.9L519.3 197.1L530.3 219.5L537 235.1L543.1 251.3L548.5 267.9L555.5 293.9L559.3 311.9L562.3 330.5L564.4 349.2L565.6 367.8L566 386.2L565.4 404.4L563.1 431.3L560.4 448.9L554.9 474.7L550.2 491.5L544.7 507.9L538.4 523.9L531.2 539.5L519 562L509.8 576.4L499.9 590.3L494.6 597L483.2 609.8L471 621.9L458.1 633.4L437.3 649.3L422.6 658.9L407.2 667.9L382.7 679.8L356.7 689.9L329.2 698.2L300.2 704.4L250.2 711L227.9 715L204.4 720.8L181.7 728.4L168.9 734.2L159.2 739.9L155 743.4L147 752.4L146.7 755.6L147.4 757.1L149.6 759.4L152.4 760.7L161 761.9L172.6 761.4L179.3 760L184.6 757.6L188.6 754.3L191.1 750.7L194.2 747.7L196.2 743.7L196.9 739L196.3 734.1L194.6 729.1L191.8 724.2L186.9 717.9L180.5 712.1L175 708.2L166.6 703.6L159.6 700.8L152.1 698.7L144.1 697.2L130 696.6L109.8 698.2L89.9 701.5L70.8 706.4L52.5 712.6L33.4 720.6L14.5 730.5L0 739.9L16.9 730.7L32.3 723.5L49.1 717L67.1 711.4L83.6 707.6L100.5 704.9L117.7 703.5L132.7 703.5L145.2 705.5L158.6 710L164.5 712.9L171.5 717.2L181.2 725.7L185.1 730.7L188.5 736.6L190.2 742L190.6 746.2L189.9 749.7L189 750.5L185.4 752.2L179.5 753.6L169.8 754.3L160.1 753.6L156.5 752.6L154.8 751.5L154.3 752.2L153.1 752.1L152.5 750.8L152.8 748.8L158.3 745L166.7 740.4L186.4 732.4L206 726.6L229.2 721.3L251.2 717.7L291.2 712.6L321.1 706.5L340.2 701.3L358.6 695.1L376.2 688.1L393.1 680.3L409.3 671.6L424.7 662.2L439.3 652L453.2 641.1L466.3 629.6L478.7 617.4L501.2 591.3L511.6 577.6L521.2 563.4L530 548.5L538 533.2L545.2 517.4L551.6 501.1L557.1 484.4L561.9 467.3L565.7 449.9L568.7 432.1L570.9 414L572.2 395.6L572.6 377L572.1 358.1L570.7 339.1L568.3 320L565.1 301.3L561.1 283.2L556.4 265.6L548 240.2L541.7 223.9L534.7 208.2L527.2 193L514.8 171.2L505.9 157.3L491.7 137.6L481.7 125L465.8 107.3L454.8 96.2L437.6 80.5L425.8 70.7L407.6 57L388.8 44.6L376.1 37L363.1 30.3L343.3 21.2L323.4 13.4L303.4 7L283.4 2L270 -0.1Z" fill="url(#g-gold)"/></symbol>
+    <symbol id="s-swash-wave" viewBox="0 0 900 130" overflow="visible"><path d="M0 70.1L55.7 60.3L87.2 55.5L132 49.7L170.7 46L209.6 44L241.9 43.5L280.3 44.5L312 46.7L349.2 51.1L385.4 57.4L404.2 62.8L413.8 66.7L422.4 71L429.8 75.7L438.2 83.8L442.7 90.4L444.2 94L444.7 97.3L443.7 101.7L441.7 104.4L439.6 106.1L433.3 108.4L425 109.3L419.5 109L415.9 108.2L414.4 106.5L413.2 102.6L413.4 96.9L414.9 91.7L417.9 85.9L421.5 81L426.4 76.1L430.9 72.6L442.1 66.2L456.2 61.4L470.2 59.1L510.4 58.1L553 58.8L597.4 60.7L726.6 67.9L786 69.7L821.7 69L855.9 66.9L881.7 63.8L894 61.6L900 59.9L848.9 63.6L821.6 64.4L793.3 64.3L719.3 62.1L597.7 55.3L545.9 53L496.6 52.3L469.8 52.9L460.5 53.6L451.9 55.1L444 57.2L436.7 59.9L428.1 64.3L422.5 68L416.2 73.6L412.4 78L408.5 84.2L406.3 90.6L405.7 95.2L406.7 101.1L408.7 104.7L411.7 107.5L419.7 112.9L424.4 114.5L430.2 115.1L439.6 114.2L444.3 112.8L447 111.3L449.3 109.3L451 106.8L451.9 104L451.9 99.8L449.5 93.2L443.8 85.7L435.7 78.3L423.4 69.4L414.9 64.4L405.4 59.8L394.9 55.8L386.4 53.2L356.1 47.3L318.8 42.2L280.6 39L235.4 37.7L196.4 38.4L150.8 41.3L105.5 46.4L73.6 51.7L30 61.1L11.8 66L0 69.9Z" fill="url(#g-gold)"/></symbol>
+    <symbol id="s-arrow" viewBox="0 0 24 24">
+      <path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="s-external" viewBox="0 0 24 24">
+      <path d="M8 16 16.5 7.5M9.5 7h7.5v7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <!-- An oil bottle: plum cap, gold collar, ivory glass and a label painted in the oil's colour. -->
+    <symbol id="s-bottle" viewBox="0 0 60 112" overflow="visible">
+      <rect x="18" y="1" width="24" height="29" rx="4.5" fill="#574467"/>
+      <path d="M22.5 7v18M27 7v18M31.5 7v18M36 7v18" stroke="#FFFDF8" stroke-opacity=".2" stroke-width="1.2"/>
+      <rect x="20" y="29" width="20" height="8" rx="1" fill="url(#g-gold)"/>
+      <path d="M15 37h30a7 7 0 0 1 7 7v57a9 9 0 0 1-9 9H17a9 9 0 0 1-9-9V44a7 7 0 0 1 7-7Z" fill="#FFFDF8" fill-opacity=".9" stroke="#C9A24E" stroke-width="1.3"/>
+      <rect x="12.5" y="50" width="35" height="41" rx="2.5" fill="#FFFDF8" stroke="#D9B96B" stroke-opacity=".9" stroke-width=".9"/>
+      <path d="M17 58C22 48 44 50 46 60C48 72 41 80 30 80C18 80 12 68 17 58Z" fill="currentColor" filter="url(#f-drop)"/>
+      <path d="M19 82.5h22M24 86.5h12" stroke="#C9A24E" stroke-opacity=".75" stroke-width="1" stroke-linecap="round"/>
+      <path d="M13.5 45v46" stroke="#FFFFFF" stroke-opacity=".85" stroke-width="2.2" stroke-linecap="round"/>
+    </symbol>
+    <!-- The six strands, drawn as fine gold lines (stroke colour and width come from the page).
+         Roots: a seed putting down roots. Calling: a star. Heart: a heart held in a lotus.
+         Growth: a leafing branch. Discovery: a crescent moon. Becoming: a rising sun. -->
+    <symbol id="s-sym-roots" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M24 12.5c3.4 2 4.5 5.7 2.6 8.8-.7 1.1-1.6 1.9-2.6 2.3-1-.4-1.9-1.2-2.6-2.3-1.9-3.1-.8-6.8 2.6-8.8ZM24 12.5c0-2.8 1.1-5 3.4-6.4M27.4 6.1c1.7-1.7 4-2.3 6.3-1.9-.6 2.3-2.7 3.8-6.3 1.9ZM5.5 24.2c3.8-1 7.9-1.2 12.1-.6M30.4 23.6c4.2-.6 8.3-.4 12.1.6M24 23.6v4c0 4.6-1.2 8.8-3.4 13M24 28c-3.4 1.2-6.4 3.8-8.4 8M24 28c3.4 1.2 6.4 3.8 8.4 8M24 31.6c2.4 2.4 3.4 6 3.6 9.4M15.6 36c-1.3 1.2-2.1 2.8-2.6 4.4M32.4 36c1.3 1.2 2.1 2.8 2.6 4.4"/></symbol>
+    <symbol id="s-sym-calling" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M24.0 9.5L28.1 20.3L39.7 20.9L30.7 28.2L33.7 39.3L24.0 33.0L14.3 39.3L17.3 28.2L8.3 20.9L19.9 20.3ZM39.5 5c.4 2.4 1.7 3.7 4.1 4.1-2.4.4-3.7 1.7-4.1 4.1-.4-2.4-1.7-3.7-4.1-4.1 2.4-.4 3.7-1.7 4.1-4.1Z"/></symbol>
+    <symbol id="s-sym-heart" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M24 33c-5.4-3.4-8.6-6.8-8.6-10.6a4.3 4.3 0 0 1 8.6-1.9 4.3 4.3 0 0 1 8.6 1.9c0 3.8-3.2 7.2-8.6 10.6ZM24 39.5c-3-7-9-11-17.5-11.5.6 7.2 7.6 11.5 17.5 11.5ZM24 39.5c3-7 9-11 17.5-11.5-.6 7.2-7.6 11.5-17.5 11.5ZM24 13.5V8M17.5 15.5l-2.5-3.5M30.5 15.5l2.5-3.5M14 43.5h20"/></symbol>
+    <symbol id="s-sym-growth" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M12 42C15.5 33 22 23.5 35.5 8.5M16.2 34.6c-4.6-.6-7.4-3.6-7.8-7.8 4.5.2 7.4 3.1 7.8 7.8ZM19.9 28.8c1.1-4.5 4.6-6.8 8.9-6.8-.6 4.5-3.9 7-8.9 6.8ZM24.3 22.8c-4.2-1.6-6.1-5.3-5.5-9.4 4.1 1.2 6.1 4.7 5.5 9.4ZM29.2 16.6c1.8-3.9 5.3-5.6 9.2-5-1.2 4.1-4.7 6-9.2 5ZM35.5 8.5c.6-1.8 2-3 3.8-3.4-.2 1.9-1.5 3.3-3.8 3.4Z"/></symbol>
+    <symbol id="s-sym-discovery" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M27.5 9.2A15.5 15.5 0 1 0 38.6 32.4 12.5 12.5 0 0 1 27.5 9.2ZM38.5 7.5c.4 2.5 1.8 3.9 4.3 4.3-2.5.4-3.9 1.8-4.3 4.3-.4-2.5-1.8-3.9-4.3-4.3 2.5-.4 3.9-1.8 4.3-4.3ZM41 21.5v.1"/></symbol>
+    <symbol id="s-sym-becoming" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M5 33.5h38M12 38.5h24M18 43h12M13.5 33.5a10.5 10.5 0 0 1 21 0M24 18.5v-6.5M15.2 22.2l-4.4-4.4M32.8 22.2l4.4-4.4M11.6 28.6H5.8M36.4 28.6h5.8"/></symbol>
+    <!-- The celestial layer: a four-point sparkle (filled), a crescent moon and a sun (fine lines). -->
+    <symbol id="s-star" viewBox="0 0 24 24" overflow="visible"><path d="M12 0C12.7 6.6 17.4 11.3 24 12 17.4 12.7 12.7 17.4 12 24 11.3 17.4 6.6 12.7 0 12 6.6 11.3 11.3 6.6 12 0Z" fill="currentColor"/></symbol>
+    <symbol id="s-moon" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M29 6.8A17.5 17.5 0 1 0 41.2 34 14 14 0 0 1 29 6.8Z"/></symbol>
+    <symbol id="s-sun" viewBox="0 0 48 48" overflow="visible"><path fill="none" stroke="currentColor" d="M31.5 24a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0ZM24 5v6.5M24 36.5V43M5 24h6.5M36.5 24H43M10.6 10.6l4.6 4.6M32.8 32.8l4.6 4.6M10.6 37.4l4.6-4.6M32.8 15.2l4.6-4.6"/></symbol>
+  </defs>
+</svg>
+
+<header class="site-header" data-header>
+  <div class="site-header__inner wrap wrap--wide">
+    <a class="brand" href="index.html">
+      <img src="assets/brand/sog-logo-header.webp" srcset="assets/brand/sog-logo-header-450.webp 450w, assets/brand/sog-logo-header.webp 900w" sizes="(min-width: 68em) 182px, 150px" width="900" height="319" alt="Strands of Grace, home">
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden data-menu-toggle>
+      <span class="menu-toggle__icon" aria-hidden="true"></span>
+      <span class="menu-toggle__label">Menu</span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <ul class="site-nav__list">
+        <li style="--i: 0"><a href="index.html">Home</a></li>
+        <li style="--i: 1"><a href="about.html">About Me</a></li>
+        <li style="--i: 2"><a href="story.html">Our Story</a></li>
+        <li style="--i: 3"><a href="philosophy.html" aria-current="page">Philosophy</a></li>
+        <li style="--i: 4"><a href="explore.html">Explore</a></li>
+        <li style="--i: 5"><a href="connect.html">Stay Connected</a></li>
+        <li style="--i: 6"><a href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener">Shop Oils<span class="vh"> (opens in a new tab)</span><svg aria-hidden="true" focusable="false"><use href="#s-external"/></svg></a></li>
+      </ul>
+      <a class="btn btn--bloom site-nav__cta" href="connect.html#book">Book a session</a>
+    </nav>
+  </div>
+  <span class="site-header__progress" data-progress aria-hidden="true"></span>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <section class="page-hero philosophy-hero" aria-labelledby="philosophy-hero-title">
+    <div class="bloom bloom--philosophy-hero drift" aria-hidden="true"></div>
+    <svg class="swash work-hero__swash" viewBox="0 0 1000 260" aria-hidden="true" focusable="false"><use href="#s-swash-long"/></svg>
+    <div class="sky page-hero__sky" aria-hidden="true">
+      <svg class="sky__star" style="--x: 46%; --y: 18%; --s: 12px; --d: -3s; --t: 8s" focusable="false"><use href="#s-star"/></svg>
+      <svg class="sky__star sky__star--wide" style="--x: 52%; --y: 64%; --s: 7px; --d: -6s; --t: 9.5s" focusable="false"><use href="#s-star"/></svg>
+    </div>
+    <div class="wrap page-hero__grid">
+      <h1 id="philosophy-hero-title">Wellness philosophy</h1>
+      <p class="lead">I believe every one of us already carries what we need to heal, to grow and to shine. My work is simply to help you remember it.</p>
+    </div>
+  </section>
+
+  <section class="section philosophy" id="philosophy" aria-labelledby="philosophy-title" data-reveal>
+    <div class="wrap philosophy__grid">
+      <div class="philosophy__copy">
+        <h2 id="philosophy-title">In my own words</h2>
+        <svg class="swash philosophy__swash" viewBox="0 0 400 110" aria-hidden="true" focusable="false"><use href="#s-swash-flourish"/></svg>
+        <p>[Your wellness philosophy: how you see body, mind and spirit working together.]</p>
+        <p>[What healing means to you, and what you hope people carry home after a session.]</p>
+      </div>
+      <div class="tree tree--still" data-tree-of-life role="img" aria-label="The tree of life, rooted below and reaching for the light">
+        <div class="bloom tree__bloom" aria-hidden="true"></div>
+        <!-- The tree of life: the same art as the six strands on about.html, without the nodes. -->
+        <svg class="tree__art" viewBox="0 0 600 720" aria-hidden="true" focusable="false">
+          <defs>
+            <g id="t-leaf"><path d="M0 0C-7.5-6-7.5-15 0-24C7.5-15 7.5-6 0 0Z" fill="currentColor" fill-opacity=".62"/><path d="M0 0C-7.5-6-7.5-15 0-24C7.5-15 7.5-6 0 0ZM0-2V-20" fill="none" stroke="#C9A24E" stroke-opacity=".75" stroke-width=".7"/></g>
+            <radialGradient id="g-sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFFDF8" stop-opacity=".9"/><stop offset=".55" stop-color="#F6E3B4" stop-opacity=".55"/><stop offset="1" stop-color="#F6E3B4" stop-opacity="0"/></radialGradient>
+          </defs>
+          <g class="tree__washes">
+            <use href="#s-wash-c" class="c-lavender mul" x="150" y="-6" width="300" height="300" opacity=".5"/>
+            <use href="#s-wash-a" class="c-sage mul" x="20" y="70" width="330" height="330" opacity=".55"/>
+            <use href="#s-wash-b" class="c-teal mul" x="270" y="60" width="330" height="330" opacity=".38"/>
+            <use href="#s-wash-a" class="c-blush mul" x="196" y="138" width="270" height="270" opacity=".45"/>
+            <use href="#s-wash-c" class="c-peach mul" x="64" y="168" width="230" height="230" opacity=".4"/>
+            <use href="#s-wash-b" class="c-peach mul" x="160" y="510" width="280" height="250" opacity=".5"/>
+          </g>
+          <g class="tree__sun">
+            <circle cx="300" cy="74" r="92" fill="url(#g-sun)"/>
+            <circle cx="300" cy="74" r="36" fill="none" stroke="url(#g-gold)" stroke-width="1.1"/>
+            <path d="M254.0 74.0L234.0 74.0M255.6 62.1L244.0 59.0M260.2 51.0L242.8 41.0M267.5 41.5L259.0 33.0M277.0 34.2L267.0 16.8M288.1 29.6L285.0 18.0M300.0 28.0L300.0 8.0M311.9 29.6L315.0 18.0M323.0 34.2L333.0 16.8M332.5 41.5L341.0 33.0M339.8 51.0L357.2 41.0M344.4 62.1L356.0 59.0M346.0 74.0L366.0 74.0" fill="none" stroke="#C9A24E" stroke-opacity=".8" stroke-width="1" stroke-linecap="round"/>
+          </g>
+          <g class="tree__moon" transform="translate(528 150) rotate(-18)">
+            <path d="M6-26A26 26 0 1 0 6 26A20 20 0 1 1 6-26Z" fill="#87D4D1" fill-opacity=".22" stroke="url(#g-gold)" stroke-width="1.2" stroke-linejoin="round"/>
+          </g>
+          <path d="M150 569 C210 564 260 570 300 567 S400 563 452 568" fill="none" stroke="url(#g-gold-fade)" stroke-width="1.2" stroke-linecap="round"/>
+          <g class="tree__leaves">
+            <g class="c-sage">
+              <use href="#t-leaf" transform="translate(388 289) rotate(-11) scale(1)"/>
+              <use href="#t-leaf" transform="translate(443 309) rotate(85) scale(1)"/>
+              <use href="#t-leaf" transform="translate(472 265) rotate(68) scale(1)"/>
+              <use href="#t-leaf" transform="translate(511 286) rotate(127) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(465 284) rotate(130) scale(1)"/>
+              <use href="#t-leaf" transform="translate(285 215) rotate(12) scale(1)"/>
+              <use href="#t-leaf" transform="translate(345 184) rotate(28) scale(1)"/>
+              <use href="#t-leaf" transform="translate(320 117) rotate(-43) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(367 90) rotate(70) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(349 93) rotate(-46) scale(1)"/>
+              <use href="#t-leaf" transform="translate(227 240) rotate(-31) scale(1)"/>
+              <use href="#t-leaf" transform="translate(156 232) rotate(266) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(184 166) rotate(33) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(211 258) rotate(18) scale(1)"/>
+              <use href="#t-leaf" transform="translate(157 157) rotate(-71) scale(1)"/>
+              <use href="#t-leaf" transform="translate(198 261) rotate(-16) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(150 320) rotate(222) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(105 281) rotate(207) scale(1)"/>
+              <use href="#t-leaf" transform="translate(203 300) rotate(-23) scale(1)"/>
+              <use href="#t-leaf" transform="translate(91 266) rotate(14) scale(1)"/>
+              <use href="#t-leaf" transform="translate(325 203) rotate(42) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(270 134) rotate(69) scale(1)"/>
+              <use href="#t-leaf" transform="translate(249 97) rotate(-94) scale(1)"/>
+              <use href="#t-leaf" transform="translate(276 177) rotate(-74) scale(1)"/>
+              <use href="#t-leaf" transform="translate(251 68) rotate(51) scale(1)"/>
+              <use href="#t-leaf" transform="translate(417 235) rotate(120) scale(1)"/>
+              <use href="#t-leaf" transform="translate(426 187) rotate(-58) scale(1)"/>
+              <use href="#t-leaf" transform="translate(458 157) rotate(27) scale(1)"/>
+              <use href="#t-leaf" transform="translate(414 223) rotate(-23) scale(1)"/>
+            </g>
+            <g class="c-teal">
+              <use href="#t-leaf" transform="translate(396 274) rotate(68) scale(1)"/>
+              <use href="#t-leaf" transform="translate(466 276) rotate(-10) scale(1)"/>
+              <use href="#t-leaf" transform="translate(475 256) rotate(16) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(431 292) rotate(23) scale(1)"/>
+              <use href="#t-leaf" transform="translate(494 274) rotate(9) scale(1)"/>
+              <use href="#t-leaf" transform="translate(331 190) rotate(105) scale(1)"/>
+              <use href="#t-leaf" transform="translate(357 181) rotate(80) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(361 92) rotate(18) scale(1)"/>
+              <use href="#t-leaf" transform="translate(309 222) rotate(76) scale(1)"/>
+              <use href="#t-leaf" transform="translate(225 257) rotate(47) scale(1)"/>
+              <use href="#t-leaf" transform="translate(232 226) rotate(21) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(180 174) rotate(-19) scale(1)"/>
+              <use href="#t-leaf" transform="translate(152 160) rotate(-102) scale(1)"/>
+              <use href="#t-leaf" transform="translate(169 190) rotate(30) scale(1)"/>
+              <use href="#t-leaf" transform="translate(152 138) rotate(44) scale(1)"/>
+              <use href="#t-leaf" transform="translate(159 312) rotate(274) scale(1)"/>
+              <use href="#t-leaf" transform="translate(136 278) rotate(9) scale(1)"/>
+              <use href="#t-leaf" transform="translate(91 290) rotate(232) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(168 293) rotate(-134) scale(1)"/>
+              <use href="#t-leaf" transform="translate(316 215) rotate(-11) scale(1)"/>
+              <use href="#t-leaf" transform="translate(271 189) rotate(-105) scale(1)"/>
+              <use href="#t-leaf" transform="translate(283 116) rotate(43) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(241 92) rotate(-18) scale(1)"/>
+              <use href="#t-leaf" transform="translate(253 93) rotate(-64) scale(1)"/>
+              <use href="#t-leaf" transform="translate(376 257) rotate(-47) scale(1)"/>
+              <use href="#t-leaf" transform="translate(445 233) rotate(95) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(422 175) rotate(20) scale(1)"/>
+              <use href="#t-leaf" transform="translate(391 256) rotate(92) scale(1)"/>
+              <use href="#t-leaf" transform="translate(433 188) rotate(79) scale(1)"/>
+            </g>
+            <g class="c-lavender">
+              <use href="#t-leaf" transform="translate(401 260) rotate(15) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(497 278) rotate(152) scale(1)"/>
+              <use href="#t-leaf" transform="translate(510 263) rotate(96) scale(1)"/>
+              <use href="#t-leaf" transform="translate(332 134) rotate(-69) scale(1)"/>
+              <use href="#t-leaf" transform="translate(326 177) rotate(-35) scale(1)"/>
+              <use href="#t-leaf" transform="translate(183 234) rotate(-119) scale(1)"/>
+              <use href="#t-leaf" transform="translate(143 156) rotate(-26) scale(1)"/>
+              <use href="#t-leaf" transform="translate(211 290) rotate(10) scale(1)"/>
+              <use href="#t-leaf" transform="translate(129 268) rotate(-69) scale(1)"/>
+              <use href="#t-leaf" transform="translate(134 286) rotate(-20) scale(1)"/>
+              <use href="#t-leaf" transform="translate(257 183) rotate(-27) scale(1)"/>
+              <use href="#t-leaf" transform="translate(235 89) rotate(-70) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(373 240) rotate(32) scale(1)"/>
+              <use href="#t-leaf" transform="translate(417 167) rotate(-32) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(446 156) rotate(-39) scale(1)"/>
+            </g>
+            <g class="c-blush">
+              <use href="#t-leaf" transform="translate(431 301) rotate(163) scale(1)"/>
+              <use href="#t-leaf" transform="translate(506 282) rotate(76) scale(1)"/>
+              <use href="#t-leaf" transform="translate(294 231) rotate(-67) scale(1)"/>
+              <use href="#t-leaf" transform="translate(326 124) rotate(9) scale(1)"/>
+              <use href="#t-leaf" transform="translate(340 132) rotate(70) scale(1)"/>
+              <use href="#t-leaf" transform="translate(169 232) rotate(-42) scale(1)"/>
+              <use href="#t-leaf" transform="translate(137 154) rotate(-78) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(203 275) rotate(-68) scale(1)"/>
+              <use href="#t-leaf" transform="translate(126 259) rotate(-17) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(108 277) rotate(-120) scale(1)"/>
+              <use href="#t-leaf" transform="translate(245 181) rotate(-80) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(292 222) rotate(35) scale(1)"/>
+              <use href="#t-leaf" transform="translate(369 226) rotate(-21) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(449 161) rotate(103) scale(1)"/>
+              <use href="#t-leaf" transform="translate(451 136) rotate(66) scale(1)"/>
+            </g>
+            <g class="c-peach">
+              <use href="#t-leaf" transform="translate(452 318) rotate(137) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(397 299) rotate(132) scale(1)"/>
+              <use href="#t-leaf" transform="translate(276 203) rotate(-41) scale(1.2)"/>
+              <use href="#t-leaf" transform="translate(353 98) rotate(94) scale(1)"/>
+              <use href="#t-leaf" transform="translate(352 68) rotate(59) scale(1)"/>
+              <use href="#t-leaf" transform="translate(175 186) rotate(59) scale(1)"/>
+              <use href="#t-leaf" transform="translate(188 225) rotate(-87) scale(1)"/>
+              <use href="#t-leaf" transform="translate(171 303) rotate(197) scale(1)"/>
+              <use href="#t-leaf" transform="translate(96 286) rotate(283) scale(1)"/>
+              <use href="#t-leaf" transform="translate(308 230) rotate(67) scale(1)"/>
+              <use href="#t-leaf" transform="translate(276 123) rotate(-9) scale(1)"/>
+              <use href="#t-leaf" transform="translate(262 132) rotate(40) scale(1)"/>
+              <use href="#t-leaf" transform="translate(432 232) rotate(42) scale(1)"/>
+              <use href="#t-leaf" transform="translate(465 155) rotate(79) scale(1.2)"/>
+            </g>
+          </g>
+          <g class="tree__strands" fill="url(#g-gold)">
+            <path d="M373.3 306.2l5.7-5l5.2-5.5l4.6-6l2.7-4.3l2.4-4.4l3-6.9l2.4-7.2l2-7.2l-.6-.2l-2.1 7.2l-2.5 7l-3.2 6.8l-2.4 4.3l-2.7 4.1l-4.7 5.8l-5.2 5.3l-5.7 4.8z"/>
+            <path d="M413.9 296.5l7.2 1.6l4.7 1.6l4.6 1.9l4.3 2.4l4.2 2.7l3.9 3l3.7 3.3l5.2 5.3l.4-.4l-5.1-5.4l-3.6-3.5l-3.9-3.2l-4.2-2.9l-4.4-2.5l-4.5-2.1l-4.8-1.7l-7.3-1.9z"/>
+            <path d="M456.1 287l3.9-3.3l3.5-3.6l4.6-6.1l2.4-4.4l2.1-4.6l2.7-8.9l-.5-.1l-3.1 8.7l-2.1 4.4l-2.5 4.3l-4.7 5.7l-3.5 3.4l-3.9 3.1z"/>
+            <path d="M486.6 277.9l4.9 .2l2.5 .3l4.7 1.2l2.3 .9l4.4 2.3l5.4 3.6l.4-.5l-5.3-3.9l-4.4-2.5l-2.4-1l-4.8-1.5l-2.6-.5l-5-.4z"/>
+            <path d="M299.1 252.4l-.9-7.5l-1.6-7.4l-2.4-7.2l-2-4.6l-2.4-4.5l-4-6.4l-4.5-6l-4.9-5.7l-.4 .4l4.7 5.8l4.4 6l3.8 6.4l2.2 4.4l1.9 4.6l2.2 7.1l1.4 7.3l.7 7.4z"/>
+            <path d="M317.9 201.5l5.4-5.2l3.8-3.1l4.1-2.7l4.3-2.4l4.6-2l4.6-1.7l4.8-1.3l7.3-1.5l-.1-.5l-7.3 1.3l-4.9 1.2l-4.8 1.5l-4.7 1.9l-4.5 2.3l-4.2 2.7l-4.1 3.1l-5.5 5.1z"/>
+            <path d="M336.4 148.8l-.9-4.9l-1.3-5l-2.8-7l-2.5-4.4l-3-4.1l-6.1-6.9l-.5 .3l5.9 7.1l2.8 4.2l2.3 4.3l2.5 7l1.1 4.8l.7 4.9z"/>
+            <path d="M347.2 105.9l2.9-4l1.6-1.9l3.6-3.3l2-1.5l4.2-2.5l6-2.6l-.2-.5l-6.2 2.3l-4.5 2.4l-2.1 1.4l-3.9 3.3l-1.7 1.8l-3.1 4z"/>
+            <path d="M228.7 279.1l-1.8-7.2l-1.1-7.4l-.3-7.4l.2-4.9l.6-5l1.4-7.3l2.1-7.1l2.5-7.1l-.5-.2l-2.7 7l-2.2 7.2l-1.7 7.4l-.7 5l-.3 5l.1 7.6l1 7.5l1.6 7.3z"/>
+            <path d="M199.7 240.6l-6.6-3.6l-4.7-2l-4.8-1.6l-4.9-1.2l-5-.7l-5-.4l-5 0l-7.5 .5l.1 .6l7.4-.3l4.9 .1l5 .5l4.9 .9l4.7 1.2l4.7 1.7l4.4 2.1l6.4 3.8z"/>
+            <path d="M175.4 200.9l-.2-5l.2-4.9l1.3-7.3l1.5-4.7l2-4.5l4.5-8l-.4-.3l-4.9 7.9l-2.2 4.5l-1.7 4.8l-1.6 7.4l-.4 5.1l.1 5z"/>
+            <path d="M160.3 165.9l-3.7-3.5l-2-1.6l-4.3-2.7l-2.3-1.2l-4.7-1.7l-6.5-1.4l-.1 .5l6.3 1.8l4.6 1.9l2.1 1.1l4 2.8l1.9 1.6l3.4 3.6z"/>
+            <path d="M227.5 305.4l-5.7-4.7l-5.4-5.2l-4.7-5.7l-2.8-4.1l-2.5-4.3l-3.2-6.7l-2.7-7l-2.2-7.1l-.6 .2l2.1 7.2l2.6 7.1l3.1 6.8l2.4 4.4l2.8 4.3l4.7 5.9l5.3 5.4l5.7 4.9z"/>
+            <path d="M187.8 296.4l-7.3 2l-4.8 1.8l-4.5 2.2l-4.4 2.6l-4.1 2.9l-3.8 3.3l-3.6 3.5l-5 5.5l.4 .4l5.1-5.4l3.7-3.3l3.8-3.2l4.1-2.7l4.4-2.4l4.5-2l4.6-1.6l7.2-1.8z"/>
+            <path d="M146.9 288l-3.9-3l-3.7-3.4l-4.7-5.6l-2.6-4.2l-2.2-4.4l-3.2-8.7l-.6 .2l3 8.8l2.1 4.6l2.5 4.4l4.7 6l3.6 3.5l3.9 3.2z"/>
+            <path d="M115 279l-5 .6l-2.5 .5l-4.9 1.6l-2.3 1.1l-4.3 2.5l-5.3 4.1l.4 .4l5.3-3.7l4.4-2.3l2.3-.9l4.7-1.4l2.4-.3l4.9-.4z"/>
+            <path d="M303.5 252.4l.9-7.3l1.5-7.3l2.2-7.1l2-4.6l2.2-4.4l3.9-6.3l4.5-6l4.8-5.7l-.4-.4l-5 5.6l-4.6 6l-4.1 6.3l-2.4 4.4l-2.1 4.6l-2.4 7.2l-1.7 7.4l-1.1 7.5z"/>
+            <path d="M284.8 199.9l-5.5-5.2l-4-3.1l-4.3-2.7l-4.5-2.4l-4.6-1.9l-4.8-1.6l-4.9-1.2l-7.3-1.4l-.1 .5l7.3 1.6l4.8 1.4l4.6 1.6l4.5 2.1l4.3 2.4l4.1 2.8l3.8 3.2l5.3 5.2z"/>
+            <path d="M267.3 148.6l.7-4.9l1.1-4.8l2.6-6.9l2.3-4.3l2.8-4.1l5.9-7.1l-.4-.4l-6.2 6.9l-2.9 4.1l-2.6 4.4l-2.9 7l-1.3 4.9l-.9 5z"/>
+            <path d="M256.3 104.3l-3.1-4l-1.7-1.8l-3.9-3.3l-2.1-1.4l-4.5-2.4l-6.2-2.3l-.2 .5l6 2.6l4.2 2.5l2 1.5l3.6 3.3l1.6 1.8l2.9 4.1z"/>
+            <path d="M373.4 279.8l1.7-7.3l1-7.5l.3-7.6l-.3-5l-.7-5l-1.6-7.4l-2.2-7.2l-2.6-7l-.5 .2l2.4 7l2.1 7.2l1.4 7.3l.5 5l.2 4.9l-.4 7.4l-1.2 7.4l-1.8 7.2z"/>
+            <path d="M401.9 242.7l6.5-3.7l4.5-2l4.6-1.7l4.8-1.2l4.9-.8l5-.4l4.9-.1l7.4 .4l.1-.6l-7.5-.6l-5 0l-5 .2l-5 .7l-4.9 1.2l-4.8 1.5l-4.7 2l-6.7 3.6z"/>
+            <path d="M427.5 201.7l.2-5l-.4-5.1l-1.5-7.4l-1.6-4.8l-2.2-4.6l-4.7-8l-.5 .3l4.4 8.1l2 4.6l1.4 4.7l1.3 7.3l.1 4.9l-.3 4.9z"/>
+            <path d="M442.5 168.1l3.4-3.6l1.9-1.6l4-2.7l2.2-1.2l4.6-1.8l6.3-1.7l-.1-.5l-6.5 1.4l-4.8 1.6l-2.3 1.1l-4.3 2.7l-2 1.5l-3.7 3.5z"/>
+            <path d="M320.1 661.4l6.9 2.9l4.4 2.3l4.3 2.5l4.2 2.7l3.9 3.1l3.6 3.3l3.4 3.7l3.4 5l.3-.2l-1.9-3l-3-4l-3.5-3.7l-3.8-3.3l-4-3l-6.4-4l-4.5-2.3l-6.8-3.1z"/>
+            <path d="M379.6 621.2l6.9 2.9l4.4 2.2l4.3 2.5l4.2 2.8l3.9 3l3.6 3.4l3.4 3.7l3.4 5l.3-.2l-1.9-3.1l-3-3.9l-3.5-3.7l-3.8-3.3l-4-3l-6.4-4l-4.4-2.4l-6.9-3.1z"/>
+            <path d="M351.6 648.7l6.8 3l4.5 2.2l4.3 2.5l4.1 2.8l3.9 3l3.7 3.4l3.3 3.7l3.5 5l.3-.2l-1.9-3.1l-3.1-4l-3.5-3.6l-3.7-3.3l-4.1-3l-6.4-4l-4.4-2.4l-6.9-3.1z"/>
+            <path d="M280.1 660.3l-6.8 3.1l-4.5 2.3l-6.4 4l-4 3l-3.8 3.3l-3.5 3.7l-3 4l-1.9 3l.3 .2l3.4-5l3.4-3.7l3.6-3.3l3.9-3.1l4.2-2.7l4.3-2.5l4.4-2.3l6.9-2.9z"/>
+            <path d="M221.3 618.9l-6.9 3.1l-4.4 2.3l-6.4 4l-4 3l-3.8 3.4l-3.5 3.6l-3 4l-1.9 3.1l.3 .1l3.4-4.9l3.4-3.7l3.6-3.4l3.9-3.1l4.2-2.7l4.3-2.5l4.4-2.3l6.9-2.9z"/>
+            <path d="M248.7 647.6l-6.9 3.1l-4.4 2.4l-6.4 4l-4.1 3l-3.7 3.3l-3.5 3.6l-3.1 4l-1.9 3.1l.3 .2l3.5-5l3.3-3.7l3.7-3.4l3.9-3l4.1-2.8l4.3-2.5l4.5-2.2l6.8-3z"/>
+            <path d="M340.1 711.7l-2.6-1.6l-2.4-2.1l-4.2-4.8l-3.7-5.1l-3.4-5.4l-4.8-8.3l-2.9-5.6l-4-8.7l-2.5-5.9l-3.4-8.9l-3-9.1l-1.7-6.1l-1.4-6.2l-1.8-9.3l-.8-6.3l-.4-6.3l-.1-6.3l.7-9.4l1.2-6.1l1.7-6l2.5-5.6l3.1-5.4l1.8-2.4l8.6-9.5l3.9-5.4l1.6-3l1.2-3.2l.8-3.4l.4-3.4l-.2-3.5l-.7-3.3l-2.1-6.4l-2.9-5.9l-7.8-13.9l-2.8-5.7l-8.8-20.5l-4.6-11.8l-2.5-9.1l-1.1-6.1l-.6-6.2l0-3.1l.4-6.2l1-6.1l2.4-9.1l3.1-9l3.6-8.7l2.9-5.6l3.2-5.4l10.7-15.9l3.3-5.6l2.8-6.1l1.1-3.2l.6-3.4l.2-3.5l-.3-3.4l-2.2-9.4l-.5-2.9l0-3l.5-2.8l1-2.8l1.3-2.7l1.6-2.5l2-2.2l4.6-4.1l2.6-1.8l5.3-3.2l5.7-2.9l5.8-2.5l11.9-4.3l9.2-2.7l9.2-2.6l18.6-4.5l50-11.3l15.5-4.1l12.2-3.8l12-4.7l5.8-2.7l5.6-3.3l5.1-3.9l2.3-2.2l2.1-2.5l1.7-2.6l-.6-.4l-1.7 2.5l-2 2.4l-2.3 2.2l-5.1 3.8l-5.5 3.1l-5.8 2.7l-11.9 4.5l-12.3 3.6l-15.5 3.9l-50 10.8l-18.8 4.3l-9.3 2.4l-9.2 2.7l-12.2 4.2l-6 2.4l-5.9 2.9l-5.6 3.2l-2.7 1.9l-5.1 4.3l-2.2 2.5l-2 2.8l-1.6 3.1l-1.1 3.2l-.6 3.4l-.1 3.5l.4 3.4l2.1 9.3l.2 2.9l-.1 2.9l-.6 2.9l-.9 2.9l-2.6 5.5l-3.2 5.4l-10.8 16l-3.3 5.6l-2.9 5.8l-3.7 9l-3.2 9.1l-2.5 9.5l-1.1 6.5l-.4 6.6l0 3.3l.6 6.5l1.2 6.5l2.6 9.4l4.6 12.1l8.9 20.6l2.9 5.8l7.8 14l2.8 5.6l2 5.8l.5 2.9l.2 2.9l-.3 2.9l-.7 2.9l-1.1 2.7l-1.4 2.7l-3.5 4.9l-6.4 7.1l-4.1 5.2l-1.8 2.8l-2.9 6l-2.1 6.2l-1.4 6.4l-.8 6.5l-.3 9.8l.4 6.5l.8 6.4l1.1 6.4l2.1 9.4l2.7 9.3l2.1 6.1l3.4 9l2.5 5.9l4.1 8.8l4.6 8.5l4.9 8.2l3.6 5.4l4 5.1l4.3 4.7l2.5 2.1l2.9 1.6z"/>
+            <path d="M476 641.7l-22.2-2.6l-18.9-3.1l-18.7-4.1l-15.4-4.3l-15-5.1l-8.9-3.6l-5.8-2.6l-5.7-2.8l-8.2-4.7l-5.3-3.5l-5-3.8l-4.7-4.1l-4.2-4.6l-3.6-5l-1.5-2.6l-1.3-2.8l-1-2.9l-.7-2.9l-.3-3l-.1-3l.7-6.3l-.1-3.5l-.6-3.4l-1.2-3.3l-1.5-3l-3.6-5.6l-16.3-19.8l-5.2-7.7l-2.9-5.5l-2.3-5.8l-1.8-6l-2.5-9.2l-1.5-9.2l-.3-6.2l.4-6.2l1.6-9.2l1.7-6.1l3.1-8.9l7.4-17.7l11.9-29.7l2.1-6.3l.7-3.2l.5-3.3l.2-3.4l-.1-3.4l-.6-3.4l-.9-3.3l-1.3-3.1l-1.5-3l-3.6-5.5l-6.2-7.5l-7.3-10.3l-3.1-5.3l-1.4-2.8l-2.2-5.8l-.9-3l-1.3-6.1l-1-9.4l.2-9.4l.9-9.4l1.1-6.3l2-9.3l2.4-9.2l3.7-12.2l7.3-21.1l14.6-39l6.5-18.1l7.1-21.3l5.4-18.4l4.7-18.7l3.7-18.8l2.7-19.1l.8-9.5l.6-10.4l-.6 0l-.8 10.3l-.9 9.5l-2.8 19l-3.9 18.8l-4.8 18.5l-5.6 18.4l-7.2 21.1l-6.7 18l-14.9 38.9l-7.6 21.1l-3.9 12.2l-2.5 9.3l-2.1 9.5l-1.2 6.3l-1.1 9.7l-.2 9.8l.9 9.7l1.3 6.4l.9 3.2l2.3 6.2l1.3 2.9l3.3 5.8l5.4 8l8 10l3.4 5.2l2.5 5.5l.8 2.8l.5 3l.1 3l-.1 3l-.5 3l-.7 2.9l-1.9 6l-11.9 29.6l-7.4 17.7l-3.3 9.2l-1.7 6.3l-1.3 6.4l-.4 3.3l-.4 6.6l.3 6.5l.4 3.3l1.2 6.5l2.5 9.3l1.9 6.2l2.5 6.1l3 5.9l5.5 8.1l16.2 19.8l3.4 5.1l1.3 2.7l1 2.8l.5 2.8l.1 2.9l-.6 6.4l.1 3.4l.4 3.4l.9 3.3l1.1 3.1l1.5 3.1l1.6 2.9l4 5.3l4.6 4.7l4.9 4.3l5.3 3.8l5.4 3.5l5.7 3.2l5.7 2.9l5.9 2.7l9 3.6l9.1 3.2l9.2 2.9l15.5 4l18.9 3.8l12.7 1.9l9.5 1.2l19.2 1.6z"/>
+            <path d="M414 689.7l-6.2-1.2l-6-2l-2.9-1.2l-5.6-3l-5.2-3.7l-4.8-4.1l-4.4-4.6l-4-4.8l-3.7-5.2l-3.5-5.3l-6.3-11l-7.2-14.3l-16.3-34.8l-6-11.4l-5-8.3l-5.6-8l-4.1-5l-13.7-13.7l-6.3-7l-3.6-4.9l-2.9-5.4l-1.1-2.8l-.7-2.9l-.5-3l-.1-6.1l.6-6.2l3-18.8l1.6-6.1l3-9l8.5-20.6l3.5-9.1l2.8-9.3l1.3-6.5l.7-6.5l.3-9.7l-.1-6.5l-.6-6.6l-.6-3.2l-2-6.4l-2.8-6.1l-3.5-5.6l-3.9-5.2l-12.3-14.7l-3.7-5l-1.6-2.6l-2.8-5.8l-3.3-5.5l-5.3-8.1l-5.6-7.9l-11.6-15.3l-30.1-37.4l-13.7-17.7l-13.1-18.1l-5.4-8l-6.8-10.8l-6.4-11l-5.9-11.3l-5.4-11.6l-4.9-11.8l-3.2-9l-3.7-12.3l-3-12.4l-2-10.4l-.6 .2l1.8 10.4l2.9 12.5l3.6 12.3l3.1 9.1l4.8 11.9l5.3 11.7l5.9 11.4l6.3 11.2l6.7 10.9l5.3 8l12.9 18.4l13.6 17.8l27.7 35.3l13.3 17.9l5.4 7.9l5.1 8l3.1 5.5l2.6 5.8l1.8 2.9l3.9 5.2l12.4 14.8l5.4 7.6l3 5.4l2.2 5.7l1.3 6l.6 6.2l-.1 12.6l-.4 6.3l-.4 3l-1.2 6.2l-2.7 9l-3.4 8.9l-8.6 20.7l-3.1 9.2l-1.6 6.4l-3 19.1l-.7 6.5l.2 6.7l.5 3.3l.8 3.3l1.2 3.2l1.5 3l1.7 2.9l3.9 5.3l6.5 7.3l13.5 13.5l5.9 7.3l5.4 7.8l4.9 8.2l4.5 8.4l16.9 34.4l7.5 14.3l6.6 11l3.6 5.3l3.9 5.2l4.2 4.9l4.6 4.5l5 4.1l5.3 3.7l5.8 2.9l3 1.2l6.2 1.8l6.4 1z"/>
+            <path d="M262.2 712.3l2.7-1.7l2.4-2.2l4.3-4.8l3.8-5.2l3.5-5.4l6.3-11.2l5.6-11.6l3.7-8.9l2.3-6l3.9-12.3l3-12.5l1.2-6.4l.8-6.4l.5-6.5l.1-6.4l-.8-9.8l-.5-3.2l-1.6-6.4l-2.2-6.2l-3.1-5.9l-1.7-2.8l-2-2.7l-8.6-9.5l-3.4-5l-1.3-2.7l-1-2.8l-.6-2.8l-.2-3l.3-2.9l.6-2.9l2.2-5.7l2.8-5.6l7.8-14l2.8-5.8l7.6-17.7l3.7-9l3.1-9.2l1.6-6.4l1.1-6.4l.5-6.6l-.2-6.6l-.3-3.3l-1.1-6.4l-2.6-9.5l-4.4-12.1l-2.6-6l-3.1-5.8l-3.3-5.6l-12.4-18.6l-2.8-5.4l-1.1-2.9l-.9-2.8l-.5-2.9l0-3l.4-2.9l2.1-9.4l.3-3.4l-.3-3.5l-.7-3.4l-1.3-3.2l-1.7-3l-2.1-2.6l-2.3-2.5l-5.1-4.1l-2.8-1.8l-5.7-3.2l-5.9-2.6l-6.1-2.4l-12.2-4l-15.6-4l-18.8-4.1l-37.7-7.4l-15.6-3.3l-12.4-2.9l-12.3-3.4l-12.1-4.3l-5.8-2.6l-5.5-3l-5.2-3.7l-2.3-2.2l-2-2.4l-1.1-1.8l-.6 .4l1.1 1.8l2.1 2.5l2.3 2.3l5.2 3.8l5.6 3.2l5.9 2.7l12 4.4l12.3 3.5l12.5 3.1l53.2 11.4l18.7 4.3l15.3 4.2l12.1 4.1l5.8 2.4l5.7 2.7l5.5 3.1l2.6 1.7l4.7 3.9l2.1 2.3l1.7 2.4l1.5 2.6l1 2.7l.6 2.9l.1 2.9l-.3 3l-2.3 9.2l-.4 3.4l.1 3.5l.5 3.4l1 3.3l1.2 3.1l3.1 5.9l12.4 18.7l3.2 5.4l2.9 5.5l2.6 5.8l4.3 11.9l2.5 9.1l1 6.1l.3 3.1l.2 6.2l-.5 6.2l-1 6.1l-1.6 6.1l-3 9l-3.6 8.8l-7.5 17.6l-2.8 5.6l-7.8 14l-2.9 5.8l-2.3 6.3l-.8 3.3l-.3 3.5l.2 3.4l.7 3.4l1.2 3.3l1.5 3l3.8 5.6l8.6 9.5l1.8 2.4l1.7 2.6l3 5.4l2.1 5.8l1.6 6l.6 3.1l.9 9.3l0 6.3l-.4 6.3l-.7 6.3l-1 6.3l-2.8 12.4l-3.6 12.2l-4.4 11.9l-5.2 11.7l-5.8 11.3l-3.2 5.5l-3.5 5.4l-3.8 5.1l-2.1 2.3l-2.2 2.2l-2.7 1.7z"/>
+            <path d="M128 640.3l12.8-1l9.6-1l19-2.8l15.7-3l9.4-2.3l9.3-2.5l15.3-5l9-3.6l5.9-2.6l5.7-2.9l5.7-3.1l5.5-3.5l5.2-3.9l4.9-4.3l4.5-4.9l3.8-5.4l1.6-3l1.3-3.1l1-3.2l.7-3.3l.3-3.4l0-3.4l-.6-6.2l.2-2.8l.8-2.9l1.1-2.7l1.4-2.7l3.5-5.1l14.3-17.2l3.9-5.2l3.5-5.6l2.9-5.9l2.3-6.1l2.7-9.3l1.6-6.4l1.1-6.4l.3-3.3l.2-6.6l-.5-6.6l-.5-3.2l-1.4-6.4l-1.8-6.3l-2.2-6.1l-8.6-20.7l-11.8-29.7l-1.8-5.9l-.6-3l-.4-3l0-3l.3-2.9l.6-3l.9-2.8l1.3-2.8l3.1-5.2l3.8-5l4.3-4.9l7.2-10.8l3.1-5.8l2.4-6.1l1-3.1l1.6-6.4l.5-3.2l.7-6.5l0-9.7l-.4-6.5l-.9-6.4l-1.1-6.4l-2-9.4l-2.5-9.4l-3.8-12.2l-7.4-21.2l-14.5-39l-6.5-18.1l-7-21.2l-5.4-18.4l-4.6-18.6l-3.8-18.8l-2.7-19l-.9-9.5l-.8-10.5l-.6 0l.6 10.5l.8 9.6l2.6 19.1l3.6 18.8l4.5 18.7l5.3 18.5l6.8 21.4l6.4 18.1l14.1 39.1l7.1 21.2l3.7 12.3l2.3 9.2l2 9.3l1 6.3l.7 6.3l.4 6.3l-.2 9.4l-.6 6.2l-.6 3.1l-1.5 6.1l-1 2.9l-2.5 5.7l-3 5.5l-7.2 10.3l-4.1 4.8l-4 5.2l-3.4 5.7l-1.4 3.1l-1.1 3.2l-.7 3.4l-.3 3.4l0 3.4l.4 3.3l.7 3.3l1.9 6.3l11.9 29.8l7.4 17.7l3.2 8.9l1.8 6l1.8 9.2l.5 6.2l-.2 6.2l-.3 3.1l-1 6.1l-4.2 15.3l-2.2 5.8l-2.7 5.6l-3.3 5.3l-3.7 5l-14.4 17.2l-3.7 5.5l-1.6 3l-1.3 3.1l-.9 3.4l-.3 3.5l.7 6.5l0 3l-.2 3l-.6 2.9l-.8 2.9l-1.2 2.8l-1.4 2.7l-3.4 5.1l-4.2 4.6l-4.6 4.2l-5 3.8l-5.3 3.5l-5.4 3.2l-5.6 2.9l-5.8 2.7l-8.8 3.6l-15 5.2l-9.2 2.7l-9.3 2.4l-15.6 3.4l-18.9 3.1l-22.2 2.6z"/>
+            <path d="M188 690.3l3.2-.4l6.3-1.5l6.1-2.3l5.7-3l5.3-3.7l4.9-4.2l4.4-4.7l4.1-5l3.8-5.2l3.5-5.4l6.5-11.2l5.8-11.4l16.6-34.6l6-11.2l4.9-8.1l3.6-5.3l5.7-7.4l4.3-4.6l11.4-11.3l4.4-4.8l4-5.2l3.5-5.7l1.3-3.1l1.1-3.2l.7-3.3l.4-3.4l.1-3.3l-.5-6.6l-2.9-19.1l-1.5-6.4l-3-9.3l-9.7-23.7l-3.3-8.9l-2.6-9.1l-1.1-6.1l-.7-9.4l-.1-6.3l.2-6.3l.7-6.1l1.5-6l2.4-5.6l3.1-5.4l5.6-7.5l10.3-12.3l4-5.1l1.8-2.8l1.6-3l1.2-2.9l4.7-8.2l5.2-8l5.5-7.8l11.4-15.3l29.9-37.5l13.7-17.8l13.1-18.3l7.1-10.7l5-8.1l6.4-11.2l5.9-11.4l5.5-11.6l4.8-11.9l3.2-9.1l3.6-12.3l2.9-12.4l1.8-10.2l-.6-.2l-2 10.2l-3 12.4l-3.8 12.2l-3.2 9l-4.9 11.8l-5.5 11.5l-6 11.3l-6.5 11l-5.1 8.1l-7.2 10.6l-13.2 18l-13.8 17.6l-30.4 37.2l-13.7 17.8l-5.5 7.9l-5.3 8.1l-3.3 5.6l-1.3 3l-1.4 2.6l-1.7 2.6l-3.9 4.9l-10.3 12.3l-5.8 7.9l-3.3 5.7l-2.6 6.1l-1.6 6.5l-.8 6.6l-.2 6.5l.1 6.4l.7 9.8l1.2 6.5l2.7 9.4l3.4 9.1l9.7 23.6l2.8 9l1.5 6.1l2.8 18.8l.5 6.2l-.5 6l-.6 3l-.9 2.9l-1.2 2.7l-3.2 5.3l-3.8 4.9l-4.2 4.6l-11.4 11.2l-4.4 4.8l-4.1 5.1l-5.4 8.1l-4.9 8.4l-5.9 11.5l-16 34.9l-5.6 11.5l-6.1 11.1l-3.4 5.4l-3.6 5.2l-3.9 5l-4.3 4.6l-4.7 4.3l-5.1 3.7l-5.5 3.1l-2.9 1.3l-6 2l-6.2 1.3z"/>
+          </g>
+          <g class="tree__pearls">
+            <use href="#s-pearl" x="507.5" y="250.5" width="13" height="13"/>
+            <use href="#s-pearl" x="345.5" y="52.5" width="13" height="13"/>
+            <use href="#s-pearl" x="143.5" y="120.5" width="13" height="13"/>
+            <use href="#s-pearl" x="81.5" y="254.5" width="13" height="13"/>
+            <use href="#s-pearl" x="243.5" y="50.5" width="13" height="13"/>
+            <use href="#s-pearl" x="445.5" y="120.5" width="13" height="13"/>
+          </g>
+        </svg>
+        <div class="sky tree__sky" aria-hidden="true">
+          <svg class="sky__star" style="--x: 38%; --y: 5%; --s: 9px; --d: -2s; --t: 8s" focusable="false"><use href="#s-star"/></svg>
+          <svg class="sky__star" style="--x: 64%; --y: 3%; --s: 12px; --d: -5s; --t: 9s" focusable="false"><use href="#s-star"/></svg>
+          <svg class="sky__star" style="--x: 95%; --y: 16%; --s: 8px; --d: -1s; --t: 7.5s" focusable="false"><use href="#s-star"/></svg>
+          <svg class="sky__star" style="--x: 81%; --y: 9%; --s: 6px; --d: -6s; --t: 10s" focusable="false"><use href="#s-star"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream colours" id="colours" aria-labelledby="colours-title" data-reveal>
+    <div class="washes" aria-hidden="true">
+      <div class="bloom bloom--colours-a drift"></div>
+      <div class="bloom bloom--colours-b drift"></div>
+    </div>
+    <div class="wrap">
+      <header class="section-head section-head--split">
+        <h2 id="colours-title">Seven colours, seven intentions</h2>
+        <p>Each petal of the Strands of Grace lotus carries a colour, and each colour carries an intention.</p>
+      </header>
+      <div class="colours__band">
+        <svg class="strand colours__strand" viewBox="0 0 700 132" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path stroke="url(#g-gold-fade)" stroke-width="1.6" stroke-linecap="round" d="M-70 20C-50 25.3 13.3 43.5 50 52C86.7 60.5 116.7 66.3 150 71C183.3 75.7 216.7 80.5 250 80C283.3 79.5 316.7 73.2 350 68C383.3 62.8 416.7 52.8 450 49C483.3 45.2 516.7 42.8 550 45C583.3 47.2 613.3 57.8 650 62C686.7 66.2 750 68.7 770 70"/>
+        </svg>
+        <ul class="colours__list" role="list" data-reveal-children>
+          <li class="colour" style="--c: var(--blush-pink); --y: 8px; --i: 0">
+            <svg class="drop" aria-hidden="true" focusable="false"><use href="#s-drop"/></svg>
+            <span class="colour__name">Blush Pink</span>
+            <span class="colour__meaning">Love, compassion and kindness</span>
+          </li>
+          <li class="colour" style="--c: var(--soft-lavender); --y: 27px; --i: 1">
+            <svg class="drop" aria-hidden="true" focusable="false" style="transform: rotate(70deg)"><use href="#s-drop"/></svg>
+            <span class="colour__name">Soft Lavender</span>
+            <span class="colour__meaning">Spirituality, intuition and reflection</span>
+          </li>
+          <li class="colour" style="--c: var(--serenity-blue); --y: 36px; --i: 2">
+            <svg class="drop" aria-hidden="true" focusable="false" style="transform: rotate(140deg)"><use href="#s-drop"/></svg>
+            <span class="colour__name">Serenity Blue</span>
+            <span class="colour__meaning">Peace, calm and communication</span>
+          </li>
+          <li class="colour" style="--c: var(--gentle-teal); --y: 24px; --i: 3">
+            <svg class="drop" aria-hidden="true" focusable="false" style="transform: rotate(210deg)"><use href="#s-drop"/></svg>
+            <span class="colour__name">Gentle Teal</span>
+            <span class="colour__meaning">Balance, harmony and renewal</span>
+          </li>
+          <li class="colour" style="--c: var(--sage-green); --y: 5px; --i: 4">
+            <svg class="drop" aria-hidden="true" focusable="false" style="transform: rotate(280deg)"><use href="#s-drop"/></svg>
+            <span class="colour__name">Sage Green</span>
+            <span class="colour__meaning">Growth, healing and connection</span>
+          </li>
+          <li class="colour" style="--c: var(--soft-peach); --y: 1px; --i: 5">
+            <svg class="drop" aria-hidden="true" focusable="false" style="transform: rotate(30deg)"><use href="#s-drop"/></svg>
+            <span class="colour__name">Soft Peach</span>
+            <span class="colour__meaning">Warmth, creativity and new beginnings</span>
+          </li>
+          <li class="colour" style="--c: var(--champagne-gold); --y: 18px; --i: 6">
+            <svg class="drop" aria-hidden="true" focusable="false" style="transform: rotate(100deg)"><use href="#s-drop"/></svg>
+            <span class="colour__name">Champagne Gold</span>
+            <span class="colour__meaning">Grace, elegance, light and beauty</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section believe" id="believe" aria-labelledby="believe-title" data-reveal>
+    <div class="washes" aria-hidden="true">
+      <div class="bloom bloom--believe drift"></div>
+    </div>
+    <div class="wrap">
+      <header class="section-head">
+        <h2 id="believe-title">What I believe</h2>
+        <p>A few words from my vision board for this year.</p>
+      </header>
+      <div class="vision-field">
+        <ul class="vision" role="list">
+          <li style="--c: 2 / 5; --r: 1; --s: 2.3rem">Faith</li>
+          <li style="--c: 9 / 12; --r: 1; --s: 2.3rem; --dy: 6px">Breathe</li>
+          <li style="--c: 5 / 9; --r: 1; --s: 3.3rem">Love</li>
+          <li style="--c: 10 / 13; --r: 3; --s: 2rem; --dy: 6px">Mindfulness</li>
+          <li style="--c: 2 / 7; --r: 2; --s: 2.5rem; --dy: -2px">Find joy every day</li>
+          <li style="--c: 8 / 12; --r: 2; --s: 1.9rem; --dy: 4px">Remember to be kind</li>
+          <li style="--c: 4 / 10; --r: 3; --s: 2.8rem">Everything is possible</li>
+          <li style="--c: 2 / 7; --r: 4; --s: 2rem; --dy: -2px">Mind over matter</li>
+          <li style="--c: 1 / 4; --r: 3; --s: 1.9rem">Rise and shine</li>
+          <li style="--c: 7 / 12; --r: 4; --s: 3.2rem">Rediscover you</li>
+        </ul>
+        <div class="vision__pearls" aria-hidden="true">
+          <span class="pearl" style="--x: 35%; --y: 8%"></span>
+          <span class="pearl" style="--x: 65%; --y: 8%"></span>
+          <span class="pearl" style="--x: 55%; --y: 36%"></span>
+          <span class="pearl" style="--x: 27%; --y: 63%"></span>
+          <span class="pearl" style="--x: 74%; --y: 63%"></span>
+          <span class="pearl" style="--x: 50%; --y: 92%"></span>
+        </div>
+      </div>
+      <figure class="believe__quote">
+        <svg class="flourish" viewBox="0 0 600 90" aria-hidden="true" focusable="false"><use href="#s-flourish"/></svg>
+        <blockquote><p><span>Inhale courage.</span> <span>Exhale fear.</span></p></blockquote>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--cream words" id="words" aria-labelledby="words-title" data-reveal>
+    <div class="washes" aria-hidden="true">
+      <div class="bloom bloom--words drift"></div>
+      <svg class="wash words__wash words__wash--a" viewBox="0 0 600 600" focusable="false">
+        <use href="#s-wash-a" class="c-blush mul" width="600" height="600" opacity=".45"/>
+        <use href="#s-wash-c" class="c-peach mul" x="260" y="300" width="300" height="300" opacity=".4"/>
+      </svg>
+      <svg class="wash words__wash words__wash--b" viewBox="0 0 600 600" focusable="false">
+        <use href="#s-wash-b" class="c-lavender mul" width="600" height="600" opacity=".45"/>
+        <use href="#s-wash-c" class="c-blue mul" x="20" y="60" width="260" height="260" opacity=".4"/>
+      </svg>
+    </div>
+    <div class="wrap">
+      <h2 class="words__title" id="words-title">Words I keep close</h2>
+      <svg class="flourish" viewBox="0 0 600 90" aria-hidden="true" focusable="false"><use href="#s-flourish"/></svg>
+      <div class="quotes" data-quotes tabindex="0" role="group" aria-labelledby="words-title">
+        <ol class="quotes__list" role="list">
+          <li class="quotes__item"><blockquote><p>Not all storms come to disrupt your life. Some come to clear your path.</p></blockquote></li>
+          <li class="quotes__item"><blockquote><p>Inner peace begins the moment you choose not to allow another person or event to control your emotions.</p></blockquote></li>
+          <li class="quotes__item"><blockquote><p>On the darkest days, when I feel inadequate, unloved and unworthy, I remember that I am the daughter of the King, and I straighten my crown.</p></blockquote></li>
+          <li class="quotes__item"><blockquote><p>Listen to your dreams. They’re smarter than you are.</p></blockquote></li>
+          <li class="quotes__item"><blockquote><p>Smile, shine, and take it one day at a time.</p></blockquote></li>
+          <li class="quotes__item"><blockquote><p>Inhale courage. Exhale fear.</p></blockquote></li>
+          <li class="quotes__item"><blockquote><p>It is never too late to be what you might have been.</p></blockquote></li>
+          <li class="quotes__item"><blockquote><p>Find joy every day.</p></blockquote></li>
+          <li class="quotes__item"><blockquote><p>Move from doing to being.</p></blockquote></li>
+          <li class="quotes__item"><blockquote><p>Remember to be kind.</p></blockquote></li>
+          <li class="quotes__item"><blockquote><p>Everything is possible.</p></blockquote></li>
+          <li class="quotes__item"><blockquote><p>Rediscover you.</p></blockquote></li>
+        </ol>
+        <div class="quotes__controls" hidden data-quotes-controls>
+          <button class="btn btn--quiet" type="button" data-quotes-prev><svg class="arrow--back" aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg>Previous quote</button>
+          <p class="quotes__count" aria-hidden="true"><span data-quotes-current>1</span> of <span data-quotes-total>12</span></p>
+          <button class="btn btn--quiet" type="button" data-quotes-next>Next quote<svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></button>
+        </div>
+        <p class="vh" aria-live="polite" data-quotes-live></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section breathe" id="breathe" aria-labelledby="breathe-title" data-breathe data-phase="rest" data-reveal>
+    <div class="wrap breathe__grid">
+      <div class="breathe__copy">
+        <h2 id="breathe-title">A minute for you</h2>
+        <p class="lead">Not ready to book? Take a minute just for you. Breathe in for four, hold for seven, and breathe out for eight.</p>
+        <button class="btn btn--bloom" type="button" data-breathe-toggle hidden>Begin</button>
+      </div>
+      <div class="breathe__stage">
+        <div class="breathe__ring" aria-hidden="true"></div>
+        <div class="breathe__bloom" data-breathe-bloom aria-hidden="true">
+          <div class="bloom bloom--breathe"></div>
+          <svg viewBox="0 0 600 600" preserveAspectRatio="none" focusable="false">
+            <use href="#s-wash-a" class="c-blush mul" x="10" y="10" width="520" height="520"/>
+            <use href="#s-wash-b" class="c-lavender mul" x="90" y="90" width="500" height="500" transform="rotate(180 340 340)"/>
+          </svg>
+          <div class="breathe__glow"></div>
+        </div>
+        <div class="breathe__readout">
+          <span class="breathe__count breathe__count--rest" data-breathe-count aria-hidden="true">4 · 7 · 8</span>
+          <p class="breathe__cue" data-breathe-cue aria-live="polite"></p>
+          <span class="breathe__rounds" data-breathe-rounds aria-hidden="true"><span class="pearl"></span><span class="pearl"></span><span class="pearl"></span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="continue" id="continue" aria-labelledby="continue-eyebrow" data-reveal data-continue>
+    <div class="wrap continue__inner">
+      <svg class="continue__strand" viewBox="0 0 400 40" aria-hidden="true" focusable="false">
+        <path d="M0 26C90 12 150 32 200 24C250 16 310 6 400 20" fill="none" stroke="url(#g-gold-fade)" stroke-width="1.4" vector-effect="non-scaling-stroke"/>
+        <use href="#s-pearl" x="190" y="13" width="20" height="20"/>
+      </svg>
+      <p class="continue__eyebrow" id="continue-eyebrow">Next</p>
+      <a class="continue__link" href="explore.html">Explore Possibilities<svg aria-hidden="true" focusable="false"><use href="#s-arrow"/></svg></a>
+      <p class="continue__line">Sound baths, one-to-one sessions and cleansing ceremonies.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="washes" aria-hidden="true">
+    <div class="bloom bloom--footer-a"></div>
+    <div class="bloom bloom--footer-b"></div>
+    <svg class="wash site-footer__wash" viewBox="0 0 600 600" focusable="false">
+      <use href="#s-wash-c" class="c-blush mul" x="40" y="60" width="380" height="380" opacity=".55"/>
+      <use href="#s-wash-a" class="c-peach mul" x="220" y="240" width="360" height="360" opacity=".5"/>
+    </svg>
+  </div>
+  <div class="wrap">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="site-footer__logo" href="index.html"><img src="assets/brand/sog-logo-800.webp" srcset="assets/brand/sog-logo-800.webp 800w, assets/brand/sog-logo.webp 1600w" sizes="336px" width="1600" height="583" alt="Strands of Grace, home" loading="lazy" decoding="async"></a>
+        <p class="site-footer__tagline">Your journey begins with you.</p>
+        <p class="site-footer__sign"><svg class="sym site-footer__moon" aria-hidden="true" focusable="false"><use href="#s-moon"/></svg>Namaste.</p>
+      </div>
+      <nav class="site-footer__nav" aria-label="Footer">
+        <ul role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Me</a></li>
+          <li><a href="story.html">Our Story</a></li>
+          <li><a href="philosophy.html" aria-current="page">Philosophy</a></li>
+          <li><a href="explore.html">Explore</a></li>
+          <li><a href="connect.html">Stay Connected</a></li>
+          <li><a href="connect.html#book">Book a session</a></li>
+        </ul>
+      </nav>
+      <div class="site-footer__contact">
+        <ul role="list">
+          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4.5 7 7.5 6 7.5-6"/></svg><a href="mailto:lisa@mystrandsofgrace.com">lisa@mystrandsofgrace.com</a></li>
+          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.9" cy="7.1" r=".6"/></svg>Instagram to come</li>
+          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>[City, State] and online</li>
+        </ul>
+        <a class="btn btn--quiet" href="https://my.doterra.com/lisabrunson88" target="_blank" rel="noopener">Shop my oils<span class="vh"> (opens in a new tab)</span><svg aria-hidden="true" focusable="false"><use href="#s-external"/></svg></a>
+      </div>
+    </div>
+    <div class="site-footer__base">
+      <p class="site-footer__creds">doTERRA Wellness Advocate · [Certification] · [Certification]</p>
+      <p>© 2026 Strands of Grace, Lisa Brunson</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Phones only: a booking bar once past the hero, hidden at the form and the footer. -->
+<div class="phone-bar" data-phone-bar hidden>
+  <a class="btn btn--bloom phone-bar__btn" href="connect.html#book">Book a session</a>
+</div>
+<button class="to-top" type="button" aria-label="Back to top" hidden data-to-top>
+  <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+</body>
+</html>

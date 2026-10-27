@@ -2,11 +2,13 @@
    Strands of Grace: layout and components
    Option B, "Watercolour bloom". Colours, type and spacing tokens: theme.css.
 
-   1. Base          6. Home sections       11. Work With Me
+   1. Base          6. Home sections       11. Explore and Stay Connected
    2. Utilities     7. Shared components   12. Footer
    3. Header        8. About               13. Motion
-   4. Watercolour   9. Our Story
-   5. Hero         10. Timeline
+   4. Watercolour   9. Our Story           14. Flow and interaction
+   5. Hero         10. Timeline            15. The six-page framework: celestial
+                                               layer, gold over pink, the six strands
+                                               (tree of life), chapters, new sections
    ========================================================================== */
 
 /* 1. Base ---------------------------------------------------------------- */
@@ -48,7 +50,7 @@ body::after {
   background-image: var(--paper);
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   margin: 0;
   font-family: var(--font-display);
   font-weight: 400;
@@ -119,18 +121,22 @@ main:focus { outline: none; }
 .wrap--narrow { width: min(100% - 2 * var(--gutter), 44rem); }
 
 .section { position: relative; isolation: isolate; padding-block: var(--section); }
-.section--cream { background-color: var(--bg-alt); }
+.section--cream { --band: var(--bg-alt); background-color: var(--bg-alt); }
+/* Gold over pink: a pale blush ground carrying gold linework (closings, Coming soon). */
+.section--blush { --band: var(--blush-pale); background-color: var(--blush-pale); }
 
-/* Wave edges where ivory meets cream, with a thin gold line along the wave. */
+/* Wave edges where ivory meets cream (or blush), with a thin gold line along the wave. */
 .section--cream::before,
 .section--cream::after,
+.section--blush::before,
+.section--blush::after,
 .site-footer::before {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
   height: clamp(26px, 3.4vw, 56px);
-  background-color: var(--bg-alt);
+  background-color: var(--band, var(--bg-alt));
   background-image: var(--wave-line);
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -138,9 +144,10 @@ main:focus { outline: none; }
   -webkit-mask: var(--wave-mask) center / 100% 100% no-repeat;
   mask: var(--wave-mask) center / 100% 100% no-repeat;
 }
-.section--cream::before, .section--cream::after { z-index: -2; }
-.section--cream::before, .site-footer::before { bottom: calc(100% - 1px); }
-.section--cream::after { top: calc(100% - 1px); transform: scale(-1, -1); }
+.section--cream::before, .section--cream::after,
+.section--blush::before, .section--blush::after { z-index: -2; }
+.section--cream::before, .section--blush::before, .site-footer::before { bottom: calc(100% - 1px); }
+.section--cream::after, .section--blush::after { top: calc(100% - 1px); transform: scale(-1, -1); }
 
 .section-head { display: grid; gap: 1rem; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
 .section-head p { font-size: var(--step-1); line-height: 1.55; }
@@ -439,15 +446,17 @@ main:focus { outline: none; }
   .js .site-nav__cta { transform: translateY(12px); opacity: 0; transition: transform 0.6s var(--ease-out), opacity 0.6s var(--ease-out); }
   .js.menu-open .site-nav__list li,
   .js.menu-open .site-nav__cta { transform: none; opacity: 1; transition-delay: calc(var(--i, 0) * 55ms + 80ms); }
-  .js .site-nav__cta { --i: 5; }
+  .js .site-nav__cta { --i: 7; }
 }
 
 @media (min-width: 68em) {
-  .brand img { width: 182px; }
+  .site-header__inner { width: min(100% - 2 * clamp(1.25rem, 3vw, 4.5rem), var(--max-wide)); gap: 1rem; }
+  .brand img { width: clamp(150px, 12vw, 182px); }
   .site-header.is-scrolled .brand img { transform: scale(0.86); }
-  .site-nav { gap: clamp(1rem, 2vw, 2rem); }
-  .site-nav__list { gap: 0.25rem clamp(0.4rem, 1.2vw, 1.25rem); }
-  .site-nav__cta { padding-inline: 1.3rem; min-height: 2.75rem; font-size: 0.95rem; }
+  .site-nav { gap: clamp(0.75rem, 1.6vw, 2rem); }
+  .site-nav__list { gap: 0.25rem clamp(0.15rem, 0.9vw, 1.1rem); }
+  .site-nav__list a { padding-inline: 0.25rem; }
+  .site-nav__cta { padding-inline: 1.15rem; min-height: 2.75rem; font-size: 0.95rem; white-space: nowrap; }
 }
 
 /* 4. Watercolour washes, drops and gold strands -------------------------- */
@@ -691,12 +700,23 @@ main:focus { outline: none; }
   padding-bottom: clamp(3rem, 6vw, 5rem);
   text-align: center;
 }
-.hero__inner { display: grid; justify-items: center; gap: 1.5rem; }
-.hero__logo { margin: 0; width: min(100%, 44rem); transform-origin: 50% 60%; }
-.hero__logo img { width: 100%; }
+.hero__inner { display: grid; justify-items: center; gap: 1.25rem; }
+/* The emblem: one file (assets/brand/emblem.webp), sized by width and capped in
+   height, so a replacement of any proportions fits without a code change. */
+.hero__emblem {
+  width: min(35rem, 88vw);
+  height: auto;
+  max-height: min(16rem, 34svh);
+  object-fit: contain;
+  transform-origin: 50% 70%;
+  /* The stand-in emblem is cropped at its sides; let them dissolve into the paper. */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+}
+.hero__title { max-width: 16ch; font-size: clamp(2.5rem, 1.6rem + 3.6vw, 4.6rem); line-height: 1.04; }
 .hero__intro {
   max-width: 30ch;
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
   font-size: clamp(1.3rem, 1.1rem + 0.9vw, 1.75rem);
   line-height: 1.45;
   color: var(--charcoal);
@@ -742,13 +762,13 @@ main:focus { outline: none; }
 
 @media (min-width: 56em) {
   .hero { padding-top: clamp(1.5rem, 3vw, 3rem); padding-bottom: clamp(3.5rem, 7vw, 6rem); }
-  .hero__inner { gap: 1.75rem; }
-  .hero__intro { margin-top: 0.75rem; }
-  .hero__actions { margin-top: 0.75rem; }
+  .hero__inner { gap: 1.4rem; }
+  .hero__intro { margin-top: 0.25rem; }
+  .hero__actions { margin-top: 0.5rem; }
   .hero__wash { width: 30rem; height: 30rem; }
   .hero__wash--left { left: -7rem; top: 16%; bottom: auto; }
   .hero__wash--right { right: -7rem; top: -3rem; width: 28rem; height: 28rem; }
-  .hero__swash { left: -3%; bottom: 0.5rem; width: 54%; }
+  .hero__swash { left: -4%; bottom: -0.5rem; width: 44%; }
   .hero__petal--phone-hide { display: block; }
 }
 
@@ -801,22 +821,28 @@ main:focus { outline: none; }
 
 /* 6. Home sections ------------------------------------------------------- */
 
-/* Welcome: a two-column spread, her petal portrait beside the welcome.
+/* The origin story: a two-column spread, her petal portrait beside the story.
    lisa-hero.jpg is a wide beach photo; zoom in and frame it on her. */
-.welcome { padding-top: clamp(2.5rem, 6vw, 5rem); }
-.welcome__grid { display: grid; gap: 2.5rem; }
-.welcome__swash { width: min(17rem, 70%); margin: 1.4rem 0 1.75rem; aspect-ratio: 400 / 110; }
-.welcome__copy > p:first-of-type { font-size: var(--step-1); line-height: 1.55; }
-.welcome__copy .link-arrow { margin-top: 0.75rem; }
+.origin { padding-top: clamp(3rem, 7vw, 6rem); }
+.origin__grid { display: grid; gap: 2.5rem; }
+.origin__sub { margin: 0.6rem 0 0; max-width: none; font-family: var(--font-display); font-size: var(--step-2); line-height: 1.25; color: var(--heading); }
+/* The two story lines being decided: version 1 by default (and without
+   JavaScript); ?tagline=2 adds .tagline-2 to <html>. */
+.tagline--2 { display: none; }
+.tagline-2 .tagline--1 { display: none; }
+.tagline-2 .tagline--2 { display: inline; }
+.origin__swash { width: min(17rem, 70%); margin: 1.3rem 0 1.6rem; aspect-ratio: 400 / 110; }
+.origin__lead { font-size: var(--step-1); line-height: 1.55; }
+.origin__copy .link-arrow { margin-top: 0.75rem; }
 /* Stacked: the swash dips below the petal, so leave it room. */
-.welcome__portrait { justify-self: center; width: min(68vw, 20rem); margin: 0.5rem 0 calc(min(68vw, 20rem) * 0.1); --img-w: 243.4%; --img-x: -70%; --img-y: -22%; }
+.origin__portrait { justify-self: center; width: min(68vw, 20rem); margin: 0.5rem 0 calc(min(68vw, 20rem) * 0.1); --img-w: 243.4%; --img-x: -70%; --img-y: -22%; }
 @media (min-width: 56em) {
-  .welcome__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: clamp(2.5rem, 6vw, 7rem); align-items: start; }
-  .welcome__copy { padding-top: 0.5rem; padding-right: clamp(1rem, 3vw, 2.5rem); }
-  .welcome__portrait { width: min(100%, 27rem); justify-self: end; margin: 2.5rem 2rem 0.5rem 0; }
+  .origin__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: clamp(2.5rem, 6vw, 7rem); align-items: center; }
+  .origin__copy { padding-right: clamp(1rem, 3vw, 2.5rem); }
+  .origin__portrait { width: min(100%, 27rem); justify-self: end; margin: 1rem 2rem 0.5rem 0; }
   /* Beside a full column of text the arc alone wraps the portrait; its long tail
      would run through the link. */
-  .welcome__portrait .petal__tail { display: none; }
+  .origin__portrait .petal__tail { display: none; }
 }
 
 /* Seven colours, seven intentions */
@@ -826,7 +852,7 @@ main:focus { outline: none; }
 .colours__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.25rem 1.25rem; }
 .colour { display: grid; justify-items: start; align-content: start; gap: 0.3rem; }
 .colour .drop { width: 4.5rem; height: 4.5rem; margin: 0 0 0.6rem -0.3rem; color: var(--c); }
-.colour__name { font-family: var(--font-display); font-size: 1.32rem; line-height: 1.2; color: var(--deep-plum); }
+.colour__name { font-family: var(--font-display); font-size: 1.32rem; line-height: 1.2; color: var(--heading); }
 .colour__meaning { font-size: 0.98rem; line-height: 1.55; color: var(--charcoal); max-width: 15em; }
 @media (min-width: 40em) {
   .colours__list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -899,7 +925,7 @@ main:focus { outline: none; }
   font-family: var(--font-display);
   font-size: var(--step-2);
   line-height: 1.3;
-  color: var(--deep-plum);
+  color: var(--heading);
   text-wrap: balance;
 }
 .quotes.is-enhanced .quotes__list { gap: 0; max-width: 54rem; }
@@ -940,12 +966,12 @@ main:focus { outline: none; }
 }
 .testimonial__wash { position: absolute; z-index: -1; width: 60%; height: auto; aspect-ratio: 1; overflow: visible; pointer-events: none; }
 .testimonial:nth-child(1) .testimonial__wash { right: -24%; top: -30%; }
-.testimonial:nth-child(2) .testimonial__wash { left: -26%; bottom: -32%; }
+.testimonial:nth-child(2) .testimonial__wash { right: -30%; bottom: -40%; }
 .testimonial:nth-child(3) .testimonial__wash { right: -22%; bottom: -34%; }
 @media (min-width: 56em) {
   .testimonial__wash { width: 72%; }
   .testimonial:nth-child(1) .testimonial__wash { right: -32%; top: -38%; }
-  .testimonial:nth-child(2) .testimonial__wash { left: -32%; bottom: -38%; }
+  .testimonial:nth-child(2) .testimonial__wash { right: -40%; bottom: -50%; }
   .testimonial:nth-child(3) .testimonial__wash { right: -30%; bottom: -40%; }
 }
 .testimonial blockquote p {
@@ -953,7 +979,7 @@ main:focus { outline: none; }
   font-family: var(--font-display);
   font-size: clamp(1.25rem, 1.12rem + 0.5vw, 1.5rem);
   line-height: 1.42;
-  color: var(--deep-plum);
+  color: var(--heading);
 }
 .testimonial figcaption {
   display: flex;
@@ -987,6 +1013,7 @@ main:focus { outline: none; }
 .closing .flourish { margin: 0 auto 1.75rem; width: min(26rem, 84%); }
 .closing h2 { font-size: var(--step-4); line-height: 1.06; max-width: 13ch; margin-inline: auto; }
 .closing p { margin: 1.5rem auto 2.25rem; font-size: var(--step-1); }
+.closing .wrap { position: relative; }
 
 /* 7. Shared components --------------------------------------------------- */
 
@@ -1030,7 +1057,7 @@ main:focus { outline: none; }
   font-size: clamp(5.2rem, 3rem + 10vw, 11rem);
   line-height: 0.95;
   letter-spacing: 0;
-  color: var(--deep-plum);
+  color: var(--heading);
 }
 .hello__name { font-size: var(--step-4); margin-top: -0.2em; padding-left: 1.15em; }
 .about-hero .lead { margin-top: 1.75rem; }
@@ -1047,7 +1074,7 @@ main:focus { outline: none; }
   font-family: var(--font-display);
   font-size: var(--step-2);
   line-height: 1.38;
-  color: var(--deep-plum);
+  color: var(--heading);
   max-width: 28em;
   margin-bottom: 1.6em;
 }
@@ -1056,7 +1083,7 @@ main:focus { outline: none; }
   font-family: var(--font-script);
   font-size: clamp(2.6rem, 2rem + 2.2vw, 3.75rem);
   line-height: 1.1;
-  color: var(--deep-plum);
+  color: var(--heading);
 }
 .strand--bio { display: none; }
 @media (min-width: 64em) {
@@ -1064,7 +1091,7 @@ main:focus { outline: none; }
   .strand--bio { display: block; right: calc(100% + 2.5rem); top: -1.5rem; width: min(13rem, 14vw); height: calc(100% + 1.5rem); }
 }
 
-.creds__grid { display: grid; gap: 3rem; }
+.creds__grid { display: grid; gap: 2.5rem; }
 .quals { margin-top: 2rem; border-top: 1px solid rgb(201 162 78 / 0.55); }
 .quals li {
   position: relative;
@@ -1074,30 +1101,16 @@ main:focus { outline: none; }
   border-bottom: 1px solid rgb(201 162 78 / 0.55);
 }
 .quals li .pearl { position: absolute; left: 0.2rem; top: 1.6rem; }
-.quals__what { font-family: var(--font-display); font-size: 1.2rem; line-height: 1.35; color: var(--deep-plum); }
+.quals__what { font-family: var(--font-display); font-size: 1.2rem; line-height: 1.35; color: var(--heading); }
 .quals__who { color: var(--charcoal); }
 .quals__when { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 @media (min-width: 40em) {
   .quals li { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) 4.5rem; gap: 1.5rem; align-items: baseline; }
   .quals__when { text-align: right; }
 }
-.glance {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  padding: clamp(1.75rem, 3vw, 2.4rem);
-  border-radius: var(--radius);
-  background: var(--warm-ivory);
-  box-shadow: var(--shadow-card);
-}
-.glance__wash { position: absolute; z-index: -1; right: -34%; top: -38%; width: 96%; height: auto; aspect-ratio: 1; overflow: visible; }
-.glance h2 { font-size: var(--step-2); margin-bottom: 1rem; }
-.glance li { display: flex; align-items: center; gap: 0.9rem; padding: 0.7rem 0; border-bottom: 1px solid rgb(201 162 78 / 0.32); }
-.glance li:last-child { border-bottom: 0; padding-bottom: 0; }
-.glance li svg { width: 1.35rem; height: 1.35rem; flex: none; fill: none; stroke: var(--gold-deep); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 @media (min-width: 60em) {
-  .creds__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); column-gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
-  .glance { margin-top: 4.5rem; }
+  .creds__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
+  .creds .quals { margin-top: 0.6rem; }
 }
 
 /* What I believe: a constellation of words at three sizes between small pearls. */
@@ -1112,7 +1125,7 @@ main:focus { outline: none; }
   font-family: var(--font-display);
   font-size: var(--s, 1.6rem);
   line-height: 1.15;
-  color: var(--deep-plum);
+  color: var(--heading);
   text-wrap: balance;
 }
 .vision li + li::before { content: ""; width: 0.55rem; height: 0.55rem; margin: 0.9rem 0; border-radius: 50%; background: radial-gradient(circle at 34% 30%, #FFFFFF 0 14%, #FDF3ED 34%, #EFD7CA 64%, #DBBFAC 100%); box-shadow: 0 0 0 1px rgb(201 162 78 / 0.8), 0 2px 3px -1px rgb(87 68 103 / 0.35); }
@@ -1131,17 +1144,17 @@ main:focus { outline: none; }
   .vision__pearls .pearl { position: absolute; left: var(--x); top: var(--y); width: 0.62rem; height: 0.62rem; margin: -0.31rem; }
 }
 
-.about-quote { text-align: center; }
-.about-quote .flourish { margin: 0 auto 2rem; }
-.about-quote blockquote p {
+.believe__quote { margin-top: clamp(3.5rem, 8vw, 6.5rem); text-align: center; }
+.believe__quote .flourish { margin: 0 auto 2rem; }
+.believe__quote blockquote p {
   max-width: none;
   font-family: var(--font-display);
   font-size: var(--step-4);
   line-height: 1.12;
-  color: var(--deep-plum);
+  color: var(--heading);
 }
-.about-quote blockquote span { display: block; }
-.about-quote blockquote span + span { margin-top: 0.1em; padding-left: 1.6em; }
+.believe__quote blockquote span { display: block; }
+.believe__quote blockquote span + span { margin-top: 0.1em; padding-left: 1.6em; }
 
 .next-steps__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem 2.5rem; }
 
@@ -1163,7 +1176,7 @@ main:focus { outline: none; }
   max-width: none;
   font-family: var(--font-display);
   font-size: var(--step-2);
-  color: var(--deep-plum);
+  color: var(--heading);
 }
 .story-hero .lead { margin-inline: auto; max-width: 32rem; }
 .story-hero__lotus { width: 8.5rem; margin: 0 auto 1.25rem; }
@@ -1202,7 +1215,7 @@ main:focus { outline: none; }
 .timeline__node { grid-column: 1; grid-row: 1; justify-self: center; width: 1.45rem; height: 1.45rem; margin-top: 0.75rem; }
 .timeline__body { grid-column: 2; grid-row: 1; position: relative; }
 .timeline__body h3 { display: grid; gap: 0.35rem; margin-bottom: 0.85rem; }
-.timeline__year { font-size: var(--step-3); line-height: 1; color: var(--deep-plum); }
+.timeline__year { font-size: var(--step-3); line-height: 1; color: var(--heading); }
 .timeline__title { font-size: var(--step-2); }
 @media (min-width: 56em) {
   .timeline { --spine: clamp(9rem, 18vw, 15rem); }
@@ -1216,7 +1229,7 @@ main:focus { outline: none; }
   .timeline__body { max-width: 27rem; }
 }
 
-/* 11. Work With Me ------------------------------------------------------- */
+/* 11. Explore and Stay Connected ------------------------------------------ */
 
 .offerings { padding-top: clamp(2.5rem, 5vw, 4rem); }
 .offerings .cards { padding-top: 2rem; }
@@ -1259,7 +1272,7 @@ main:focus { outline: none; }
   font-family: var(--font-display);
   font-size: 1.45rem;
   line-height: 1;
-  color: var(--deep-plum);
+  color: var(--heading);
 }
 .step h3 { padding-top: 0.6rem; margin-bottom: 0.4rem; }
 .step p { font-size: 1.02rem; }
@@ -1297,7 +1310,7 @@ main:focus { outline: none; }
   border-radius: 50%;
   background: radial-gradient(closest-side, rgb(255 253 248 / 0.92), rgb(255 253 248 / 0.55) 60%, transparent);
 }
-.breathe__readout { position: relative; display: grid; justify-items: center; gap: 0.35rem; max-width: 13rem; text-align: center; color: var(--deep-plum); }
+.breathe__readout { position: relative; display: grid; justify-items: center; gap: 0.35rem; max-width: 13rem; text-align: center; color: var(--heading); }
 .breathe__count { font-family: var(--font-display); font-size: clamp(2.8rem, 2rem + 3vw, 4rem); line-height: 1; font-variant-numeric: tabular-nums; }
 .breathe__count--rest { font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.1rem); letter-spacing: 0.12em; }
 .breathe__cue { margin: 0; min-height: 1.6em; font-weight: 700; line-height: 1.45; text-align: center; }
@@ -1320,7 +1333,7 @@ main:focus { outline: none; }
 .oil__art { position: relative; display: grid; justify-items: center; align-content: end; width: 4.5rem; height: 7.6rem; }
 .oil__art .bottle { position: relative; z-index: 1; width: 3.7rem; margin-bottom: 0.7rem; }
 .oil__pearl { position: absolute; left: 50%; bottom: 0.1rem; width: 0.95rem; height: 0.95rem; margin-left: -0.475rem; }
-.oil__name { margin: 0; font-family: var(--font-display); font-size: 1.35rem; line-height: 1.25; color: var(--deep-plum); }
+.oil__name { margin: 0; font-family: var(--font-display); font-size: 1.35rem; line-height: 1.25; color: var(--heading); }
 .oil__desc { margin: 0.15rem 0 0; font-size: 1rem; color: var(--charcoal); }
 @media (min-width: 40em) {
   .oil-list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2rem; }
@@ -1417,8 +1430,9 @@ main:focus { outline: none; }
 .site-footer__grid { display: grid; gap: 2.5rem; }
 .site-footer__logo { display: inline-block; }
 .site-footer__logo img { width: min(100%, 21rem); }
-.site-footer__tagline { margin-top: 1.5rem; font-family: var(--font-display); font-size: var(--step-1); color: var(--deep-plum); }
-.site-footer__sign { margin-top: 0.4rem; font-family: var(--font-script); font-size: 2.6rem; line-height: 1.1; color: var(--deep-plum); }
+.site-footer__tagline { margin-top: 1.5rem; font-family: var(--font-display); font-size: var(--step-1); color: var(--heading); }
+.site-footer__sign { display: flex; align-items: center; gap: 0.7rem; margin-top: 0.5rem; font-family: var(--font-script); font-size: 2.6rem; line-height: 1.1; color: var(--heading); }
+.site-footer__moon { width: 1.45rem; height: 1.45rem; margin-top: -0.2rem; }
 .site-footer__nav ul,
 .site-footer__contact ul { display: grid; gap: 0; }
 .site-footer__nav a { position: relative; display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; text-decoration: none; }
@@ -1451,6 +1465,7 @@ main:focus { outline: none; }
   color: var(--ink-soft);
 }
 .site-footer__base p { margin: 0; max-width: none; }
+.site-footer__creds { color: var(--charcoal); }
 @media (min-width: 48em) {
   .site-footer__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .site-footer__brand { grid-column: 1 / -1; }
@@ -1467,9 +1482,11 @@ main:focus { outline: none; }
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 
-  .hero__logo { animation: settle 0.6s var(--ease-out) both; }
-  .hero__intro { animation: rise 0.55s var(--ease-out) 0.28s both; }
-  .hero__actions { animation: rise 0.55s var(--ease-out) 0.42s both; }
+  .hero__emblem { animation: settle 0.7s var(--ease-out) both; }
+  .hero__title { animation: rise 0.6s var(--ease-out) 0.2s both; }
+  .hero__intro { animation: rise 0.55s var(--ease-out) 0.34s both; }
+  .hero__actions { animation: rise 0.55s var(--ease-out) 0.48s both; }
+  .hero__sky { animation: fade-in 1.2s var(--ease-out) 0.7s both; }
   .hero__wash { animation: wash-in 0.9s var(--ease-out) 0.3s both; }
   .hero__bloom { animation: wash-in 0.9s var(--ease-out) 0.3s both, drift var(--drift, 52s) ease-in-out 1.2s infinite alternate; }
   .hero__swash { animation: fade-in 0.55s var(--ease-out) 0.66s both; }
@@ -1482,7 +1499,7 @@ main:focus { outline: none; }
 }
 
 @keyframes settle {
-  from { opacity: 0; transform: scale(0.985); }
+  from { opacity: 0; transform: scale(0.97); }
   to { opacity: 1; transform: none; }
 }
 @keyframes rise {
@@ -1581,7 +1598,7 @@ main:focus { outline: none; }
   font-family: var(--font-display);
   font-size: var(--step-3);
   line-height: 1.1;
-  color: var(--deep-plum);
+  color: var(--heading);
   text-decoration: none;
   text-wrap: balance;
 }
@@ -1665,7 +1682,7 @@ main:focus { outline: none; }
   min-height: 44px;
   cursor: pointer;
   list-style: none;
-  color: var(--deep-plum);
+  color: var(--heading);
 }
 .offer__details summary::-webkit-details-marker,
 .faq__item summary::-webkit-details-marker { display: none; }
@@ -1790,7 +1807,7 @@ main:focus { outline: none; }
   font-family: var(--font-display);
   font-size: 1rem;
   line-height: 1;
-  color: var(--deep-plum);
+  color: var(--heading);
 }
 
 .booking.is-sent [data-form-fields],
@@ -1799,7 +1816,7 @@ main:focus { outline: none; }
 .form-success { position: relative; padding: 0.5rem 0 0.25rem 2.25rem; outline: none; }
 .form-success__pearl { position: absolute; left: 0.1rem; top: 1.05rem; width: 1.1rem; height: 1.1rem; }
 .form-success h3 { font-size: var(--step-3); margin-bottom: 0.5rem; }
-.form-success h4 { font-family: var(--font-display); font-weight: 400; font-size: var(--step-2); color: var(--deep-plum); margin: 1.5rem 0 0.75rem; }
+.form-success h4 { font-family: var(--font-display); font-weight: 400; font-size: var(--step-2); color: var(--heading); margin: 1.5rem 0 0.75rem; }
 .form-success .what-next__list { gap: 0.6rem; }
 
 /* Kind words on phones: a snapping track with previous and next. */
@@ -1864,4 +1881,779 @@ main:focus { outline: none; }
   .notfound__wash--a { left: -9rem; top: 8%; }
   .notfound__wash--b { right: -9rem; bottom: -4%; }
   .notfound__strand { left: 14%; bottom: 2.5rem; width: 60%; }
+}
+
+/* 15. The six-page framework --------------------------------------------------
+   The celestial layer, gold over pink, the Namaste closings, the six strands
+   (the tree of life), the chapters, and the new sections of Philosophy,
+   Explore and Stay Connected. */
+
+/* A fine gold line symbol from the kit: the six strands, moon, sun. */
+.sym {
+  display: block;
+  flex: none;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: var(--gold-deep);
+}
+
+/* A small, quiet label above a heading ("Events", "doTERRA Wellness Advocate"). */
+.eyebrow { margin: 0 0 0.4rem; font-size: var(--step--1); font-weight: 700; color: var(--ink-soft); }
+
+/* The celestial layer: a few fine gold sparkles. The only thing that moves is a
+   very slow twinkle, and it stops under reduced motion. */
+.sky { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.sky__star {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--s, 10px);
+  height: var(--s, 10px);
+  margin: calc(var(--s, 10px) / -2) 0 0 calc(var(--s, 10px) / -2);
+  overflow: visible;
+  color: var(--gold-deep);
+  opacity: 0.7;
+}
+.sky__star--wide { display: none; }
+@media (min-width: 48em) {
+  .sky__star--wide { display: block; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sky__star { animation: twinkle var(--t, 8s) ease-in-out var(--d, 0s) infinite alternate; }
+}
+@keyframes twinkle {
+  0% { opacity: 0.22; transform: scale(0.74); }
+  55% { opacity: 0.92; transform: scale(1); }
+  100% { opacity: 0.5; transform: scale(0.86); }
+}
+
+/* Home: the six strands, a light teaser on a gold strand. */
+.strands-teaser .section-head p { max-width: 40rem; }
+.bloom--strands-a {
+  left: -16%; top: -6%; width: 44%; height: 80%;
+  --b1: var(--peach-rgb); --o1: 0.36;
+  --b2: var(--blush-rgb); --o2: 0.3;
+  --b3: var(--lavender-rgb); --o3: 0.22;
+  --o4: 0;
+  --drift: 62s;
+}
+.bloom--strands-b {
+  right: -18%; bottom: -10%; width: 44%; height: 80%;
+  --b1: var(--sage-rgb); --o1: 0.3;
+  --b2: var(--teal-rgb); --o2: 0.2;
+  --b3: var(--gold-rgb); --o3: 0.22;
+  --o4: 0;
+  --drift: 66s; --dx: -1.5%;
+}
+.strand-row { position: relative; }
+.strand-row__line { display: none; }
+.strand-row__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 1rem; }
+.strand-link {
+  display: grid;
+  justify-items: center;
+  gap: 0.55rem;
+  padding: 0.35rem 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  text-decoration: none;
+  color: var(--heading);
+}
+.strand-link__mark { position: relative; width: 5rem; height: 5rem; transition: transform 0.24s var(--ease-out); }
+.strand-link__mark .drop { position: absolute; inset: 0; width: 100%; height: 100%; color: var(--c); }
+.strand-link__mark .sym { position: absolute; inset: 21%; width: 58%; height: 58%; stroke-width: 1.6; }
+.strand-link__name { position: relative; padding-bottom: 0.3rem; font-family: var(--font-display); font-size: 1.3rem; line-height: 1.2; }
+.strand-link__name::after {
+  content: "";
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  bottom: 0;
+  height: 1px;
+  background: var(--champagne-gold);
+  transform: scaleX(0.3);
+  transition: transform 0.24s var(--ease-out);
+}
+.strand-link:hover .strand-link__mark { transform: translateY(-3px); }
+.strand-link:hover .strand-link__name::after,
+.strand-link:focus-visible .strand-link__name::after { transform: scaleX(1); }
+.strands-teaser__more { margin: 2.5rem auto 0; max-width: none; text-align: center; }
+@media (min-width: 40em) {
+  .strand-row__list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (min-width: 64em) {
+  .strand-row__line { display: block; left: 0; top: 0.35rem; width: 100%; height: 7.5rem; }
+  .strand-row__list { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0; }
+  .strand-row__list > li { padding-top: var(--y, 0); }
+  .strand-link__mark { width: 5.25rem; height: 5.25rem; }
+}
+
+.ways__more { margin: 2.75rem 0 0; max-width: none; }
+
+/* What's coming: an events card with a brush stroke, and a "Coming soon" card
+   in gold over pink. */
+.coming__cards { display: grid; gap: 2.25rem; }
+.coming-card h3 { margin-bottom: 0.6rem; }
+.coming-card p:not(.eyebrow) { max-width: 26em; }
+.card--blush { background: var(--blush-pale); }
+.card__frame {
+  position: absolute;
+  z-index: -1;
+  inset: 0.65rem;
+  border-radius: 26px;
+  box-shadow: inset 0 0 0 1px rgb(201 162 78 / 0.75), inset 0 0 0 4px var(--blush-pale), inset 0 0 0 4.8px rgb(201 162 78 / 0.38);
+  pointer-events: none;
+}
+.card__sky { position: absolute; z-index: -1; inset: 0; pointer-events: none; }
+.card__moon { position: absolute; left: clamp(1.5rem, 2.6vw, 2.25rem); top: 2.1rem; width: 2.9rem; height: 2.9rem; stroke-width: 1.3; }
+.card--blush .card__sky::after {
+  content: "";
+  position: absolute;
+  left: 7%;
+  right: 7%;
+  top: 6.05rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--champagne-gold) 18%, var(--gold-light) 50%, var(--gold-deep) 82%, transparent);
+}
+@media (max-width: 39.99em) {
+  .card__moon { top: 1.6rem; width: 2.6rem; height: 2.6rem; }
+  .card--blush .card__sky::after { top: 5.05rem; }
+}
+@media (min-width: 48em) {
+  .coming__cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.25rem, 3vw, 2.5rem); align-items: stretch; }
+}
+
+/* Gold over pink: the Namaste closings. Text on blush stays plum or charcoal. */
+.section--blush .btn--quiet { background: rgb(255 253 248 / 0.7); }
+.bloom--blush-a {
+  left: -18%; top: 4%; width: 42%; height: 92%;
+  --b1: var(--peach-rgb); --o1: 0.4;
+  --b2: var(--lavender-rgb); --o2: 0.26;
+  --b3: var(--gold-rgb); --o3: 0.16;
+  --o4: 0;
+  --drift: 60s;
+}
+.bloom--blush-b {
+  right: -18%; top: -10%; width: 42%; height: 96%;
+  --b1: var(--lavender-rgb); --o1: 0.34;
+  --b2: var(--blush-rgb); --o2: 0.4;
+  --b3: var(--peach-rgb); --o3: 0.24;
+  --o4: 0;
+  --drift: 66s; --dx: -1.5%;
+}
+.closing .namaste,
+.namaste {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.8rem, 2vw, 1.25rem);
+  margin: 2.6rem auto 0;
+  font-family: var(--font-script);
+  font-size: clamp(2.6rem, 2rem + 2.2vw, 3.5rem);
+  line-height: 1.15;
+  color: var(--heading);
+}
+.namaste .sym { width: 1.7rem; height: 1.7rem; stroke-width: 1.5; }
+.namaste .namaste__moon { transform: rotate(-12deg); }
+.namaste__word { padding-inline: 0.12em; }
+.closing .namaste--title,
+.namaste--title {
+  margin: 0 auto;
+  max-width: none;
+  font-size: clamp(4.4rem, 2.6rem + 7vw, 8.6rem);
+  line-height: 1.05;
+  gap: clamp(1rem, 3vw, 2.25rem);
+}
+.namaste--title .sym { width: clamp(2.2rem, 1.5rem + 2.2vw, 3.4rem); height: clamp(2.2rem, 1.5rem + 2.2vw, 3.4rem); stroke-width: 1.3; }
+.closing--namaste .flourish { margin: 1.25rem auto 0; }
+.closing .closing__light { margin: 1.25rem auto 2.4rem; max-width: 24ch; font-family: var(--font-display); font-size: var(--step-2); line-height: 1.3; color: var(--heading); }
+.closing__actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem 2.25rem; }
+
+/* The six strands of my life: a painted tree of life with six watercolour
+   nodes, and the summary panel beside it (below it on phones). */
+.six-strands { padding-block: clamp(3.5rem, 2rem + 5vw, 6.5rem); }
+.six-strands__grid { display: grid; gap: 2rem; }
+.six-strands__head h2 { max-width: 12ch; }
+.six-strands__head .lead { margin-top: 1.25rem; max-width: 30rem; }
+.tree {
+  position: relative;
+  isolation: isolate;
+  justify-self: center;
+  width: min(100%, 34rem);
+  aspect-ratio: 600 / 720;
+}
+.tree__art { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.tree__art .tree__strands { filter: drop-shadow(0 1px 0.6px rgb(87 68 103 / 0.18)); }
+.tree__bloom {
+  left: 2%; top: 2%; width: 96%; height: 62%;
+  --blur: 38px;
+  --s1: 40% 42%; --p1: 30% 48%; --b1: var(--sage-rgb); --o1: 0.42;
+  --s2: 40% 42%; --p2: 70% 44%; --b2: var(--teal-rgb); --o2: 0.3;
+  --s3: 36% 34%; --p3: 50% 22%; --b3: var(--lavender-rgb); --o3: 0.4;
+  --s4: 26% 24%; --p4: 54% 66%; --b4: var(--blush-rgb); --o4: 0.36;
+}
+.tree__nodes { position: absolute; inset: 0; }
+.tree__node {
+  --node: 3rem;
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--node);
+  height: var(--node);
+  margin: calc(var(--node) / -2) 0 0 calc(var(--node) / -2);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--heading);
+  -webkit-tap-highlight-color: transparent;
+}
+.tree__node:focus-visible { outline-offset: 9px; }
+.tree__drop {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(255 253 248 / 0.92), rgb(255 253 248 / 0.75) 72%, rgb(255 253 248 / 0.35));
+  box-shadow: 0 0 0 1px rgb(201 162 78 / 0.55), 0 6px 14px -8px rgb(87 68 103 / 0.45);
+  transition: transform 0.4s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+.tree__drop .drop { position: absolute; inset: -8%; width: 116%; height: 116%; color: var(--c); }
+.tree__drop .sym { position: absolute; inset: 20%; width: 60%; height: 60%; stroke-width: 1.7; }
+/* A soft ivory halo and a gold ring: the selected strand. */
+.tree__drop::before,
+.tree__drop::after {
+  content: "";
+  position: absolute;
+  inset: -0.4rem;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.tree__drop::before {
+  z-index: -1;
+  background: rgb(255 253 248 / 0.7);
+  box-shadow: 0 0 0 1px rgb(201 162 78 / 0.95), 0 0 0 4px rgb(255 253 248 / 0.6), 0 12px 24px -12px rgb(87 68 103 / 0.6);
+  opacity: 0;
+  transform: scale(0.82);
+  transition: opacity 0.35s var(--ease-out), transform 0.45s var(--ease-out);
+}
+/* A ripple of gold as a strand opens. */
+.tree__drop::after { box-shadow: 0 0 0 1px rgb(201 162 78 / 0.8); opacity: 0; }
+.tree__node.is-ripple .tree__drop::after { animation: ripple 0.9s var(--ease-out); }
+@keyframes ripple {
+  from { opacity: 0.9; transform: scale(0.9); }
+  to { opacity: 0; transform: scale(1.7); }
+}
+.tree__label {
+  position: absolute;
+  white-space: nowrap;
+  padding: 0.18rem 0.6rem 0.24rem;
+  border-radius: 999px;
+  background: rgb(255 253 248 / 0.8);
+  box-shadow: inset 0 0 0 1px rgb(201 162 78 / 0.42);
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  line-height: 1.25;
+  color: var(--heading);
+  transition: background-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+[data-label="right"] .tree__label { left: calc(100% + 0.6rem); top: 50%; transform: translateY(-50%); }
+[data-label="left"] .tree__label { right: calc(100% + 0.6rem); top: 50%; transform: translateY(-50%); }
+[data-label="below"] .tree__label { left: 50%; top: calc(100% + 0.55rem); transform: translateX(-50%); }
+.tree__node:hover .tree__drop { transform: translateY(-2px) scale(1.05); }
+.tree__node:hover .tree__label { box-shadow: inset 0 0 0 1px var(--gold-deep); }
+.tree__node[aria-expanded="true"] .tree__drop { transform: scale(1.14); box-shadow: 0 0 0 1px rgb(201 162 78 / 0.95); }
+.tree__node[aria-expanded="true"] .tree__drop::before { opacity: 1; transform: none; }
+.tree__node[aria-expanded="true"] .tree__label {
+  background: var(--warm-ivory);
+  box-shadow: inset 0 0 0 1px var(--gold-deep), 0 8px 18px -12px rgb(87 68 103 / 0.55);
+}
+.tree__node:active .tree__drop { transform: scale(1.06); transition-duration: 0.08s; }
+html:not(.js) .tree__node { cursor: default; }
+
+/* The summary panel: a paper card with a wash in the strand's colour. */
+.strand-panel { position: relative; display: grid; gap: 1.5rem; align-content: start; }
+.strand-summary {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(1.6rem, 3vw, 2.4rem) clamp(1.5rem, 3vw, 2.5rem) clamp(1.6rem, 3vw, 2.25rem);
+  border-radius: var(--radius);
+  background: var(--warm-ivory);
+  box-shadow: var(--shadow-card);
+}
+.strand-summary::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0.6rem;
+  border-radius: calc(var(--radius) - 0.6rem);
+  box-shadow: inset 0 0 0 1px rgb(201 162 78 / 0.38);
+  pointer-events: none;
+}
+.strand-summary__wash { position: absolute; z-index: -1; right: -4rem; top: -5.5rem; width: 12.5rem; height: auto; aspect-ratio: 1; overflow: visible; color: var(--c); pointer-events: none; }
+.strand-summary { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 1.1rem; align-items: center; align-content: start; }
+.strand-summary__mark { position: relative; grid-row: 1 / span 2; display: block; width: 4.25rem; height: 4.25rem; }
+.strand-summary__mark .drop { position: absolute; inset: 0; width: 100%; height: 100%; color: var(--c); }
+.strand-summary__mark .sym { position: absolute; inset: 20%; width: 60%; height: 60%; stroke-width: 1.6; }
+.strand-summary__name { grid-column: 2; align-self: end; font-size: clamp(2rem, 1.5rem + 1.6vw, 2.75rem); line-height: 1.1; }
+.strand-summary__colour { grid-column: 2; align-self: start; display: flex; align-items: center; gap: 0.55rem; margin: 0.4rem 0 0; font-size: var(--step--1); font-weight: 700; color: var(--ink-soft); }
+.strand-summary__colour::before {
+  content: "";
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 0 0 1px rgb(201 162 78 / 0.8);
+}
+.strand-summary__text { grid-column: 1 / -1; margin-top: 1.4rem; font-size: var(--step-1); line-height: 1.55; max-width: 26em; }
+.strand-summary .link-arrow { grid-column: 1 / -1; justify-self: start; margin-top: 0.85rem; }
+@media (min-width: 40em) {
+  .strand-summary__wash { right: -4.5rem; top: -6.5rem; width: 15.5rem; }
+}
+/* With JavaScript: one summary at a time, cross-fading in place. */
+.strand-panel.is-enhanced { gap: 0; }
+.strand-panel.is-enhanced .strand-summary {
+  grid-area: 1 / 1;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(10px);
+}
+.strand-panel.is-enhanced .strand-summary.is-current { visibility: visible; opacity: 1; transform: none; }
+/* Cross-fade only once the first summary is in place, so nothing flickers on load. */
+.strand-panel.is-animated .strand-summary { transition: opacity 0.35s var(--ease-out), transform 0.45s var(--ease-out), visibility 0s linear 0.35s; }
+.strand-panel.is-animated .strand-summary.is-current { transition: opacity 0.5s var(--ease-out) 0.08s, transform 0.6s var(--ease-out) 0.08s, visibility 0s; }
+@media (min-width: 40em) {
+  .tree__node { --node: 3.5rem; }
+  .tree__label { font-size: 1.08rem; }
+}
+@media (min-width: 60em) {
+  .six-strands__grid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    grid-template-rows: auto 1fr;
+    column-gap: clamp(2rem, 5vw, 5rem);
+    row-gap: 2rem;
+    align-items: start;
+  }
+  .six-strands__grid > .tree { grid-column: 1; grid-row: 1 / span 2; width: min(100%, 35rem); justify-self: center; }
+  .six-strands__head { grid-column: 2; grid-row: 1; padding-top: clamp(0.5rem, 3vw, 2.5rem); }
+  .strand-panel { grid-column: 2; grid-row: 2; }
+}
+
+/* The chapters: calm painted spreads, a framed photo beside the words, the
+   wash in the strand's colour. */
+.chapters { padding-top: clamp(2.5rem, 5vw, 4rem); }
+.chapter { display: grid; gap: 2.25rem; align-items: center; padding-block: clamp(2.5rem, 6vw, 5rem); }
+.chapter + .chapter { border-top: 1px solid transparent; border-image: linear-gradient(90deg, transparent, rgb(201 162 78 / 0.55) 30%, rgb(201 162 78 / 0.55) 70%, transparent) 1; }
+.chapter__photo { position: relative; isolation: isolate; justify-self: center; width: min(86%, 24rem); margin: 0; }
+.chapter--landscape .chapter__photo { width: min(100%, 32rem); }
+.chapter__photo::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  inset: -16% -24%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--c) 30%, transparent), color-mix(in srgb, var(--c2, var(--c)) 10%, transparent) 60%, transparent);
+  pointer-events: none;
+}
+.chapter__wash { position: absolute; z-index: -1; left: -30%; top: -14%; width: 92%; height: auto; aspect-ratio: 1; overflow: visible; color: var(--c); opacity: 0.8; pointer-events: none; }
+.chapter:nth-child(even) .chapter__wash { left: auto; right: -30%; top: auto; bottom: -4%; }
+.chapter--landscape .chapter__wash { width: 72%; top: -24%; }
+/* The empty frame: an ivory mat, a gold double rule and a pale wash of the
+   strand's colour, ready for the photoshoot image (an <img> inside .frame). */
+.frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 5;
+  border-radius: 6px;
+  background: var(--warm-ivory);
+  box-shadow: var(--shadow-card);
+}
+.chapter--landscape .frame { aspect-ratio: 3 / 2; }
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: 0.9rem;
+  border-radius: 2px;
+  background:
+    radial-gradient(70% 60% at 50% 44%, color-mix(in srgb, var(--c) 30%, transparent), transparent 72%),
+    linear-gradient(160deg, color-mix(in srgb, var(--c2, var(--c)) 14%, var(--warm-ivory)), var(--warm-ivory) 70%);
+  box-shadow: 0 0 0 1px rgb(201 162 78 / 0.8), 0 0 0 4px var(--warm-ivory), 0 0 0 4.7px rgb(201 162 78 / 0.36);
+}
+.frame::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0.9rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  margin: -0.4rem 0 0 -0.4rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, #FFFFFF 0 14%, #FDF3ED 34%, #EFD7CA 64%, #DBBFAC 100%);
+  box-shadow: 0 0 0 1px rgb(201 162 78 / 0.85), 0 2px 3px rgb(87 68 103 / 0.3);
+}
+.frame__sym { position: relative; width: clamp(3.5rem, 6vw, 4.75rem); height: clamp(3.5rem, 6vw, 4.75rem); stroke-width: 1.2; opacity: 0.75; }
+.frame img { position: absolute; inset: 0.9rem; width: calc(100% - 1.8rem); height: calc(100% - 1.8rem); max-width: none; object-fit: cover; border-radius: 2px; }
+.chapter__photo figcaption { margin-top: 0.9rem; font-size: var(--step--1); color: var(--ink-soft); text-align: center; }
+.chapter__sym { width: 2.75rem; height: 2.75rem; margin-bottom: 1rem; stroke-width: 1.4; }
+.chapter__swash { width: min(13rem, 60%); margin: 1.1rem 0 1.5rem; aspect-ratio: 400 / 110; }
+.chapter .link-arrow--back { margin-top: 1rem; }
+.arrow--up { transform: rotate(-90deg); }
+.link-arrow:hover .arrow--up,
+.link-arrow:focus-visible .arrow--up { transform: rotate(-90deg) translateX(4px); }
+@media (min-width: 56em) {
+  .chapter { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); column-gap: clamp(2.5rem, 7vw, 7rem); }
+  .chapter--landscape { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); }
+  .chapter:nth-child(even) .chapter__photo { order: 2; }
+  .chapter__text { padding-block: 1rem; }
+}
+
+/* At a glance: four quiet facts in a row on the cream band. */
+.glance__list { display: grid; max-width: 34rem; margin-inline: auto; }
+.glance__list li { display: flex; align-items: center; gap: 0.9rem; padding: 0.85rem 0; border-bottom: 1px solid rgb(201 162 78 / 0.32); }
+.glance__list li:last-child { border-bottom: 0; }
+.glance__list svg { width: 1.45rem; height: 1.45rem; flex: none; fill: none; stroke: var(--gold-deep); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+@media (min-width: 60em) {
+  .glance__list { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: none; }
+  .glance__list li { flex-direction: column; gap: 0.75rem; padding: 0.4rem 1.5rem; border-bottom: 0; text-align: center; font-size: var(--step-1); line-height: 1.4; }
+  .glance__list li + li { border-left: 1px solid rgb(201 162 78 / 0.45); }
+  .glance__list svg { width: 1.75rem; height: 1.75rem; }
+}
+
+/* Credentials: her doTERRA role, the four entries, and the certification in
+   progress on a small gold-over-pink note. */
+.creds__advocate { display: flex; align-items: center; gap: 0.85rem; margin: 1.5rem 0 0; max-width: none; font-family: var(--font-display); font-size: var(--step-2); line-height: 1.25; color: var(--heading); }
+.creds__advocate .sym { width: 2.25rem; height: 2.25rem; }
+.creds__progress {
+  position: relative;
+  margin-top: 2rem;
+  padding: 1.35rem 1.5rem 1.1rem 4.4rem;
+  border-radius: var(--radius-sm);
+  background: var(--blush-pale);
+  box-shadow: inset 0 0 0 1px rgb(201 162 78 / 0.7), inset 0 0 0 4px var(--blush-pale), inset 0 0 0 4.7px rgb(201 162 78 / 0.3);
+}
+.creds__moon { position: absolute; left: 1.35rem; top: 1.35rem; width: 2.1rem; height: 2.1rem; }
+.creds__progress p { margin: 0; }
+.creds__progress strong { color: var(--heading); }
+.creds__progress .link-arrow { margin-top: 0.35rem; }
+
+/* Wellness philosophy */
+.bloom--philosophy-hero {
+  right: -14%; top: -30%; width: 56%; height: 150%;
+  --blur: 36px;
+  --b1: var(--lavender-rgb); --o1: 0.48; --p1: 42% 50%;
+  --b2: var(--sage-rgb); --o2: 0.36; --p2: 60% 70%;
+  --b3: var(--blush-rgb); --o3: 0.4; --p3: 64% 30%;
+  --b4: var(--gold-rgb); --o4: 0.26;
+  --drift: 62s;
+}
+.page-hero__sky { z-index: -1; }
+.philosophy__grid { display: grid; gap: 2.5rem; align-items: center; }
+.philosophy__swash { width: min(17rem, 70%); margin: 1.3rem 0 1.6rem; aspect-ratio: 400 / 110; }
+.philosophy__copy p { font-size: var(--step-1); line-height: 1.6; }
+.tree--still { width: min(100%, 26rem); }
+@media (min-width: 56em) {
+  .philosophy__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(2.5rem, 6vw, 6rem); }
+  .tree--still { width: min(100%, 32rem); justify-self: center; }
+}
+
+/* Explore: skills and practices */
+.bloom--skills {
+  left: -16%; bottom: -10%; width: 42%; height: 80%;
+  --b1: var(--lavender-rgb); --o1: 0.3;
+  --b2: var(--peach-rgb); --o2: 0.26;
+  --b3: var(--sage-rgb); --o3: 0.2;
+  --o4: 0;
+  --drift: 64s;
+}
+.skills__list { display: grid; gap: 2.25rem 2rem; }
+.skill { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.25rem 1.25rem; align-items: start; }
+.skill h3 { padding-top: 0.55rem; margin-bottom: 0.45rem; font-size: clamp(1.35rem, 1.2rem + 0.5vw, 1.6rem); }
+.skill p { font-size: 1.02rem; }
+@media (min-width: 40em) {
+  .skills__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 64em) {
+  .skills__list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .skill { grid-template-columns: minmax(0, 1fr); }
+  .skill h3 { padding-top: 0.9rem; }
+}
+.oils__title .eyebrow { margin-bottom: 0.6rem; }
+
+/* Stay connected: events and wellness days */
+.bloom--events {
+  right: -16%; top: -8%; width: 44%; height: 80%;
+  --b1: var(--sage-rgb); --o1: 0.3;
+  --b2: var(--lavender-rgb); --o2: 0.28;
+  --b3: var(--peach-rgb); --o3: 0.22;
+  --o4: 0;
+  --drift: 64s; --dx: -1.5%;
+}
+.events__list { display: grid; gap: 2.5rem; padding-top: 0.5rem; }
+.event h3 { font-size: var(--step-2); }
+.event__meta { display: grid; gap: 0.3rem; margin: 0.7rem 0 1rem; }
+.event__meta li { display: flex; align-items: center; gap: 0.6rem; font-size: var(--step--1); font-weight: 700; color: var(--ink-soft); }
+.event__meta svg { width: 1.15rem; height: 1.15rem; flex: none; fill: none; stroke: var(--gold-deep); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.event__links { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 1.75rem; margin-top: auto; padding-top: 0.75rem; }
+.card .event__links .link-arrow { margin-top: 0; padding-top: 0; }
+.events__more { display: flex; align-items: center; justify-content: center; gap: 0.7rem; margin: 2.75rem auto 0; max-width: none; color: var(--charcoal); }
+@media (min-width: 56em) {
+  .events__list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.25rem, 3vw, 2.5rem); align-items: stretch; }
+}
+
+/* Coming soon: gold over pink, each item marked by a phase of the moon. */
+.coming-soon { text-align: center; }
+.coming-soon .section-head p { max-width: 34rem; }
+.soon { position: relative; }
+.soon__line { display: none; }
+.soon__list { display: grid; gap: 2.75rem; }
+.soon__item { display: grid; justify-items: center; align-content: start; gap: 0.35rem; }
+.soon__phase { width: 4.5rem; height: 4.5rem; margin-bottom: 0.85rem; border-radius: 50%; background: var(--blush-pale); fill: none; stroke: var(--gold-deep); stroke-width: 1.3; overflow: visible; }
+.soon__lit { fill: var(--champagne-gold); fill-opacity: 0.5; stroke: none; }
+.soon__spark { fill: var(--gold-deep); stroke: none; }
+.soon__item h3 { max-width: 15em; font-size: clamp(1.45rem, 1.25rem + 0.8vw, 1.85rem); line-height: 1.25; }
+.soon__item p { margin-inline: auto; max-width: 22em; }
+@media (min-width: 56em) {
+  .soon__list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 4vw, 3rem); }
+  .soon__line { display: block; position: absolute; left: 0; top: 1.5rem; width: 100%; height: 2.5rem; }
+}
+
+/* Announcements: the latest news on a paper card. */
+.news__item {
+  position: relative;
+  padding: 2.25rem clamp(1.5rem, 4vw, 3rem) 2rem;
+  border-radius: var(--radius);
+  background: var(--warm-ivory);
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+.news__item .flourish { width: min(16rem, 70%); margin: 0 auto 1.25rem; }
+.news__text { margin-inline: auto; font-family: var(--font-display); font-size: var(--step-2); line-height: 1.35; color: var(--heading); }
+.news__date { margin: 0.9rem auto 0; font-size: var(--step--1); font-weight: 700; color: var(--ink-soft); }
+
+/* Paint layers that are meant to spill past their box. */
+.arch__wash, .tree__drop .drop, .pearl-tab__paint, .strand-summary__wash, .chapter__wash { max-width: none; }
+
+/* The six strands, templates two and three (?strands=arches, ?strands=pearls).
+   Until the script swaps the chosen template in, the tree waits unseen. */
+.strands-arches [data-strands="tree"],
+.strands-pearls [data-strands="tree"] { visibility: hidden; }
+.six-strands__head--centre { display: grid; justify-items: center; margin-bottom: clamp(2.25rem, 4vw, 3.25rem); text-align: center; }
+.six-strands__head--centre h2 { max-width: none; }
+.six-strands__head--centre .lead { margin-inline: auto; max-width: 36rem; }
+
+/* Arches: six arched cards that turn over to show the summary. Each front is
+   painted: a wash in the strand's colour inside the arch, the symbol on a drop
+   of colour, a gold rule following the arch. */
+.arches { --arch-r: 4.75rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 0.85rem; }
+.arch { position: relative; perspective: 1400px; border-radius: 50% 50% 1.5rem 1.5rem / var(--arch-r) var(--arch-r) 1.5rem 1.5rem; }
+.arch__card { position: relative; display: grid; height: 100%; min-height: 17rem; }
+.arch__face {
+  position: relative;
+  isolation: isolate;
+  grid-area: 1 / 1;
+  overflow: hidden;
+  border-radius: 50% 50% 1.5rem 1.5rem / var(--arch-r) var(--arch-r) 1.5rem 1.5rem;
+  box-shadow: var(--shadow-card);
+}
+.arch__face::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0.5rem;
+  border-radius: 50% 50% 1.1rem 1.1rem / calc(var(--arch-r) - 0.5rem) calc(var(--arch-r) - 0.5rem) 1.1rem 1.1rem;
+  box-shadow: inset 0 0 0 1px rgb(201 162 78 / 0.62);
+  pointer-events: none;
+}
+.arch__front {
+  background:
+    radial-gradient(90% 55% at 50% 0%, color-mix(in srgb, var(--c) 30%, transparent), transparent 75%),
+    linear-gradient(180deg, var(--warm-ivory) 30%, var(--soft-cream));
+}
+.arch__front::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 0.5rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin: -0.35rem 0 0 -0.35rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, #FFFFFF 0 14%, #FDF3ED 34%, #EFD7CA 64%, #DBBFAC 100%);
+  box-shadow: 0 0 0 1px rgb(201 162 78 / 0.85), 0 2px 3px rgb(87 68 103 / 0.3);
+  pointer-events: none;
+}
+.arch__turn {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 0.85rem;
+  width: 100%;
+  height: 100%;
+  padding: 2.75rem 0.75rem 1.75rem;
+  border: 0;
+  border-radius: inherit;
+  background: none;
+  color: var(--heading);
+  -webkit-tap-highlight-color: transparent;
+}
+.arch__mark { position: relative; width: 4.75rem; height: 4.75rem; transition: transform 0.3s var(--ease-out); }
+.arch__wash { position: absolute; z-index: -1; left: 50%; top: 50%; width: 190%; height: auto; aspect-ratio: 1; translate: -50% -50%; overflow: visible; color: var(--c); opacity: 0.55; pointer-events: none; }
+.arch__mark .drop { position: absolute; inset: 0; width: 100%; height: 100%; color: var(--c); }
+.arch__mark .sym { position: absolute; inset: 21%; width: 58%; height: 58%; stroke-width: 1.6; }
+.arch__name { position: relative; padding: 0.15rem 0.7rem 0.2rem; border-radius: 999px; background: rgb(255 253 248 / 0.72); font-family: var(--font-display); font-size: 1.3rem; line-height: 1.2; }
+.arch:hover .arch__mark { transform: translateY(-3px); }
+.arch__back {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 0.45rem;
+  padding: 2.4rem 1rem 1.5rem;
+  text-align: center;
+  background:
+    radial-gradient(110% 62% at 50% 0%, color-mix(in srgb, var(--c) 42%, transparent), transparent 72%),
+    var(--warm-ivory);
+}
+.arch__sym { width: 2.3rem; height: 2.3rem; stroke-width: 1.4; }
+.arch__title { font-size: clamp(1.35rem, 1.1rem + 0.9vw, 1.8rem); }
+.arch__text { margin: 0 auto; max-width: 21em; font-size: 0.95rem; line-height: 1.55; }
+.arch__back .link-arrow { font-size: 0.95rem; }
+@media (max-width: 47.99em) {
+  .arch__back { padding: 2.2rem 0.6rem 1.3rem; }
+  .arch__text { font-size: 0.92rem; }
+  .arch__back .link-arrow { font-size: 0.9rem; white-space: nowrap; }
+  .arch__back .link-arrow svg { display: none; }
+  .arch__back .link-arrow::after { right: 0; }
+}
+/* One focus ring, on the arch itself (its front turns away when it opens). */
+.arch__turn:focus-visible { outline: none; }
+.arch:has(.arch__turn:focus-visible) { outline: 2px solid var(--focus); outline-offset: 4px; }
+@supports not selector(:has(*)) {
+  .arch__turn:focus-visible { outline: 2px solid var(--focus); outline-offset: -0.5rem; }
+}
+/* Turning over: a cross-fade by default (and under reduced motion, instantly)... */
+.arch__front { transition: opacity 0.35s var(--ease-out); }
+.arch__back { visibility: hidden; opacity: 0; transition: opacity 0.35s var(--ease-out), visibility 0s linear 0.35s; }
+.arch.is-open .arch__front { opacity: 0; }
+.arch.is-open .arch__back { visibility: visible; opacity: 1; transition: opacity 0.45s var(--ease-out), visibility 0s; }
+/* ...and a true turn in 3D wherever it is supported. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (transform-style: preserve-3d) and ((backface-visibility: hidden) or (-webkit-backface-visibility: hidden)) {
+    .arch__card { transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.3, 0.7, 0.25, 1); }
+    .arch__face { -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+    .arch__back { opacity: 1; transform: rotateY(180deg); transition: visibility 0s linear 0.4s; }
+    .arch.is-open .arch__front { opacity: 1; }
+    .arch.is-open .arch__back { transition: visibility 0s; }
+    .arch.is-open .arch__card { transform: rotateY(180deg); }
+  }
+}
+@media (min-width: 48em) {
+  .arches { --arch-r: 7rem; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.25rem, 2.6vw, 2.25rem); }
+  .arch__card { min-height: 19.5rem; }
+  .arch__turn { padding: 3.5rem 1.25rem 2.25rem; gap: 1.1rem; }
+  .arch__mark { width: 6rem; height: 6rem; }
+  .arch__name { font-size: 1.55rem; }
+  .arch__back { padding: 3rem 1.75rem 2rem; gap: 0.6rem; }
+  .arch__text { font-size: 1.05rem; }
+}
+@media (min-width: 64em) {
+  .six-strands__arches { max-width: 64rem; }
+}
+
+/* Pearls: six large watercolour pearls on a gold strand, acting as tabs, the
+   summary on a paper card below with Previous, Next and "1 of 6". */
+.pearls { position: relative; max-width: 66rem; margin-inline: auto; }
+.pearls__strand { display: none; }
+.pearls__list { --gap: 0.6rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem var(--gap); }
+.pearl-tab {
+  --pearl: 4.6rem;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 0.55rem;
+  padding: 0.5rem 0.2rem 0.4rem;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--heading);
+  -webkit-tap-highlight-color: transparent;
+}
+/* Phones: the strand runs through each row of three. */
+.pearl-tab::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: calc(var(--gap) / -2);
+  right: calc(var(--gap) / -2);
+  top: calc(0.5rem + var(--pearl) / 2);
+  height: 1.4px;
+  background: linear-gradient(90deg, var(--champagne-gold), var(--gold-light), var(--gold-deep));
+}
+.pearls__list > :nth-child(3n + 1)::before { left: 0; background: linear-gradient(90deg, transparent, var(--champagne-gold) 40%, var(--gold-light)); }
+.pearls__list > :nth-child(3n)::before { right: 0; background: linear-gradient(90deg, var(--gold-light), var(--gold-deep) 60%, transparent); }
+.pearl-tab__pearl { position: relative; width: var(--pearl); height: var(--pearl); transition: transform 0.45s var(--ease-out); }
+.pearl-tab__paint { position: absolute; inset: -6%; width: 112%; height: 112%; overflow: visible; color: var(--c); }
+.pearl-tab__sheen {
+  position: absolute;
+  inset: 5%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 33% 27%, rgb(255 255 255 / 0.95) 0 8%, rgb(255 255 255 / 0.5) 20%, transparent 46%),
+    radial-gradient(circle at 64% 82%, rgb(255 253 248 / 0.55), transparent 42%);
+  box-shadow:
+    inset 0 -7px 10px -6px rgb(255 255 255 / 0.85),
+    inset 0 5px 9px -5px rgb(87 68 103 / 0.2),
+    0 0 0 1px rgb(201 162 78 / 0.75),
+    0 12px 18px -12px rgb(87 68 103 / 0.6);
+  transition: box-shadow 0.35s var(--ease-out);
+}
+.pearl-tab .sym { position: absolute; inset: 25%; width: 50%; height: 50%; stroke-width: 1.6; }
+.pearl-tab__glint { position: absolute; right: -4%; top: -4%; width: 1.3rem; height: 1.3rem; overflow: visible; color: var(--gold-deep); opacity: 0; transform: scale(0.4) rotate(-40deg); transition: opacity 0.35s var(--ease-out), transform 0.45s var(--ease-out); }
+.pearl-tab__name { position: relative; padding-bottom: 0.3rem; font-family: var(--font-display); font-size: 1rem; line-height: 1.2; text-align: center; }
+.pearl-tab__name::after {
+  content: "";
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: 0;
+  height: 1px;
+  background: var(--gold-deep);
+  transform: scaleX(0);
+  transition: transform 0.3s var(--ease-out);
+}
+.pearl-tab:hover .pearl-tab__pearl { transform: translateY(-3px); }
+.pearl-tab[aria-selected="true"] .pearl-tab__pearl { transform: translateY(-7px) scale(1.08); }
+.pearl-tab[aria-selected="true"] .pearl-tab__sheen {
+  box-shadow:
+    inset 0 -7px 10px -6px rgb(255 255 255 / 0.9),
+    inset 0 5px 9px -5px rgb(87 68 103 / 0.2),
+    0 0 0 1.4px var(--gold-deep),
+    0 0 0 5px rgb(255 253 248 / 0.75),
+    0 18px 24px -12px rgb(87 68 103 / 0.6);
+}
+.pearl-tab[aria-selected="true"] .pearl-tab__glint { opacity: 1; transform: none; }
+.pearl-tab[aria-selected="true"] .pearl-tab__name::after { transform: scaleX(1); }
+.pearl-tab.is-ripple .pearl-tab__glint { animation: glint 0.9s var(--ease-out); }
+@keyframes glint {
+  0% { opacity: 0; transform: scale(0.3) rotate(-60deg); }
+  55% { opacity: 1; transform: scale(1.3) rotate(8deg); }
+  100% { opacity: 1; transform: none; }
+}
+.pearls__panel { max-width: 40rem; margin: clamp(1.5rem, 3vw, 2.5rem) auto 0; }
+.pearls__controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.75rem 1.25rem; margin-top: 1.75rem; }
+.pearls__controls[hidden] { display: none; }
+.pearls__count { margin: 0; font-size: var(--step--1); font-weight: 700; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+@media (min-width: 64em) {
+  .pearls__strand { display: block; position: absolute; left: 0; top: 0; width: 100%; height: 9rem; overflow: visible; fill: none; }
+  .pearls__list { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0; }
+  .pearl-tab { --pearl: 6rem; padding-top: calc(0.5rem + var(--y, 0px)); }
+  .pearl-tab::before { display: none; }
+  .pearl-tab__name { font-size: 1.15rem; }
+  .pearl-tab__glint { width: 1.5rem; height: 1.5rem; }
 }
