@@ -38,6 +38,7 @@
   --serenity-blue-rgb: 167 201 238;
   --gentle-teal-rgb: 135 212 209;
   --soft-peach-rgb: 246 198 168;
+  --sage-green-rgb: 182 215 170;
   --deep-plum-rgb: 87 68 103;
 
   /* ------------------------------------------------------------------
@@ -52,6 +53,7 @@
   --lavender-mist: #F2ECF9;   /* Hover wash behind outline buttons. Plum on it: 7.7:1. */
   --lavender-wash: rgb(var(--soft-lavender-rgb) / 0.30);  /* Soft lavender wash on cream bands. */
   --blush-wash: rgb(var(--blush-pink-rgb) / 0.24);        /* Soft blush wash, paired with lavender. */
+  --blush-ground: #FCEDF1;    /* Gold over pink: the pale blush ground of the Namaste closings and Coming soon. Plum on it: 7.6:1, plum-muted 5.1:1. */
 
   /* ------------------------------------------------------------------
      Materials
@@ -84,7 +86,8 @@
   --bg: var(--warm-ivory);
   --bg-alt: var(--soft-cream);
   --text: var(--charcoal);
-  --heading: var(--deep-plum);
+  --heading: var(--deep-plum);      /* every heading and display line takes its colour from here (see the ink preview below) */
+  --link: var(--deep-plum);         /* links, labels and controls stay plum whatever the heading ink */
   --line: var(--champagne-gold);
   --focus: var(--gold-deep);        /* the focus ring: a gold ring with an offset, on ivory and cream alike */
 
@@ -121,4 +124,11 @@
 
   /* Header heights */
   --bar-h: 3.75rem;
+}
+
+/* Heading ink, still being decided: deep plum by default. ?ink=charcoal (in the
+   address) sets this class on <html> for the rest of the visit in that tab, and
+   ?ink=plum returns to plum. Only headings and display lines change. */
+:root.ink-charcoal {
+  --heading: var(--charcoal);
 }

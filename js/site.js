@@ -13,6 +13,11 @@
    7. "Good to know" details on the offerings (closed on phones) and the
       question accordion
    8. the scroll reveal, the phone booking bar and Back to top
+   9. the six strands on About Me: six arched cards that turn to show
+      their summary (hover with a mouse, a tap, or Enter/Space)
+  The two previews (?ink=charcoal|plum and ?tagline=2) are applied by the
+  small script in each page's <head>, before the first paint, so headings
+  never flash in the wrong colour.
 */
 (function () {
   "use strict";
@@ -23,6 +28,8 @@
 
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   var desktop = window.matchMedia("(min-width: 960px)");
+  // the full navigation row needs this much room; below it the Menu button
+  var wideNav = window.matchMedia("(min-width: 1100px)");
   var motionOk = function () {
     return !reducedMotion.matches;
   };
@@ -34,7 +41,7 @@
   /* 1. Header ------------------------------------------------------------ */
   var header = document.querySelector("[data-header]");
   var bar = header && header.querySelector(".site-header__bar");
-  var heroLogo = document.querySelector(".hero__logo");
+  var heroLogo = document.querySelector(".hero__emblem");
   var progress = document.querySelector("[data-progress]");
 
   if (header && bar) {
@@ -59,7 +66,7 @@
       var y = window.scrollY;
       // on desktop the bar appears once the masthead has gone; on phones the
       // bar is always there and only gains a hairline once the page moves
-      var limit = desktop.matches ? mastheadHeight : 8;
+      var limit = wideNav.matches ? mastheadHeight : 8;
       var shouldCondense = condensed ? y > limit - 48 : y > limit;
       if (shouldCondense !== condensed) {
         condensed = shouldCondense;
@@ -176,8 +183,8 @@
       if (isOpen() && event.target.closest("a")) setOpen(false, false);
     });
 
-    onMedia(desktop, function () {
-      if (desktop.matches && isOpen()) setOpen(false, false);
+    onMedia(wideNav, function () {
+      if (wideNav.matches && isOpen()) setOpen(false, false);
     });
   }
 
@@ -394,7 +401,9 @@
       "f-message": "Please add a short message."
     };
     var SUCCESS = "Your message is on its way, and I will reply within a day or two.";
-    var ERROR = "Something went wrong and your message was not sent. Please try again, or email me directly.";
+    // the error line ends with Lisa's email as a link: [before, link text, after]
+    var ERROR = ["Something went wrong and your message was not sent. Please try again, or ", "email me directly", "."];
+    var EMAIL = "lisa@mystrandsofgrace.com";
     var GUARD = "The booking form will be switched on before launch, so this message was not sent.";
 
     // the browser's bubbles are replaced by inline messages
@@ -443,11 +452,20 @@
       submit.textContent = sending ? "Sending..." : "Send";
     };
 
-    var setStatus = function (text) {
+    var setStatus = function (message) {
       if (!status) return;
       status.textContent = "";
       window.setTimeout(function () {
-        status.textContent = text;
+        if (typeof message === "string") {
+          status.textContent = message;
+          return;
+        }
+        var link = document.createElement("a");
+        link.href = "mailto:" + EMAIL;
+        link.textContent = message[1];
+        status.appendChild(document.createTextNode(message[0]));
+        status.appendChild(link);
+        status.appendChild(document.createTextNode(message[2]));
       }, 60);
     };
 
@@ -653,5 +671,135 @@
       var main = document.getElementById("main");
       if (main) main.focus({ preventScroll: true });
     });
+  }
+
+  /* 9. The six strands: six arched cards that turn -------------------------
+     A card is open while it is pinned (clicked, tapped, Enter or Space),
+     hovered with a mouse, or holds keyboard focus that arrived with Tab.
+     One card is pinned at a time. Escape, or a tap on the back of the card,
+     turns it back to rest. The button's aria-expanded follows what shows. */
+  var arches = document.querySelector("[data-arches]");
+  if (arches) {
+    var cards = Array.prototype.map.call(arches.querySelectorAll("[data-strand]"), function (button) {
+      return {
+        button: button,
+        item: button.closest(".arches__item"),
+        summary: document.getElementById(button.getAttribute("aria-controls")),
+        enterTimer: null,
+        leaveTimer: null
+      };
+    });
+    var pinned = null;
+    var hovered = null;
+    var focused = null;
+    var quiet = null;
+    var viaTab = false;
+    var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+    var cardFor = function (el) {
+      var item = el && el.closest ? el.closest(".arches__item") : null;
+      for (var i = 0; i < cards.length; i += 1) {
+        if (cards[i].item === item) return cards[i];
+      }
+      return null;
+    };
+
+    var isShown = function (card) {
+      if (quiet === card) return false;
+      return pinned === card || hovered === card || focused === card;
+    };
+
+    var render = function () {
+      cards.forEach(function (card) {
+        var shown = isShown(card);
+        card.item.classList.toggle("is-open", shown);
+        card.button.setAttribute("aria-expanded", shown ? "true" : "false");
+      });
+    };
+
+    var pin = function (card) {
+      pinned = card;
+      quiet = null;
+      render();
+    };
+
+    var rest = function (card) {
+      if (pinned === card) pinned = null;
+      quiet = card;
+      // focus on the back would be lost as it hides: return it to the front
+      if (card.summary && card.summary.contains(document.activeElement)) {
+        card.button.focus({ preventScroll: true });
+      }
+      render();
+    };
+
+    cards.forEach(function (card) {
+      card.button.addEventListener("click", function (event) {
+        // Enter and Space (detail 0) turn the card either way; a click or a
+        // tap on the front, which only shows while the card rests, opens it
+        if (event.detail === 0 && isShown(card)) rest(card);
+        else pin(card);
+      });
+
+      if (card.summary) {
+        card.summary.addEventListener("click", function (event) {
+          if (!event.target.closest("a")) rest(card);
+        });
+      }
+
+      card.item.addEventListener("pointerenter", function (event) {
+        if (event.pointerType !== "mouse" || !finePointer.matches) return;
+        window.clearTimeout(card.leaveTimer);
+        card.enterTimer = window.setTimeout(function () {
+          hovered = card;
+          render();
+        }, 110);
+      });
+
+      card.item.addEventListener("pointerleave", function (event) {
+        if (event.pointerType !== "mouse") return;
+        window.clearTimeout(card.enterTimer);
+        if (quiet === card && focused !== card) quiet = null;
+        card.leaveTimer = window.setTimeout(function () {
+          if (hovered === card) {
+            hovered = null;
+            render();
+          }
+        }, 140);
+      });
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Tab") viaTab = true;
+    }, true);
+    document.addEventListener("pointerdown", function () {
+      viaTab = false;
+    }, true);
+
+    arches.addEventListener("focusin", function (event) {
+      var card = cardFor(event.target);
+      if (focused && focused !== card) focused = null;
+      if (card && viaTab) focused = card;
+      render();
+    });
+
+    arches.addEventListener("focusout", function (event) {
+      var card = cardFor(event.target);
+      if (!card || card.item.contains(event.relatedTarget)) return;
+      if (focused === card) focused = null;
+      if (quiet === card) quiet = null;
+      render();
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key !== "Escape" || document.body.classList.contains("menu-open")) return;
+      var card = cardFor(document.activeElement) || pinned;
+      if (card && isShown(card)) {
+        event.preventDefault();
+        rest(card);
+      }
+    });
+
+    render();
   }
 })();
