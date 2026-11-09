@@ -7,9 +7,9 @@ her voice, to be replaced or approved by her.
 
 What is real: the business name, her name, the tagline, her portrait, her
 quotes, the words from her 2026 vision board, the seven colours and their
-meanings, the 2017 to 2026 span of her story, her doTERRA shop link, the six
+meanings, the 2017 to 2026 span of her story, her dōTERRA shop link, the six
 strands of her life (My Roots, My Calling, My Heart, My Growth, My Discovery,
-My Becoming), the two candidate story lines, that she is a doTERRA Wellness
+My Becoming), the two candidate story lines, that she is a dōTERRA Wellness
 Advocate, that her sound ceremony certification is in progress (July), and
 her email address, lisa@mystrandsofgrace.com (live; the site is served at
 www.mystrandsofgrace.com). Everything else is placeholder.
@@ -63,8 +63,8 @@ site is built so photos and words can be dropped in without redesign.
 - Email: lisa@mystrandsofgrace.com (a mailto: link)
 - Instagram: Instagram to come
 - Location: [City, State] and online
-- Shop my oils (the doTERRA link)
-- Credentials line: doTERRA Wellness Advocate · [Certification] · [Certification]
+- Shop my oils (the dōTERRA link)
+- Credentials line: dōTERRA Wellness Advocate · [Certification] · [Certification]
 - Sign-off: Namaste.
 - © 2026 Strands of Grace, Lisa Brunson
 
@@ -213,7 +213,7 @@ For each strand, with that strand's word in place of "roots":
 
 ### Credentials (id="credentials"), at the bottom of the page
 - Heading: Credentials
-- doTERRA Wellness Advocate
+- dōTERRA Wellness Advocate
 - Four entries, each with three parts: [Certification or training],
   [Organisation], [Year]
 - In progress: Sound ceremony certification, completing in July.
@@ -363,20 +363,20 @@ Philosophy.)
 - Lead: What I bring to every session.
 - Sound healing: Singing bowls, chimes and drum, played for rest and release.
 - Space clearing: Sage, palo santo and intention for homes and spaces.
-- Essential oils: Guidance on choosing and using oils, as a doTERRA Wellness Advocate.
+- Essential oils: Guidance on choosing and using oils, as a dōTERRA Wellness Advocate.
 - [Another skill or practice]: [A line about it.]
 
 ### The oils I use (id="oils")
-- Eyebrow: doTERRA Wellness Advocate
+- Eyebrow: dōTERRA Wellness Advocate
 - Heading: The oils I use
 - The essential oils I diffuse in every session are the same ones I use at
-  home. I share them through doTERRA, and I am always happy to help you choose
+  home. I share them through dōTERRA, and I am always happy to help you choose
   your first few.
 - Five oils (descriptions are sensory only, never health claims): Lavender:
   Soft, floral and calming. Frankincense: Warm, grounding and steady. Wild
   Orange: Bright, sweet and uplifting. Peppermint: Cool, crisp and refreshing.
   Eucalyptus: Fresh, clean and clearing.
-- Button: Shop my oils (doTERRA link, new tab). Note: Opens my doTERRA shop in
+- Button: Shop my oils (dōTERRA link, new tab). Note: Opens my dōTERRA shop in
   a new tab.
 
 ### Good to know (id="faq"): as in "UX additions" below.
