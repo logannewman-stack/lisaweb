@@ -105,8 +105,8 @@ site is built so photos and words can be dropped in without redesign.
 - Whether you are looking for calm, for clarity or simply for a moment that
   belongs to you, you are welcome here.
 - Link: Read the story behind Strands of Grace (story.html)
-- Her portrait beside it: assets/portraits/lisa-hero.jpg, alt "Lisa Brunson
-  smiling on the beach, the ocean behind her"
+- Her portrait beside it: assets/portraits/lisa-doorway.jpg, alt "Lisa Brunson
+  smiling in an open doorway, one hand on the door"
 
 ### Six strands (id="strands")
 - Heading: Six strands of a life
