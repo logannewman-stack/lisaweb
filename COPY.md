@@ -41,10 +41,12 @@ site is built so photos and words can be dropped in without redesign.
   gentle guidance for the journey back to yourself.
 
 ### The emblem
-- assets/brand/emblem.webp is the emblem shown above "Welcome to Strands of
-  Grace". For now it is the lotus from the logo, standing in for the
-  celestial woman emblem; replace that one file when the emblem arrives.
-  Alt text: The Strands of Grace emblem
+- assets/brand/emblem.webp is Lisa's final emblem (November 2026): the
+  celestial woman with the singing bowl, with the wordmark and tagline, shown
+  above "Welcome to Strands of Grace".
+  Alt text: The Strands of Grace emblem: a woman with flowing, colourful hair
+  rising from a lotus with a singing bowl, framed by gold stars and pearls,
+  above the words Strands of Grace, your journey begins with you
 
 ### Navigation (same on every page; mark the current page)
 - Home (index.html)

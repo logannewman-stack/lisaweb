@@ -36,11 +36,12 @@ to `/explore.html`.
 How to edit:
 - **Words:** edit the text in the HTML. Placeholders are in [square brackets].
   `COPY.md` is the source for all copy.
-- **The emblem:** the home page shows `assets/brand/emblem.webp` above "Welcome
-  to Strands of Grace". It is a stand-in (the lotus); replace that one file with
-  the celestial woman emblem, a transparent WebP of any proportions, and keep
-  the name. If the new emblem should not fade at its sides, delete the two
-  `mask-image` lines under `.hero__emblem` in `css/site.css`.
+- **The emblem:** the home page shows Lisa's final emblem above "Welcome to
+  Strands of Grace": `assets/brand/emblem.webp` (1448 wide) and
+  `emblem-900.webp` for phones. The artwork keeps its own soft background, and
+  its outer edge is feathered into the ivory in the image itself. It is sized
+  by width and capped by the screen height, so the heading, intro and buttons
+  stay on the first screen; replace both files to change it.
 - **Shared parts:** the `<head>` script, the SVG drawing kit, the header and
   the footer (with the phone bar and back-to-top button) are identical on all
   seven pages. Change them on `index.html`, copy them to the others, and keep

@@ -99,9 +99,11 @@ carry `aria-current="page"`).
   the flourish sits under section headings and chapter titles.
 - **Home hero:** the emblem (`assets/brand/emblem.webp`) centred on plain ivory
   above the h1 "Welcome to Strands of Grace", the intro and two buttons. The
-  emblem is sized by width and capped in height (`object-fit: contain`), so a
-  replacement of any proportions fits; the stand-in's cropped sides dissolve
-  through a soft horizontal mask (remove it if the real emblem needs its edges).
+  emblem is Lisa's final artwork (the celestial woman with the singing bowl),
+  its outer edge feathered into the ivory in the file itself. It is sized by
+  width and capped by what the first screen has left after the heading, intro
+  and buttons (`object-fit: contain`); the heading sits on one line from 48em.
+  The sky's stars keep clear of the emblem as well as of text.
   Paint frames the hero from the corners, petals drift, a few stars twinkle.
   No portrait in the first screen.
 - **Petal portraits:** `clip-path: url(#clip-petal)` with a gold outline, washes

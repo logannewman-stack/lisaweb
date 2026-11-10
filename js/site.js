@@ -789,9 +789,15 @@
   var stars = [].slice.call(document.querySelectorAll(".sky__star"));
   if (!stars.length || !document.createRange) return;
 
+  var emblem = document.querySelector(".hero__emblem");
   function touchesText(star) {
     var s = star.getBoundingClientRect();
     if (!s.width || !s.height) return false;
+    /* Her emblem carries its own stars: the sky keeps clear of it too. */
+    if (emblem) {
+      var e = emblem.getBoundingClientRect();
+      if (s.left < e.right - 24 && s.right > e.left + 24 && s.top < e.bottom - 16 && s.bottom > e.top + 16) return true;
+    }
     var scope = star.closest("section, footer, .hero") || document.body;
     var walker = document.createTreeWalker(scope, NodeFilter.SHOW_TEXT);
     var range = document.createRange();
