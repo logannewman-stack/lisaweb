@@ -397,10 +397,9 @@ Philosophy.)
 - Form fields (keep these ids): Your name (f-name), Your email (f-email),
   Which session? (Sound bath, One-to-one session, Cleansing ceremony, Not sure
   yet), Your message (f-message). Button: Send.
-- Form action: https://formspree.io/f/your-form-id (placeholder). While the
-  action still contains "your-form-id", the submit must not leave the page:
-  show "The booking form will be switched on before launch, so this message
-  was not sent." in an aria-live region instead.
+- Form action: https://formsubmit.co/lisa@mystrandsofgrace.com. Each booking
+  is emailed to Lisa with the subject "New booking request from
+  mystrandsofgrace.com".
 - The session choice is preselected from the address (?session=sound-bath,
   one-to-one, cleansing).
 - What happens next, the contact lines (lisa@mystrandsofgrace.com as a

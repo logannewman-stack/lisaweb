@@ -485,8 +485,14 @@
       if (data.get('website')) { showSuccess(); return; }   /* the honeypot: not a person */
       data.delete('website');
       setSending(true);
-      window.fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
-        .then(function (res) { if (!res.ok) throw new Error(String(res.status)); showSuccess(); })
+      /* FormSubmit emails each booking to Lisa. Its background endpoint is the
+         form's address with /ajax/ in front of the email, and takes JSON. */
+      var payload = {};
+      data.forEach(function (value, key) { payload[key] = value; });
+      var endpoint = form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+      window.fetch(endpoint, { method: 'POST', body: JSON.stringify(payload), headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' } })
+        .then(function (res) { if (!res.ok) throw new Error(String(res.status)); return res.json(); })
+        .then(function (reply) { if (String(reply && reply.success) !== 'true') throw new Error('not sent'); showSuccess(); })
         .catch(function () {
           setSending(false);
           /* The error offers her email address as a way round. */
@@ -498,6 +504,9 @@
           status.appendChild(document.createTextNode('.'));
         });
     });
+
+    /* A form sent the plain way comes back here with ?sent=1: show the thank-you. */
+    if (new URLSearchParams(window.location.search).get('sent') === '1') showSuccess();
 
     /* The Book buttons on this page choose the session without a reload. */
     slice(document.querySelectorAll('a[href*="?session="]')).forEach(function (link) {

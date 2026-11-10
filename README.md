@@ -66,12 +66,17 @@ How to edit:
     the others can be deleted.
 - **Timeline:** add or remove an `<li class="timeline__item">` in `story.html`.
   The gold strand redraws itself.
-- **Booking form:** to switch it on, replace `your-form-id` in the form's
-  `action` (on `connect.html`) with the real Formspree id. Until then the form
-  shows a notice and does not send. Once switched on, the page sends the
-  message in the background and shows the thank-you with "What happens next";
-  if sending fails it says so, offers her email address and keeps what was
-  typed. `connect.html?session=sound-bath`, `one-to-one` and `cleansing`
+- **Booking form:** bookings are emailed to lisa@mystrandsofgrace.com through
+  FormSubmit (free, no account). The form's `action` on `connect.html` is
+  `https://formsubmit.co/lisa@mystrandsofgrace.com`; the page sends each
+  booking in the background as JSON to the same address under `/ajax/` and
+  shows the thank-you with "What happens next". The email's subject is set by
+  the hidden `_subject` field. **The very first booking triggers a one-time
+  "Activate Form" email to lisa@; until she clicks it, bookings show the error
+  message (which offers her email address) and are not delivered.** To send
+  bookings to a different address, change the address in the `action`.
+  If sending fails the page says so, offers her email address and keeps what
+  was typed. `connect.html?session=sound-bath`, `one-to-one` and `cleansing`
   preselect the session card.
 - **Email:** lisa@mystrandsofgrace.com appears in the footer, in the contact
   lines on Stay Connected and in the form's error message (`js/site.js`).
