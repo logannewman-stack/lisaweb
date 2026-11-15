@@ -1,2 +1,31 @@
-{"redirects":[{"source":"/work-with-me.html","destination":"/explore.html","permanent":false},
-              {"source":"/work-with-me","destination":"/explore.html","permanent":false}]}
+{
+  "routes": [
+    {
+      "src": "/(?!coming-soon\\.html$|assets/)(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.mystrandsofgrace.com"
+        }
+      ],
+      "dest": "/coming-soon.html"
+    },
+    {
+      "src": "/(?!coming-soon\\.html$|assets/)(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "mystrandsofgrace.com"
+        }
+      ],
+      "dest": "/coming-soon.html"
+    },
+    {
+      "src": "/work-with-me(?:\\.html)?/?",
+      "status": 307,
+      "headers": {
+        "Location": "/explore.html"
+      }
+    }
+  ]
+}
