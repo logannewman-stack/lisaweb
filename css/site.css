@@ -1056,7 +1056,7 @@ main:focus { outline: none; }
 
 .about-hero { position: relative; isolation: isolate; padding-block: clamp(1.5rem, 4vw, 3.5rem) clamp(2.5rem, 6vw, 5rem); }
 .about-hero__grid { display: grid; gap: 2.5rem; align-items: center; }
-.about-hero__portrait { width: min(72vw, 20rem); justify-self: center; --img-w: 125%; --img-x: -2%; --img-y: 0%; margin-bottom: calc(min(72vw, 20rem) * 0.08); }
+.about-hero__portrait { width: min(72vw, 20rem); justify-self: center; --img-w: 100%; --img-x: 0%; --img-y: 0%; margin-bottom: calc(min(72vw, 20rem) * 0.08); }
 .hello { display: grid; justify-items: start; line-height: 1; }
 .hello__script {
   font-family: var(--font-script);

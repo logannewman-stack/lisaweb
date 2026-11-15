@@ -159,7 +159,8 @@ site is built so photos and words can be dropped in without redesign.
 ### Hero
 - Heading: Hello, I'm Lisa
 - Lead: I'm Lisa Brunson, the founder of Strands of Grace.
-- Portrait: assets/portraits/lisa-portrait.jpg, alt "Lisa Brunson"
+- Portrait: assets/portraits/lisa-portrait.jpg (the doorway photo), alt "Lisa
+  Brunson smiling in an open doorway"
 
 ### My background (id="background")
 - Heading: My background
