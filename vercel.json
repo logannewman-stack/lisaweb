@@ -5,17 +5,7 @@
       "has": [
         {
           "type": "host",
-          "value": "www.mystrandsofgrace.com"
-        }
-      ],
-      "dest": "/coming-soon.html"
-    },
-    {
-      "src": "/(?!coming-soon\\.html$|assets/)(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "mystrandsofgrace.com"
+          "value": "lisaweb-git-cs-test-logan13.vercel.app"
         }
       ],
       "dest": "/coming-soon.html"
